@@ -1,4 +1,4 @@
-""" Etude d'un dataset """
+""" Etude d'un dataframe """
 
 import numpy as np
 from collections import Counter
@@ -7,9 +7,9 @@ import time
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-## avoir des renseignement sur une colonne
+## avoir des renseignement sur une série
 
-def column_info(data): # data -> 1 colonne
+def column_info(data): # data -> 1 serie
     (a,) = data.shape
     if (type(data)==pd.core.series.Series):
         n_data = (data.to_numpy())
@@ -55,7 +55,7 @@ def column_info(data): # data -> 1 colonne
     time.sleep(1)
 
 
-## avoir des renseignements sur le dataset entier
+## avoir des renseignements sur le dataframe entier
 
 #dataset de type Dataframe :
 " Numpy -> pandas.Dataframe : pd.DataFrame()"
