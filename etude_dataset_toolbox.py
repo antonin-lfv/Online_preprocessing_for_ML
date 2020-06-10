@@ -50,7 +50,7 @@ def column_info(data): # data -> 1 serie
     print(' ● longueur:',n_data.shape[0])
     print('-------------------------')
     time.sleep(1)
-    print(' ● nombre de valeurs distinctes non NaN:', len(Counter(n_data))-sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist()))
+    print(' ● nombre de valeurs distinctes non NaN:', abs(len(Counter(n_data))-sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist())))
     print('-------------------------')
     time.sleep(1)
 
