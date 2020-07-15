@@ -1,4 +1,4 @@
-""" Study of a dataframe """
+""" preprocessing on a dataframe """
 
 import numpy as np
 from collections import Counter
