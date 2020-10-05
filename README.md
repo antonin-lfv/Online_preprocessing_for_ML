@@ -61,7 +61,7 @@ Ces deux algorithmes vont vous permettre d'automatiser le preprocessing sur une 
     
 <br/>
 
-### With this window in html
+### With this following window in html 
 <br/>
 
 ![feature_max_evolution](https://user-images.githubusercontent.com/63207451/95136225-03fe7b00-0766-11eb-99af-766deea9f2e2.png)
