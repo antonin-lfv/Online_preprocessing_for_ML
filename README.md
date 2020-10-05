@@ -63,9 +63,7 @@ Ces deux algorithmes vont vous permettre d'automatiser le preprocessing sur une 
 
 ### With this following window in html 
 <br/>
-This plot needs Plotly  
-
-<br/>
+This plot needs Plotly  <br/>
 
         pip install plotly
 
