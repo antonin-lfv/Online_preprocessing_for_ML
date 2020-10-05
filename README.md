@@ -2,7 +2,7 @@
 Dataframe review with Pandas.
 
 
-These two algorithms will help you to automate preprocessing on dataset.
+These two algorithms will help you to automate preprocessing on dataset.  <br/>
 Ces deux algorithmes vont vous permettre d'automatiser le preprocessing sur une colonne puis sur un dataset complet.
 <br/>
 
