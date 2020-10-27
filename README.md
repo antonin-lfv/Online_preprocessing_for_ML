@@ -74,6 +74,9 @@ documentation : <https://plotly.com/python/>
 ![feature_max_evolution](https://user-images.githubusercontent.com/63207451/95136225-03fe7b00-0766-11eb-99af-766deea9f2e2.png)
 
 <br/>
+
+<br/>
+
 <p align="center">
   <a href="https://github.com/antonin-lfv" class="fancybox" ><img src="https://user-images.githubusercontent.com/63207451/97302854-e484da80-1859-11eb-9374-5b319ca51197.png" title="GitHub" width="40" height="40"></a>
   <a href="https://www.linkedin.com/in/antonin-lefevre-565b8b141" class="fancybox" ><img src="https://user-images.githubusercontent.com/63207451/97303444-b2c04380-185a-11eb-8cfc-864c33a64e4b.png" title="LinkedIn" width="40" height="40"></a>
