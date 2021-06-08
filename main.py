@@ -23,6 +23,7 @@ if uploaded_file is not None:
         data = pd.read_csv(uploaded_file)
     else :
         st.sidebar.write('Type : excel')
+        data = pd.read_excel(uploaded_file)
 
     st.write("##")
     st.write("Aperçu du dataset : ")
