@@ -27,7 +27,7 @@ if uploaded_file is not None:
 
     st.write("##")
     st.write("Aperçu du dataset : ")
-    st.write(data.head(10))
+    st.write(data.head(50))
     st.write("##")
 
 ## have information on a series
