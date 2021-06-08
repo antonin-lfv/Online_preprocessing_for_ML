@@ -14,20 +14,20 @@ import os
 st.set_page_config(layout="wide", )
 st.title('Preprocessing automatique')
 
-filename = st.sidebar.text_input('Enter a file path:')
-if filename=='':
-    pass
-else :
-    try:
-        with open(filename) as input:
-            data = pd.read_csv(filename)
-            st.sidebar.success('Fichier chargé')
+uploaded_file = st.sidebar.file_uploader("Chargez votre dataset",type=['csv','xlsx','xls'])
+if uploaded_file is not None:
+    file_details = {"FileName":uploaded_file.name,"FileType":uploaded_file.type,"FileSize":uploaded_file.size}
+    st.sidebar.success('Fichier chargé')
+    if 'csv' in file_details['FileType']:
+        st.sidebar.write('Type : csv')
+        data = pd.read_csv(uploaded_file)
+    else :
+        st.sidebar.write('Type : excel')
 
-
-            st.text(data.columns)
-    except FileNotFoundError:
-        st.sidebar.error('Fichier non trouvé')
-
+    st.write("##")
+    st.write("Aperçu du dataset : ")
+    st.write(data.head(10))
+    st.write("##")
 
 ## have information on a series
 
