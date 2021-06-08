@@ -28,10 +28,16 @@ if uploaded_file is not None:
     st.sidebar.success('Fichier chargé')
     if 'csv' in file_details['FileType']:
         st.sidebar.write('Type : csv')
-        data = pd.read_csv(uploaded_file)
+        try :
+            data = pd.read_csv(uploaded_file)
+        except :
+            st.sidebar.error('Erreur de chargement')
     else :
         st.sidebar.write('Type : excel')
-        data = pd.read_excel(uploaded_file)
+        try :
+            data = pd.read_excel(uploaded_file)
+        except :
+            st.sidebar.error('Erreur de chargement')
 
     st.write("##")
     st.write("Aperçu du dataset : ")
