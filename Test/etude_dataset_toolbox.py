@@ -7,6 +7,9 @@ import time
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+## Dataset examples
+df = pd.read_csv('/Users/antoninlefevre/Downloads/langages_informatiques/Python/Data Science/Data Science - Udemy/Titanic_survival.csv')
+
 ## have information on a series
 
 def column_info(data): # data -> 1 serie
@@ -67,7 +70,7 @@ def max_std(dataset):
 #dataset with type Dataframe :
 " Numpy -> pandas.Dataframe : pd.DataFrame()"
 
-def dataset_info(dataset, nom_col_index): #type(nom_col_index)=str
+def dataset_info(dataset): #type(nom_col_index)=str
     print('')
     print(' ● size:', dataset.shape)
     print('-------------------------')
@@ -81,13 +84,12 @@ def dataset_info(dataset, nom_col_index): #type(nom_col_index)=str
     print(' ● number of values:', dataset.shape[0]*dataset.shape[1])
     print('-------------------------')
     time.sleep(0.5)
-    print(' ● maximum variance for the column :', max_var(dataset)[1])
-    print('   with a variance of :',max_var(dataset)[0] )
+    print(' ● maximum variance for the column :', max_std(dataset)[1])
+    print('   with a variance of :',max_std(dataset)[0] )
     print('-------------------------')
     if sum(pd.DataFrame(dataset).isnull().sum(axis=1).tolist()) != 0 :
         sns.heatmap(dataset.isna(),cbar=False)
         plt.title('brigth color = no data') #if missing data we plot the dataset
-    dataset[[nom_col_index,str(max_var(dataset)[1])]].plot()
-    plt.xlabel(nom_col_index)
+    dataset[[str(max_std(dataset)[1])]].plot()
     plt.title('most progressive feature')
     plt.show()
