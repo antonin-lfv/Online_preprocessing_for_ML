@@ -10,6 +10,14 @@ import seaborn as sns
 import streamlit as st
 import os
 
+###### functions ########
+def max_std(dataset):
+    l = []
+    for nom in dataset.columns :
+        if type(dataset[nom][0]) != object and type(dataset[nom][0]) != str :
+            l.append([dataset[nom].std(),nom])
+    return(max(l))
+
 ####### Streamlit Config ######
 st.set_page_config(layout="wide", )
 st.title('Preprocessing automatique')
@@ -29,18 +37,12 @@ if uploaded_file is not None:
     st.write("Aperçu du dataset : ")
     st.write(data.head(50))
 
-    l = []
-    for nom in data.columns :
-        if type(data[nom][0]) != object and type(data[nom][0]) != str :
-            l.append([data[nom].std(),nom])
-    max_std = max(l)
-
     st.write("##")
     st.write(' ● size:', data.shape)
     st.write(' ● data type:', data.dtypes.value_counts())
     st.write(' ● missing values:', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()))
     st.write(' ● number of values:', data.shape[0]*data.shape[1])
-    st.write(' ● maximum variance for the column :', max_std[1],' with a variance of :',max_std[0] )
+    st.write(' ● maximum variance for the column :', max_std(data)[1],' with a variance of :',max_std(data)[0] )
 
 ## have information on a series
 
