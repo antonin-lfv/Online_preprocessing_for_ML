@@ -14,7 +14,7 @@ import os
 st.set_page_config(layout="wide", )
 st.title('Preprocessing automatique')
 
-uploaded_file = st.sidebar.file_uploader("Chargez votre dataset",type=['csv','xlsx','xls'])
+uploaded_file = st.sidebar.file_uploader("Chargez votre dataset",type=['csv','xls'])
 if uploaded_file is not None:
     file_details = {"FileName":uploaded_file.name,"FileType":uploaded_file.type,"FileSize":uploaded_file.size}
     st.sidebar.success('Fichier chargé')
