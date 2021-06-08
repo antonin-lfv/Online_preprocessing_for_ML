@@ -29,7 +29,7 @@ if uploaded_file is not None:
     file_details = {"FileName":uploaded_file.name,"FileType":uploaded_file.type,"FileSize":uploaded_file.size}
     st.sidebar.success('Fichier chargé')
     st.sidebar.write(file_details["FileName"])
-    if 'csv' in file_details['FileType']:
+    if 'csv' in file_details['FileName']:
         st.sidebar.write('Type : csv')
         try :
             data = pd.read_csv(uploaded_file)
