@@ -22,10 +22,13 @@ def max_std(dataset):
 st.set_page_config(layout="wide", )
 st.title('Preprocessing automatique')
 
+
+###### App #######
 uploaded_file = st.sidebar.file_uploader("Chargez votre dataset",type=['csv','xls'])
 if uploaded_file is not None:
     file_details = {"FileName":uploaded_file.name,"FileType":uploaded_file.type,"FileSize":uploaded_file.size}
     st.sidebar.success('Fichier chargé')
+    st.sidebar.write(file_details["FileName"])
     if 'csv' in file_details['FileType']:
         st.sidebar.write('Type : csv')
         try :
