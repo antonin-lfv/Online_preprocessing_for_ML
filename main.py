@@ -1,4 +1,5 @@
 """ preprocessing on a dataframe """
+# streamlit run main.py #
 
 import numpy as np
 from collections import Counter
@@ -7,9 +8,26 @@ import time
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
+import os
 
-## Dataset examples
-df = pd.read_csv('/Users/antoninlefevre/Downloads/langages_informatiques/Python/Data Science/Data Science - Udemy/Titanic_survival.csv')
+####### Streamlit Config ######
+st.set_page_config(layout="wide", )
+st.title('Preprocessing automatique')
+
+filename = st.sidebar.text_input('Enter a file path:')
+if filename=='':
+    pass
+else :
+    try:
+        with open(filename) as input:
+            data = pd.read_csv(filename)
+            st.sidebar.success('Fichier chargé')
+
+
+            st.text(data.columns)
+    except FileNotFoundError:
+        st.sidebar.error('Fichier non trouvé')
+
 
 ## have information on a series
 
@@ -58,7 +76,6 @@ def column_info(data): # data -> 1 serie
     print('-------------------------')
     time.sleep(1)
 
-
 ## have information on the entire dataframe
 
 def max_std(dataset):
@@ -69,7 +86,7 @@ def max_std(dataset):
     return(max(l))
 
 #dataset with type Dataframe :
-" Numpy -> pandas.Dataframe : pd.DataFrame()"
+# " Numpy -> pandas.Dataframe : pd.DataFrame()"
 
 def dataset_info(dataset): #type(nom_col_index)=str
     print('')
@@ -94,3 +111,4 @@ def dataset_info(dataset): #type(nom_col_index)=str
     dataset[[str(max_std(dataset)[1])]].plot()
     plt.title('most progressive feature')
     plt.show()
+
