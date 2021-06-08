@@ -1,6 +1,8 @@
 # Automated preprocessing pandas - Data Science
 Dataframe review with Pandas.
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/antonin-lfv/automated_preprocessing_pandas/main.py)
+
 
 These two algorithms will help you to automate preprocessing on dataset.  <br/>
 Ces deux algorithmes vont vous permettre d'automatiser le preprocessing sur une colonne puis sur un dataset complet.
