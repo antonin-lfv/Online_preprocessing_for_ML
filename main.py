@@ -28,7 +28,19 @@ if uploaded_file is not None:
     st.write("##")
     st.write("Aperçu du dataset : ")
     st.write(data.head(50))
+
+    l = []
+    for nom in data.columns :
+        if type(data[nom][0]) != object and type(data[nom][0]) != str :
+            l.append([data[nom].std(),nom])
+    max_std = max(l)
+
     st.write("##")
+    st.write(' ● size:', data.shape)
+    st.write(' ● data type:', data.dtypes.value_counts())
+    st.write(' ● missing values:', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()))
+    st.write(' ● number of values:', data.shape[0]*data.shape[1])
+    st.write(' ● maximum variance for the column :', max_std[1],' with a variance of :',max_std[0] )
 
 ## have information on a series
 
@@ -77,14 +89,6 @@ def column_info(data): # data -> 1 serie
     print('-------------------------')
     time.sleep(1)
 
-## have information on the entire dataframe
-
-def max_std(dataset):
-    l = []
-    for nom in dataset.columns :
-        if type(dataset[nom][0]) != object and type(dataset[nom][0]) != str :
-            l.append([dataset[nom].std(),nom])
-    return(max(l))
 
 #dataset with type Dataframe :
 # " Numpy -> pandas.Dataframe : pd.DataFrame()"
