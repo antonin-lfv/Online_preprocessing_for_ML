@@ -30,22 +30,34 @@ if uploaded_file is not None:
         st.sidebar.write('Type : csv')
         try :
             data = pd.read_csv(uploaded_file)
+            st.write("##")
+            st.write("Aperçu du dataset : ")
+            st.write(data.head(50))
+
+            st.write("##")
+            st.write(' ● size:', data.shape)
+            st.write(' ● data type:', data.dtypes.value_counts())
+            st.write(' ● missing values:', round(
+                sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()) * 100 / (data.shape[0] * data.shape[1]), 2),
+                     ' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()), ' valeurs manquantes)')
+            st.write(' ● number of values:', data.shape[0] * data.shape[1])
         except :
             st.sidebar.error('Erreur de chargement')
     else :
         st.sidebar.write('Type : excel')
         try :
             data = pd.read_excel(uploaded_file)
+            st.write("##")
+            st.write("Aperçu du dataset : ")
+            st.write(data.head(50))
+
+            st.write("##")
+            st.write(' ● size:', data.shape)
+            st.write(' ● data type:', data.dtypes.value_counts())
+            st.write(' ● missing values:', round(
+                sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()) * 100 / (data.shape[0] * data.shape[1]), 2),
+                     ' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()), ' valeurs manquantes)')
+            st.write(' ● number of values:', data.shape[0] * data.shape[1])
         except :
             st.sidebar.error('Erreur de chargement')
-
-    st.write("##")
-    st.write("Aperçu du dataset : ")
-    st.write(data.head(50))
-
-    st.write("##")
-    st.write(' ● size:', data.shape)
-    st.write(' ● data type:', data.dtypes.value_counts())
-    st.write(' ● missing values:', round(sum(pd.DataFrame(data).isnull().sum(axis=1).tolist())*100/(data.shape[0]*data.shape[1]),2),' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()),' valeurs manquantes)' )
-    st.write(' ● number of values:', data.shape[0]*data.shape[1])
 
