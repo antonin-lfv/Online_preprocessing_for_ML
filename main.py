@@ -42,7 +42,6 @@ if uploaded_file is not None:
     st.write(' ● data type:', data.dtypes.value_counts())
     st.write(' ● missing values:', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()))
     st.write(' ● number of values:', data.shape[0]*data.shape[1])
-    st.write(' ● maximum variance for the column :', max_std(data)[1],' with a variance of :',max_std(data)[0] )
 
 ## have information on a series
 
