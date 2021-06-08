@@ -40,6 +40,6 @@ if uploaded_file is not None:
     st.write("##")
     st.write(' ● size:', data.shape)
     st.write(' ● data type:', data.dtypes.value_counts())
-    st.write(' ● missing values:', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist())*100/(data.shape[0]*data.shape[1]),' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()),')' )
+    st.write(' ● missing values:', round(sum(pd.DataFrame(data).isnull().sum(axis=1).tolist())*100/(data.shape[0]*data.shape[1]),2),' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()),')' )
     st.write(' ● number of values:', data.shape[0]*data.shape[1])
 
