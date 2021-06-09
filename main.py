@@ -89,7 +89,9 @@ if uploaded_file is not None:
         analyses_graph = st.sidebar.checkbox('Analyses graphiques')
 
         if analyse_data:
+            ##########################
             ### section du dataset ###
+            ##########################
             st.write("##")
             st.markdown('<p class="grand_titre">Analyse du dataset</p>', unsafe_allow_html=True)
             st.write("##")
@@ -107,7 +109,9 @@ if uploaded_file is not None:
             ### Fin section du dataset ###
 
         if analyse_col:
+            #############################
             ### Section de la colonne ###
+            #############################
             st.write('##')
             st.markdown('<p class="grand_titre">Analyse d\'une colonne</p>', unsafe_allow_html=True)
             slider_col = st.selectbox(
@@ -155,11 +159,14 @@ if uploaded_file is not None:
             ### Fin section colonne ###
 
         if analyses_graph:
+            ##########################
             ### Section Graphiques ###
+            ##########################
             st.write("##")
             st.markdown('<p class="grand_titre">Analyses graphiques</p>', unsafe_allow_html=True)
             abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_numeric(data))
             ordonnee_plot = st.selectbox('Données en ordonnées', ['Selectionner une colonne'] + col_numeric(data))
+            couleur_plot = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
             type_plot = st.radio("Type de plot", ('Points', 'Courbe', 'Latitude/Longitude'))
             type_plot_dict = {
                 'Courbe': 'lines',
@@ -170,14 +177,22 @@ if uploaded_file is not None:
                 df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
                 if type_plot == 'Latitude/Longitude':
                     fig = go.Figure()
-                    fig.add_scattermapbox(
-                        mode="markers",
-                        lon=df_sans_NaN[ordonnee_plot],
-                        lat=df_sans_NaN[abscisse_plot],
-                        marker={'size': 10,
-                                'color': 'firebrick',
-                                })
-
+                    if couleur_plot!='Selectionner une colonne':
+                        fig.add_scattermapbox(
+                            mode="markers",
+                            lon=df_sans_NaN[ordonnee_plot],
+                            lat=df_sans_NaN[abscisse_plot],
+                            marker={'size': 10,
+                                    'color': data[couleur_plot],
+                                    })
+                    else :
+                        fig.add_scattermapbox(
+                            mode="markers",
+                            lon=df_sans_NaN[ordonnee_plot],
+                            lat=df_sans_NaN[abscisse_plot],
+                            marker={'size': 10,
+                                    'color': 'firebrick',
+                                    })
                     fig.update_layout(
                         margin={'l': 0, 't': 0, 'b': 0, 'r': 0},
                         mapbox={
@@ -188,7 +203,11 @@ if uploaded_file is not None:
 
                 else:
                     fig = go.Figure()
-                    fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
+                    if couleur_plot != 'Selectionner une colonne' :
+                        fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
+                                    mode=type_plot_dict[type_plot], name='', marker=dict(color=data[couleur_plot]))
+                    else :
+                        fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
                                     mode=type_plot_dict[type_plot], name='')
                     fig.update_xaxes(title_text=abscisse_plot)
                     fig.update_yaxes(title_text=ordonnee_plot)
