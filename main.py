@@ -222,15 +222,7 @@ if uploaded_file is not None:
             couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
             st.write("##")
             df_sans_NaN = data.dropna()
-            if len(df_sans_NaN) == 0:
-                st.error('Le dataframe après utilisation de dropna() est vide !')
-            else:
-                if couleur_corr != 'Selectionner une colonne':
-                    fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN), color=couleur_corr)
-                else:
-                    fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
 
-                st.plotly_chart(fig)
             ### Fin section mat de corr ###
 
     except:
