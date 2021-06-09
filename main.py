@@ -204,7 +204,7 @@ if uploaded_file is not None:
 
                 else:
                     if couleur_plot != 'Selectionner une colonne' :
-                        df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
+                        df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot], data[couleur_plot]], axis=1).dropna()
                         fig = px.scatter(df_sans_NaN, x=abscisse_plot, y=ordonnee_plot, color=couleur_plot)
                     else :
                         fig = go.Figure()
