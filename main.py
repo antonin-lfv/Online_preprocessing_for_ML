@@ -220,8 +220,10 @@ if uploaded_file is not None:
             st.write("##")
             st.markdown('<p class="grand_titre">Matrice de corrélations</p>', unsafe_allow_html=True)
             couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
+            pourcent_nan = st.slider('Saisir le pourcentage maximum de NaN qu\'une colonne doit avoir', min_value=0, max_value=100, value=10)
             st.write("##")
-            df_sans_NaN = data.dropna()
+            df = data.loc[:, data.isnull().sum() < pourcent_nan * data.shape[0]]
+            df_sans_NaN = df.dropna()
             if couleur_corr!= 'Selectionner une colonne' :
                 fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN),color=couleur_corr)
             else :
