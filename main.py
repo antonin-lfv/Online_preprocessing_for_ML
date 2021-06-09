@@ -64,7 +64,7 @@ st.markdown("""
 st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow_html=True)
 st.write("##")
 st.markdown(
-    '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes pour développer votre modèle, ou simplement pour visualiser vos données. '+
+    '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes pour développer votre modèle, ou simplement pour visualiser vos données. ' +
     'Si vous aimez ce site n\'hésitez pas à mettre une étoile sur le repo GitHub.</p>',
     unsafe_allow_html=True)
 url = 'https://github.com/antonin-lfv/Online_preprocessing_for_ML'
@@ -167,7 +167,7 @@ if uploaded_file is not None:
             st.markdown('<p class="grand_titre">Graphique simple</p>', unsafe_allow_html=True)
             abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_numeric(data))
             ordonnee_plot = st.selectbox('Données en ordonnées', ['Selectionner une colonne'] + col_numeric(data))
-            #couleur_plot = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
+            # couleur_plot = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
             type_plot = st.radio("Type de plot", ('Points', 'Courbe', 'Latitude/Longitude'))
             type_plot_dict = {
                 'Courbe': 'lines',
@@ -197,7 +197,7 @@ if uploaded_file is not None:
                     fig = go.Figure()
                     df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
                     fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
-                                mode=type_plot_dict[type_plot], name='')
+                                    mode=type_plot_dict[type_plot], name='')
                 fig.update_xaxes(title_text=abscisse_plot)
                 fig.update_yaxes(title_text=ordonnee_plot)
                 fig.update_layout(
@@ -224,10 +224,10 @@ if uploaded_file is not None:
             df_sans_NaN = data.dropna()
             if len(df_sans_NaN) == 0:
                 st.error('Le dataframe après utilisation de dropna() est vide !')
-            else :
-                if couleur_corr!= 'Selectionner une colonne' :
-                    fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN),color=couleur_corr)
-                else :
+            else:
+                if couleur_corr != 'Selectionner une colonne':
+                    fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN), color=couleur_corr)
+                else:
                     fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
 
                 st.plotly_chart(fig)
