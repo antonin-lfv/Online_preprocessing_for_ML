@@ -82,7 +82,7 @@ if uploaded_file is not None:
             data = pd.read_excel(uploaded_file)
 
         st.sidebar.success('Fichier chargé')
-        slider_col = st.sidebar.selectbox(
+        slider_col = st.selectbox(
             'Choisissez une colonne à étudier',
             ['Choisir'] + data.columns.to_list(),
         )
