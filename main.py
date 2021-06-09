@@ -34,7 +34,7 @@ if uploaded_file is not None:
             data = pd.read_csv(uploaded_file)
             slider_col = st.sidebar.selectbox(
                 'Choisissez une colonne à étudier',
-                ['choisir']+data.columns.to_list(),
+                ['Choisir']+data.columns.to_list(),
             )
             ### section du dataset ###
             st.write("##")
@@ -52,7 +52,7 @@ if uploaded_file is not None:
             if slider_col!='choisir':
                 st.title('Étude la colonne ',slider_col)
                 ### Données ###
-                n_data = (data.to_numpy())
+                n_data = (data[slider_col].to_numpy())
 
                 st.write(' ● données:')
                 st.write(data.head(5))
