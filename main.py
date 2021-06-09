@@ -184,7 +184,6 @@ if uploaded_file is not None:
                             lat=df_sans_NaN[abscisse_plot],
                             marker=dict(size= 10,
                                     color= df_sans_NaN[couleur_plot],
-                                    colorscale="jet"
                         ))
                     else :
                         df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
@@ -204,12 +203,11 @@ if uploaded_file is not None:
                     st.plotly_chart(fig)
 
                 else:
-                    fig = go.Figure()
                     if couleur_plot != 'Selectionner une colonne' :
-                        df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot], data[couleur_plot]], axis=1).dropna()
-                        fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
-                                    mode=type_plot_dict[type_plot], name='', marker_color=df_sans_NaN[couleur_plot])
+                        df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
+                        fig = px.scatter(df_sans_NaN, x=abscisse_plot, y=ordonnee_plot, color=couleur_plot)
                     else :
+                        fig = go.Figure()
                         df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
                         fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
                                     mode=type_plot_dict[type_plot], name='')
