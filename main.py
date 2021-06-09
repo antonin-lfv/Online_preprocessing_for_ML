@@ -110,9 +110,9 @@ if uploaded_file is not None:
                 variance = data_col.std()
                 max = data_col.max()
                 min = data_col.min()
-                st.write(' ● Moyenne :', moyenne)
+                st.write(' ● Moyenne :', round(moyenne, 3))
 
-                st.write(' ● Variance :', variance)
+                st.write(' ● Variance :', round(variance, 3))
 
                 st.write(' ● Maximum :', max)
 
