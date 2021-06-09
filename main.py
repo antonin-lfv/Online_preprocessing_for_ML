@@ -166,7 +166,7 @@ if uploaded_file is not None:
             st.markdown('<p class="grand_titre">Analyses graphiques</p>', unsafe_allow_html=True)
             abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_numeric(data))
             ordonnee_plot = st.selectbox('Données en ordonnées', ['Selectionner une colonne'] + col_numeric(data))
-            couleur_plot = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
+            #couleur_plot = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
             type_plot = st.radio("Type de plot", ('Points', 'Courbe', 'Latitude/Longitude'))
             type_plot_dict = {
                 'Courbe': 'lines',
@@ -176,24 +176,14 @@ if uploaded_file is not None:
             if abscisse_plot != 'Selectionner une colonne' and ordonnee_plot != 'Selectionner une colonne':
                 if type_plot == 'Latitude/Longitude':
                     fig = go.Figure()
-                    if couleur_plot!='Selectionner une colonne':
-                        df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot], data[couleur_plot]],axis=1).dropna()
-                        fig.add_scattermapbox(
-                            mode="markers",
-                            lon=df_sans_NaN[ordonnee_plot],
-                            lat=df_sans_NaN[abscisse_plot],
-                            marker=dict(size= 10,
-                                    color= df_sans_NaN[couleur_plot],
-                        ))
-                    else :
-                        df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
-                        fig.add_scattermapbox(
-                            mode="markers",
-                            lon=df_sans_NaN[ordonnee_plot],
-                            lat=df_sans_NaN[abscisse_plot],
-                            marker={'size': 10,
-                                    'color': 'firebrick',
-                                    })
+                    df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
+                    fig.add_scattermapbox(
+                        mode="markers",
+                        lon=df_sans_NaN[ordonnee_plot],
+                        lat=df_sans_NaN[abscisse_plot],
+                        marker={'size': 10,
+                                'color': 'firebrick',
+                                })
                     fig.update_layout(
                         margin={'l': 0, 't': 0, 'b': 0, 'r': 0},
                         mapbox={
@@ -203,27 +193,23 @@ if uploaded_file is not None:
                     st.plotly_chart(fig)
 
                 else:
-                    if couleur_plot != 'Selectionner une colonne' :
-                        df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot], data[couleur_plot]], axis=1).dropna()
-                        fig = px.scatter(df_sans_NaN, x=abscisse_plot, y=ordonnee_plot, color=couleur_plot)
-                    else :
-                        fig = go.Figure()
-                        df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
-                        fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
-                                    mode=type_plot_dict[type_plot], name='')
-                    fig.update_xaxes(title_text=abscisse_plot)
-                    fig.update_yaxes(title_text=ordonnee_plot)
-                    fig.update_layout(
-                        template='simple_white',
-                        showlegend=False,
-                        font=dict(size=10),
-                        autosize=False,
-                        width=900, height=450,
-                        margin=dict(l=40, r=50, b=40, t=40),
-                        paper_bgcolor='rgba(0,0,0,0)',
-                        plot_bgcolor='rgba(0,0,0,0)',
-                    )
-                    st.plotly_chart(fig)
+                    fig = go.Figure()
+                    df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
+                    fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
+                                mode=type_plot_dict[type_plot], name='')
+                fig.update_xaxes(title_text=abscisse_plot)
+                fig.update_yaxes(title_text=ordonnee_plot)
+                fig.update_layout(
+                    template='simple_white',
+                    showlegend=False,
+                    font=dict(size=10),
+                    autosize=False,
+                    width=900, height=450,
+                    margin=dict(l=40, r=50, b=40, t=40),
+                    paper_bgcolor='rgba(0,0,0,0)',
+                    plot_bgcolor='rgba(0,0,0,0)',
+                )
+                st.plotly_chart(fig)
             ### Fin section graphiques ###
     except:
         st.sidebar.error('Erreur de chargement')
