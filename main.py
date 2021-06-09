@@ -174,7 +174,6 @@ if uploaded_file is not None:
                 'Latitude/Longitude': 'map'
             }
             if abscisse_plot != 'Selectionner une colonne' and ordonnee_plot != 'Selectionner une colonne':
-                df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
                 if type_plot == 'Latitude/Longitude':
                     fig = go.Figure()
                     if couleur_plot!='Selectionner une colonne':
@@ -187,6 +186,7 @@ if uploaded_file is not None:
                                     'color': df_sans_NaN[couleur_plot],
                                     })
                     else :
+                        df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
                         fig.add_scattermapbox(
                             mode="markers",
                             lon=df_sans_NaN[ordonnee_plot],
@@ -209,6 +209,7 @@ if uploaded_file is not None:
                         fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
                                     mode=type_plot_dict[type_plot], name='', marker=dict(color=df_sans_NaN[couleur_plot]))
                     else :
+                        df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
                         fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
                                     mode=type_plot_dict[type_plot], name='')
                     fig.update_xaxes(title_text=abscisse_plot)
