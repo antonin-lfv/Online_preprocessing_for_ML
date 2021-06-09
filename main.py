@@ -99,7 +99,7 @@ if uploaded_file is not None:
                  ' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()), ' valeurs manquantes)')
 
 
-        affichage = st.sidebar.radio("Affichage", ('Analyse d\'une colonne', 'Analyses graphiques'))
+        affichage = st.sidebar.multiselect("Affichage", ('Analyse d\'une colonne', 'Analyses graphiques'))
         if affichage=='Analyse d\'une colonne':
             ### Section de la colonne ###
             st.write('##')
