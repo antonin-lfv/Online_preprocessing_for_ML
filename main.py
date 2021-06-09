@@ -19,6 +19,9 @@ def max_std(dataset):
             l.append([dataset[nom].std(),nom])
     return(max(l))
 
+def col_numeric(df):
+    return df.select_dtypes(include=np.number).columns.tolist()
+
 ####### html/css config ########
 st.markdown("""
 <style>
@@ -131,7 +134,19 @@ if uploaded_file is not None:
             st.write(' ● Nombre de valeurs différentes non NaN:',
                      abs(len(Counter(n_data)) - sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist())))
             st.write("##")
-            ### Fin section données
-        ### Fin section colonne
+            ### Fin section données ###
+        ### Fin section colonne ###
+
+        ### Section Graphiques ###
+        st.write("##")
+        st.markdown('<p class="grand_titre">Analyses graphiques</p>', unsafe_allow_html=True)
+        abscisse_plot = st.selectbox('Données en abscisses',['Selectionner une colonne']+col_numeric(data))
+        ordonnee_plot = st.selectbox('Données en ordonnées',['Selectionner une colonne']+col_numeric(data))
+        st.write(abscisse_plot)
+        st.write(ordonnee_plot)
+        if abscisse_plot!='Selectionner une colonne' and ordonnee_plot!='Selectionner une colonne' :
+            fig=go.Figure()
+            fig.add_scatter(x=data[abscisse_plot].to_numpy(), y=data[ordonnee_plot].to_numpy(), mode='lines')
+            st.plotly_chart(fig)
     except:
         st.sidebar.error('Erreur de chargement')
