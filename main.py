@@ -101,6 +101,7 @@ if uploaded_file is not None:
             n_data = data[slider_col].to_numpy()
 
             st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
+            st.write('##')
             st.write(' ● aperçu des données:')
             st.write(data_col.head(20))
             st.write(' ● type de la colonne :', type(data_col))
