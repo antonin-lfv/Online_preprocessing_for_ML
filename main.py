@@ -154,7 +154,7 @@ if uploaded_file is not None:
             if type_plot=='Latitude/Longitude':
                 fig = go.Figure()
                 fig.add_scattermapbox(
-                    mode="markers+lines",
+                    mode="markers",
                     lon=df_sans_NaN[ordonnee_plot],
                     lat=df_sans_NaN[abscisse_plot],
                     marker={'size': 10,
