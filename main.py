@@ -99,13 +99,13 @@ if uploaded_file is not None:
                  ' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()), ' valeurs manquantes)')
 
         ### Section de la colonne ###
+        st.write('##')
+        st.markdown('<p class="grand_titre">Analyse d\'une colonne</p>', unsafe_allow_html=True)
         slider_col = st.selectbox(
             'Choisissez une colonne à étudier',
             ['Choisir'] + data.columns.to_list(),
         )
         if slider_col != 'Choisir':
-            st.write('##')
-            st.markdown('<p class="grand_titre">Analyse de la colonne ' + slider_col + '</p>', unsafe_allow_html=True)
             ### Données ###
             data_col = data[slider_col].copy()
             n_data = data[slider_col].to_numpy()
