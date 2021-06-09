@@ -184,7 +184,8 @@ if uploaded_file is not None:
                             lat=df_sans_NaN[abscisse_plot],
                             marker=dict(size= 10,
                                     color= df_sans_NaN[couleur_plot],
-                            ))
+                                    colorscale="jet"
+                        ))
                     else :
                         df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
                         fig.add_scattermapbox(
@@ -210,8 +211,8 @@ if uploaded_file is not None:
                                     mode=type_plot_dict[type_plot], name='', marker_color=df_sans_NaN[couleur_plot])
                     else :
                         df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
-                        fig = px.scatter(df_sans_NaN, x=abscisse_plot, y=ordonnee_plot,
-                                    mode=type_plot_dict[type_plot], name='', color=couleur_plot)
+                        fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
+                                    mode=type_plot_dict[type_plot], name='')
                     fig.update_xaxes(title_text=abscisse_plot)
                     fig.update_yaxes(title_text=ordonnee_plot)
                     fig.update_layout(
