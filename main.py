@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 import os
+import plotly.graph_objects as go
 st.set_page_config(layout="wide")
 
 ###### functions ########
@@ -142,11 +143,27 @@ if uploaded_file is not None:
         st.markdown('<p class="grand_titre">Analyses graphiques</p>', unsafe_allow_html=True)
         abscisse_plot = st.selectbox('Données en abscisses',['Selectionner une colonne']+col_numeric(data))
         ordonnee_plot = st.selectbox('Données en ordonnées',['Selectionner une colonne']+col_numeric(data))
-        st.write(abscisse_plot)
-        st.write(ordonnee_plot)
+        type_plot = st.radio("Type de plot",('Courbe', 'Points'))
+        type_plot_dict = {
+            'Courbe':'lines',
+            'Points':'markers'
+        }
         if abscisse_plot!='Selectionner une colonne' and ordonnee_plot!='Selectionner une colonne' :
+            df_sans_NaN = pd.concat([data[abscisse_plot],data[ordonnee_plot]], axis=1).dropna()
             fig=go.Figure()
-            fig.add_scatter(x=data[abscisse_plot].to_numpy(), y=data[ordonnee_plot].to_numpy(), mode='lines')
+            fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot], mode=type_plot_dict[type_plot], name='')
+            fig.update_xaxes(title_text=abscisse_plot)
+            fig.update_yaxes(title_text=ordonnee_plot)
+            fig.update_layout(
+                template='simple_white',
+                showlegend=False,
+                font=dict(size=10),
+                autosize=False,
+                width=900, height=450,
+                margin=dict(l=40, r=50, b=40, t=40),
+                paper_bgcolor='rgba(0,0,0,0)',
+                plot_bgcolor='rgba(0,0,0,0)',
+            )
             st.plotly_chart(fig)
     except:
         st.sidebar.error('Erreur de chargement')
