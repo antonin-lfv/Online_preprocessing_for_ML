@@ -98,100 +98,105 @@ if uploaded_file is not None:
             sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()) * 100 / (data.shape[0] * data.shape[1]), 2),
                  ' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()), ' valeurs manquantes)')
 
-        ### Section de la colonne ###
-        st.write('##')
-        st.markdown('<p class="grand_titre">Analyse d\'une colonne</p>', unsafe_allow_html=True)
-        slider_col = st.selectbox(
-            'Choisissez une colonne à étudier',
-            ['Selectionner une colonne'] + data.columns.to_list(),
-        )
-        if slider_col != 'Selectionner une colonne':
-            ### Données ###
-            data_col = data[slider_col].copy()
-            n_data = data[slider_col].to_numpy()
 
+        affichage = st.sidebar.radio("Affichage", ('Analyse d\'une colonne', 'Analyses graphiques'))
+        if affichage=='Analyse d\'une colonne':
+            ### Section de la colonne ###
             st.write('##')
-            st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
-            st.write(data_col.head(20))
+            st.markdown('<p class="grand_titre">Analyse d\'une colonne</p>', unsafe_allow_html=True)
+            slider_col = st.selectbox(
+                'Choisissez une colonne à étudier',
+                ['Selectionner une colonne'] + data.columns.to_list(),
+            )
+            if slider_col != 'Selectionner une colonne':
+                ### Données ###
+                data_col = data[slider_col].copy()
+                n_data = data[slider_col].to_numpy()
+
+                st.write('##')
+                st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
+                st.write(data_col.head(20))
+                st.write("##")
+
+                st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
+                st.write(' ● type de la colonne :', type(data_col))
+                if n_data.dtype == float:
+                    moyenne = data_col.mean()
+                    variance = data_col.std()
+                    max = data_col.max()
+                    min = data_col.min()
+                    st.write(' ● Moyenne :', round(moyenne, 3))
+
+                    st.write(' ● Variance :', round(variance, 3))
+
+                    st.write(' ● Maximum :', max)
+
+                    st.write(' ● Minimum :', min)
+
+                st.write(' ● Valeurs les plus présentes:', (Counter(n_data).most_common()[0])[0], 'apparait',
+                         (Counter(n_data).most_common()[0])[1], 'fois', ', ', (Counter(n_data).most_common()[1])[0],
+                         'apparait',
+                         (Counter(n_data).most_common()[1])[1], 'fois')
+
+                st.write(' ● Nombre de valeurs manquantes:', sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist()))
+
+                st.write(' ● Longueur:', n_data.shape[0])
+
+                st.write(' ● Nombre de valeurs différentes non NaN:',
+                         abs(len(Counter(n_data)) - sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist())))
+                st.write("##")
+                ### Fin section données ###
+            ### Fin section colonne ###
+
+        if affichage=='Analyses graphiques':
+            ### Section Graphiques ###
             st.write("##")
+            st.markdown('<p class="grand_titre">Analyses graphiques</p>', unsafe_allow_html=True)
+            abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_numeric(data))
+            ordonnee_plot = st.selectbox('Données en ordonnées', ['Selectionner une colonne'] + col_numeric(data))
+            type_plot = st.radio("Type de plot", ('Points', 'Courbe', 'Latitude/Longitude'))
+            type_plot_dict = {
+                'Courbe': 'lines',
+                'Points': 'markers',
+                'Latitude/Longitude': 'map'
+            }
+            if abscisse_plot != 'Selectionner une colonne' and ordonnee_plot != 'Selectionner une colonne':
+                df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
+                if type_plot == 'Latitude/Longitude':
+                    fig = go.Figure()
+                    fig.add_scattermapbox(
+                        mode="markers",
+                        lon=df_sans_NaN[ordonnee_plot],
+                        lat=df_sans_NaN[abscisse_plot],
+                        marker={'size': 10,
+                                'color': 'firebrick',
+                                })
 
-            st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
-            st.write(' ● type de la colonne :', type(data_col))
-            if n_data.dtype == float:
-                moyenne = data_col.mean()
-                variance = data_col.std()
-                max = data_col.max()
-                min = data_col.min()
-                st.write(' ● Moyenne :', round(moyenne, 3))
+                    fig.update_layout(
+                        margin={'l': 0, 't': 0, 'b': 0, 'r': 0},
+                        mapbox={
+                            'center': {'lon': -80, 'lat': 40},
+                            'style': "stamen-terrain",
+                            'zoom': 1})
+                    st.plotly_chart(fig)
 
-                st.write(' ● Variance :', round(variance, 3))
-
-                st.write(' ● Maximum :', max)
-
-                st.write(' ● Minimum :', min)
-
-            st.write(' ● Valeurs les plus présentes:', (Counter(n_data).most_common()[0])[0], 'apparait',
-                     (Counter(n_data).most_common()[0])[1], 'fois', ', ', (Counter(n_data).most_common()[1])[0],
-                     'apparait',
-                     (Counter(n_data).most_common()[1])[1], 'fois')
-
-            st.write(' ● Nombre de valeurs manquantes:', sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist()))
-
-            st.write(' ● Longueur:', n_data.shape[0])
-
-            st.write(' ● Nombre de valeurs différentes non NaN:',
-                     abs(len(Counter(n_data)) - sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist())))
-            st.write("##")
-            ### Fin section données ###
-        ### Fin section colonne ###
-
-        ### Section Graphiques ###
-        st.write("##")
-        st.markdown('<p class="grand_titre">Analyses graphiques</p>', unsafe_allow_html=True)
-        abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_numeric(data))
-        ordonnee_plot = st.selectbox('Données en ordonnées', ['Selectionner une colonne'] + col_numeric(data))
-        type_plot = st.radio("Type de plot", ('Points', 'Courbe', 'Latitude/Longitude'))
-        type_plot_dict = {
-            'Courbe': 'lines',
-            'Points': 'markers',
-            'Latitude/Longitude': 'map'
-        }
-        if abscisse_plot != 'Selectionner une colonne' and ordonnee_plot != 'Selectionner une colonne':
-            df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
-            if type_plot == 'Latitude/Longitude':
-                fig = go.Figure()
-                fig.add_scattermapbox(
-                    mode="markers",
-                    lon=df_sans_NaN[ordonnee_plot],
-                    lat=df_sans_NaN[abscisse_plot],
-                    marker={'size': 10,
-                            'color': 'firebrick',
-                            })
-
-                fig.update_layout(
-                    margin={'l': 0, 't': 0, 'b': 0, 'r': 0},
-                    mapbox={
-                        'center': {'lon': -80, 'lat': 40},
-                        'style': "stamen-terrain",
-                        'zoom': 1})
-                st.plotly_chart(fig)
-
-            else:
-                fig = go.Figure()
-                fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
-                                mode=type_plot_dict[type_plot], name='')
-                fig.update_xaxes(title_text=abscisse_plot)
-                fig.update_yaxes(title_text=ordonnee_plot)
-                fig.update_layout(
-                    template='simple_white',
-                    showlegend=False,
-                    font=dict(size=10),
-                    autosize=False,
-                    width=900, height=450,
-                    margin=dict(l=40, r=50, b=40, t=40),
-                    paper_bgcolor='rgba(0,0,0,0)',
-                    plot_bgcolor='rgba(0,0,0,0)',
-                )
-                st.plotly_chart(fig)
+                else:
+                    fig = go.Figure()
+                    fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
+                                    mode=type_plot_dict[type_plot], name='')
+                    fig.update_xaxes(title_text=abscisse_plot)
+                    fig.update_yaxes(title_text=ordonnee_plot)
+                    fig.update_layout(
+                        template='simple_white',
+                        showlegend=False,
+                        font=dict(size=10),
+                        autosize=False,
+                        width=900, height=450,
+                        margin=dict(l=40, r=50, b=40, t=40),
+                        paper_bgcolor='rgba(0,0,0,0)',
+                        plot_bgcolor='rgba(0,0,0,0)',
+                    )
+                    st.plotly_chart(fig)
+            ### Fin section graphiques
     except:
         st.sidebar.error('Erreur de chargement')
