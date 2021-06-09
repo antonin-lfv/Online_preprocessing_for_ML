@@ -31,12 +31,11 @@ if uploaded_file is not None:
     st.sidebar.success('Fichier chargé')
     st.sidebar.write(file_details["FileName"])
     if 'csv' in file_details['FileName']:
-        st.sidebar.write('Type : csv')
         try :
             data = pd.read_csv(uploaded_file)
             slider_col = st.sidebar.selectbox(
                 'Choisissez un 1er cours',
-                ['Apple', 'Microsoft', 'Intel', 'Tesla', 'Gold', 'Google', 'Nintendo'],
+                data.columns.to_list(),
             )
             st.write("##")
             st.write("Aperçu du dataset : ")
@@ -52,12 +51,11 @@ if uploaded_file is not None:
         except :
             st.sidebar.error('Erreur de chargement')
     else :
-        st.sidebar.write('Type : excel')
         try :
             data = pd.read_excel(uploaded_file)
             slider_col = st.sidebar.selectbox(
                 'Choisissez un 1er cours',
-                ('Apple', 'Microsoft', 'Intel', 'Tesla', 'Gold', 'Google', 'Nintendo'),
+                data.columns.to_list(),
             )
             st.write("##")
             st.write("Aperçu du dataset : ")
