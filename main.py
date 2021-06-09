@@ -34,8 +34,9 @@ if uploaded_file is not None:
             data = pd.read_csv(uploaded_file)
             slider_col = st.sidebar.selectbox(
                 'Choisissez une colonne à étudier',
-                data.columns.to_list(),
+                ['choisir']+data.columns.to_list(),
             )
+            ### section du dataset ###
             st.write("##")
             st.write("Aperçu du dataset : ")
             st.write(data.head(50))
@@ -47,6 +48,51 @@ if uploaded_file is not None:
                 sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()) * 100 / (data.shape[0] * data.shape[1]), 2),
                      ' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()), ' valeurs manquantes)')
             st.write(' ● number of values:', data.shape[0] * data.shape[1])
+            ### Section de la colonne ###
+            if slider_col!='choisir':
+                st.title('Étude la colonne ',slider_col)
+                ### Données ###
+                n_data = (data.to_numpy())
+
+                st.write(' ● données:')
+                st.write(data.head(5))
+                st.write("##")
+                st.write(' ● data type :', type(data))
+                st.write("##")
+                if n_data.dtype == float:
+                    moyenne = data.mean()
+                    variance = data.std()
+                    max = data.max()
+                    min = data.min()
+                    st.write(' ● average :', moyenne)
+                    st.write("##")
+
+                    st.write(' ● variance :', variance)
+                    st.write("##")
+
+                    st.write(' ● maximum :', max)
+                    st.write("##")
+
+                    st.write(' ● minimum :', min)
+                    st.write("##")
+
+                st.write(' ● most present value:', (Counter(n_data).most_common()[0])[0], ':',
+                         (Counter(n_data).most_common()[0])[1], 'fois', ',', (Counter(n_data).most_common()[1])[0], ':',
+                         (Counter(n_data).most_common()[1])[1], 'fois')
+                st.write("##")
+
+                st.write(' ● missing values:', sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist()))
+                st.write("##")
+
+                st.write(' ● length:', n_data.shape[0])
+                st.write("##")
+
+                st.write(' ● number of different values not NaN:',
+                         abs(len(Counter(n_data)) - sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist())))
+                st.write("##")
+                ### Fin section données
+            ### Fin section colonne
+
         except :
             st.sidebar.error('Erreur de chargement')
     else :
@@ -71,42 +117,3 @@ if uploaded_file is not None:
             st.sidebar.error('Erreur de chargement')
 
 
-
-n_data = (data.to_numpy())
-
-st.write(' ● données:')
-st.write(data.head(5))
-st.write("##")
-time.sleep(1)
-st.write(' ● data type :', type(data))
-st.write("##")
-time.sleep(2)
-if n_data.dtype == float :
-    moyenne = data.mean()
-    variance = data.std()
-    max = data.max()
-    min = data.min()
-    st.write(' ● average :', moyenne)
-    st.write("##")
-    time.sleep(1)
-    st.write(' ● variance :', variance)
-    st.write("##")
-    time.sleep(1)
-    st.write(' ● maximum :', max)
-    st.write("##")
-    time.sleep(1)
-    st.write(' ● minimum :', min)
-    st.write("##")
-    time.sleep(1)
-st.write(' ● most present value:',(Counter(n_data).most_common()[0])[0],':',(Counter(n_data).most_common()[0])[1],'fois',',',(Counter(n_data).most_common()[1])[0],':',(Counter(n_data).most_common()[1])[1],'fois')
-st.write("##")
-time.sleep(1)
-st.write(' ● missing values:', sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist()))
-st.write("##")
-time.sleep(1)
-st.write(' ● length:',n_data.shape[0])
-st.write("##")
-time.sleep(1)
-st.write(' ● number of different values not NaN:', abs(len(Counter(n_data))-sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist())))
-st.write("##")
-time.sleep(1)
