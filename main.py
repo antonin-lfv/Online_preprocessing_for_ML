@@ -10,6 +10,7 @@ import seaborn as sns
 import streamlit as st
 import os
 import plotly.graph_objects as go
+import webbrowser
 
 st.set_page_config(layout="wide")
 
@@ -64,8 +65,11 @@ st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow
 st.write("##")
 st.markdown(
     '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes pour développer votre modèle, ou simplement pour visualiser vos données. '+
-    'Si vous aimez ce site n\'hésitez pas à mettre une étoile sur le <a href="https://github.com/antonin-lfv/Online_preprocessing_for_ML">repo Github</a>.</p>',
+    'Si vous aimez ce site n\'hésitez pas à mettre une étoile sur le repo GitHub.</p>',
     unsafe_allow_html=True)
+url = 'https://github.com/antonin-lfv/Online_preprocessing_for_ML'
+if st.button('Github project'):
+    webbrowser.open_new_tab(url)
 
 ###### App #######
 uploaded_file = st.sidebar.file_uploader("Chargez votre dataset", type=['csv', 'xls'])
