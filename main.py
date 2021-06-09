@@ -33,7 +33,7 @@ if uploaded_file is not None:
         try :
             data = pd.read_csv(uploaded_file)
             slider_col = st.sidebar.selectbox(
-                'Choisissez un 1er cours',
+                'Choisissez une colonne à étudier',
                 data.columns.to_list(),
             )
             st.write("##")
@@ -53,7 +53,7 @@ if uploaded_file is not None:
         try :
             data = pd.read_excel(uploaded_file)
             slider_col = st.sidebar.selectbox(
-                'Choisissez un 1er cours',
+                'Choisissez une colonne à étudier',
                 data.columns.to_list(),
             )
             st.write("##")
