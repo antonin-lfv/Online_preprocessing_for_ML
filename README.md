@@ -1,4 +1,4 @@
-# Online preprocessing for Data analysis 
+<h1 align="center">Online preprocessing for Data analysis </h1>
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/antonin-lfv/automated_preprocessing_pandas/main.py)
 
