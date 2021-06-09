@@ -223,9 +223,9 @@ if uploaded_file is not None:
             st.write("##")
             df_sans_NaN = data.dropna()
             if couleur_corr!= 'Selectionner une colonne' :
-                fig = px.scatter_matrix(df, dimensions=col_numeric(data),color=couleur_corr)
+                fig = px.scatter_matrix(data, dimensions=col_numeric(data),color=couleur_corr)
             else :
-                fig = px.scatter_matrix(df, dimensions=col_numeric(data))
+                fig = px.scatter_matrix(data, dimensions=col_numeric(data))
 
             st.plotly_chart(fig)
             ### Fin section mat de corr ###
