@@ -50,7 +50,7 @@ if uploaded_file is not None:
             st.write(' ● number of values:', data.shape[0] * data.shape[1])
             ### Section de la colonne ###
             if slider_col!='Choisir':
-                st.title(slider_col)
+                st.subheader('Colonne étudiée : ',slider_col)
                 ### Données ###
                 n_data = data['{}'.format(slider_col)].to_numpy()
 
