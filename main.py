@@ -82,25 +82,28 @@ if uploaded_file is not None:
             data = pd.read_excel(uploaded_file)
 
         st.sidebar.success('Fichier chargé')
-        ### section du dataset ###
-        st.write("##")
-        st.markdown('<p class="grand_titre">Analyse du dataset</p>', unsafe_allow_html=True)
-        st.write("##")
-        st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
-        st.write(data.head(50))
-        st.write("##")
-
-        st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
-        st.write(' - Taille:', data.shape)
-        st.write(' - Nombre de valeurs:', data.shape[0] * data.shape[1])
-        st.write(' - Type des colonnes:', data.dtypes.value_counts())
-        st.write(' - Pourcentage de valeurs manquantes:', round(
-            sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()) * 100 / (data.shape[0] * data.shape[1]), 2),
-                 ' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()), ' valeurs manquantes)')
-
         st.sidebar.write('Affichage')
+        analyse_data = st.sidebar.checkbox('Analyse du dataset', value=True)
         analyse_col = st.sidebar.checkbox('Analyse d\'une colonne')
         analyses_graph = st.sidebar.checkbox('Analyses graphiques')
+
+        if analyse_data:
+            ### section du dataset ###
+            st.write("##")
+            st.markdown('<p class="grand_titre">Analyse du dataset</p>', unsafe_allow_html=True)
+            st.write("##")
+            st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
+            st.write(data.head(50))
+            st.write("##")
+
+            st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
+            st.write(' - Taille:', data.shape)
+            st.write(' - Nombre de valeurs:', data.shape[0] * data.shape[1])
+            st.write(' - Type des colonnes:', data.dtypes.value_counts())
+            st.write(' - Pourcentage de valeurs manquantes:', round(
+                sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()) * 100 / (data.shape[0] * data.shape[1]), 2),
+                     ' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()), ' valeurs manquantes)')
+            ### Fin section du dataset ###
 
         if analyse_col:
             ### Section de la colonne ###
@@ -199,6 +202,6 @@ if uploaded_file is not None:
                         plot_bgcolor='rgba(0,0,0,0)',
                     )
                     st.plotly_chart(fig)
-            ### Fin section graphiques
+            ### Fin section graphiques ###
     except:
         st.sidebar.error('Erreur de chargement')
