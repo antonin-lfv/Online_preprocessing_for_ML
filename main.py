@@ -103,9 +103,9 @@ if uploaded_file is not None:
         st.markdown('<p class="grand_titre">Analyse d\'une colonne</p>', unsafe_allow_html=True)
         slider_col = st.selectbox(
             'Choisissez une colonne à étudier',
-            ['Choisir'] + data.columns.to_list(),
+            ['Selectionner une colonne'] + data.columns.to_list(),
         )
-        if slider_col != 'Choisir':
+        if slider_col != 'Selectionner une colonne':
             ### Données ###
             data_col = data[slider_col].copy()
             n_data = data[slider_col].to_numpy()
