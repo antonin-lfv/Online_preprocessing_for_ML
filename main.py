@@ -86,7 +86,8 @@ if uploaded_file is not None:
         st.sidebar.write('Affichage')
         analyse_data = st.sidebar.checkbox('Analyse du dataset', value=True)
         analyse_col = st.sidebar.checkbox('Analyse d\'une colonne')
-        analyses_graph = st.sidebar.checkbox('Analyses graphiques')
+        analyses_graph = st.sidebar.checkbox('Graphiques simple')
+        mat_corr = st.sidebar.checkbox('Matrice de corrélations')
 
         if analyse_data:
             ##########################
@@ -163,7 +164,7 @@ if uploaded_file is not None:
             ### Section Graphiques ###
             ##########################
             st.write("##")
-            st.markdown('<p class="grand_titre">Analyses graphiques</p>', unsafe_allow_html=True)
+            st.markdown('<p class="grand_titre">Graphique simple</p>', unsafe_allow_html=True)
             abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_numeric(data))
             ordonnee_plot = st.selectbox('Données en ordonnées', ['Selectionner une colonne'] + col_numeric(data))
             #couleur_plot = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
@@ -211,5 +212,23 @@ if uploaded_file is not None:
                 )
                 st.plotly_chart(fig)
             ### Fin section graphiques ###
+
+        if mat_corr:
+            ###########################
+            ### Section Mat de corr ###
+            ###########################
+            st.write("##")
+            st.markdown('<p class="grand_titre">Matrice de corrélations</p>', unsafe_allow_html=True)
+            couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
+            st.write("##")
+            df_sans_NaN = data.dropna()
+            if couleur_corr!= 'Selectionner une colonne' :
+                fig = px.scatter_matrix(df, dimensions=col_numeric(data),color=couleur_corr)
+            else :
+                fig = px.scatter_matrix(df, dimensions=col_numeric(data))
+
+            st.plotly_chart(fig)
+            ### Fin section mat de corr ###
+
     except:
         st.sidebar.error('Erreur de chargement')
