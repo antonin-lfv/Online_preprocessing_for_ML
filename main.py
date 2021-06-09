@@ -49,7 +49,7 @@ if uploaded_file is not None:
                      ' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()), ' valeurs manquantes)')
             st.write(' ● number of values:', data.shape[0] * data.shape[1])
             ### Section de la colonne ###
-            if slider_col!='choisir':
+            if slider_col!='Choisir':
                 st.title('Étude la colonne ',slider_col)
                 ### Données ###
                 n_data = (data[slider_col].to_numpy())
