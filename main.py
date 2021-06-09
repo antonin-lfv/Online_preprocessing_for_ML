@@ -78,18 +78,14 @@ if uploaded_file is not None:
     try:
         if 'csv' in file_details['FileName']:
             data = pd.read_csv(uploaded_file)
-            slider_col = st.sidebar.selectbox(
-                'Choisissez une colonne à étudier',
-                ['Choisir'] + data.columns.to_list(),
-            )
         else:
             data = pd.read_excel(uploaded_file)
-            slider_col = st.sidebar.selectbox(
-                'Choisissez une colonne à étudier',
-                ['Choisir'] + data.columns.to_list(),
-            )
 
         st.sidebar.success('Fichier chargé')
+        slider_col = st.sidebar.selectbox(
+            'Choisissez une colonne à étudier',
+            ['Choisir'] + data.columns.to_list(),
+        )
         ### section du dataset ###
         st.write("##")
         st.markdown('<p class="grand_titre">Analyse du dataset</p>', unsafe_allow_html=True)
