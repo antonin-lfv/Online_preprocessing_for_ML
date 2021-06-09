@@ -143,7 +143,7 @@ if uploaded_file is not None:
         st.markdown('<p class="grand_titre">Analyses graphiques</p>', unsafe_allow_html=True)
         abscisse_plot = st.selectbox('Données en abscisses',['Selectionner une colonne']+col_numeric(data))
         ordonnee_plot = st.selectbox('Données en ordonnées',['Selectionner une colonne']+col_numeric(data))
-        type_plot = st.radio("Type de plot",('u','uy','LatitudeLongitude'))
+        type_plot = st.radio("Type de plot",('Points','Courbe','Latitude/Longitude'))
         type_plot_dict = {
             'Courbe':'lines',
             'Points':'markers',
