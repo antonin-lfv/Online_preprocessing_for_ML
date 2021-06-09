@@ -52,7 +52,7 @@ if uploaded_file is not None:
             if slider_col!='Choisir':
                 st.title(slider_col)
                 ### Données ###
-                n_data = (data[slider_col].to_numpy())
+                n_data = data['{}'.format(slider_col)].to_numpy()
 
                 st.write(' ● données:')
                 st.write(data.head(5))
