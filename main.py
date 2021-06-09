@@ -81,7 +81,8 @@ if uploaded_file is not None:
         else:
             data = pd.read_excel(uploaded_file)
 
-        st.sidebar.success('Fichier chargé')
+        st.sidebar.success('Fichier chargé avec succès !')
+        st.sidebar.write('##')
         st.sidebar.write('Affichage')
         analyse_data = st.sidebar.checkbox('Analyse du dataset', value=True)
         analyse_col = st.sidebar.checkbox('Analyse d\'une colonne')
