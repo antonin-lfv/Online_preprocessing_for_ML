@@ -98,9 +98,11 @@ if uploaded_file is not None:
             sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()) * 100 / (data.shape[0] * data.shape[1]), 2),
                  ' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()), ' valeurs manquantes)')
 
+        st.sidebar.write('Affichage')
+        analyse_col = st.sidebar.checkbox('Analyse d\'une colonne')
+        analyses_graph = st.sidebar.checkbox('Analyses graphiques')
 
-        affichage = st.sidebar.multiselect("Affichage", ('Analyse d\'une colonne', 'Analyses graphiques'))
-        if affichage=='Analyse d\'une colonne':
+        if analyse_col:
             ### Section de la colonne ###
             st.write('##')
             st.markdown('<p class="grand_titre">Analyse d\'une colonne</p>', unsafe_allow_html=True)
@@ -148,7 +150,7 @@ if uploaded_file is not None:
                 ### Fin section données ###
             ### Fin section colonne ###
 
-        if affichage=='Analyses graphiques':
+        if analyses_graph:
             ### Section Graphiques ###
             st.write("##")
             st.markdown('<p class="grand_titre">Analyses graphiques</p>', unsafe_allow_html=True)
