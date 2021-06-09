@@ -101,7 +101,7 @@ if uploaded_file is not None:
             n_data = data[slider_col].to_numpy()
 
             st.write(' ● aperçu des données:')
-            st.write(data_col.head(5))
+            st.write(data_col.head(20))
             st.write(' ● type de la colonne :', type(data_col))
             if n_data.dtype == float:
                 moyenne = data_col.mean()
