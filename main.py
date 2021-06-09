@@ -18,6 +18,7 @@ def max_std(dataset):
             l.append([dataset[nom].std(),nom])
     return(max(l))
 
+
 ####### Streamlit Config ######
 st.set_page_config(layout="wide", )
 st.title('Preprocessing automatique')
@@ -33,6 +34,10 @@ if uploaded_file is not None:
         st.sidebar.write('Type : csv')
         try :
             data = pd.read_csv(uploaded_file)
+            slider_col = st.sidebar.selectbox(
+                'Choisissez un 1er cours',
+                ['Apple', 'Microsoft', 'Intel', 'Tesla', 'Gold', 'Google', 'Nintendo'],
+            )
             st.write("##")
             st.write("Aperçu du dataset : ")
             st.write(data.head(50))
@@ -50,6 +55,10 @@ if uploaded_file is not None:
         st.sidebar.write('Type : excel')
         try :
             data = pd.read_excel(uploaded_file)
+            slider_col = st.sidebar.selectbox(
+                'Choisissez un 1er cours',
+                ('Apple', 'Microsoft', 'Intel', 'Tesla', 'Gold', 'Google', 'Nintendo'),
+            )
             st.write("##")
             st.write("Aperçu du dataset : ")
             st.write(data.head(50))
@@ -64,3 +73,43 @@ if uploaded_file is not None:
         except :
             st.sidebar.error('Erreur de chargement')
 
+
+
+n_data = (data.to_numpy())
+
+st.write(' ● données:')
+st.write(data.head(5))
+st.write("##")
+time.sleep(1)
+st.write(' ● data type :', type(data))
+st.write("##")
+time.sleep(2)
+if n_data.dtype == float :
+    moyenne = data.mean()
+    variance = data.std()
+    max = data.max()
+    min = data.min()
+    st.write(' ● average :', moyenne)
+    st.write("##")
+    time.sleep(1)
+    st.write(' ● variance :', variance)
+    st.write("##")
+    time.sleep(1)
+    st.write(' ● maximum :', max)
+    st.write("##")
+    time.sleep(1)
+    st.write(' ● minimum :', min)
+    st.write("##")
+    time.sleep(1)
+st.write(' ● most present value:',(Counter(n_data).most_common()[0])[0],':',(Counter(n_data).most_common()[0])[1],'fois',',',(Counter(n_data).most_common()[1])[0],':',(Counter(n_data).most_common()[1])[1],'fois')
+st.write("##")
+time.sleep(1)
+st.write(' ● missing values:', sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist()))
+st.write("##")
+time.sleep(1)
+st.write(' ● length:',n_data.shape[0])
+st.write("##")
+time.sleep(1)
+st.write(' ● number of different values not NaN:', abs(len(Counter(n_data))-sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist())))
+st.write("##")
+time.sleep(1)
