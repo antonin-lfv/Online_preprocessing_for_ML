@@ -82,10 +82,6 @@ if uploaded_file is not None:
             data = pd.read_excel(uploaded_file)
 
         st.sidebar.success('Fichier chargé')
-        slider_col = st.selectbox(
-            'Choisissez une colonne à étudier',
-            ['Choisir'] + data.columns.to_list(),
-        )
         ### section du dataset ###
         st.write("##")
         st.markdown('<p class="grand_titre">Analyse du dataset</p>', unsafe_allow_html=True)
@@ -103,6 +99,10 @@ if uploaded_file is not None:
                  ' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()), ' valeurs manquantes)')
 
         ### Section de la colonne ###
+        slider_col = st.selectbox(
+            'Choisissez une colonne à étudier',
+            ['Choisir'] + data.columns.to_list(),
+        )
         if slider_col != 'Choisir':
             st.write('##')
             st.markdown('<p class="grand_titre">Analyse de la colonne ' + slider_col + '</p>', unsafe_allow_html=True)
