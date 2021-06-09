@@ -182,9 +182,9 @@ if uploaded_file is not None:
                             mode="markers",
                             lon=df_sans_NaN[ordonnee_plot],
                             lat=df_sans_NaN[abscisse_plot],
-                            marker={'size': 10,
-                                    'color': df_sans_NaN[couleur_plot],
-                                    })
+                            marker=dict(size= 10,
+                                    color= df_sans_NaN[couleur_plot],
+                            ))
                     else :
                         df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
                         fig.add_scattermapbox(
@@ -207,7 +207,7 @@ if uploaded_file is not None:
                     if couleur_plot != 'Selectionner une colonne' :
                         df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot], data[couleur_plot]], axis=1).dropna()
                         fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
-                                    mode=type_plot_dict[type_plot], name='', marker=dict(color=df_sans_NaN[couleur_plot]))
+                                    mode=type_plot_dict[type_plot], name='', marker_color=df_sans_NaN[couleur_plot])
                     else :
                         df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
                         fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
