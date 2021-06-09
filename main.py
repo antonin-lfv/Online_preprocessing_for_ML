@@ -10,18 +10,22 @@ import seaborn as sns
 import streamlit as st
 import os
 import plotly.graph_objects as go
+
 st.set_page_config(layout="wide")
+
 
 ###### functions ########
 def max_std(dataset):
     l = []
-    for nom in dataset.columns :
-        if type(dataset[nom][0]) != object and type(dataset[nom][0]) != str :
-            l.append([dataset[nom].std(),nom])
-    return(max(l))
+    for nom in dataset.columns:
+        if type(dataset[nom][0]) != object and type(dataset[nom][0]) != str:
+            l.append([dataset[nom].std(), nom])
+    return (max(l))
+
 
 def col_numeric(df):
     return df.select_dtypes(include=np.number).columns.tolist()
+
 
 ####### html/css config ########
 st.markdown("""
@@ -58,14 +62,15 @@ st.markdown("""
 ####### Streamlit home ######
 st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow_html=True)
 st.write("##")
-st.markdown('<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes pour développer votre modèle, ou simplement pour visualiser vos données.</p>',unsafe_allow_html=True)
-
+st.markdown(
+    '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes pour développer votre modèle, ou simplement pour visualiser vos données.</p>',
+    unsafe_allow_html=True)
 
 ###### App #######
-uploaded_file = st.sidebar.file_uploader("Chargez votre dataset",type=['csv','xls'])
+uploaded_file = st.sidebar.file_uploader("Chargez votre dataset", type=['csv', 'xls'])
 if uploaded_file is not None:
-    file_details = {"FileName":uploaded_file.name,"FileType":uploaded_file.type,"FileSize":uploaded_file.size}
-    try :
+    file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type, "FileSize": uploaded_file.size}
+    try:
         if 'csv' in file_details['FileName']:
             data = pd.read_csv(uploaded_file)
             slider_col = st.sidebar.selectbox(
@@ -99,7 +104,7 @@ if uploaded_file is not None:
         ### Section de la colonne ###
         if slider_col != 'Choisir':
             st.write('##')
-            st.markdown('<p class="grand_titre">Analyse de la colonne '+slider_col+'</p>', unsafe_allow_html=True)
+            st.markdown('<p class="grand_titre">Analyse de la colonne ' + slider_col + '</p>', unsafe_allow_html=True)
             ### Données ###
             data_col = data[slider_col].copy()
             n_data = data[slider_col].to_numpy()
@@ -125,7 +130,8 @@ if uploaded_file is not None:
                 st.write(' ● Minimum :', min)
 
             st.write(' ● Valeurs les plus présentes:', (Counter(n_data).most_common()[0])[0], 'apparait',
-                     (Counter(n_data).most_common()[0])[1], 'fois', ', ', (Counter(n_data).most_common()[1])[0], 'apparait',
+                     (Counter(n_data).most_common()[0])[1], 'fois', ', ', (Counter(n_data).most_common()[1])[0],
+                     'apparait',
                      (Counter(n_data).most_common()[1])[1], 'fois')
 
             st.write(' ● Nombre de valeurs manquantes:', sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist()))
@@ -141,17 +147,17 @@ if uploaded_file is not None:
         ### Section Graphiques ###
         st.write("##")
         st.markdown('<p class="grand_titre">Analyses graphiques</p>', unsafe_allow_html=True)
-        abscisse_plot = st.selectbox('Données en abscisses',['Selectionner une colonne']+col_numeric(data))
-        ordonnee_plot = st.selectbox('Données en ordonnées',['Selectionner une colonne']+col_numeric(data))
-        type_plot = st.radio("Type de plot",('Points','Courbe','Latitude/Longitude'))
+        abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_numeric(data))
+        ordonnee_plot = st.selectbox('Données en ordonnées', ['Selectionner une colonne'] + col_numeric(data))
+        type_plot = st.radio("Type de plot", ('Points', 'Courbe', 'Latitude/Longitude'))
         type_plot_dict = {
-            'Courbe':'lines',
-            'Points':'markers',
-            'Latitude/Longitude':'map'
+            'Courbe': 'lines',
+            'Points': 'markers',
+            'Latitude/Longitude': 'map'
         }
-        if abscisse_plot!='Selectionner une colonne' and ordonnee_plot!='Selectionner une colonne' :
+        if abscisse_plot != 'Selectionner une colonne' and ordonnee_plot != 'Selectionner une colonne':
             df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
-            if type_plot=='Latitude/Longitude':
+            if type_plot == 'Latitude/Longitude':
                 fig = go.Figure()
                 fig.add_scattermapbox(
                     mode="markers",
@@ -169,9 +175,10 @@ if uploaded_file is not None:
                         'zoom': 1})
                 st.plotly_chart(fig)
 
-            else :
-                fig=go.Figure()
-                fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot], mode=type_plot_dict[type_plot], name='')
+            else:
+                fig = go.Figure()
+                fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
+                                mode=type_plot_dict[type_plot], name='')
                 fig.update_xaxes(title_text=abscisse_plot)
                 fig.update_yaxes(title_text=ordonnee_plot)
                 fig.update_layout(
