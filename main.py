@@ -80,6 +80,7 @@ else :
 
 
 def main():
+    st.balloons()
     PAGES = {
         "Accueil": page1,
         "Analyse du dataset": page2,
@@ -91,7 +92,6 @@ def main():
     st.sidebar.title('Menu')
     page = st.sidebar.radio("", list(PAGES.keys()))
     PAGES[page]()
-
 
 
 
