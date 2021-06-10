@@ -326,6 +326,7 @@ def page5():
                     st.plotly_chart(fig)
             with col2 :
                 if len(df_sans_NaN)==0:
+                    st.write("##")
                     st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
     else :
         st.warning('Veuillez charger un dataset !')
