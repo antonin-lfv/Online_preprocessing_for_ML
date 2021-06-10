@@ -87,7 +87,7 @@ def main():
         "Graphique simple": page4,
         "Matrice de corrélation":page5,
     }
-
+    st.sidebar.write("##")
     st.sidebar.title('Menu')
     page = st.sidebar.radio("", list(PAGES.keys()))
     PAGES[page]()
@@ -121,18 +121,19 @@ def page1():
 ##########################
 def page2():
     if uploaded_file is not None:
+        col1, col2 = st.beta_columns(2)
         st.write("##")
         st.markdown('<p class="grand_titre">Analyse du dataset</p>', unsafe_allow_html=True)
         st.write("##")
-        st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
-        st.write(data.head(50))
-        st.write("##")
+        col1.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
+        col1.write(data.head(50))
+        col1.write("##")
 
-        st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
-        st.write(' - Taille:', data.shape)
-        st.write(' - Nombre de valeurs:', data.shape[0] * data.shape[1])
-        st.write(' - Type des colonnes:', data.dtypes.value_counts())
-        st.write(' - Pourcentage de valeurs manquantes:', round(
+        col2.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
+        col2.write(' - Taille:', data.shape)
+        col2.write(' - Nombre de valeurs:', data.shape[0] * data.shape[1])
+        col2.write(' - Type des colonnes:', data.dtypes.value_counts())
+        col2.write(' - Pourcentage de valeurs manquantes:', round(
             sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()) * 100 / (data.shape[0] * data.shape[1]), 2),
                  ' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()), ' valeurs manquantes)')
     else :
