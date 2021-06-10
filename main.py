@@ -313,6 +313,15 @@ def page5():
             couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
             st.write("##")
             df_sans_NaN = data.dropna()
+            if len(df_sans_NaN)==0:
+                st.warning('Le dataset avec suppression des NaN suivant les lignes est vides! Selectionnez un autre moyen de suppression')
+                matrice_de_corr = st.empty()
+        with col2 :
+            if len(df_sans_NaN)==0:
+                st.radio('Méthode de suppression des NaN', ['Moyenne', 'médiane', 'O'])
+
+
+
     else :
         st.warning('Veuillez charger un dataset !')
 ### Fin section mat de corr ###
