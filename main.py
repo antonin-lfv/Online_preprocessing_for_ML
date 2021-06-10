@@ -166,7 +166,6 @@ def page3():
             with col1 :
                 st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
                 st.write(data_col.head(20))
-                st.write("##")
 
             with col2 :
                 st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
@@ -195,7 +194,6 @@ def page3():
 
                 st.write(' ● Nombre de valeurs différentes non NaN:',
                          abs(len(Counter(n_data)) - sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist())))
-                st.write("##")
                 ### Fin section données ###
     else :
         st.warning('Veuillez charger un dataset !')
