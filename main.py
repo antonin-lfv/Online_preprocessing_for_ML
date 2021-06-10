@@ -208,7 +208,7 @@ def page4():
     if uploaded_file is not None:
         st.write("##")
         st.markdown('<p class="grand_titre">Graphique simple</p>', unsafe_allow_html=True)
-        col1, col2 = st.beta_columns((1,2))
+        col1, b, col2 = st.beta_columns((1,1,2))
         with col1 :
             abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_numeric(data))
             ordonnee_plot = st.selectbox('Données en ordonnées', ['Selectionner une colonne'] + col_numeric(data))
