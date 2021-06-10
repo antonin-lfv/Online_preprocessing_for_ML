@@ -161,39 +161,38 @@ def page3():
             data_col = data[slider_col].copy()
             n_data = data[slider_col].to_numpy()
 
-            col1, col2 = st.beta_columns(2)
-            col1.write('##')
-            col1.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
-            col1.write(data_col.head(20))
-            col1.write("##")
+            st.write('##')
+            st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
+            st.write(data_col.head(20))
+            st.write("##")
 
-            col2.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
-            col2.write(' ● type de la colonne :', type(data_col))
+            st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
+            st.write(' ● type de la colonne :', type(data_col))
             if n_data.dtype == float:
                 moyenne = data_col.mean()
                 variance = data_col.std()
                 max = data_col.max()
                 min = data_col.min()
-                col2.write(' ● Moyenne :', round(moyenne, 3))
+                st.write(' ● Moyenne :', round(moyenne, 3))
 
-                col2.write(' ● Variance :', round(variance, 3))
+                st.write(' ● Variance :', round(variance, 3))
 
-                col2.write(' ● Maximum :', max)
+                st.write(' ● Maximum :', max)
 
-                col2.write(' ● Minimum :', min)
+                st.write(' ● Minimum :', min)
 
-            col2.write(' ● Valeurs les plus présentes:', (Counter(n_data).most_common()[0])[0], 'apparait',
+            st.write(' ● Valeurs les plus présentes:', (Counter(n_data).most_common()[0])[0], 'apparait',
                      (Counter(n_data).most_common()[0])[1], 'fois', ', ', (Counter(n_data).most_common()[1])[0],
                      'apparait',
                      (Counter(n_data).most_common()[1])[1], 'fois')
 
-            col2.write(' ● Nombre de valeurs manquantes:', sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist()))
+            st.write(' ● Nombre de valeurs manquantes:', sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist()))
 
-            col2.write(' ● Longueur:', n_data.shape[0])
+            st.write(' ● Longueur:', n_data.shape[0])
 
-            col2.write(' ● Nombre de valeurs différentes non NaN:',
+            st.write(' ● Nombre de valeurs différentes non NaN:',
                      abs(len(Counter(n_data)) - sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist())))
-            col2.write("##")
+            st.write("##")
             ### Fin section données ###
     else :
         st.warning('Veuillez charger un dataset !')
