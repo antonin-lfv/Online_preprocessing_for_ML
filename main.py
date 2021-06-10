@@ -344,7 +344,7 @@ def page5():
                             fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
                     fig.update_layout(width=900, height=450,
                                       margin=dict(l=40, r=50, b=40, t=40), )
-                    st.plotly_chart(fig)
+                    matrice_de_corr.plotly_chart(fig)
                 else :
                     pass
 
