@@ -226,7 +226,7 @@ def page4():
                 'Latitude/Longitude': 'map'
             }
         st.write('##')
-        if abscisse_plot != 'Selectionner une colonne' and ordonnee_plot != 'Selectionner une colonne':
+        if abscisse_plot != 'Selectionner une colonne' or ordonnee_plot != 'Selectionner une colonne':
             if type_plot == 'Latitude/Longitude':
                 fig = go.Figure()
                 df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
