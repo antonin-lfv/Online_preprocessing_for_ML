@@ -104,7 +104,7 @@ def page1():
         '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes pour développer votre modèle, ou simplement pour visualiser vos données. ' +
         'Si vous aimez ce site n\'hésitez pas à mettre une étoile sur le repo GitHub.</p>',
         unsafe_allow_html=True)
-    st.write("check out this [link](https://github.com/antonin-lfv/Online_preprocessing_for_ML)")
+    st.write("Github Project : [here](https://github.com/antonin-lfv/Online_preprocessing_for_ML)")
 ### Fin accueil ###
 
 
