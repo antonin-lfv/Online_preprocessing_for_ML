@@ -319,6 +319,8 @@ def page5():
                 matrice_de_corr = st.empty()
             else :
                 fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
+                fig.update_layout(width=900, height=450,
+                    margin=dict(l=40, r=50, b=40, t=40),)
                 st.plotly_chart(fig)
         with col2 :
             if len(df_sans_NaN)==0:
