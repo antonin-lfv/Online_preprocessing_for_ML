@@ -208,9 +208,11 @@ def page4():
     if uploaded_file is not None:
         st.write("##")
         st.markdown('<p class="grand_titre">Graphique simple</p>', unsafe_allow_html=True)
-        abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_numeric(data))
-        ordonnee_plot = st.selectbox('Données en ordonnées', ['Selectionner une colonne'] + col_numeric(data))
-        # couleur_plot = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
+        col1, col2 = st.beta_columns((1,2))
+        with col1 :
+            abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_numeric(data))
+            ordonnee_plot = st.selectbox('Données en ordonnées', ['Selectionner une colonne'] + col_numeric(data))
+            # couleur_plot = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
         type_plot = st.radio("Type de plot", ('Points', 'Courbe', 'Latitude/Longitude'))
         type_plot_dict = {
             'Courbe': 'lines',
