@@ -124,17 +124,20 @@ def page2():
         st.write("##")
         st.markdown('<p class="grand_titre">Analyse du dataset</p>', unsafe_allow_html=True)
         st.write("##")
-        st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
-        st.write(data.head(50))
-        st.write("##")
+        col1, col2 = st.beta_columns((1,2))
+        with col1 :
+            st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
+            st.write(data.head(50))
+            st.write("##")
 
-        st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
-        st.write(' - Taille:', data.shape)
-        st.write(' - Nombre de valeurs:', data.shape[0] * data.shape[1])
-        st.write(' - Type des colonnes:', data.dtypes.value_counts())
-        st.write(' - Pourcentage de valeurs manquantes:', round(
-            sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()) * 100 / (data.shape[0] * data.shape[1]), 2),
-                 ' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()), ' valeurs manquantes)')
+        with col2 :
+            st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
+            st.write(' - Taille:', data.shape)
+            st.write(' - Nombre de valeurs:', data.shape[0] * data.shape[1])
+            st.write(' - Type des colonnes:', data.dtypes.value_counts())
+            st.write(' - Pourcentage de valeurs manquantes:', round(
+                sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()) * 100 / (data.shape[0] * data.shape[1]), 2),
+                     ' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()), ')')
     else :
         st.warning('Veuillez charger un dataset !')
 ### Fin section du dataset ###
