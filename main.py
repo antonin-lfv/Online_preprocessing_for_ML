@@ -316,9 +316,14 @@ def page5():
             if len(df_sans_NaN)==0:
                 st.warning('Le dataset avec suppression des NaN suivant les lignes est vides! Selectionnez un autre moyen de suppression')
                 matrice_de_corr = st.empty()
+            else :
+                fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
+                st.plotly_chart(fig)
         with col2 :
             if len(df_sans_NaN)==0:
                 st.radio('Méthode de suppression des NaN', ['Moyenne', 'médiane', 'O'])
+            else :
+                pass
 
 
 
