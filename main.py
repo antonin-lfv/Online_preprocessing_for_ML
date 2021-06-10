@@ -318,7 +318,7 @@ def page5():
                 st.warning('Le dataset avec suppression des NaN suivant les lignes est vides! Selectionnez un autre moyen de suppression')
                 matrice_de_corr = st.empty()
             else :
-                fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
+                fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN), color=couleur_corr)
                 fig.update_layout(width=900, height=450,
                     margin=dict(l=40, r=50, b=40, t=40),)
                 st.plotly_chart(fig)
