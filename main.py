@@ -121,10 +121,10 @@ def page1():
 ##########################
 def page2():
     if uploaded_file is not None:
-        col1, col2 = st.beta_columns(2)
         st.write("##")
         st.markdown('<p class="grand_titre">Analyse du dataset</p>', unsafe_allow_html=True)
         st.write("##")
+        col1, col2 = st.beta_columns(2)
         col1.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
         col1.write(data.head(50))
         col1.write("##")
