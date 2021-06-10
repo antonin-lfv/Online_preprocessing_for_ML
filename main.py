@@ -213,12 +213,13 @@ def page4():
             abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_numeric(data))
             ordonnee_plot = st.selectbox('Données en ordonnées', ['Selectionner une colonne'] + col_numeric(data))
             # couleur_plot = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
-        type_plot = st.radio("Type de plot", ('Points', 'Courbe', 'Latitude/Longitude'))
-        type_plot_dict = {
-            'Courbe': 'lines',
-            'Points': 'markers',
-            'Latitude/Longitude': 'map'
-        }
+        with col2 :
+            type_plot = st.radio("Type de plot", ('Points', 'Courbe', 'Latitude/Longitude'))
+            type_plot_dict = {
+                'Courbe': 'lines',
+                'Points': 'markers',
+                'Latitude/Longitude': 'map'
+            }
         if abscisse_plot != 'Selectionner une colonne' and ordonnee_plot != 'Selectionner une colonne':
             if type_plot == 'Latitude/Longitude':
                 fig = go.Figure()
