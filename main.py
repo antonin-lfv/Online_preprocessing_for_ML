@@ -152,17 +152,19 @@ def page3():
     if uploaded_file is not None:
         st.write('##')
         st.markdown('<p class="grand_titre">Analyse d\'une colonne</p>', unsafe_allow_html=True)
-        slider_col = st.selectbox(
-            'Choisissez une colonne à étudier',
-            ['Selectionner une colonne'] + data.columns.to_list(),
-        )
+        col1, col2 = st.beta_columns((1,2))
+        with col1 :
+            slider_col = st.selectbox(
+                'Choisissez une colonne à étudier',
+                ['Selectionner une colonne'] + data.columns.to_list(),
+            )
         if slider_col != 'Selectionner une colonne':
             ### Données ###
             data_col = data[slider_col].copy()
             n_data = data[slider_col].to_numpy()
 
             st.write('##')
-            col1, col2 = st.beta_columns((1,2))
+            col1, b, col2 = st.beta_columns((1,1,2))
             with col1 :
                 st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
                 st.write(data_col.head(20))
@@ -220,6 +222,7 @@ def page4():
                 'Points': 'markers',
                 'Latitude/Longitude': 'map'
             }
+        st.write('##')
         if abscisse_plot != 'Selectionner une colonne' and ordonnee_plot != 'Selectionner une colonne':
             if type_plot == 'Latitude/Longitude':
                 fig = go.Figure()
