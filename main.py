@@ -312,11 +312,11 @@ def page5():
             col1, b, col2 = st.beta_columns((1, 1, 2))
             df_sans_NaN = data.dropna()
             with col1 :
-                couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
-                st.write("##")
                 if len(df_sans_NaN)==0:
-                    pass
+                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
                 else :
+                    couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
+                    st.write("##")
                     if couleur_corr!='Selectionner une colonne':
                         fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN), color=couleur_corr)
                     else :
@@ -324,10 +324,6 @@ def page5():
                     fig.update_layout(width=900, height=450,
                         margin=dict(l=40, r=50, b=40, t=40),)
                     st.plotly_chart(fig)
-            with col2 :
-                if len(df_sans_NaN)==0:
-                    st.write("##")
-                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
     else :
         st.warning('Veuillez charger un dataset !')
 ### Fin section mat de corr ###
