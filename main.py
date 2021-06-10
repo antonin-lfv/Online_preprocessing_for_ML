@@ -113,6 +113,9 @@ def page1():
 
 
 
+
+
+
 ##########################
 ### section du dataset ###
 ##########################
@@ -138,6 +141,10 @@ def page2():
     else :
         st.warning('Veuillez charger un dataset !')
 ### Fin section du dataset ###
+
+
+
+
 
 
 
@@ -203,6 +210,14 @@ def page3():
 
 
 
+
+
+
+
+
+
+
+
 ##########################
 ### Section Graphiques ###
 ##########################
@@ -227,46 +242,61 @@ def page4():
             if type_plot == 'Latitude/Longitude':
                 fig = go.Figure()
                 df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
-                fig.add_scattermapbox(
-                    mode="markers",
-                    lon=df_sans_NaN[ordonnee_plot],
-                    lat=df_sans_NaN[abscisse_plot],
-                    marker={'size': 10,
-                            'color': 'firebrick',
-                            })
-                fig.update_layout(
-                    margin={'l': 0, 't': 0, 'b': 0, 'r': 0},
-                    mapbox={
-                        'center': {'lon': -80, 'lat': 40},
-                        'style': "stamen-terrain",
-                        'zoom': 1})
-                st.plotly_chart(fig)
+                if len(df_sans_NaN)==0 :
+                    st.error('Le dataset après dropna() est vide !')
+                else :
+                    fig.add_scattermapbox(
+                        mode="markers",
+                        lon=df_sans_NaN[ordonnee_plot],
+                        lat=df_sans_NaN[abscisse_plot],
+                        marker={'size': 10,
+                                'color': 'firebrick',
+                                })
+                    fig.update_layout(
+                        margin={'l': 0, 't': 0, 'b': 0, 'r': 0},
+                        mapbox={
+                            'center': {'lon': -80, 'lat': 40},
+                            'style': "stamen-terrain",
+                            'zoom': 1})
+                    st.plotly_chart(fig)
             elif type_plot=='Histogramme':
                 fig=go.Figure()
                 df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
-                fig.add_histogram(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot])
+                if len(df_sans_NaN)==0 :
+                    st.error('Le dataset après dropna() est vide !')
+                else :
+                    fig.add_histogram(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot])
 
             else:
                 fig = go.Figure()
                 df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
-                fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
-                                mode=type_plot_dict[type_plot], name='')
-            fig.update_xaxes(title_text=abscisse_plot)
-            fig.update_yaxes(title_text=ordonnee_plot)
-            fig.update_layout(
-                template='simple_white',
-                showlegend=False,
-                font=dict(size=10),
-                autosize=False,
-                width=900, height=450,
-                margin=dict(l=40, r=50, b=40, t=40),
-                paper_bgcolor='rgba(0,0,0,0)',
-                plot_bgcolor='rgba(0,0,0,0)',
-            )
-            st.plotly_chart(fig)
+                if len(df_sans_NaN)==0 :
+                    st.error('Le dataset après dropna() est vide !')
+                else :
+                    fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
+                                    mode=type_plot_dict[type_plot], name='')
+            if len(df_sans_NaN) != 0:
+                fig.update_xaxes(title_text=abscisse_plot)
+                fig.update_yaxes(title_text=ordonnee_plot)
+                fig.update_layout(
+                    template='simple_white',
+                    showlegend=False,
+                    font=dict(size=10),
+                    autosize=False,
+                    width=900, height=450,
+                    margin=dict(l=40, r=50, b=40, t=40),
+                    paper_bgcolor='rgba(0,0,0,0)',
+                    plot_bgcolor='rgba(0,0,0,0)',
+                )
+                st.plotly_chart(fig)
     else :
         st.warning('Veuillez charger un dataset !')
 ### Fin section graphiques ###
+
+
+
+
+
 
 
 
@@ -286,6 +316,21 @@ def page5():
     else :
         st.warning('Veuillez charger un dataset !')
 ### Fin section mat de corr ###
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
