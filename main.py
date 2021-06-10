@@ -219,11 +219,11 @@ def page4():
             ordonnee_plot = st.selectbox('Données en ordonnées', ['Selectionner une colonne'] + col_numeric(data))
             # couleur_plot = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
         with col2 :
-            type_plot = st.radio("Type de plot", ('Points', 'Courbe', 'Latitude/Longitude'))
+            type_plot = st.radio("Type de plot", ('Points', 'Courbe', 'Latitude/Longitude', 'Histogramme'))
             type_plot_dict = {
                 'Courbe': 'lines',
                 'Points': 'markers',
-                'Latitude/Longitude': 'map'
+                'Latitude/Longitude': 'map',
             }
         st.write('##')
         if abscisse_plot != 'Selectionner une colonne' and ordonnee_plot != 'Selectionner une colonne':
@@ -244,6 +244,10 @@ def page4():
                         'style': "stamen-terrain",
                         'zoom': 1})
                 st.plotly_chart(fig)
+            elif type_plot=='Histogramme':
+                fig=go.Figure()
+                df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
+                fig.add_bar(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot])
 
             else:
                 fig = go.Figure()
