@@ -346,36 +346,26 @@ def page5():
                             matrice_de_corr.plotly_chart(fig)
                     elif NaN == '0':
                         df_sans_NaN = data.fillna(0)
-                        if couleur_corr != 'Selectionner une colonne':
-                            fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN),
-                                                    color=couleur_corr)
-                            fig.update_layout(width=900, height=450,
-                                              margin=dict(l=40, r=50, b=40, t=40), )
-                            matrice_de_corr.plotly_chart(fig)
-                        else:
-                            fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
-                            fig.update_layout(width=900, height=450,
-                                              margin=dict(l=40, r=50, b=40, t=40), )
-                            matrice_de_corr.plotly_chart(fig)
+                        if len(df_sans_NaN)==0:
+                            st.error('Le dataset est toujours vide !')
+                        else :
+                            if couleur_corr != 'Selectionner une colonne':
+                                fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN),
+                                                        color=couleur_corr)
+                                fig.update_layout(width=900, height=450,
+                                                  margin=dict(l=40, r=50, b=40, t=40), )
+                                matrice_de_corr.plotly_chart(fig)
+                            else:
+                                fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
+                                fig.update_layout(width=900, height=450,
+                                                  margin=dict(l=40, r=50, b=40, t=40), )
+                                matrice_de_corr.plotly_chart(fig)
                 else :
                     pass
-
-
 
     else :
         st.warning('Veuillez charger un dataset !')
 ### Fin section mat de corr ###
-
-
-
-
-
-
-
-
-
-
-
 
 
 
