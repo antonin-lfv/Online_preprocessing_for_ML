@@ -11,6 +11,7 @@ import streamlit as st
 import os
 import plotly.graph_objects as go
 import webbrowser
+from bokeh.models.widgets import Div
 
 st.set_page_config(layout="wide")
 
@@ -70,6 +71,12 @@ st.markdown(
 url = 'https://github.com/antonin-lfv/Online_preprocessing_for_ML'
 if st.button('Github project'):
     webbrowser.open_new_tab(url)
+
+if st.button('Github project'):
+    js = "window.open('https://github.com/antonin-lfv/Online_preprocessing_for_ML')"  # New tab or window
+    html = '<img src onerror="{}">'.format(js)
+    div = Div(text=html)
+    st.bokeh_chart(div)
 
 ###### App #######
 uploaded_file = st.sidebar.file_uploader("Chargez votre dataset", type=['csv', 'xls'])
