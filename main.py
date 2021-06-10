@@ -61,7 +61,8 @@ def col_numeric(df):
 st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow_html=True)
 st.write("##")
 
-uploaded_file = st.sidebar.file_uploader("Chargez votre dataset", type=['csv', 'xls'])
+st.sidebar.write('<p class="section">Chargez votre dataset</p>', unsafe_allow_html=True)
+uploaded_file = st.sidebar.file_uploader("", type=['csv', 'xls'])
 if uploaded_file is not None:
     file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type, "FileSize": uploaded_file.size}
     try:
