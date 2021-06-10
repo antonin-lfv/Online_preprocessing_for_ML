@@ -185,8 +185,8 @@ def page3():
 
                     st.write(' ● Minimum :', min)
 
-                st.write(' ● Valeurs les plus présentes:\n', (Counter(n_data).most_common()[0])[0], 'apparait',
-                         (Counter(n_data).most_common()[0])[1], 'fois', ',\n ', (Counter(n_data).most_common()[1])[0],
+                st.write(' ● Valeurs les plus présentes:', (Counter(n_data).most_common()[0])[0], 'apparait',
+                         (Counter(n_data).most_common()[0])[1], 'fois', ', ', (Counter(n_data).most_common()[1])[0],
                          'apparait',
                          (Counter(n_data).most_common()[1])[1], 'fois')
 
