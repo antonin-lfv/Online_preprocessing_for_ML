@@ -162,7 +162,7 @@ def page3():
             n_data = data[slider_col].to_numpy()
 
             st.write('##')
-            col1, col2 = st.beta_columns((1,1))
+            col1, col2 = st.beta_columns((2,1))
             with col1 :
                 st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
                 st.write(data_col.head(20))
