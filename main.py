@@ -315,7 +315,7 @@ def page5():
                 couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
                 st.write("##")
                 if len(df_sans_NaN)==0:
-                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide! Selectionnez un autre moyen de suppression ci-contre : ')
+                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
                     matrice_de_corr = st.empty()
                 else :
                     if couleur_corr!='Selectionner une colonne':
@@ -325,44 +325,6 @@ def page5():
                     fig.update_layout(width=900, height=450,
                         margin=dict(l=40, r=50, b=40, t=40),)
                     st.plotly_chart(fig)
-            with col2 :
-                if len(df_sans_NaN)==0:
-                    st.write('##')
-                    st.write('##')
-                    st.write('##')
-                    NaN = st.radio('Méthode de suppression des NaN', ['Moyenne', 'O'])
-                    if NaN == 'Moyenne':
-                        df_sans_NaN = data.fillna(data.mean())
-                        if couleur_corr != 'Selectionner une colonne':
-                            fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN),
-                                                    color=couleur_corr)
-                            fig.update_layout(width=900, height=450,
-                                              margin=dict(l=40, r=50, b=40, t=40), )
-                            matrice_de_corr.plotly_chart(fig)
-                        else:
-                            fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
-                            fig.update_layout(width=900, height=450,
-                                              margin=dict(l=40, r=50, b=40, t=40), )
-                            matrice_de_corr.plotly_chart(fig)
-                    elif NaN == '0':
-                        df_sans_NaN = data.fillna(0)
-                        if len(df_sans_NaN)==0:
-                            st.error('Le dataset est toujours vide !')
-                        else :
-                            if couleur_corr != 'Selectionner une colonne':
-                                fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN),
-                                                        color=couleur_corr)
-                                fig.update_layout(width=900, height=450,
-                                                  margin=dict(l=40, r=50, b=40, t=40), )
-                                matrice_de_corr.plotly_chart(fig)
-                            else:
-                                fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
-                                fig.update_layout(width=900, height=450,
-                                                  margin=dict(l=40, r=50, b=40, t=40), )
-                                matrice_de_corr.plotly_chart(fig)
-                else :
-                    pass
-
     else :
         st.warning('Veuillez charger un dataset !')
 ### Fin section mat de corr ###
