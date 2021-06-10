@@ -124,7 +124,7 @@ def page2():
         st.write("##")
         st.markdown('<p class="grand_titre">Analyse du dataset</p>', unsafe_allow_html=True)
         st.write("##")
-        col1, b, col2 = st.beta_columns((2, 0.5, 2))
+        col1, b, col2 = st.beta_columns((2.5, 0.5, 2))
         with col1 :
             st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
             st.write(data.head(50))
