@@ -313,6 +313,7 @@ def page5():
             df_sans_NaN = data.dropna()
             with col1 :
                 if len(df_sans_NaN)==0:
+                    st.write("##")
                     st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
                 else :
                     couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
