@@ -275,11 +275,13 @@ def page4():
 ###########################
 def page5():
     if uploaded_file is not None:
-        st.write("##")
-        st.markdown('<p class="grand_titre">Matrice de corrélations</p>', unsafe_allow_html=True)
-        couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
-        st.write("##")
-        df_sans_NaN = data.dropna()
+        col1, col2 = st.beta_columns((1,2))
+        with col1 :
+            st.write("##")
+            st.markdown('<p class="grand_titre">Matrice de corrélations</p>', unsafe_allow_html=True)
+            couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
+            st.write("##")
+            df_sans_NaN = data.dropna()
     else :
         st.warning('Veuillez charger un dataset !')
 ### Fin section mat de corr ###
