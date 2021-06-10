@@ -247,7 +247,7 @@ def page4():
             elif type_plot=='Histogramme':
                 fig=go.Figure()
                 df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
-                fig.add_bar(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot])
+                fig.add_histogram(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot])
 
             else:
                 fig = go.Figure()
