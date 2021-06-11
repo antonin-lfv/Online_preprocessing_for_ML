@@ -322,12 +322,12 @@ def page5():
                         fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN), color=couleur_corr)
                     else :
                         fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
-                    fig.update_layout(width=900, height=450,
-                        margin=dict(l=40, r=50, b=40, t=40),)
                     fig.update_xaxes(tickangle = 90,
                                      title_font = {"size": 10},)
                     fig.update_yaxes(tickangle = 0,
                                      title_font = {"size": 10},)
+                    fig.update_layout(width=900, height=450,
+                        margin=dict(l=40, r=50, b=40, t=40),)
                     st.plotly_chart(fig)
     else :
         st.warning('Veuillez charger un dataset !')
