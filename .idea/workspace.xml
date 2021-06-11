@@ -53,20 +53,6 @@
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
     </task>
-    <task id="LOCAL-00039" summary="multi_pages">
-      <created>1623331515051</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1623331515051</updated>
-    </task>
-    <task id="LOCAL-00040" summary="multi_pages">
-      <created>1623331554439</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1623331554439</updated>
-    </task>
     <task id="LOCAL-00041" summary="multi_pages">
       <created>1623331851026</created>
       <option name="number" value="00041" />
@@ -396,7 +382,21 @@
       <option name="project" value="LOCAL" />
       <updated>1623404148078</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="col">
+      <created>1623404234414</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1623404234414</updated>
+    </task>
+    <task id="LOCAL-00089" summary="col">
+      <created>1623404337140</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1623404337140</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -418,11 +418,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="col" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="393" y="194" key="Vcs.Push.Dialog.v2" timestamp="1623404152082">
+    <state x="393" y="194" key="Vcs.Push.Dialog.v2" timestamp="1623404338518">
       <screen x="0" y="25" width="1440" height="796" />
     </state>
     <state x="-1396" y="68" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@-1920.-155.1920.1055" timestamp="1623275753787" />
-    <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1623404152082" />
+    <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1623404338518" />
     <state x="-1396" y="68" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.797@-1920.-155.1920.1055" timestamp="1623267361970" />
     <state x="-1396" y="68" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.798@-1920.-155.1920.1055" timestamp="1623259872757" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.798@0.25.1440.798" timestamp="1623335766426" />
