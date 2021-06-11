@@ -326,7 +326,7 @@ def page5():
                         margin=dict(l=40, r=50, b=40, t=40),)
                     fig.update_xaxes(tickangle = 90,
                                      title_font = {"size": 15},)
-                    fig.update_xaxes(tickangle = 0,
+                    fig.update_yaxes(tickangle = 0,
                                      title_font = {"size": 15},)
                     st.plotly_chart(fig)
     else :
