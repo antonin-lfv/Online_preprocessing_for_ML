@@ -2,3 +2,4 @@ plotly
 matplotlib
 seaborn
 xlrd
+sklearn

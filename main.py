@@ -10,6 +10,9 @@ import seaborn as sns
 import os
 import plotly.graph_objects as go
 import webbrowser
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.metrics import r2_score
 
 # streamlit run main.py
 
@@ -55,10 +58,8 @@ def max_std(dataset):
             l.append([dataset[nom].std(), nom])
     return (max(l))
 
-
 def col_numeric(df):
     return df.select_dtypes(include=np.number).columns.tolist()
-
 
 ####### Streamlit home + upload file ######
 st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow_html=True)
@@ -228,7 +229,7 @@ def page4():
     if uploaded_file is not None:
         st.write("##")
         st.markdown('<p class="grand_titre">Graphique simple</p>', unsafe_allow_html=True)
-        col1, b, col2 = st.beta_columns((1,1,2))
+        col1, b, col2, c, col3 = st.beta_columns((5))
         with col1 :
             abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_numeric(data))
             ordonnee_plot = st.selectbox('Données en ordonnées', ['Selectionner une colonne'] + col_numeric(data))
@@ -240,6 +241,13 @@ def page4():
                 'Points': 'markers',
                 'Latitude/Longitude': 'map',
             }
+        with col3 :
+            if type_plot=='Points' or type_plot=='Courbe':
+                st.write("##")
+                trendline = st.checkbox("Regression linéaire")
+                polynom_feat = st.checkbox("Regression polynomiale")
+                if polynom_feat :
+                    degres = st.slider('Degres de la regression polynomiale', min_value=2, max_value=10,value=4)
         st.write('##')
         if abscisse_plot != 'Selectionner une colonne' and ordonnee_plot != 'Selectionner une colonne':
             if type_plot == 'Latitude/Longitude':
@@ -276,14 +284,35 @@ def page4():
                 if len(df_sans_NaN)==0 :
                     st.error('Le dataset après dropna() est vide !')
                 else :
-                    fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],
-                                    mode=type_plot_dict[type_plot], name='')
+                    fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],mode=type_plot_dict[type_plot], name='', showlegend=False)
+                    if trendline :
+                        # regression linaire
+                        X = df_sans_NaN[abscisse_plot].values.reshape(-1, 1)
+                        model = LinearRegression()
+                        model.fit(X, df_sans_NaN[ordonnee_plot])
+                        x_range = np.linspace(X.min(), X.max(), len(df_sans_NaN[ordonnee_plot]))
+                        y_range = model.predict(x_range.reshape(-1, 1))
+                        fig.add_scatter(x=x_range, y=y_range, name='Regression linéaire', mode='lines', marker=dict(color='red'))
+                        # #################
+                    if polynom_feat :
+                        # regression polynomiale
+                        X = df_sans_NaN[abscisse_plot].values.reshape(-1, 1)
+                        x_range = np.linspace(X.min(), X.max(), 100).reshape(-1, 1)
+                        poly = PolynomialFeatures(degres)
+                        poly.fit(X)
+                        X_poly = poly.transform(X)
+                        x_range_poly = poly.transform(x_range)
+                        model = LinearRegression(fit_intercept=False)
+                        model.fit(X_poly, df_sans_NaN[ordonnee_plot])
+                        y_poly = model.predict(x_range_poly)
+                        fig.add_scatter(x=x_range.squeeze(), y=y_poly, name='Polynomial Features', marker=dict(color='green'))
+                        # #################
             if len(df_sans_NaN) != 0:
                 fig.update_xaxes(title_text=abscisse_plot)
                 fig.update_yaxes(title_text=ordonnee_plot)
                 fig.update_layout(
                     template='simple_white',
-                    showlegend=False,
+                    showlegend=True,
                     font=dict(size=10),
                     autosize=False,
                     width=900, height=450,
@@ -361,3 +390,13 @@ def page5():
 
 if __name__=="__main__":
     main()
+
+
+import numpy as np
+import plotly.express as px
+import plotly.graph_objects as go
+from sklearn.linear_model import LinearRegression
+
+df = px.data.tips()
+X = df.total_bill.values.reshape(-1, 1)
+
