@@ -11,6 +11,8 @@ import os
 import plotly.graph_objects as go
 import webbrowser
 
+# streamlit run main.py
+
 ####### html/css config ########
 st.set_page_config(layout="wide")
 st.markdown("""
@@ -125,7 +127,7 @@ def page2():
         st.write("##")
         st.markdown('<p class="grand_titre">Analyse du dataset</p>', unsafe_allow_html=True)
         st.write("##")
-        col1, b, col2 = st.beta_columns((2.5, 0.5, 2))
+        col1, col2 = st.beta_columns((2))
         with col1 :
             st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
             st.write(data.head(50))
@@ -160,7 +162,7 @@ def page3():
     if uploaded_file is not None:
         st.write('##')
         st.markdown('<p class="grand_titre">Analyse d\'une colonne</p>', unsafe_allow_html=True)
-        col1, col2 = st.beta_columns((1,2))
+        col1, col2 = st.beta_columns((2))
         with col1 :
             slider_col = st.selectbox(
                 'Choisissez une colonne à étudier',
@@ -311,24 +313,41 @@ def page5():
             st.markdown('<p class="grand_titre">Matrice de corrélations</p>', unsafe_allow_html=True)
             col1, b, col2 = st.beta_columns((1, 1, 2))
             df_sans_NaN = data.dropna()
-            with col1 :
-                if len(df_sans_NaN)==0:
+            if len(df_sans_NaN)==0:
+                with col1:
                     st.write("##")
                     st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
-                else :
-                    couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
+            else :
+                with col1:
+                    couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + df_sans_NaN.columns.tolist())
                     st.write("##")
+                select_columns_corr = st.multiselect("Choisir au moins deux colonnes",["Selectionner une colonne", "Toutes les colonnes"] + col_numeric(df_sans_NaN))
+                if len(select_columns_corr)>1 and "Toutes les colonnes" not in select_columns_corr:
                     if couleur_corr!='Selectionner une colonne':
-                        fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN), color=couleur_corr)
+                        fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[select_columns_corr]), color=couleur_corr)
                     else :
-                        fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
-                    fig.update_xaxes(tickangle = 90,
+                        fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[select_columns_corr]))
+                    fig.update_xaxes(tickangle = 0,
                                      title_font = {"size": 10},)
-                    fig.update_yaxes(tickangle = 0,
+                    fig.update_yaxes(tickangle = 90,
                                      title_font = {"size": 10},)
                     fig.update_layout(width=900, height=450,
                         margin=dict(l=40, r=50, b=40, t=40),)
                     st.plotly_chart(fig)
+                elif select_columns_corr==["Toutes les colonnes"]:
+                    if couleur_corr!='Selectionner une colonne':
+                        fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN), color=couleur_corr)
+                    else :
+                        fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
+                    fig.update_xaxes(tickangle = 70,
+                                     title_font = {"size": 10},)
+                    fig.update_yaxes(tickangle = 10,
+                                     title_font = {"size": 10},)
+                    fig.update_layout(width=900, height=450,
+                        margin=dict(l=40, r=50, b=40, t=40),)
+                    st.plotly_chart(fig)
+                elif len(select_columns_corr)>1 and "Toutes les colonnes" in select_columns_corr :
+                    st.error("Erreur de saisi !")
     else :
         st.warning('Veuillez charger un dataset !')
 ### Fin section mat de corr ###
