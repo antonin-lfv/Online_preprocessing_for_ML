@@ -321,30 +321,29 @@ def page5():
                 with col1:
                     couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + df_sans_NaN.columns.tolist())
                     st.write("##")
-                select_columns_corr = st.multiselect("Choisir au moins deux colonnes",["Selectionner une colonne", "Toutes les colonnes"] + col_numeric(df_sans_NaN))
+                select_columns_corr = st.multiselect("Choisir au moins deux colonnes",[ "Toutes les colonnes"] + col_numeric(df_sans_NaN))
                 if len(select_columns_corr)>1 and "Toutes les colonnes" not in select_columns_corr:
                     if couleur_corr!='Selectionner une colonne':
-                        fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[select_columns_corr]), color=couleur_corr)
+                        fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[select_columns_corr]), color=couleur_corr, color_continuous_scale=px.colors.sequential.deep)
                     else :
                         fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[select_columns_corr]))
-                    fig.update_xaxes(tickangle = 0,
-                                     title_font = {"size": 10},)
-                    fig.update_yaxes(tickangle = 90,
-                                     title_font = {"size": 10},)
-                    fig.update_layout(width=900, height=450,
-                        margin=dict(l=40, r=50, b=40, t=40),)
+                    fig.update_layout(width=900, height=700,margin=dict(l=40, r=50, b=40, t=40), font=dict(size=7))
+                    fig.update_layout({"xaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN[select_columns_corr])))})
+                    fig.update_layout({"yaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN[select_columns_corr])))})
+                    fig.update_traces(marker=dict(size=2))
+                    fig.update_traces(diagonal_visible=False)
                     st.plotly_chart(fig)
                 elif select_columns_corr==["Toutes les colonnes"]:
                     if couleur_corr!='Selectionner une colonne':
                         fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN), color=couleur_corr)
                     else :
                         fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
-                    fig.update_xaxes(tickangle = 70,
-                                     title_font = {"size": 10},)
-                    fig.update_yaxes(tickangle = 10,
-                                     title_font = {"size": 10},)
-                    fig.update_layout(width=900, height=450,
-                        margin=dict(l=40, r=50, b=40, t=40),)
+                    fig.update_layout({"xaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN)))})
+                    fig.update_layout({"yaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN)))})
+                    fig.update_traces(marker=dict(size=2))
+                    fig.update_layout(width=900, height=700,margin=dict(l=40, r=50, b=40, t=40),font=dict(size=7))
+                    fig.update_traces(marker=dict(size=2))
+                    fig.update_traces(diagonal_visible=False)
                     st.plotly_chart(fig)
                 elif len(select_columns_corr)>1 and "Toutes les colonnes" in select_columns_corr :
                     st.error("Erreur de saisi !")
