@@ -348,6 +348,8 @@ def page5():
                     st.plotly_chart(fig)
                 elif len(select_columns_corr)>1 and "Toutes les colonnes" in select_columns_corr :
                     st.error("Erreur de saisi !")
+                else :
+                    pass
     else :
         st.warning('Veuillez charger un dataset !')
 ### Fin section mat de corr ###
