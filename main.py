@@ -247,7 +247,7 @@ def page4():
                 trendline = st.checkbox("Regression linéaire")
                 polynom_feat = st.checkbox("Regression polynomiale")
                 if polynom_feat :
-                    degres = st.slider('Degres de la regression polynomiale', min_value=2, max_value=20,value=4)
+                    degres = st.slider('Degres de la regression polynomiale', min_value=2, max_value=100,value=4)
         st.write('##')
         if abscisse_plot != 'Selectionner une colonne' and ordonnee_plot != 'Selectionner une colonne':
             if type_plot == 'Latitude/Longitude':
