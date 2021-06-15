@@ -91,6 +91,7 @@ def main():
         "Analyse d'une colonne": page3,
         "Graphiques et Regressions": page4,
         "Matrice de corrélation": page5,
+        "Machine Learning": page6,
     }
     st.sidebar.write("##")
     st.sidebar.title('Menu')
@@ -231,8 +232,8 @@ def page4():
         st.markdown('<p class="grand_titre">Graphiques et regressions</p>', unsafe_allow_html=True)
         st.write("##")
         st.write("Si une colonne de votre dataset n'apparait pas et qu'elle contient des dates alors selectionnez là ici : ")
-        col1_1, b_1, col2_1, c_1, col3_1 = st.beta_columns((5))
-        col1, b, col2, c, col3 = st.beta_columns((5))
+        col1_1, b_1, col2_1, c_1, col3_1 = st.beta_columns((5)) # pour time series
+        col1, b, col2, c, col3, d, col4 = st.beta_columns((7)) # pour les autres select
         col_num = col_numeric(data)
         st.write("##")
         with col1_1 :
@@ -258,7 +259,13 @@ def page4():
                 'Points': 'markers',
                 'Latitude/Longitude': 'map',
             }
-        with col3 :
+        with col3:
+            st.write("##")
+            st.write("##")
+            maximum = st.checkbox("Maximum")
+            moyenne = st.checkbox("Moyenne")
+            minimum = st.checkbox("Minimum")
+        with col4 :
             st.write("##")
             if type_plot=='Points' or type_plot=='Courbe':
                 st.write("##")
@@ -303,37 +310,69 @@ def page4():
                     st.error('Le dataset après dropna() est vide !')
                 else :
                     fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],mode=type_plot_dict[type_plot], name='', showlegend=False)
-                    if trendline :
-                        # regression linaire
-                        X = df_sans_NaN[abscisse_plot].values.reshape(-1, 1)
-                        model = LinearRegression()
-                        model.fit(X, df_sans_NaN[ordonnee_plot])
-                        x_range = np.linspace(X.min(), X.max(), len(df_sans_NaN[ordonnee_plot]))
-                        y_range = model.predict(x_range.reshape(-1, 1))
-                        fig.add_scatter(x=x_range, y=y_range, name='Regression linéaire', mode='lines', marker=dict(color='red'))
+                    try :
+                        if trendline :
+                            # regression linaire
+                            X = df_sans_NaN[abscisse_plot].values.reshape(-1, 1)
+                            model = LinearRegression()
+                            model.fit(X, df_sans_NaN[ordonnee_plot])
+                            x_range = np.linspace(X.min(), X.max(), len(df_sans_NaN[ordonnee_plot]))
+                            y_range = model.predict(x_range.reshape(-1, 1))
+                            fig.add_scatter(x=x_range, y=y_range, name='Regression linéaire', mode='lines', marker=dict(color='red'))
+                            # #################
+                        if polynom_feat :
+                            # regression polynomiale
+                            X = df_sans_NaN[abscisse_plot].values.reshape(-1, 1)
+                            x_range = np.linspace(X.min(), X.max(), 100).reshape(-1, 1)
+                            poly = PolynomialFeatures(degres)
+                            poly.fit(X)
+                            X_poly = poly.transform(X)
+                            x_range_poly = poly.transform(x_range)
+                            model = LinearRegression(fit_intercept=False)
+                            model.fit(X_poly, df_sans_NaN[ordonnee_plot])
+                            y_poly = model.predict(x_range_poly)
+                            fig.add_scatter(x=x_range.squeeze(), y=y_poly, name='Polynomial Features', marker=dict(color='green'))
+                            # #################
+                    except :
+                        st.warning("Impossible d'effectuer une regression avec une donnée de type Time Series")
+                    if moyenne :
+                        # Moyenne #
+                        fig.add_hline(y=df_sans_NaN[ordonnee_plot].mean(),
+                                      line_dash="dot",
+                                      annotation_text="moyenne : {}".format(round(df_sans_NaN[ordonnee_plot].mean(), 1)),
+                                      annotation_position="bottom left",
+                                      line_width=2, line=dict(color='black'),
+                                      annotation=dict(font_size=10))
                         # #################
-                    if polynom_feat :
-                        # regression polynomiale
-                        X = df_sans_NaN[abscisse_plot].values.reshape(-1, 1)
-                        x_range = np.linspace(X.min(), X.max(), 100).reshape(-1, 1)
-                        poly = PolynomialFeatures(degres)
-                        poly.fit(X)
-                        X_poly = poly.transform(X)
-                        x_range_poly = poly.transform(x_range)
-                        model = LinearRegression(fit_intercept=False)
-                        model.fit(X_poly, df_sans_NaN[ordonnee_plot])
-                        y_poly = model.predict(x_range_poly)
-                        fig.add_scatter(x=x_range.squeeze(), y=y_poly, name='Polynomial Features', marker=dict(color='green'))
+                        pass
+                    if minimum :
+                        # Minimum #
+                        fig.add_hline(y=df_sans_NaN[ordonnee_plot].min(),
+                                      line_dash="dot",
+                                      annotation_text="minimum : {}".format(round(df_sans_NaN[ordonnee_plot].min(), 1)),
+                                      annotation_position="bottom left",
+                                      line_width=2, line=dict(color='black'),
+                                      annotation=dict(font_size=10))
                         # #################
+                        pass
+                    if maximum :
+                        # Maximum #
+                        fig.add_hline(y=df_sans_NaN[ordonnee_plot].max(),
+                                      line_dash="dot",
+                                      annotation_text="maximum : {}".format(round(df_sans_NaN[ordonnee_plot].max(), 1)),
+                                      annotation_position="top left",
+                                      line_width=2, line=dict(color='black'),
+                                      annotation=dict(font_size=10))
+                        # #################
+                        pass
             if len(df_sans_NaN) != 0:
                 fig.update_xaxes(title_text=abscisse_plot)
                 fig.update_yaxes(title_text=ordonnee_plot)
                 fig.update_layout(
                     template='simple_white',
-                    showlegend=True,
                     font=dict(size=10),
                     autosize=False,
-                    width=900, height=450,
+                    width=1300, height=650,
                     margin=dict(l=40, r=50, b=40, t=40),
                     paper_bgcolor='rgba(0,0,0,0)',
                     plot_bgcolor='rgba(0,0,0,0)',
@@ -402,7 +441,24 @@ def page5():
 
 
 
-
+###########################
+### Section ML ###
+###########################
+def page6():
+    if uploaded_file is not None:
+            st.write("##")
+            st.markdown('<p class="grand_titre">Machine Learning</p>', unsafe_allow_html=True)
+            col1, b, col2 = st.beta_columns((1, 1, 2))
+            df_sans_NaN = data.dropna()
+            if len(df_sans_NaN)==0:
+                with col1:
+                    st.write("##")
+                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
+            else :
+                st.write('page 6')
+    else :
+        st.warning('Veuillez charger un dataset !')
+### Fin section ML ###
 
 
 
