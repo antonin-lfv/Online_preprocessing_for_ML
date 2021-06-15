@@ -61,6 +61,9 @@ def max_std(dataset):
 def col_numeric(df):
     return df.select_dtypes(include=np.number).columns.tolist()
 
+###### Session data ######
+
+
 ####### Streamlit home + upload file ######
 st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow_html=True)
 st.write("##")
@@ -81,19 +84,18 @@ else :
     pass
 
 
-
-
 def main():
     PAGES = {
         "Accueil": page1,
         "Analyse du dataset": page2,
         "Analyse d'une colonne": page3,
-        "Graphique simple": page4,
-        "Matrice de corrélation":page5,
+        "Graphiques et Regressions": page4,
+        "Matrice de corrélation": page5,
     }
     st.sidebar.write("##")
     st.sidebar.title('Menu')
-    page = st.sidebar.radio("", list(PAGES.keys()))
+    st.sidebar.subheader('Data visualisation and ML')
+    page=st.sidebar.radio("", list(PAGES.keys()))
     PAGES[page]()
 
 
@@ -109,8 +111,6 @@ def page1():
         unsafe_allow_html=True)
     st.write("Github Project : [here](https://github.com/antonin-lfv/Online_preprocessing_for_ML)")
 ### Fin accueil ###
-
-
 
 
 
@@ -155,7 +155,6 @@ def page2():
 
 
 
-
 #############################
 ### Section de la colonne ###
 #############################
@@ -169,7 +168,8 @@ def page3():
                 'Choisissez une colonne à étudier',
                 ['Selectionner une colonne'] + data.columns.to_list(),
             )
-        if slider_col != 'Selectionner une colonne':
+        if slider_col != 'Selectionner une colonne' :
+            slider_col = slider_col
             ### Données ###
             data_col = data[slider_col].copy()
             n_data = data[slider_col].to_numpy()
@@ -228,13 +228,30 @@ def page3():
 def page4():
     if uploaded_file is not None:
         st.write("##")
-        st.markdown('<p class="grand_titre">Graphique simple</p>', unsafe_allow_html=True)
+        st.markdown('<p class="grand_titre">Graphiques et regressions</p>', unsafe_allow_html=True)
+        st.write("##")
+        st.write("Si une colonne de votre dataset n'apparait pas et qu'elle contient des dates alors selectionnez là ici : ")
+        col1_1, b_1, col2_1, c_1, col3_1 = st.beta_columns((5))
         col1, b, col2, c, col3 = st.beta_columns((5))
+        col_num = col_numeric(data)
+        st.write("##")
+        with col1_1 :
+            col_to_time = st.selectbox('', ['Selectionner une colonne'] + data.columns.tolist())
+            if col_to_time != 'Selectionner une colonne' :
+                with col2_1:
+                    try :
+                        data[col_to_time]=pd.to_datetime(data[col_to_time])
+                        col_num+=[col_to_time]
+                        st.success("Transformation effectuée avec succès !")
+                    except :
+                        st.warning("Cette colonne ne peut pas être transformée en Time Series")
         with col1 :
-            abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_numeric(data))
-            ordonnee_plot = st.selectbox('Données en ordonnées', ['Selectionner une colonne'] + col_numeric(data))
+            st.write("##")
+            abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_num)
+            ordonnee_plot = st.selectbox('Données en ordonnées', ['Selectionner une colonne'] + col_num)
             # couleur_plot = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
         with col2 :
+            st.write("##")
             type_plot = st.radio("Type de plot", ('Points', 'Courbe', 'Latitude/Longitude', 'Histogramme'))
             type_plot_dict = {
                 'Courbe': 'lines',
@@ -242,6 +259,7 @@ def page4():
                 'Latitude/Longitude': 'map',
             }
         with col3 :
+            st.write("##")
             if type_plot=='Points' or type_plot=='Courbe':
                 st.write("##")
                 trendline = st.checkbox("Regression linéaire")
@@ -390,13 +408,4 @@ def page5():
 
 if __name__=="__main__":
     main()
-
-
-import numpy as np
-import plotly.express as px
-import plotly.graph_objects as go
-from sklearn.linear_model import LinearRegression
-
-df = px.data.tips()
-X = df.total_bill.values.reshape(-1, 1)
 
