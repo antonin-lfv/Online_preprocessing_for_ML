@@ -5,14 +5,15 @@ import numpy as np
 from collections import Counter
 import pandas as pd
 import time
-import matplotlib.pyplot as plt
-import seaborn as sns
 import os
 import plotly.graph_objects as go
 import webbrowser
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import r2_score
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.neighbors import KNeighborsClassifier
 
 # streamlit run main.py
 
@@ -91,7 +92,7 @@ def main():
         "Analyse d'une colonne": page3,
         "Graphiques et Regressions": page4,
         "Matrice de corrélation": page5,
-        "Machine Learning": page6,
+        "Machine Learning - KNN": page6,
     }
     st.sidebar.write("##")
     st.sidebar.title('Menu')
@@ -129,7 +130,7 @@ def page2():
         st.write("##")
         st.markdown('<p class="grand_titre">Analyse du dataset</p>', unsafe_allow_html=True)
         st.write("##")
-        col1, col2 = st.beta_columns((2))
+        col1, b, col2 = st.beta_columns((2.7, 0.3, 1))
         with col1 :
             st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
             st.write(data.head(50))
@@ -445,15 +446,58 @@ def page5():
 def page6():
     if uploaded_file is not None:
             st.write("##")
-            st.markdown('<p class="grand_titre">Machine Learning</p>', unsafe_allow_html=True)
+            st.markdown('<p class="grand_titre">Machine Learning - KNN</p>', unsafe_allow_html=True)
             col1, b, col2 = st.beta_columns((1, 1, 2))
-            df_sans_NaN = data.dropna()
-            if len(df_sans_NaN)==0:
-                with col1:
-                    st.write("##")
-                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
-            else :
-                st.write('page 6')
+            with col1 :
+                st.write("##")
+                st.markdown('<p class="section">Selection des colonnes</p>', unsafe_allow_html=True)
+                choix_col = st.multiselect("Choisir au moins deux colonnes",["Toutes les colonnes"] + data.columns.tolist())
+            if len(choix_col) > 1:
+                df_ml = data[choix_col]
+                df_ml = df_ml.dropna(axis=0)
+                if len(df_ml)==0:
+                    with col1:
+                        st.write("##")
+                        st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
+                else :
+                    with col1 :
+                        # encodage !
+                        col_to_encodage = st.multiselect("Selectionner les colonnes à encoder",["Toutes les colonnes"] + df_ml.columns.tolist())
+                        for col in col_to_encodage :
+                            st.write("encodage colonne "+col+" : "+str(df_ml[col].unique().tolist())+"->"+str(np.arange(len(df_ml[col].unique()))))
+                            df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())), inplace=True)  # encodage
+
+                        ## on choisit notre modèle
+
+                        from sklearn.neighbors import KNeighborsClassifier
+                        model = KNeighborsClassifier()
+                        ## création des target et features à partir du dataset
+                        target = st.selectbox("Target :", ["Selectionner une target"] + col_numeric(df_ml))
+                        with col2 :
+                            if target != "Selectionner une target" :
+                                y = df_ml[target]  # target
+                                X = df_ml.drop(target, axis=1)  # features
+                                try :
+                                    model.fit(X, y)  # on entraine le modèle
+                                    model.score(X, y)  # pourcentage de réussite
+
+                                    model.predict(X)  # on test avec X
+
+                                    features = []
+                                    st.write("##")
+                                    st.markdown('<p class="section">Entrez vos données</p>', unsafe_allow_html=True)
+                                    for col in X.columns.tolist() :
+                                        col = st.text_input(col, "")
+                                        features.append(col)
+
+                                    if "" not in features :
+                                        x = np.array(features).reshape(1, len(features))
+                                        p = (model.predict(x))
+                                        st.success("Prédiction de la target "+target+" : "+str(p))
+                                except :
+                                    with col1:
+                                        st.write("##")
+                                        st.error("Erreur ! Avez vous encoder toutes les features necessaires ?")
     else :
         st.warning('Veuillez charger un dataset !')
 ### Fin section ML ###
