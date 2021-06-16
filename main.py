@@ -447,7 +447,7 @@ def page6():
     if uploaded_file is not None:
             st.write("##")
             st.markdown('<p class="grand_titre">Machine Learning - KNN</p>', unsafe_allow_html=True)
-            col1, b, col2 = st.beta_columns((1, 1, 2))
+            col1, b, col2 = st.beta_columns((1,0.2,1))
             with col1 :
                 st.write("##")
                 st.markdown('<p class="section">Selection des colonnes</p>', unsafe_allow_html=True)
