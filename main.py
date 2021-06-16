@@ -493,6 +493,7 @@ def page6():
                                     if "" not in features :
                                         x = np.array(features).reshape(1, len(features))
                                         p = (model.predict(x))
+                                        st.write("##")
                                         st.success("Prédiction de la target "+target+" : "+str(p))
                                 except :
                                     with col1:
