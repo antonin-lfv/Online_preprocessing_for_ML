@@ -310,7 +310,7 @@ def page4():
                     st.error('Le dataset après dropna() est vide !')
                 else :
                     fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],mode=type_plot_dict[type_plot], name='', showlegend=False)
-                    try :
+                    if col_to_time != abscisse_plot and col_to_time!= ordonnee_plot :
                         if trendline :
                             # regression linaire
                             X = df_sans_NaN[abscisse_plot].values.reshape(-1, 1)
@@ -333,8 +333,6 @@ def page4():
                             y_poly = model.predict(x_range_poly)
                             fig.add_scatter(x=x_range.squeeze(), y=y_poly, name='Polynomial Features', marker=dict(color='green'))
                             # #################
-                    except :
-                        st.warning("Impossible d'effectuer une regression avec une donnée de type Time Series")
                     if moyenne :
                         # Moyenne #
                         fig.add_hline(y=df_sans_NaN[ordonnee_plot].mean(),
