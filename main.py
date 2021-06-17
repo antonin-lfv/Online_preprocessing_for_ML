@@ -176,7 +176,7 @@ def page3():
     if uploaded_file is not None:
         st.write('##')
         st.markdown('<p class="grand_titre">Analyse d\'une colonne</p>', unsafe_allow_html=True)
-        col1, col2 = st.beta_columns((2))
+        col1, b,col2 = st.beta_columns((1,0.3,2))
         with col1 :
             slider_col = st.selectbox(
                 'Choisissez une colonne à étudier',
