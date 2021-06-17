@@ -62,6 +62,11 @@ def max_std(dataset):
 def col_numeric(df):
     return df.select_dtypes(include=np.number).columns.tolist()
 
+def clean_data(x):
+    if isinstance(x, str):
+        return(x.replace('$', '').replace(',', '').replace('€', '').replace('£', ''))
+    return(x)
+
 ###### Session data ######
 
 
@@ -232,21 +237,30 @@ def page4():
         st.write("##")
         st.markdown('<p class="grand_titre">Graphiques et regressions</p>', unsafe_allow_html=True)
         st.write("##")
-        st.write("Si une colonne de votre dataset n'apparait pas et qu'elle contient des dates alors selectionnez là ici : ")
+        st.write("Si une colonne de votre dataset n'apparait pas et qu'elle contient des dates ou des symboles de monnaies alors selectionnez là ici : ")
         col1_1, b_1, col2_1, c_1, col3_1 = st.beta_columns((5)) # pour time series
         col1, b, col2, c, col3, d, col4 = st.beta_columns((7)) # pour les autres select
         col_num = col_numeric(data)
         st.write("##")
         with col1_1 :
-            col_to_time = st.selectbox('', ['Selectionner une colonne'] + data.columns.tolist())
-            if col_to_time != 'Selectionner une colonne' :
+            col_to_change = st.selectbox('', ['Selectionner une colonne'] + data.columns.tolist())
+            change = ""
+            if col_to_change != 'Selectionner une colonne' :
                 with col2_1:
                     try :
-                        data[col_to_time]=pd.to_datetime(data[col_to_time])
-                        col_num+=[col_to_time]
+                        data[col_to_change]=pd.to_datetime(data[col_to_change])
+                        col_num+=[col_to_change]
+                        change = "date"
                         st.success("Transformation effectuée avec succès !")
                     except :
-                        st.warning("Cette colonne ne peut pas être transformée en Time Series")
+                        try :
+                            data[col_to_change] = data[col_to_change].apply(clean_data).astype('float')
+                            col_num += [col_to_change]
+                            st.success("Transformation effectuée avec succès !")
+                            change="money"
+                        except :
+                            st.warning("Cette colonne ne peut pas être transformée")
+                            change="fail"
         with col1 :
             st.write("##")
             abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_num)
@@ -260,20 +274,6 @@ def page4():
                 'Points': 'markers',
                 'Latitude/Longitude': 'map',
             }
-        with col3:
-            st.write("##")
-            st.write("##")
-            maximum = st.checkbox("Maximum")
-            moyenne = st.checkbox("Moyenne")
-            minimum = st.checkbox("Minimum")
-        with col4 :
-            st.write("##")
-            if type_plot=='Points' or type_plot=='Courbe':
-                st.write("##")
-                trendline = st.checkbox("Regression linéaire")
-                polynom_feat = st.checkbox("Regression polynomiale")
-                if polynom_feat :
-                    degres = st.slider('Degres de la regression polynomiale', min_value=2, max_value=100,value=4)
         st.write('##')
         if abscisse_plot != 'Selectionner une colonne' and ordonnee_plot != 'Selectionner une colonne':
             if type_plot == 'Latitude/Longitude':
@@ -305,13 +305,28 @@ def page4():
                     fig.add_histogram(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot])
 
             else:
+                with col3:
+                    st.write("##")
+                    st.write("##")
+                    maximum = st.checkbox("Maximum")
+                    moyenne = st.checkbox("Moyenne")
+                    minimum = st.checkbox("Minimum")
                 fig = go.Figure()
                 df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
                 if len(df_sans_NaN)==0 :
                     st.error('Le dataset après dropna() est vide !')
                 else :
                     fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],mode=type_plot_dict[type_plot], name='', showlegend=False)
-                    if col_to_time != abscisse_plot and col_to_time!= ordonnee_plot :
+                    if change=="money" or change=="" or ( col_to_change != abscisse_plot and col_to_change!= ordonnee_plot ):
+                        with col4:
+                            st.write("##")
+                            if type_plot == 'Points' or type_plot == 'Courbe':
+                                st.write("##")
+                                trendline = st.checkbox("Regression linéaire")
+                                polynom_feat = st.checkbox("Regression polynomiale")
+                                if polynom_feat:
+                                    degres = st.slider('Degres de la regression polynomiale', min_value=2,
+                                                       max_value=100, value=4)
                         if trendline :
                             # regression linaire
                             X = df_sans_NaN[abscisse_plot].values.reshape(-1, 1)
@@ -466,9 +481,10 @@ def page6():
                         for col in col_to_encodage :
                             st.write("encodage colonne "+col+" : "+str(df_ml[col].unique().tolist())+"->"+str(np.arange(len(df_ml[col].unique()))))
                             df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())), inplace=True)  # encodage
-
+                        devise_to_float = st.multiselect("Supprimer le symbole d'une monnaie d'une colonne pour l'utiliser",["Toutes les colonnes"] + df_ml.columns.tolist())
+                        for col in devise_to_float :
+                            df_ml[col] = df_ml[col].apply(clean_data).astype('float')
                         ## on choisit notre modèle
-
                         from sklearn.neighbors import KNeighborsClassifier
                         model = KNeighborsClassifier()
                         ## création des target et features à partir du dataset

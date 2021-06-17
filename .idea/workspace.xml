@@ -20,6 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="col">
+      <change afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,20 +84,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00060" summary="col">
-      <created>1623333957048</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1623333957048</updated>
-    </task>
-    <task id="LOCAL-00061" summary="col">
-      <created>1623334447171</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1623334447171</updated>
     </task>
     <task id="LOCAL-00062" summary="col">
       <created>1623334580468</created>
@@ -426,7 +414,21 @@
       <option name="project" value="LOCAL" />
       <updated>1623856428003</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="col">
+      <created>1623856592352</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1623856592352</updated>
+    </task>
+    <task id="LOCAL-00110" summary="col">
+      <created>1623856672467</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1623856672468</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -446,7 +448,7 @@
     <MESSAGE value="multi_pages" />
     <MESSAGE value="correlation matrix" />
     <MESSAGE value="col" />
-    <option name="LAST_COMMIT_MESSAGE" value="col" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1346" height="199" key="GridCell.Tab.0.bottom" timestamp="1623850018534">
@@ -473,7 +475,7 @@
     <state width="1346" height="200" key="GridCell.Tab.0.right/-1920.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1623404954334" />
     <state width="1899" height="304" key="GridCell.Tab.0.right/-1920.-180.1920.1080/0.0.1440.900@-1920.-180.1920.1080" timestamp="1623780080308" />
     <state width="1346" height="199" key="GridCell.Tab.0.right/0.25.1440.799@0.25.1440.799" timestamp="1623850018533" />
-    <state x="393" y="195" key="Vcs.Push.Dialog.v2" timestamp="1623856429908">
+    <state x="393" y="195" key="Vcs.Push.Dialog.v2" timestamp="1623856674013">
       <screen x="0" y="25" width="1440" height="801" />
     </state>
     <state x="-1396" y="68" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@-1920.-155.1920.1055" timestamp="1623785315199" />
@@ -487,6 +489,6 @@
     <state x="-1396" y="48" key="Vcs.Push.Dialog.v2/-1920.-180.1920.1080/0.0.1440.900@-1920.-180.1920.1080" timestamp="1623780087422" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/0.25.1440.796@0.25.1440.796" timestamp="1623844841504" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/0.25.1440.797@0.25.1440.797" timestamp="1623492615433" />
-    <state x="393" y="195" key="Vcs.Push.Dialog.v2/0.25.1440.801@0.25.1440.801" timestamp="1623856429908" />
+    <state x="393" y="195" key="Vcs.Push.Dialog.v2/0.25.1440.801@0.25.1440.801" timestamp="1623856674013" />
   </component>
 </project>
