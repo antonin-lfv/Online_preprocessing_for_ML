@@ -445,7 +445,7 @@ def page5():
                 select_columns_corr = st.multiselect("Choisir au moins deux colonnes",[ "Toutes les colonnes"] + col_numeric(df_sans_NaN))
                 if len(select_columns_corr)>1 and "Toutes les colonnes" not in select_columns_corr:
                     if couleur_corr!='Selectionner une colonne':
-                        fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[select_columns_corr]), color=couleur_corr, color_continuous_scale=px.colors.sequential.deep)
+                        fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[select_columns_corr]), color=couleur_corr, color_continuous_scale='Bluered_r')
                     else :
                         fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[select_columns_corr]))
                     fig.update_layout(width=900, height=700,margin=dict(l=40, r=50, b=40, t=40), font=dict(size=7))
