@@ -197,6 +197,7 @@ def page3():
             with col2 :
                 st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
                 st.write(' ● type de la colonne :', type(data_col))
+                st.write(' ● type des valeurs :', type(data_col.iloc[1]))
                 if n_data.dtype == float:
                     moyenne = data_col.mean()
                     variance = data_col.std()
@@ -483,11 +484,47 @@ def page6():
     if uploaded_file is not None:
             st.write("##")
             st.markdown('<p class="grand_titre">Machine Learning - KNN</p>', unsafe_allow_html=True)
+            st.write("##")
+            st.write("Si des colonnes de votre dataset n'apparaissent pas et qu'elles contiennent des dates, des symboles de monnaies ou des virgules qui empêchent le typage float alors selectionnez les ici : ")
+            col1_1, b_1, col2_1, c_1, col3_1 = st.beta_columns((1, 0.2, 1, 0.2, 1))
+            with col1_1:
+                col_to_time = st.multiselect('Conversion Time Series',
+                                             ['Selectionner une/des colonne/s'] + data.columns.tolist())
+            with col2_1:
+                col_to_float_money = st.multiselect('Conversion Monnaies',
+                                                    ['Selectionner une/des colonne/s'] + data.columns.tolist())
+            with col3_1:
+                col_to_float_coma = st.multiselect('Conversion string avec virgules vers float',
+                                                   ['Selectionner une/des colonne/s'] + data.columns.tolist())
             col1, b, col2 = st.beta_columns((1,0.2,1))
             with col1 :
                 st.write("##")
                 st.markdown('<p class="section">Selection des colonnes</p>', unsafe_allow_html=True)
                 choix_col = st.multiselect("Choisir au moins deux colonnes",["Toutes les colonnes"] + data.columns.tolist())
+            if 'Selectionner une/des colonne/s' not in col_to_time:
+                with col1_1:
+                    for col in col_to_time:
+                        try:
+                            data[col] = pd.to_datetime(data[col])
+                            st.success("Transformation effectuée avec succès !")
+                        except:
+                            st.error("Transformation impossible")
+            if 'Selectionner une/des colonne/s' not in col_to_float_money:
+                with col2_1:
+                    for col in col_to_float_money:
+                        try:
+                            data[col] = data[col].apply(clean_data).astype('float')
+                            st.success("Transformation effectuée avec succès !")
+                        except:
+                            st.error("Transformation impossible")
+            if 'Selectionner une/des colonne/s' not in col_to_float_coma:
+                with col3_1:
+                    for col in col_to_float_coma:
+                        try:
+                            data[col] = data[col].apply(lambda x: x.replace(',', '.')).astype('float')
+                            st.success("Transformation effectuée avec succès !")
+                        except:
+                            st.error("Transformation impossible")
             if len(choix_col) > 1:
                 df_ml = data[choix_col]
                 df_ml = df_ml.dropna(axis=0)
@@ -498,13 +535,10 @@ def page6():
                 else :
                     with col1 :
                         # encodage !
-                        col_to_encodage = st.multiselect("Selectionner les colonnes à encoder",["Toutes les colonnes"] + df_ml.columns.tolist())
+                        col_to_encodage = st.multiselect("Selectionner les colonnes à encoder",["Toutes les colonnes"] + choix_col)
                         for col in col_to_encodage :
                             st.write("encodage colonne "+col+" : "+str(df_ml[col].unique().tolist())+"->"+str(np.arange(len(df_ml[col].unique()))))
                             df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())), inplace=True)  # encodage
-                        devise_to_float = st.multiselect("Supprimer le symbole d'une monnaie d'une colonne pour l'utiliser",["Toutes les colonnes"] + df_ml.columns.tolist())
-                        for col in devise_to_float :
-                            df_ml[col] = df_ml[col].apply(clean_data).astype('float')
                         ## on choisit notre modèle
                         from sklearn.neighbors import KNeighborsClassifier
                         model = KNeighborsClassifier()
