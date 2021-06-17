@@ -244,30 +244,44 @@ def page4():
         st.write("##")
         st.markdown('<p class="grand_titre">Graphiques et regressions</p>', unsafe_allow_html=True)
         st.write("##")
-        st.write("Si une colonne de votre dataset n'apparait pas et qu'elle contient des dates ou des symboles de monnaies alors selectionnez là ici : ")
-        col1_1, b_1, col2_1, c_1, col3_1 = st.beta_columns((5)) # pour time series
+        st.write("Si des colonnes de votre dataset n'apparaissent pas et qu'elles contiennent des dates, des symboles de monnaies ou des virgules qui empeche le typage float alors selectionnez les ici : ")
+        col1_1, b_1, col2_1, c_1, col3_1 = st.beta_columns((1,0.2,1,0.2,1)) # pour time series
         col1, b, col2, c, col3, d, col4 = st.beta_columns((7)) # pour les autres select
         col_num = col_numeric(data)
         st.write("##")
         with col1_1 :
-            col_to_change = st.selectbox('', ['Selectionner une colonne'] + data.columns.tolist())
-            change = ""
-            if col_to_change != 'Selectionner une colonne' :
-                with col2_1:
+            col_to_time = st.multiselect('Conversion Time Series', ['Selectionner une/des colonne/s'] + data.columns.tolist())
+        with col2_1 :
+            col_to_float_money = st.multiselect('Conversion Monnaies', ['Selectionner une/des colonne/s'] + data.columns.tolist())
+        with col3_1 :
+            col_to_float_coma = st.multiselect('Conversion string avec virgules vers float', ['Selectionner une/des colonne/s'] + data.columns.tolist())
+        if 'Selectionner une/des colonne/s' not in col_to_time :
+            with col1_1:
+                for col in col_to_time :
                     try :
-                        data[col_to_change]=pd.to_datetime(data[col_to_change])
-                        col_num+=[col_to_change]
-                        change = "date"
+                        data[col]=pd.to_datetime(data[col])
+                        col_num+=[col]
                         st.success("Transformation effectuée avec succès !")
                     except :
-                        try :
-                            data[col_to_change] = data[col_to_change].apply(clean_data).astype('float')
-                            col_num += [col_to_change]
-                            st.success("Transformation effectuée avec succès !")
-                            change="money"
-                        except :
-                            st.warning("Cette colonne ne peut pas être transformée")
-                            change="fail"
+                        st.error("Transformation impossible")
+        if 'Selectionner une/des colonne/s' not in col_to_float_money :
+            with col2_1:
+                for col in col_to_float_money :
+                    try :
+                        data[col] = data[col].apply(clean_data).astype('float')
+                        col_num += [col]
+                        st.success("Transformation effectuée avec succès !")
+                    except :
+                        st.error("Transformation impossible")
+        if 'Selectionner une/des colonne/s' not in col_to_float_coma :
+            with col3_1:
+                for col in col_to_float_coma :
+                    try :
+                        data[col] = data[col].apply(lambda x: x.replace(',', '.')).astype('float')
+                        col_num += [col]
+                        st.success("Transformation effectuée avec succès !")
+                    except :
+                        st.error("Transformation impossible")
         with col1 :
             st.write("##")
             abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_num)
@@ -324,7 +338,7 @@ def page4():
                     st.error('Le dataset après dropna() est vide !')
                 else :
                     fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],mode=type_plot_dict[type_plot], name='', showlegend=False)
-                    if change=="money" or change=="" or ( col_to_change != abscisse_plot and col_to_change!= ordonnee_plot ):
+                    if abscisse_plot not in col_to_time and ordonnee_plot not in col_to_time :
                         with col4:
                             st.write("##")
                             if type_plot == 'Points' or type_plot == 'Courbe':
