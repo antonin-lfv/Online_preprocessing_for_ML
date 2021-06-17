@@ -77,11 +77,18 @@ st.write("##")
 uploaded_file = st.sidebar.file_uploader("Chargez votre dataset", type=['csv', 'xls'])
 if uploaded_file is not None:
     file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type, "FileSize": uploaded_file.size}
+    separateur = st.sidebar.text_input("Séparateur (optionnel): ")
     try:
         if 'csv' in file_details['FileName']:
-            data = pd.read_csv(uploaded_file)
+            if separateur != "":
+                data = pd.read_csv(uploaded_file, sep=separateur)
+            else :
+                data = pd.read_csv(uploaded_file)
         else:
-            data = pd.read_excel(uploaded_file)
+            if separateur != "":
+                data = pd.read_excel(uploaded_file, sep=separateur)
+            else :
+                data = pd.read_excel(uploaded_file)
 
         st.sidebar.success('Fichier chargé avec succès !')
     except:
