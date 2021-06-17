@@ -19,10 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="sep">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="sep" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,13 +80,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00065" summary="col">
-      <created>1623335058643</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1623335058643</updated>
     </task>
     <task id="LOCAL-00066" summary="col">
       <created>1623335482543</created>
@@ -427,7 +417,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623932638730</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="time series, money, float coma">
+      <created>1623936437388</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1623936437388</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -449,7 +446,8 @@
     <MESSAGE value="col" />
     <MESSAGE value="money symbols" />
     <MESSAGE value="sep" />
-    <option name="LAST_COMMIT_MESSAGE" value="sep" />
+    <MESSAGE value="time series, money, float coma" />
+    <option name="LAST_COMMIT_MESSAGE" value="time series, money, float coma" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1346" height="199" key="GridCell.Tab.0.bottom" timestamp="1623850018534">

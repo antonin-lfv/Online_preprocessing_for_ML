@@ -244,7 +244,7 @@ def page4():
         st.write("##")
         st.markdown('<p class="grand_titre">Graphiques et regressions</p>', unsafe_allow_html=True)
         st.write("##")
-        st.write("Si des colonnes de votre dataset n'apparaissent pas et qu'elles contiennent des dates, des symboles de monnaies ou des virgules qui empeche le typage float alors selectionnez les ici : ")
+        st.write("Si des colonnes de votre dataset n'apparaissent pas et qu'elles contiennent des dates, des symboles de monnaies ou des virgules qui empêchent le typage float alors selectionnez les ici : ")
         col1_1, b_1, col2_1, c_1, col3_1 = st.beta_columns((1,0.2,1,0.2,1)) # pour time series
         col1, b, col2, c, col3, d, col4 = st.beta_columns((7)) # pour les autres select
         col_num = col_numeric(data)
