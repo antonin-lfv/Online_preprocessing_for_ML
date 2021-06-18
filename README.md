@@ -27,7 +27,7 @@ En arrivant sur le DashBoard, vous verrez ceci :
 <br/>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/63207451/122610535-1dd7b800-d080-11eb-8416-c30390474f36.png" height="600">
+  <img src="https://user-images.githubusercontent.com/63207451/122610535-1dd7b800-d080-11eb-8416-c30390474f36.png" height="550">
 </p>
 
 <br/>
@@ -45,7 +45,7 @@ De plus, les caractéristiques principales de ce dataset sont affichées sur le 
 <br/>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/63207451/122611487-b1f64f00-d081-11eb-9af5-2fbb85e9e3bf.png" height="600">
+  <img src="https://user-images.githubusercontent.com/63207451/122611487-b1f64f00-d081-11eb-9af5-2fbb85e9e3bf.png" height="550">
 </p>
 
 <br/>
