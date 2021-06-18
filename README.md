@@ -31,6 +31,8 @@ En arrivant sur le DashBoard, vous verrez ceci :
 </p>
 
 <br/>
+
+<br/>
 Il vous faut ici choisir un dataset csv ou excel de votre machine, en cliquant sur le bouton <b>Browse files</b>. Une fois cela effectuée, le menu lateral apparaîtra. Pour ensuite pouvoir utiliser votre fichier, il faut vous rendre à la page 2, nommée <b>Chargement du dataset</b>. <br/>
 Sur cette page, plusieurs modifications sont possibles sur le dataset : 
 - Ajout d'un séparateur si besoin
