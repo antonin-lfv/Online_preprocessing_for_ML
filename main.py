@@ -169,8 +169,7 @@ st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow
 st.write("##")
 
 st.cache()
-st.sidebar.title("Chargé un dataset")
-uploaded_file = st.sidebar.file_uploader("", type=['csv', 'xls'])
+uploaded_file = st.sidebar.file_uploader("Chargez votre dataset", type=['csv', 'xls'])
 if uploaded_file is not None:
     st.sidebar.success('Fichier chargé avec succès !')
 
