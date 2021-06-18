@@ -473,7 +473,7 @@ def page4(state):
                     with col4:
                         st.write("##")
                         if state.type_plot == 'Points' or state.type_plot == 'Courbe' :
-                            if state.col_to_time not in num_col :
+                            if state.col_to_time not in state.num_col :
                                 st.write("##")
                                 state.trendline = st.checkbox("Regression linéaire", state.trendline)
                                 state.polynom_feat = st.checkbox("Regression polynomiale", state.polynom_feat)
