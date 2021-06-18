@@ -42,6 +42,7 @@ Sur cette page, plusieurs modifications sont possibles sur le dataset :
 De plus, les caractéristiques principales de ce dataset sont affichées sur le coté.<br/>
 
 <br/>
+<br/>
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/63207451/122611487-b1f64f00-d081-11eb-9af5-2fbb85e9e3bf.png" height="600">
