@@ -473,13 +473,14 @@ def page4(state):
                     with col4:
                         st.write("##")
                         if state.type_plot == 'Points' or state.type_plot == 'Courbe' :
-                            if state.col_to_time not in state.num_col :
-                                st.write("##")
-                                state.trendline = st.checkbox("Regression linéaire", state.trendline)
-                                state.polynom_feat = st.checkbox("Regression polynomiale", state.polynom_feat)
-                                if state.polynom_feat:
-                                    state.degres = st.slider('Degres de la regression polynomiale', min_value=2,
-                                                       max_value=100, value=state.degres)
+                            if state.col_to_time != None :
+                                if state.col_to_time not in state.col_num :
+                                    st.write("##")
+                                    state.trendline = st.checkbox("Regression linéaire", state.trendline)
+                                    state.polynom_feat = st.checkbox("Regression polynomiale", state.polynom_feat)
+                                    if state.polynom_feat:
+                                        state.degres = st.slider('Degres de la regression polynomiale', min_value=2,
+                                                           max_value=100, value=state.degres)
                     if state.trendline :
                         # regression linaire
                         X = df_sans_NaN[state.abscisse_plot].values.reshape(-1, 1)
