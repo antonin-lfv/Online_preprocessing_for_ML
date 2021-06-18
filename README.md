@@ -19,9 +19,18 @@ Enfin, vous avez la possibilité de créer des modèles de machine learning rapi
   
 <br/>
 
+# Index
+
+1. [Accueil](#Accueil)
+2. [Chargement du dataset](#Chargement-du-dataset)
+3. [Analyse des colonnes](#Analyse-des-colonnes)
+4. [Graphiques et regressions](#Graphiques-et-regressions)
+5. [Matrice de corrélation](#Matrice-de-corrélation)
+6. [Machine Learning - KNN](#Machine-Learning- -KNN)
+
 # Interface
 
-## Home
+## Accueil
 
 En arrivant sur le DashBoard, vous verrez ceci :
 <br/>
@@ -34,6 +43,9 @@ En arrivant sur le DashBoard, vous verrez ceci :
 
 <br/>
 Il vous faut ici choisir un dataset csv ou excel de votre machine, en cliquant sur le bouton <b>Browse files</b>. Une fois cela effectuée, le menu lateral apparaîtra. Pour ensuite pouvoir utiliser votre fichier, il faut vous rendre à la page 2, nommée <b>Chargement du dataset</b>. <br/>
+
+## Chargement du dataset
+
 Sur cette page, plusieurs modifications sont possibles sur le dataset : 
 - Ajout d'un séparateur si besoin
 - Conversion de colonnes en Time-Series
@@ -50,7 +62,19 @@ De plus, les caractéristiques principales de ce dataset sont affichées sur le 
 
 <br/>
 
+## Analyse des colonnes
+
 <br/>
+
+## Graphiques et regressions
+
+<br/>
+
+## Matrice de corrélation
+
+<br/>
+
+## Machine Learning - KNN
 
 <br/>
 
