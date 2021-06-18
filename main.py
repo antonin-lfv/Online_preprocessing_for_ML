@@ -90,6 +90,7 @@ def clean_data(x):
         return(x.replace('$', '').replace(',', '').replace('€', '').replace('£', ''))
     return(x)
 
+
 ###### Session data ######
 class _SessionState:
 
@@ -164,6 +165,7 @@ def _get_state(hash_funcs=None):
 
     return session._custom_session_state
 
+
 ####### Streamlit home ######
 st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow_html=True)
 st.write("##")
@@ -173,6 +175,10 @@ uploaded_file = st.sidebar.file_uploader("Chargez votre dataset", type=['csv', '
 if uploaded_file is not None:
     st.sidebar.success('Fichier chargé avec succès !')
 
+
+#####################
+### Main function ###
+#####################
 def main():
     state = _get_state()
     PAGES = {
@@ -203,6 +209,12 @@ def main():
         st.write("##")
         st.write("Github Project : [here](https://github.com/antonin-lfv/Online_preprocessing_for_ML)")
     state.sync()
+
+
+
+
+
+
 
 
 
