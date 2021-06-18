@@ -31,10 +31,26 @@ En arrivant sur le DashBoard, vous verrez ceci :
 </p>
 
 <br/>
-Il vous faut ici choisir un dataset csv ou excel de votre machine, en cliquant sur le bouton <b>Browse files</b>. Une fois cela effectuée, le menu lateral apparaîtra. Pour ensuite pouvoir utiliser votre fichier, il faut vous rendre à la page 2, nommée <b>Chargement du dataset</b>.
-
+Il vous faut ici choisir un dataset csv ou excel de votre machine, en cliquant sur le bouton <b>Browse files</b>. Une fois cela effectuée, le menu lateral apparaîtra. Pour ensuite pouvoir utiliser votre fichier, il faut vous rendre à la page 2, nommée <b>Chargement du dataset</b>. <br/>
+Sur cette page, plusieurs modifications sont possibles sur le dataset : 
+- Ajout d'un séparateur si besoin
+- Conversion de colonnes en Time-Series
+- Conversion de colonnes contenant des symboles monétaires en float
+- Conversion de colonnes de strings de nombres à virgules en float
+De plus, les caractéristiques principales de ce dataset sont affichées sur le coté.
 
 <br/>
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/63207451/122611487-b1f64f00-d081-11eb-9af5-2fbb85e9e3bf.png" height="600">
+</p>
+
+<br/>
+
+<br/>
+
+<br/>
+
 
 <p align="center">
   <a href="https://github.com/antonin-lfv" class="fancybox" ><img src="https://user-images.githubusercontent.com/63207451/97302854-e484da80-1859-11eb-9374-5b319ca51197.png" title="GitHub" width="40" height="40"></a>
