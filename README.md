@@ -11,7 +11,12 @@
 
 <br/>
 
-Cette application web developpée en python et publiée grâce à Streamlit a pour but d'accélérer l'exploration des données, et la mise en place d'algorithmes de machine learning. Elle est basée sur un système multi-pages, qui conserve les widgets entre celles-ci grâce à un système de Session.  
+<p align="center">
+Cette application web developpée en python et publiée grâce à Streamlit a pour but d'accélérer l'exploration des données, et la mise en place d'algorithmes de machine learning. Elle est basée sur un système multi-pages, qui conserve les widgets entre celles-ci grâce à un système de Session. Le principe est simple, vous déposez votre dataset sous le format csv ou xls sur le volet gauche, puis le Menu apparaîtra. À partir de là il faudra se rendre dans la section ```Chargement du dataset```pour l'importer, et effectuer des réglages sur celui-ci comme ajouter un séparateur, transformer des colonnes en Time-Series, ou supprimer des symboles qui empêchent un typage en float. <br/>
+Puis, libre à vous de faire votre analyse des données, observer les colonnes, leurs statistiques, les corrélations entre elles. Depuis la section ```graphiques et regressions``` vous pourrez tracer des graphiques avec des points, des courbes, des histogrammes ou même des coordonnées géographiques et effectuer des regressions linéaires et polynomiales. <br/>
+Enfin, vous avez la possibilité de créer des modèles de machine learning rapidement comme des KNN pour effectuer des prédictions.
+  
+  </p>
 
 <p align="center">
   <a href="https://github.com/antonin-lfv" class="fancybox" ><img src="https://user-images.githubusercontent.com/63207451/97302854-e484da80-1859-11eb-9374-5b319ca51197.png" title="GitHub" width="40" height="40"></a>
