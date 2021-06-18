@@ -1,5 +1,5 @@
 <p align="center">
-![streamlit-logo-secondary-colormark-darktext](https://user-images.githubusercontent.com/63207451/122607703-45785180-d07b-11eb-9f7e-b8505e04d5b1.png)
+  <img src="https://user-images.githubusercontent.com/63207451/122607703-45785180-d07b-11eb-9f7e-b8505e04d5b1.png">
 </p>
   
 <h1 align="center">Online preprocessing for Data analysis </h1>
