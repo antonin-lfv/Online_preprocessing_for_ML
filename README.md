@@ -29,6 +29,9 @@ Enfin, vous avez la possibilité de créer des modèles de machine learning rapi
   5. [Matrice de corrélation](#Matrice-de-corrélation)
   6. [Machine Learning - KNN](#Machine-Learning---KNN)
 
+
+<br/>
+
 # Interface
 
 ## Accueil
