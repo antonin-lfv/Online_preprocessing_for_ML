@@ -228,6 +228,7 @@ def page1(state):
 
 
 
+
 ##########################
 ### section du dataset ###
 ##########################
@@ -325,7 +326,6 @@ def page2(state):
 
 
 
-
 #############################
 ### Section de la colonne ###
 #############################
@@ -391,8 +391,6 @@ def page3(state):
     else :
         st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 ### Fin section colonne ###
-
-
 
 
 
@@ -606,6 +604,12 @@ def page5(state):
 
 
 
+
+
+
+
+
+
 ###########################
 ### Section ML ###
 ###########################
@@ -666,6 +670,11 @@ def page6(state):
     else :
         st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 ### Fin section ML ###
+
+
+
+
+
 
 
 
