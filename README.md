@@ -54,7 +54,8 @@ Sur cette page, plusieurs modifications sont possibles sur le dataset :
 - Ajout d'un séparateur si besoin
 - Conversion de colonnes en Time-Series
 - Conversion de colonnes contenant des symboles monétaires en float
-- Conversion de colonnes de strings de nombres à virgules en float
+- Conversion de colonnes de strings de nombres à virgules en float <br/>
+
 De plus, les caractéristiques principales de ce dataset sont affichées sur le coté.<br/>
 
 <br/>
