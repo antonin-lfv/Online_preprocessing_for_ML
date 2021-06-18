@@ -2,7 +2,7 @@
   <img src="https://user-images.githubusercontent.com/63207451/122607703-45785180-d07b-11eb-9f7e-b8505e04d5b1.png" height="100">
 </p>
   
-<h1 align="center">Online preprocessing for Data analysis </h1>
+<h1 align="center">Online preprocessing & Machine Learnning for Data analysis </h1>
 <br/>
 
 <p align="center">
