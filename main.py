@@ -298,7 +298,7 @@ def page2(state):
                 sum(pd.DataFrame(state.data).isnull().sum(axis=1).tolist()) * 100 / (state.data.shape[0] * state.data.shape[1]), 2),
                      ' % (', sum(pd.DataFrame(state.data).isnull().sum(axis=1).tolist()), ')')
         if back :
-            state.data=state.origine
+            state.data=state.origine.copy()
             statut = None
             state.separateur=""
             state.col_to_time=[]
