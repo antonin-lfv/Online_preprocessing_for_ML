@@ -472,7 +472,7 @@ def page4(state):
                     #if abscisse_plot not in col_to_time and ordonnee_plot not in col_to_time :
                     with col4:
                         st.write("##")
-                        if state.type_plot == 'Points' or state.type_plot == 'Courbe' and (state.col_to_time != state.abcsisse_plot and state.col_to_time != state.ordonnee_plot):
+                        if state.type_plot == 'Points' or state.type_plot == 'Courbe' or (state.col_to_time != state.abcsisse_plot and state.col_to_time != state.ordonnee_plot):
                             st.write("##")
                             state.trendline = st.checkbox("Regression linéaire", state.trendline)
                             state.polynom_feat = st.checkbox("Regression polynomiale", state.polynom_feat)
