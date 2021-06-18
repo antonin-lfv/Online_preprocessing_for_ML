@@ -7,6 +7,7 @@
 
 <p align="center">
 Accéder au site :  [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/antonin-lfv/online_preprocessing_for_ml/main.py)
+  <a href="https://share.streamlit.io/antonin-lfv/online_preprocessing_for_ml/main.py"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg"/></a>
   </p>
 
 <br/>
