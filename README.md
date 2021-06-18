@@ -26,7 +26,7 @@ Enfin, vous avez la possibilité de créer des modèles de machine learning rapi
 3. [Analyse des colonnes](#Analyse-des-colonnes)
 4. [Graphiques et regressions](#Graphiques-et-regressions)
 5. [Matrice de corrélation](#Matrice-de-corrélation)
-6. [Machine Learning - KNN](#Machine-Learning- -KNN)
+6. [Machine Learning - KNN](#Machine-Learning---KNN)
 
 # Interface
 
