@@ -412,7 +412,7 @@ def page4(state):
         st.write("##")
         st.markdown('<p class="grand_titre">Graphiques et regressions</p>', unsafe_allow_html=True)
         col1, b, col2, c, col3, d, col4 = st.beta_columns((7)) # pour les autres select
-        col_num = col_numeric(state.data)
+        col_num = col_numeric(state.data)+state.col_to_time
         with col1 :
             st.write("##")
             state.abscisse_plot = st.selectbox('Données en abscisses', col_num,  col_num.index(state.abscisse_plot) if state.abscisse_plot else 0)
