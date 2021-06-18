@@ -234,13 +234,9 @@ def page2(state):
     state.file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type, "FileSize": uploaded_file.size}
     col1_1, b_1, col2_1 = st.beta_columns((1, 0.1, 1))
     col1, b, col2 = st.beta_columns((2.7, 0.3, 1))
-    statut=None
     if state.data is not None :
         with col1_1:
             state.separateur = st.text_input("Séparateur (optionnel): ", state.separateur or "")
-        with col2_1 :
-            st.write("##")
-            back = st.button("Supprimer les modifications")
         st.write("##")
         st.markdown("<p class='petite_section'>Si des colonnes de votre dataset contiennent des dates, des symboles de monnaies ou des virgules qui empêchent le bon typage alors selectionnez les ici : </p>",unsafe_allow_html=True)
         col1_1, b_1, col2_1, c_1, col3_1 = st.beta_columns((1, 0.2, 1, 0.2, 1))  # pour time series
@@ -257,8 +253,7 @@ def page2(state):
             state.col_to_float_coma = st.multiselect('Conversion string avec virgules vers float',
                                                 state.data.columns.tolist(),
                                                      state.col_to_float_coma)
-
-        if len(state.col_to_time)>0 and state.col_to_float_coma!="restart":
+        if len(state.col_to_time)>0 :
             with col1_1:
                 for col in state.col_to_time:
                     try:
@@ -266,7 +261,7 @@ def page2(state):
                         st.success("Transformation effectuée !")
                     except:
                         st.error("Transformation impossible ou déjà effectuée")
-        if len(state.col_to_float_money)>0 and state.col_to_float_coma!="restart":
+        if len(state.col_to_float_money)>0 :
             with col2_1:
                 for col in state.col_to_float_money:
                     try:
@@ -274,7 +269,7 @@ def page2(state):
                         st.success("Transformation effectuée !")
                     except:
                         st.error("Transformation impossible ou déjà effectuée")
-        if len(state.col_to_float_coma)>0 and state.col_to_float_coma!="restart":
+        if len(state.col_to_float_coma)>0:
             with col3_1:
                 for col in state.col_to_float_coma:
                     try:
@@ -297,33 +292,25 @@ def page2(state):
             st.write(' - Pourcentage de valeurs manquantes:', round(
                 sum(pd.DataFrame(state.data).isnull().sum(axis=1).tolist()) * 100 / (state.data.shape[0] * state.data.shape[1]), 2),
                      ' % (', sum(pd.DataFrame(state.data).isnull().sum(axis=1).tolist()), ')')
-        if back :
-            state.data=state.origine.copy()
-            statut = None
-            state.separateur=""
-            state.col_to_time=[]
-            state.col_to_float_coma = []
-            state.col_to_float_money = []
 
-    if state.data is None or statut is None:
+    if state.data is None:
         try:
             if 'csv' in state.file_details['FileName']:
                 if state.separateur != "":
-                    state.data = pd.read_csv(uploaded_file, sep=state.separateur, engine='python')
+                    data = pd.read_csv(uploaded_file, sep=state.separateur, engine='python')
+                    state.data = data
                 else :
                     data = pd.read_csv(uploaded_file, engine='python')
-                    state.data = data.copy()
-                    state.origine = data
+                    state.data = data
             else:
                 if state.separateur != "":
-                    state.data = pd.read_excel(uploaded_file, sep=state.separateur, engine='python')
+                    data = pd.read_excel(uploaded_file, sep=state.separateur, engine='python')
+                    state.data = data
                 else :
                     data = pd.read_csv(uploaded_file, engine='python')
-                    state.data = data.copy()
-                    state.origine = data
+                    state.data = data
         except:
             st.error('Erreur de chargement du dataset')
-
 ### Fin section du dataset ###
 
 
@@ -422,29 +409,29 @@ def page4(state):
         col_num = col_numeric(state.data)
         with col1 :
             st.write("##")
-            abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_num)
-            ordonnee_plot = st.selectbox('Données en ordonnées', ['Selectionner une colonne'] + col_num)
+            state.abscisse_plot = st.selectbox('Données en abscisses', col_num,  col_num.index(state.abscisse_plot) if state.abscisse_plot else 0)
+            state.ordonnee_plot = st.selectbox('Données en ordonnées', col_num, col_num.index(state.ordonnee_plot) if state.ordonnee_plot else 1)
             # couleur_plot = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
         with col2 :
             st.write("##")
-            type_plot = st.radio("Type de plot", ('Points', 'Courbe', 'Latitude/Longitude', 'Histogramme'))
+            state.type_plot = st.radio("Type de plot", ['Points', 'Courbe', 'Latitude/Longitude', 'Histogramme'], ['Points', 'Courbe', 'Latitude/Longitude', 'Histogramme'].index(state.type_plot) if state.type_plot else 0)
             type_plot_dict = {
                 'Courbe': 'lines',
                 'Points': 'markers',
                 'Latitude/Longitude': 'map',
             }
         st.write('##')
-        if abscisse_plot != 'Selectionner une colonne' and ordonnee_plot != 'Selectionner une colonne':
-            if type_plot == 'Latitude/Longitude':
+        if state.abscisse_plot and state.ordonnee_plot :
+            if state.type_plot == 'Latitude/Longitude':
                 fig = go.Figure()
-                df_sans_NaN = pd.concat([state.data[abscisse_plot], state.data[ordonnee_plot]], axis=1).dropna()
+                df_sans_NaN = pd.concat([state.data[state.abscisse_plot], state.data[state.ordonnee_plot]], axis=1).dropna()
                 if len(df_sans_NaN)==0 :
                     st.error('Le dataset après dropna() est vide !')
                 else :
                     fig.add_scattermapbox(
                         mode="markers",
-                        lon=df_sans_NaN[ordonnee_plot],
-                        lat=df_sans_NaN[abscisse_plot],
+                        lon=df_sans_NaN[state.ordonnee_plot],
+                        lat=df_sans_NaN[state.abscisse_plot],
                         marker={'size': 10,
                                 'color': 'firebrick',
                                 })
@@ -455,92 +442,92 @@ def page4(state):
                             'style': "stamen-terrain",
                             'zoom': 1})
                     st.plotly_chart(fig)
-            elif type_plot=='Histogramme':
+            elif state.type_plot=='Histogramme':
                 fig=go.Figure()
-                df_sans_NaN = pd.concat([state.data[abscisse_plot], state.data[ordonnee_plot]], axis=1).dropna()
+                df_sans_NaN = pd.concat([state.data[state.abscisse_plot], state.data[state.ordonnee_plot]], axis=1).dropna()
                 if len(df_sans_NaN)==0 :
                     st.error('Le dataset après dropna() est vide !')
                 else :
-                    fig.add_histogram(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot])
+                    fig.add_histogram(x=df_sans_NaN[state.abscisse_plot], y=df_sans_NaN[state.ordonnee_plot])
 
             else:
                 with col3:
                     st.write("##")
                     st.write("##")
-                    maximum = st.checkbox("Maximum")
-                    moyenne = st.checkbox("Moyenne")
-                    minimum = st.checkbox("Minimum")
+                    state.maximum = st.checkbox("Maximum", state.maximum)
+                    state.moyenne = st.checkbox("Moyenne", state.moyenne)
+                    state.minimum = st.checkbox("Minimum", state.minimum)
                 fig = go.Figure()
-                df_sans_NaN = pd.concat([state.data[abscisse_plot], state.data[ordonnee_plot]], axis=1).dropna()
+                df_sans_NaN = pd.concat([state.data[state.abscisse_plot], state.data[state.ordonnee_plot]], axis=1).dropna()
                 if len(df_sans_NaN)==0 :
                     st.error('Le dataset après dropna() est vide !')
                 else :
-                    fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],mode=type_plot_dict[type_plot], name='', showlegend=False)
+                    fig.add_scatter(x=df_sans_NaN[state.abscisse_plot], y=df_sans_NaN[state.ordonnee_plot],mode=type_plot_dict[state.type_plot], name='', showlegend=False)
                     #if abscisse_plot not in col_to_time and ordonnee_plot not in col_to_time :
                     with col4:
                         st.write("##")
-                        if type_plot == 'Points' or type_plot == 'Courbe':
+                        if state.type_plot == 'Points' or state.type_plot == 'Courbe':
                             st.write("##")
-                            trendline = st.checkbox("Regression linéaire")
-                            polynom_feat = st.checkbox("Regression polynomiale")
-                            if polynom_feat:
-                                degres = st.slider('Degres de la regression polynomiale', min_value=2,
-                                                   max_value=100, value=4)
-                    if trendline :
+                            state.trendline = st.checkbox("Regression linéaire", state.trendline)
+                            state.polynom_feat = st.checkbox("Regression polynomiale", state.polynom_feat)
+                            if state.polynom_feat:
+                                state.degres = st.slider('Degres de la regression polynomiale', min_value=2,
+                                                   max_value=100, value=state.degres)
+                    if state.trendline :
                         # regression linaire
-                        X = df_sans_NaN[abscisse_plot].values.reshape(-1, 1)
+                        X = df_sans_NaN[state.abscisse_plot].values.reshape(-1, 1)
                         model = LinearRegression()
-                        model.fit(X, df_sans_NaN[ordonnee_plot])
-                        x_range = np.linspace(X.min(), X.max(), len(df_sans_NaN[ordonnee_plot]))
+                        model.fit(X, df_sans_NaN[state.ordonnee_plot])
+                        x_range = np.linspace(X.min(), X.max(), len(df_sans_NaN[state.ordonnee_plot]))
                         y_range = model.predict(x_range.reshape(-1, 1))
                         fig.add_scatter(x=x_range, y=y_range, name='Regression linéaire', mode='lines', marker=dict(color='red'))
                         # #################
-                    if polynom_feat :
+                    if state.polynom_feat :
                         # regression polynomiale
-                        X = df_sans_NaN[abscisse_plot].values.reshape(-1, 1)
+                        X = df_sans_NaN[state.abscisse_plot].values.reshape(-1, 1)
                         x_range = np.linspace(X.min(), X.max(), 100).reshape(-1, 1)
-                        poly = PolynomialFeatures(degres)
+                        poly = PolynomialFeatures(state.degres)
                         poly.fit(X)
                         X_poly = poly.transform(X)
                         x_range_poly = poly.transform(x_range)
                         model = LinearRegression(fit_intercept=False)
-                        model.fit(X_poly, df_sans_NaN[ordonnee_plot])
+                        model.fit(X_poly, df_sans_NaN[state.ordonnee_plot])
                         y_poly = model.predict(x_range_poly)
                         fig.add_scatter(x=x_range.squeeze(), y=y_poly, name='Polynomial Features', marker=dict(color='green'))
                         # #################
-                    if moyenne :
+                    if state.moyenne :
                         # Moyenne #
-                        fig.add_hline(y=df_sans_NaN[ordonnee_plot].mean(),
+                        fig.add_hline(y=df_sans_NaN[state.ordonnee_plot].mean(),
                                       line_dash="dot",
-                                      annotation_text="moyenne : {}".format(round(df_sans_NaN[ordonnee_plot].mean(), 1)),
+                                      annotation_text="moyenne : {}".format(round(df_sans_NaN[state.ordonnee_plot].mean(), 1)),
                                       annotation_position="bottom left",
                                       line_width=2, line=dict(color='black'),
                                       annotation=dict(font_size=10))
                         # #################
                         pass
-                    if minimum :
+                    if state.minimum :
                         # Minimum #
-                        fig.add_hline(y=df_sans_NaN[ordonnee_plot].min(),
+                        fig.add_hline(y=df_sans_NaN[state.ordonnee_plot].min(),
                                       line_dash="dot",
-                                      annotation_text="minimum : {}".format(round(df_sans_NaN[ordonnee_plot].min(), 1)),
+                                      annotation_text="minimum : {}".format(round(df_sans_NaN[state.ordonnee_plot].min(), 1)),
                                       annotation_position="bottom left",
                                       line_width=2, line=dict(color='black'),
                                       annotation=dict(font_size=10))
                         # #################
                         pass
-                    if maximum :
+                    if state.maximum :
                         # Maximum #
-                        fig.add_hline(y=df_sans_NaN[ordonnee_plot].max(),
+                        fig.add_hline(y=df_sans_NaN[state.ordonnee_plot].max(),
                                       line_dash="dot",
-                                      annotation_text="maximum : {}".format(round(df_sans_NaN[ordonnee_plot].max(), 1)),
+                                      annotation_text="maximum : {}".format(round(df_sans_NaN[state.ordonnee_plot].max(), 1)),
                                       annotation_position="top left",
                                       line_width=2, line=dict(color='black'),
                                       annotation=dict(font_size=10))
                         # #################
                         pass
             if len(df_sans_NaN) != 0:
-                fig.update_xaxes(title_text=abscisse_plot)
-                fig.update_yaxes(title_text=ordonnee_plot)
+                fig.update_xaxes(title_text=state.abscisse_plot)
+                fig.update_yaxes(title_text=state.ordonnee_plot)
                 fig.update_layout(
                     template='simple_white',
                     font=dict(size=10),
@@ -567,34 +554,34 @@ def page4(state):
 ### Section Mat de corr ###
 ###########################
 def page5(state):
-    if uploaded_file is not None:
+    if state.data is not None:
             st.write("##")
             st.markdown('<p class="grand_titre">Matrice de corrélations</p>', unsafe_allow_html=True)
             col1, b, col2 = st.beta_columns((1, 1, 2))
-            df_sans_NaN = data.dropna()
+            df_sans_NaN = state.data.dropna()
             if len(df_sans_NaN)==0:
                 with col1:
                     st.write("##")
                     st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
             else :
                 with col1:
-                    couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + df_sans_NaN.columns.tolist())
+                    state.couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + df_sans_NaN.columns.tolist(), (['Selectionner une colonne'] + df_sans_NaN.columns.tolist()).index(state.couleur_corr) if state.couleur_corr else 0)
                     st.write("##")
-                select_columns_corr = st.multiselect("Choisir au moins deux colonnes",[ "Toutes les colonnes"] + col_numeric(df_sans_NaN))
-                if len(select_columns_corr)>1 and "Toutes les colonnes" not in select_columns_corr:
-                    if couleur_corr!='Selectionner une colonne':
-                        fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[select_columns_corr]), color=couleur_corr, color_continuous_scale='Bluered_r')
+                state.select_columns_corr = st.multiselect("Choisir au moins deux colonnes",[ "Toutes les colonnes"] + col_numeric(df_sans_NaN), state.select_columns_corr)
+                if len(state.select_columns_corr)>1 and "Toutes les colonnes" not in state.select_columns_corr:
+                    if state.couleur_corr!='Selectionner une colonne':
+                        fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[state.select_columns_corr]), color=state.couleur_corr, color_continuous_scale='Bluered_r')
                     else :
-                        fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[select_columns_corr]))
+                        fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[state.select_columns_corr]))
                     fig.update_layout(width=900, height=700,margin=dict(l=40, r=50, b=40, t=40), font=dict(size=7))
-                    fig.update_layout({"xaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN[select_columns_corr])))})
-                    fig.update_layout({"yaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN[select_columns_corr])))})
+                    fig.update_layout({"xaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN[state.select_columns_corr])))})
+                    fig.update_layout({"yaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN[state.select_columns_corr])))})
                     fig.update_traces(marker=dict(size=2))
                     fig.update_traces(diagonal_visible=False)
                     st.plotly_chart(fig)
-                elif select_columns_corr==["Toutes les colonnes"]:
-                    if couleur_corr!='Selectionner une colonne':
-                        fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN), color=couleur_corr)
+                elif state.select_columns_corr==["Toutes les colonnes"]:
+                    if state.couleur_corr!='Selectionner une colonne':
+                        fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN), color=state.couleur_corr)
                     else :
                         fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
                     fig.update_layout({"xaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN)))})
@@ -604,7 +591,7 @@ def page5(state):
                     fig.update_traces(marker=dict(size=2))
                     fig.update_traces(diagonal_visible=False)
                     st.plotly_chart(fig)
-                elif len(select_columns_corr)>1 and "Toutes les colonnes" in select_columns_corr :
+                elif len(state.select_columns_corr)>1 and "Toutes les colonnes" in state.select_columns_corr :
                     st.error("Erreur de saisi !")
                 else :
                     pass
@@ -618,52 +605,16 @@ def page5(state):
 ### Section ML ###
 ###########################
 def page6(state):
-    if uploaded_file is not None:
+    if state.data is not None:
             st.write("##")
             st.markdown('<p class="grand_titre">Machine Learning - KNN</p>', unsafe_allow_html=True)
-            st.write("##")
-            st.write("Si des colonnes de votre dataset n'apparaissent pas et qu'elles contiennent des dates, des symboles de monnaies ou des virgules qui empêchent le typage float alors selectionnez les ici : ")
-            col1_1, b_1, col2_1, c_1, col3_1 = st.beta_columns((1, 0.2, 1, 0.2, 1))
-            with col1_1:
-                col_to_time = st.multiselect('Conversion Time Series',
-                                             ['Selectionner une/des colonne/s'] + data.columns.tolist())
-            with col2_1:
-                col_to_float_money = st.multiselect('Conversion Monnaies',
-                                                    ['Selectionner une/des colonne/s'] + data.columns.tolist())
-            with col3_1:
-                col_to_float_coma = st.multiselect('Conversion string avec virgules vers float',
-                                                   ['Selectionner une/des colonne/s'] + data.columns.tolist())
             col1, b, col2 = st.beta_columns((1,0.2,1))
             with col1 :
                 st.write("##")
                 st.markdown('<p class="section">Selection des colonnes</p>', unsafe_allow_html=True)
-                choix_col = st.multiselect("Choisir au moins deux colonnes",["Toutes les colonnes"] + data.columns.tolist())
-            if 'Selectionner une/des colonne/s' not in col_to_time:
-                with col1_1:
-                    for col in col_to_time:
-                        try:
-                            data[col] = pd.to_datetime(data[col])
-                            st.success("Transformation effectuée avec succès !")
-                        except:
-                            st.error("Transformation impossible")
-            if 'Selectionner une/des colonne/s' not in col_to_float_money:
-                with col2_1:
-                    for col in col_to_float_money:
-                        try:
-                            data[col] = data[col].apply(clean_data).astype('float')
-                            st.success("Transformation effectuée avec succès !")
-                        except:
-                            st.error("Transformation impossible")
-            if 'Selectionner une/des colonne/s' not in col_to_float_coma:
-                with col3_1:
-                    for col in col_to_float_coma:
-                        try:
-                            data[col] = data[col].apply(lambda x: x.replace(',', '.')).astype('float')
-                            st.success("Transformation effectuée avec succès !")
-                        except:
-                            st.error("Transformation impossible")
-            if len(choix_col) > 1:
-                df_ml = data[choix_col]
+                state.choix_col = st.multiselect("Choisir au moins deux colonnes",["Toutes les colonnes"] + state.data.columns.tolist(), state.choix_col)
+            if len(state.choix_col) > 1:
+                df_ml = state.data[state.choix_col]
                 df_ml = df_ml.dropna(axis=0)
                 if len(df_ml)==0:
                     with col1:
@@ -672,19 +623,19 @@ def page6(state):
                 else :
                     with col1 :
                         # encodage !
-                        col_to_encodage = st.multiselect("Selectionner les colonnes à encoder",["Toutes les colonnes"] + choix_col)
-                        for col in col_to_encodage :
+                        state.col_to_encodage = st.multiselect("Selectionner les colonnes à encoder",["Toutes les colonnes"] + state.choix_col, state.col_to_encodage)
+                        for col in state.col_to_encodage :
                             st.write("encodage colonne "+col+" : "+str(df_ml[col].unique().tolist())+"->"+str(np.arange(len(df_ml[col].unique()))))
                             df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())), inplace=True)  # encodage
                         ## on choisit notre modèle
                         from sklearn.neighbors import KNeighborsClassifier
                         model = KNeighborsClassifier()
                         ## création des target et features à partir du dataset
-                        target = st.selectbox("Target :", ["Selectionner une target"] + col_numeric(df_ml))
+                        state.target = st.selectbox("Target :", ["Selectionner une target"] + col_numeric(df_ml), (["Selectionner une target"] + col_numeric(df_ml)).index(state.target) if state.target else 0 )
                         with col2 :
-                            if target != "Selectionner une target" :
-                                y = df_ml[target]  # target
-                                X = df_ml.drop(target, axis=1)  # features
+                            if state.target != "Selectionner une target" :
+                                y = df_ml[state.target]  # target
+                                X = df_ml.drop(state.target, axis=1)  # features
                                 try :
                                     model.fit(X, y)  # on entraine le modèle
                                     model.score(X, y)  # pourcentage de réussite
@@ -695,14 +646,14 @@ def page6(state):
                                     st.write("##")
                                     st.markdown('<p class="section">Entrez vos données</p>', unsafe_allow_html=True)
                                     for col in X.columns.tolist() :
-                                        col = st.text_input(col, "")
-                                        features.append(col)
+                                        state.col = st.text_input(col, state.col or "")
+                                        features.append(state.col)
 
                                     if "" not in features :
                                         x = np.array(features).reshape(1, len(features))
                                         p = (model.predict(x))
                                         st.write("##")
-                                        st.success("Prédiction de la target "+target+" : "+str(p))
+                                        st.success("Prédiction de la target "+state.target+" : "+str(p))
                                 except :
                                     with col1:
                                         st.write("##")
