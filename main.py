@@ -14,6 +14,15 @@ from sklearn.metrics import r2_score
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
+from streamlit.hashing import _CodeHasher
+try:
+    # Before Streamlit 0.65
+    from streamlit.ReportThread import get_report_ctx
+    from streamlit.server.Server import Server
+except ModuleNotFoundError:
+    # After Streamlit 0.65
+    from streamlit.report_thread import get_report_ctx
+    from streamlit.server.server import Server
 
 # streamlit run main.py
 
@@ -42,10 +51,23 @@ st.markdown("""
 }
 .section{
     font-size:20px !important;
+    font-weight: bold;
     text-decoration: underline;
+    text-decoration-color: #258813;
+    text-decoration-thickness: 3px;
+}
+.petite_section{
+    font-size:16px !important;
+    font-weight: bold;
 }
 .caract{
     font-size:10px !important;
+}
+.nom_colonne_page3{
+    font-size:17px !important;
+    text-decoration: underline;
+    text-decoration-color: #000;
+    text-decoration-thickness: 1px;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -68,62 +90,130 @@ def clean_data(x):
     return(x)
 
 ###### Session data ######
+class _SessionState:
+
+    def __init__(self, session, hash_funcs):
+        """Initialize SessionState instance."""
+        self.__dict__["_state"] = {
+            "data": {},
+            "hash": None,
+            "hasher": _CodeHasher(hash_funcs),
+            "is_rerun": False,
+            "session": session,
+        }
+
+    def __call__(self, **kwargs):
+        """Initialize state data once."""
+        for item, value in kwargs.items():
+            if item not in self._state["data"]:
+                self._state["data"][item] = value
+
+    def __getitem__(self, item):
+        """Return a saved state value, None if item is undefined."""
+        return self._state["data"].get(item, None)
+
+    def __getattr__(self, item):
+        """Return a saved state value, None if item is undefined."""
+        return self._state["data"].get(item, None)
+
+    def __setitem__(self, item, value):
+        """Set state value."""
+        self._state["data"][item] = value
+
+    def __setattr__(self, item, value):
+        """Set state value."""
+        self._state["data"][item] = value
+
+    def clear(self):
+        """Clear session state and request a rerun."""
+        self._state["data"].clear()
+        self._state["session"].request_rerun()
+
+    def sync(self):
+        """Rerun the app with all state values up to date from the beginning to fix rollbacks."""
+
+        # Ensure to rerun only once to avoid infinite loops
+        # caused by a constantly changing state value at each run.
+        #
+        # Example: state.value += 1
+        if self._state["is_rerun"]:
+            self._state["is_rerun"] = False
+
+        elif self._state["hash"] is not None:
+            if self._state["hash"] != self._state["hasher"].to_bytes(self._state["data"], None):
+                self._state["is_rerun"] = True
+                self._state["session"].request_rerun()
+
+        self._state["hash"] = self._state["hasher"].to_bytes(self._state["data"], None)
+
+def _get_session():
+    session_id = get_report_ctx().session_id
+    session_info = Server.get_current()._get_session_info(session_id)
+
+    if session_info is None:
+        raise RuntimeError("Couldn't get your Streamlit Session object.")
+
+    return session_info.session
+
+def _get_state(hash_funcs=None):
+    session = _get_session()
+
+    if not hasattr(session, "_custom_session_state"):
+        session._custom_session_state = _SessionState(session, hash_funcs)
+
+    return session._custom_session_state
 
 
-####### Streamlit home + upload file ######
+####### Streamlit home ######
 st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow_html=True)
 st.write("##")
 
+st.cache()
 uploaded_file = st.sidebar.file_uploader("Chargez votre dataset", type=['csv', 'xls'])
 if uploaded_file is not None:
-    file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type, "FileSize": uploaded_file.size}
-    separateur = st.sidebar.text_input("Séparateur (optionnel): ")
-    try:
-        if 'csv' in file_details['FileName']:
-            if separateur != "":
-                data = pd.read_csv(uploaded_file, sep=separateur)
-            else :
-                data = pd.read_csv(uploaded_file)
-        else:
-            if separateur != "":
-                data = pd.read_excel(uploaded_file, sep=separateur)
-            else :
-                data = pd.read_excel(uploaded_file)
-
-        st.sidebar.success('Fichier chargé avec succès !')
-    except:
-        st.sidebar.error('Erreur de chargement')
-else :
-    pass
-
+    st.sidebar.success('Fichier chargé avec succès !')
 
 def main():
+    state = _get_state()
     PAGES = {
         "Accueil": page1,
-        "Analyse du dataset": page2,
-        "Analyse d'une colonne": page3,
+        "Chargement du dataset": page2,
+        "Analyse des colonnes": page3,
         "Graphiques et Regressions": page4,
         "Matrice de corrélation": page5,
         "Machine Learning - KNN": page6,
     }
-    st.sidebar.write("##")
-    st.sidebar.title('Menu')
-    st.sidebar.subheader('Data visualisation and ML')
-    page=st.sidebar.radio("", list(PAGES.keys()))
-    PAGES[page]()
+
+    if uploaded_file is not None :
+        st.sidebar.title('Menu')
+        st.sidebar.subheader('Data visualisation and ML')
+        page=st.sidebar.radio("", list(PAGES.keys()))
+        PAGES[page](state)
+    else :
+        if state.data is not None :
+            state.clear()
+        st.sidebar.title("Chargé un dataset")
+        st.write("##")
+        st.markdown(
+            '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes pour développer votre modèle, ou simplement pour visualiser vos données. ' +
+            'Si vous aimez ce site n\'hésitez pas à mettre une étoile sur le repo GitHub.</p>',
+            unsafe_allow_html=True)
+        st.write("Github Project : [here](https://github.com/antonin-lfv/Online_preprocessing_for_ML)")
+    state.sync()
 
 
 
 ###############
 ### Accueil ###
 ###############
-def page1():
+def page1(state):
     st.write("##")
     st.markdown(
         '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes pour développer votre modèle, ou simplement pour visualiser vos données. ' +
         'Si vous aimez ce site n\'hésitez pas à mettre une étoile sur le repo GitHub.</p>',
         unsafe_allow_html=True)
     st.write("Github Project : [here](https://github.com/antonin-lfv/Online_preprocessing_for_ML)")
+    state.test = st.checkbox("test", state.test)
 ### Fin accueil ###
 
 
@@ -137,27 +227,103 @@ def page1():
 ##########################
 ### section du dataset ###
 ##########################
-def page2():
-    if uploaded_file is not None:
+def page2(state):
+    st.markdown('<p class="grand_titre">Analyse du dataset</p>', unsafe_allow_html=True)
+    st.write("##")
+
+    state.file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type, "FileSize": uploaded_file.size}
+    col1_1, b_1, col2_1 = st.beta_columns((1, 0.1, 1))
+    col1, b, col2 = st.beta_columns((2.7, 0.3, 1))
+    statut=None
+    if state.data is not None :
+        with col1_1:
+            state.separateur = st.text_input("Séparateur (optionnel): ", state.separateur or "")
+        with col2_1 :
+            st.write("##")
+            back = st.button("Supprimer les modifications")
         st.write("##")
-        st.markdown('<p class="grand_titre">Analyse du dataset</p>', unsafe_allow_html=True)
+        st.markdown("<p class='petite_section'>Si des colonnes de votre dataset contiennent des dates, des symboles de monnaies ou des virgules qui empêchent le bon typage alors selectionnez les ici : </p>",unsafe_allow_html=True)
+        col1_1, b_1, col2_1, c_1, col3_1 = st.beta_columns((1, 0.2, 1, 0.2, 1))  # pour time series
         st.write("##")
-        col1, b, col2 = st.beta_columns((2.7, 0.3, 1))
+        with col1_1:
+            state.col_to_time = st.multiselect('Conversion Time Series',
+                                                state.data.columns.tolist(),
+                                               state.col_to_time)
+        with col2_1:
+            state.col_to_float_money = st.multiselect('Conversion Monnaies',
+                                                state.data.columns.tolist() ,
+                                                      state.col_to_float_money)
+        with col3_1:
+            state.col_to_float_coma = st.multiselect('Conversion string avec virgules vers float',
+                                                state.data.columns.tolist(),
+                                                     state.col_to_float_coma)
+
+        if len(state.col_to_time)>0 and state.col_to_float_coma!="restart":
+            with col1_1:
+                for col in state.col_to_time:
+                    try:
+                        state.data[col] = pd.to_datetime(state.data[col])
+                        st.success("Transformation effectuée !")
+                    except:
+                        st.error("Transformation impossible ou déjà effectuée")
+        if len(state.col_to_float_money)>0 and state.col_to_float_coma!="restart":
+            with col2_1:
+                for col in state.col_to_float_money:
+                    try:
+                        state.data[col] = state.data[col].apply(clean_data).astype('float')
+                        st.success("Transformation effectuée !")
+                    except:
+                        st.error("Transformation impossible ou déjà effectuée")
+        if len(state.col_to_float_coma)>0 and state.col_to_float_coma!="restart":
+            with col3_1:
+                for col in state.col_to_float_coma:
+                    try:
+                        state.data[col] = state.data[col].apply(lambda x: float(str(x).replace(',', '.')))
+                        st.success("Transformation effectuée !")
+                    except:
+                        st.error("Transformation impossible ou déjà effectuée")
         with col1 :
+            st.write("##")
             st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
-            st.write(data.head(50))
+            st.write(state.data.head(50))
             st.write("##")
 
         with col2 :
+            st.write("##")
             st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
-            st.write(' - Taille:', data.shape)
-            st.write(' - Nombre de valeurs:', data.shape[0] * data.shape[1])
-            st.write(' - Type des colonnes:', data.dtypes.value_counts())
+            st.write(' - Taille:', state.data.shape)
+            st.write(' - Nombre de valeurs:', state.data.shape[0] * state.data.shape[1])
+            st.write(' - Type des colonnes:', state.data.dtypes.value_counts())
             st.write(' - Pourcentage de valeurs manquantes:', round(
-                sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()) * 100 / (data.shape[0] * data.shape[1]), 2),
-                     ' % (', sum(pd.DataFrame(data).isnull().sum(axis=1).tolist()), ')')
-    else :
-        st.warning('Veuillez charger un dataset !')
+                sum(pd.DataFrame(state.data).isnull().sum(axis=1).tolist()) * 100 / (state.data.shape[0] * state.data.shape[1]), 2),
+                     ' % (', sum(pd.DataFrame(state.data).isnull().sum(axis=1).tolist()), ')')
+        if back :
+            state.data=state.origine
+            statut = None
+            state.separateur=""
+            state.col_to_time=[]
+            state.col_to_float_coma = []
+            state.col_to_float_money = []
+
+    if state.data is None or statut is None:
+        try:
+            if 'csv' in state.file_details['FileName']:
+                if state.separateur != "":
+                    state.data = pd.read_csv(uploaded_file, sep=state.separateur, engine='python')
+                else :
+                    data = pd.read_csv(uploaded_file, engine='python')
+                    state.data = data.copy()
+                    state.origine = data
+            else:
+                if state.separateur != "":
+                    state.data = pd.read_excel(uploaded_file, sep=state.separateur, engine='python')
+                else :
+                    data = pd.read_csv(uploaded_file, engine='python')
+                    state.data = data.copy()
+                    state.origine = data
+        except:
+            st.error('Erreur de chargement du dataset')
+
 ### Fin section du dataset ###
 
 
@@ -172,57 +338,65 @@ def page2():
 #############################
 ### Section de la colonne ###
 #############################
-def page3():
-    if uploaded_file is not None:
+def page3(state):
+    if state.data is not None:
         st.write('##')
-        st.markdown('<p class="grand_titre">Analyse d\'une colonne</p>', unsafe_allow_html=True)
-        col1, b,col2 = st.beta_columns((1,0.3,2))
-        with col1 :
-            slider_col = st.selectbox(
-                'Choisissez une colonne à étudier',
-                ['Selectionner une colonne'] + data.columns.to_list(),
-            )
-        if slider_col != 'Selectionner une colonne' :
-            slider_col = slider_col
-            ### Données ###
-            data_col = data[slider_col].copy()
-            n_data = data[slider_col].to_numpy()
-
-            st.write('##')
-            col1, b, col2 = st.beta_columns((1,1,2))
-            with col1 :
+        st.markdown('<p class="grand_titre">Analyse des colonnes</p>', unsafe_allow_html=True)
+        st.write('##')
+        options = state.data.columns.to_list()
+        state.slider_col = st.multiselect(
+            'Selectionner une ou plusieurs colonnes',
+            options,
+            state.slider_col
+        )
+        if state.slider_col :
+            col1, b, col2, c = st.beta_columns((1.1, 0.1, 1.1, 0.3))
+            with col1:
+                st.write('##')
                 st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
-                st.write(data_col.head(20))
-
-            with col2 :
+            with col2:
+                st.write('##')
                 st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
-                st.write(' ● type de la colonne :', type(data_col))
-                st.write(' ● type des valeurs :', type(data_col.iloc[1]))
-                if n_data.dtype == float:
-                    moyenne = data_col.mean()
-                    variance = data_col.std()
-                    max = data_col.max()
-                    min = data_col.min()
-                    st.write(' ● Moyenne :', round(moyenne, 3))
+            for col in state.slider_col :
+                ### Données ###
+                data_col = state.data[col].copy()
+                n_data = state.data[col].to_numpy()
 
-                    st.write(' ● Variance :', round(variance, 3))
+                st.write('##')
+                col1, b, col2, c = st.beta_columns((1,1,2, 0.5))
+                with col1 :
+                    st.markdown('<p class="nom_colonne_page3">'+col+'</p>', unsafe_allow_html=True)
+                    st.write(data_col.head(20))
+                with col2 :
+                    st.write('##')
+                    st.write(' ● type de la colonne :', type(data_col))
+                    st.write(' ● type des valeurs :', type(data_col.iloc[1]))
+                    if n_data.dtype == float:
+                        moyenne = data_col.mean()
+                        variance = data_col.std()
+                        max = data_col.max()
+                        min = data_col.min()
+                        st.write(' ● Moyenne :', round(moyenne, 3))
 
-                    st.write(' ● Maximum :', max)
+                        st.write(' ● Variance :', round(variance, 3))
 
-                    st.write(' ● Minimum :', min)
+                        st.write(' ● Maximum :', max)
 
-                st.write(' ● Valeurs les plus présentes:', (Counter(n_data).most_common()[0])[0], 'apparait',
-                         (Counter(n_data).most_common()[0])[1], 'fois', ', ', (Counter(n_data).most_common()[1])[0],
-                         'apparait',
-                         (Counter(n_data).most_common()[1])[1], 'fois')
+                        st.write(' ● Minimum :', min)
 
-                st.write(' ● Nombre de valeurs manquantes:', sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist()))
+                    st.write(' ● Valeurs les plus présentes:', (Counter(n_data).most_common()[0])[0], 'apparait',
+                             (Counter(n_data).most_common()[0])[1], 'fois', ', ', (Counter(n_data).most_common()[1])[0],
+                             'apparait',
+                             (Counter(n_data).most_common()[1])[1], 'fois')
 
-                st.write(' ● Longueur:', n_data.shape[0])
+                    st.write(' ● Nombre de valeurs manquantes:', sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist()))
 
-                st.write(' ● Nombre de valeurs différentes non NaN:',
-                         abs(len(Counter(n_data)) - sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist())))
-                ### Fin section données ###
+                    st.write(' ● Longueur:', n_data.shape[0])
+
+                    st.write(' ● Nombre de valeurs différentes non NaN:',
+                             abs(len(Counter(n_data)) - sum(pd.DataFrame(n_data).isnull().sum(axis=1).tolist())))
+                    ### Fin section données ###
+                st.write('##')
     else :
         st.warning('Veuillez charger un dataset !')
 ### Fin section colonne ###
@@ -240,49 +414,12 @@ def page3():
 ##########################
 ### Section Graphiques ###
 ##########################
-def page4():
-    if uploaded_file is not None:
+def page4(state):
+    if state.data is not None:
         st.write("##")
         st.markdown('<p class="grand_titre">Graphiques et regressions</p>', unsafe_allow_html=True)
-        st.write("##")
-        st.write("Si des colonnes de votre dataset n'apparaissent pas et qu'elles contiennent des dates, des symboles de monnaies ou des virgules qui empêchent le typage float alors selectionnez les ici : ")
-        col1_1, b_1, col2_1, c_1, col3_1 = st.beta_columns((1,0.2,1,0.2,1)) # pour time series
         col1, b, col2, c, col3, d, col4 = st.beta_columns((7)) # pour les autres select
-        col_num = col_numeric(data)
-        st.write("##")
-        with col1_1 :
-            col_to_time = st.multiselect('Conversion Time Series', ['Selectionner une/des colonne/s'] + data.columns.tolist())
-        with col2_1 :
-            col_to_float_money = st.multiselect('Conversion Monnaies', ['Selectionner une/des colonne/s'] + data.columns.tolist())
-        with col3_1 :
-            col_to_float_coma = st.multiselect('Conversion string avec virgules vers float', ['Selectionner une/des colonne/s'] + data.columns.tolist())
-        if 'Selectionner une/des colonne/s' not in col_to_time :
-            with col1_1:
-                for col in col_to_time :
-                    try :
-                        data[col]=pd.to_datetime(data[col])
-                        col_num+=[col]
-                        st.success("Transformation effectuée avec succès !")
-                    except :
-                        st.error("Transformation impossible")
-        if 'Selectionner une/des colonne/s' not in col_to_float_money :
-            with col2_1:
-                for col in col_to_float_money :
-                    try :
-                        data[col] = data[col].apply(clean_data).astype('float')
-                        col_num += [col]
-                        st.success("Transformation effectuée avec succès !")
-                    except :
-                        st.error("Transformation impossible")
-        if 'Selectionner une/des colonne/s' not in col_to_float_coma :
-            with col3_1:
-                for col in col_to_float_coma :
-                    try :
-                        data[col] = data[col].apply(lambda x: x.replace(',', '.')).astype('float')
-                        col_num += [col]
-                        st.success("Transformation effectuée avec succès !")
-                    except :
-                        st.error("Transformation impossible")
+        col_num = col_numeric(state.data)
         with col1 :
             st.write("##")
             abscisse_plot = st.selectbox('Données en abscisses', ['Selectionner une colonne'] + col_num)
@@ -300,7 +437,7 @@ def page4():
         if abscisse_plot != 'Selectionner une colonne' and ordonnee_plot != 'Selectionner une colonne':
             if type_plot == 'Latitude/Longitude':
                 fig = go.Figure()
-                df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
+                df_sans_NaN = pd.concat([state.data[abscisse_plot], state.data[ordonnee_plot]], axis=1).dropna()
                 if len(df_sans_NaN)==0 :
                     st.error('Le dataset après dropna() est vide !')
                 else :
@@ -320,7 +457,7 @@ def page4():
                     st.plotly_chart(fig)
             elif type_plot=='Histogramme':
                 fig=go.Figure()
-                df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
+                df_sans_NaN = pd.concat([state.data[abscisse_plot], state.data[ordonnee_plot]], axis=1).dropna()
                 if len(df_sans_NaN)==0 :
                     st.error('Le dataset après dropna() est vide !')
                 else :
@@ -334,43 +471,43 @@ def page4():
                     moyenne = st.checkbox("Moyenne")
                     minimum = st.checkbox("Minimum")
                 fig = go.Figure()
-                df_sans_NaN = pd.concat([data[abscisse_plot], data[ordonnee_plot]], axis=1).dropna()
+                df_sans_NaN = pd.concat([state.data[abscisse_plot], state.data[ordonnee_plot]], axis=1).dropna()
                 if len(df_sans_NaN)==0 :
                     st.error('Le dataset après dropna() est vide !')
                 else :
                     fig.add_scatter(x=df_sans_NaN[abscisse_plot], y=df_sans_NaN[ordonnee_plot],mode=type_plot_dict[type_plot], name='', showlegend=False)
-                    if abscisse_plot not in col_to_time and ordonnee_plot not in col_to_time :
-                        with col4:
+                    #if abscisse_plot not in col_to_time and ordonnee_plot not in col_to_time :
+                    with col4:
+                        st.write("##")
+                        if type_plot == 'Points' or type_plot == 'Courbe':
                             st.write("##")
-                            if type_plot == 'Points' or type_plot == 'Courbe':
-                                st.write("##")
-                                trendline = st.checkbox("Regression linéaire")
-                                polynom_feat = st.checkbox("Regression polynomiale")
-                                if polynom_feat:
-                                    degres = st.slider('Degres de la regression polynomiale', min_value=2,
-                                                       max_value=100, value=4)
-                        if trendline :
-                            # regression linaire
-                            X = df_sans_NaN[abscisse_plot].values.reshape(-1, 1)
-                            model = LinearRegression()
-                            model.fit(X, df_sans_NaN[ordonnee_plot])
-                            x_range = np.linspace(X.min(), X.max(), len(df_sans_NaN[ordonnee_plot]))
-                            y_range = model.predict(x_range.reshape(-1, 1))
-                            fig.add_scatter(x=x_range, y=y_range, name='Regression linéaire', mode='lines', marker=dict(color='red'))
-                            # #################
-                        if polynom_feat :
-                            # regression polynomiale
-                            X = df_sans_NaN[abscisse_plot].values.reshape(-1, 1)
-                            x_range = np.linspace(X.min(), X.max(), 100).reshape(-1, 1)
-                            poly = PolynomialFeatures(degres)
-                            poly.fit(X)
-                            X_poly = poly.transform(X)
-                            x_range_poly = poly.transform(x_range)
-                            model = LinearRegression(fit_intercept=False)
-                            model.fit(X_poly, df_sans_NaN[ordonnee_plot])
-                            y_poly = model.predict(x_range_poly)
-                            fig.add_scatter(x=x_range.squeeze(), y=y_poly, name='Polynomial Features', marker=dict(color='green'))
-                            # #################
+                            trendline = st.checkbox("Regression linéaire")
+                            polynom_feat = st.checkbox("Regression polynomiale")
+                            if polynom_feat:
+                                degres = st.slider('Degres de la regression polynomiale', min_value=2,
+                                                   max_value=100, value=4)
+                    if trendline :
+                        # regression linaire
+                        X = df_sans_NaN[abscisse_plot].values.reshape(-1, 1)
+                        model = LinearRegression()
+                        model.fit(X, df_sans_NaN[ordonnee_plot])
+                        x_range = np.linspace(X.min(), X.max(), len(df_sans_NaN[ordonnee_plot]))
+                        y_range = model.predict(x_range.reshape(-1, 1))
+                        fig.add_scatter(x=x_range, y=y_range, name='Regression linéaire', mode='lines', marker=dict(color='red'))
+                        # #################
+                    if polynom_feat :
+                        # regression polynomiale
+                        X = df_sans_NaN[abscisse_plot].values.reshape(-1, 1)
+                        x_range = np.linspace(X.min(), X.max(), 100).reshape(-1, 1)
+                        poly = PolynomialFeatures(degres)
+                        poly.fit(X)
+                        X_poly = poly.transform(X)
+                        x_range_poly = poly.transform(x_range)
+                        model = LinearRegression(fit_intercept=False)
+                        model.fit(X_poly, df_sans_NaN[ordonnee_plot])
+                        y_poly = model.predict(x_range_poly)
+                        fig.add_scatter(x=x_range.squeeze(), y=y_poly, name='Polynomial Features', marker=dict(color='green'))
+                        # #################
                     if moyenne :
                         # Moyenne #
                         fig.add_hline(y=df_sans_NaN[ordonnee_plot].mean(),
@@ -429,7 +566,7 @@ def page4():
 ###########################
 ### Section Mat de corr ###
 ###########################
-def page5():
+def page5(state):
     if uploaded_file is not None:
             st.write("##")
             st.markdown('<p class="grand_titre">Matrice de corrélations</p>', unsafe_allow_html=True)
@@ -480,7 +617,7 @@ def page5():
 ###########################
 ### Section ML ###
 ###########################
-def page6():
+def page6(state):
     if uploaded_file is not None:
             st.write("##")
             st.markdown('<p class="grand_titre">Machine Learning - KNN</p>', unsafe_allow_html=True)
