@@ -41,6 +41,7 @@ st.markdown("""
 }
 .intro{
     text-align: justify;
+    font-size:20px !important;
 }
 .grand_titre {
     font-size:30px !important;
@@ -196,8 +197,12 @@ def main():
         st.write("##")
         st.markdown(
             '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes pour développer votre modèle, ou simplement pour visualiser vos données. ' +
-            'Si vous aimez ce site n\'hésitez pas à mettre une étoile sur le repo GitHub.</p>',
+            'Pour charger votre dataset, uploadé le depuis le volet latéral, et rendez vous dans la section "chargement du dataset".</p>',
             unsafe_allow_html=True)
+        st.markdown(
+            '<p class="intro"> Si vous aimez ce site n\'hésitez pas à mettre une étoile sur le repo GitHub.</p>',
+            unsafe_allow_html=True)
+        st.write("##")
         st.write("Github Project : [here](https://github.com/antonin-lfv/Online_preprocessing_for_ML)")
     state.sync()
 
@@ -210,10 +215,11 @@ def page1(state):
     st.write("##")
     st.markdown(
         '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes pour développer votre modèle, ou simplement pour visualiser vos données. ' +
-        'Si vous aimez ce site n\'hésitez pas à mettre une étoile sur le repo GitHub.</p>',
+        'Pour charger votre dataset, uploadé le depuis le volet latéral, et rendez vous dans la section "chargement du dataset".</p>',
         unsafe_allow_html=True)
+    st.markdown('<p class="intro"> Si vous aimez ce site n\'hésitez pas à mettre une étoile sur le repo GitHub.</p>', unsafe_allow_html=True)
+    st.write("##")
     st.write("Github Project : [here](https://github.com/antonin-lfv/Online_preprocessing_for_ML)")
-    state.test = st.checkbox("test", state.test)
 ### Fin accueil ###
 
 
@@ -310,7 +316,7 @@ def page2(state):
                     data = pd.read_csv(uploaded_file, engine='python')
                     state.data = data
         except:
-            st.error('Erreur de chargement du dataset')
+            st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 ### Fin section du dataset ###
 
 
@@ -385,7 +391,7 @@ def page3(state):
                     ### Fin section données ###
                 st.write('##')
     else :
-        st.warning('Veuillez charger un dataset !')
+        st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 ### Fin section colonne ###
 
 
@@ -539,7 +545,7 @@ def page4(state):
                 )
                 st.plotly_chart(fig)
     else :
-        st.warning('Veuillez charger un dataset !')
+        st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 ### Fin section graphiques ###
 
 
@@ -596,7 +602,7 @@ def page5(state):
                 else :
                     pass
     else :
-        st.warning('Veuillez charger un dataset !')
+        st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 ### Fin section mat de corr ###
 
 
@@ -659,7 +665,7 @@ def page6(state):
                                         st.write("##")
                                         st.error("Erreur ! Avez vous encoder toutes les features necessaires ?")
     else :
-        st.warning('Veuillez charger un dataset !')
+        st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 ### Fin section ML ###
 
 
