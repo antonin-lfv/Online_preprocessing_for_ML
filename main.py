@@ -164,13 +164,13 @@ def _get_state(hash_funcs=None):
 
     return session._custom_session_state
 
-
 ####### Streamlit home ######
 st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow_html=True)
 st.write("##")
 
 st.cache()
-uploaded_file = st.sidebar.file_uploader("Chargez votre dataset", type=['csv', 'xls'])
+st.sidebar.title("Chargé un dataset")
+uploaded_file = st.sidebar.file_uploader("", type=['csv', 'xls'])
 if uploaded_file is not None:
     st.sidebar.success('Fichier chargé avec succès !')
 
@@ -193,7 +193,6 @@ def main():
     else :
         if state.data is not None :
             state.clear()
-        st.sidebar.title("Chargé un dataset")
         st.write("##")
         st.markdown(
             '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes pour développer votre modèle, ou simplement pour visualiser vos données. ' +
