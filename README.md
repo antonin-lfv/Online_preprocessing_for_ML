@@ -21,13 +21,13 @@ Enfin, vous avez la possibilité de créer des modèles de machine learning rapi
 
 # Index
 
-- [Interface](#Interface)
-  1. [Accueil](#Accueil)
-  2. [Chargement du dataset](#Chargement-du-dataset)
-  3. [Analyse des colonnes](#Analyse-des-colonnes)
-  4. [Graphiques et regressions](#Graphiques-et-regressions)
-  5. [Matrice de corrélation](#Matrice-de-corrélation)
-  6. [Machine Learning - KNN](#Machine-Learning---KNN)
+1. [Interface](#Interface)
+  - [Accueil](#Accueil)
+  - [Chargement du dataset](#Chargement-du-dataset)
+  - [Analyse des colonnes](#Analyse-des-colonnes)
+  - [Graphiques et regressions](#Graphiques-et-regressions)
+  - [Matrice de corrélation](#Matrice-de-corrélation)
+  - [Machine Learning - KNN](#Machine-Learning---KNN)
 
 
 <br/>
