@@ -75,17 +75,17 @@ st.markdown("""
 
 
 ###### functions ########
-def max_std(dataset):
+def max_std(dataset):# colonne de maximum de variance
     l = []
     for nom in dataset.columns:
         if type(dataset[nom][0]) != object and type(dataset[nom][0]) != str:
             l.append([dataset[nom].std(), nom])
     return (max(l))
 
-def col_numeric(df):
+def col_numeric(df):#retourne les colonnes numériques d'un dataframe
     return df.select_dtypes(include=np.number).columns.tolist()
 
-def clean_data(x):
+def clean_data(x):# enlever les symboles d'une colonne
     if isinstance(x, str):
         return(x.replace('$', '').replace(',', '').replace('€', '').replace('£', ''))
     return(x)
@@ -463,7 +463,6 @@ def page4(state):
                     st.error('Le dataset après dropna() est vide !')
                 else :
                     fig.add_histogram(x=df_sans_NaN[state.abscisse_plot], y=df_sans_NaN[state.ordonnee_plot])
-
             else:
                 with col3:
                     st.write("##")
