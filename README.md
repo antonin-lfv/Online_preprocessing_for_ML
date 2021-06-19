@@ -40,7 +40,7 @@ En arrivant sur le DashBoard, vous verrez ceci :
 <br/>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/63207451/122610535-1dd7b800-d080-11eb-8416-c30390474f36.png" height="400">
+  <img src="https://user-images.githubusercontent.com/63207451/122610535-1dd7b800-d080-11eb-8416-c30390474f36.png" >
 </p>
 
 <br/>
