@@ -578,7 +578,7 @@ def page5(state):
                 st.write("##")
             state.select_columns_corr = st.multiselect("Choisir au moins deux colonnes",[ "Toutes les colonnes"] + col_numeric(df_sans_NaN), state.select_columns_corr)
             if len(state.select_columns_corr)>1 and "Toutes les colonnes" not in state.select_columns_corr:
-                df_sans_NaN = pd.concat([col for col in state.select_columns_corr],axis=1).dropna()
+                df_sans_NaN = pd.concat([state.data[col] for col in state.select_columns_corr],axis=1).dropna()
                 if len(df_sans_NaN) == 0:
                     st.write("##")
                     st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
