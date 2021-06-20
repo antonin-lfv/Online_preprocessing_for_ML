@@ -591,9 +591,8 @@ def page5(state):
             elif state.select_columns_corr==["Toutes les colonnes"]:
                 df_sans_NaN = state.data.dropna()
                 if len(df_sans_NaN) == 0:
-                    with col1:
-                        st.write("##")
-                        st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
+                    st.write("##")
+                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
                 else :
                     if state.couleur_corr!='Selectionner une colonne':
                         fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN), color=state.couleur_corr)
