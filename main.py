@@ -440,7 +440,7 @@ def page4(state):
                 fig = go.Figure()
                 df_sans_NaN = pd.concat([state.data[state.abscisse_plot], state.data[state.ordonnee_plot]], axis=1).dropna()
                 if len(df_sans_NaN)==0 :
-                    st.error('Le dataset après dropna() est vide !')
+                    st.warning('Le dataset composée des 2 colonnes selectionnées après dropna() est vide !')
                 else :
                     fig.add_scattermapbox(
                         mode="markers",
