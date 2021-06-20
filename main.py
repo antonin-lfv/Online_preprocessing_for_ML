@@ -572,28 +572,29 @@ def page5(state):
             st.write("##")
             st.markdown('<p class="grand_titre">Matrice de corrélations</p>', unsafe_allow_html=True)
             col1, b, col2 = st.beta_columns((1, 1, 2))
-            df_sans_NaN = state.data.dropna()
-            if len(df_sans_NaN)==0:
-                with col1:
-                    st.write("##")
-                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
-            else :
-                with col1:
-                    state.couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + df_sans_NaN.columns.tolist(), (['Selectionner une colonne'] + df_sans_NaN.columns.tolist()).index(state.couleur_corr) if state.couleur_corr else 0)
-                    st.write("##")
-                state.select_columns_corr = st.multiselect("Choisir au moins deux colonnes",[ "Toutes les colonnes"] + col_numeric(df_sans_NaN), state.select_columns_corr)
-                if len(state.select_columns_corr)>1 and "Toutes les colonnes" not in state.select_columns_corr:
-                    if state.couleur_corr!='Selectionner une colonne':
-                        fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[state.select_columns_corr]), color=state.couleur_corr, color_continuous_scale='Bluered_r')
-                    else :
-                        fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[state.select_columns_corr]))
-                    fig.update_layout(width=900, height=700,margin=dict(l=40, r=50, b=40, t=40), font=dict(size=7))
-                    fig.update_layout({"xaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN[state.select_columns_corr])))})
-                    fig.update_layout({"yaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN[state.select_columns_corr])))})
-                    fig.update_traces(marker=dict(size=2))
-                    fig.update_traces(diagonal_visible=False)
-                    st.plotly_chart(fig)
-                elif state.select_columns_corr==["Toutes les colonnes"]:
+            df_sans_NaN = state.data
+            with col1:
+                state.couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + df_sans_NaN.columns.tolist(), (['Selectionner une colonne'] + df_sans_NaN.columns.tolist()).index(state.couleur_corr) if state.couleur_corr else 0)
+                st.write("##")
+            state.select_columns_corr = st.multiselect("Choisir au moins deux colonnes",[ "Toutes les colonnes"] + col_numeric(df_sans_NaN), state.select_columns_corr)
+            if len(state.select_columns_corr)>1 and "Toutes les colonnes" not in state.select_columns_corr:
+                if state.couleur_corr!='Selectionner une colonne':
+                    fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[state.select_columns_corr]), color=state.couleur_corr, color_continuous_scale='Bluered_r')
+                else :
+                    fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[state.select_columns_corr]))
+                fig.update_layout(width=900, height=700,margin=dict(l=40, r=50, b=40, t=40), font=dict(size=7))
+                fig.update_layout({"xaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN[state.select_columns_corr])))})
+                fig.update_layout({"yaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN[state.select_columns_corr])))})
+                fig.update_traces(marker=dict(size=2))
+                fig.update_traces(diagonal_visible=False)
+                st.plotly_chart(fig)
+            elif state.select_columns_corr==["Toutes les colonnes"]:
+                df_sans_NaN = state.data.dropna()
+                if len(df_sans_NaN) == 0:
+                    with col1:
+                        st.write("##")
+                        st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
+                else :
                     if state.couleur_corr!='Selectionner une colonne':
                         fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN), color=state.couleur_corr)
                     else :
@@ -605,10 +606,10 @@ def page5(state):
                     fig.update_traces(marker=dict(size=2))
                     fig.update_traces(diagonal_visible=False)
                     st.plotly_chart(fig)
-                elif len(state.select_columns_corr)>1 and "Toutes les colonnes" in state.select_columns_corr :
-                    st.error("Erreur de saisi !")
-                else :
-                    pass
+            elif len(state.select_columns_corr)>1 and "Toutes les colonnes" in state.select_columns_corr :
+                st.error("Erreur de saisi !")
+            else :
+                pass
     else :
         st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 ### Fin section mat de corr ###
