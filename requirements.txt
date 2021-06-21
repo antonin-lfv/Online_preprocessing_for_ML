@@ -3,3 +3,4 @@ matplotlib
 seaborn
 xlrd
 sklearn
+base64

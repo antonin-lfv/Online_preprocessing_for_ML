@@ -15,6 +15,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
 from streamlit.hashing import _CodeHasher
+import base64
 try:
     # Before Streamlit 0.65
     from streamlit.ReportThread import get_report_ctx
