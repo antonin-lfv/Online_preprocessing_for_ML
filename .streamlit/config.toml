@@ -1,5 +1,5 @@
 [theme]
-base="dark"
+base="light"
 
 # Primary accent color for interactive elements.
 primaryColor = '#2e86de'
@@ -11,7 +11,7 @@ backgroundColor= '#2c2c36'
 #secondaryBackgroundColor = '#dcdde1'
 
 # Color used for almost all text.
-#textColor = '#222f3e'
+textColor = '#222f3e'
 
 # Font family for all text in the app, except code blocks. One of "sans serif", "serif", or "monospace".
 font = "sans serif"
