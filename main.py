@@ -673,13 +673,7 @@ def page6(state):
                                     for col in X.columns.tolist() :
                                         col = st.text_input(col)
                                         features.append(col)
-                                    if state.features and state.nom_col and state.target and state.p :
-                                        st.info("Derniere prédiction : "+str(state.p)+" avec : ")
-                                        st.write(pd.concat([pd.Series(state.features), state.nom_col]))
-                                    state.features = features
-                                    state.nom_col = X.columns
-                                    #st.write(features)
-                                    #st.write(X.columns)
+
                                     if "" not in features :
                                         x = np.array(features).reshape(1, len(features))
                                         state.p = (model.predict(x))
