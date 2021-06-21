@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="sep">
-      <change beforePath="$PROJECT_DIR$/.streamlit/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.streamlit/config.toml" afterDir="false" />
-    </list>
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="sep" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,34 +85,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00115" summary="time series, money, float coma">
-      <created>1623936601796</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1623936601796</updated>
-    </task>
-    <task id="LOCAL-00116" summary="color matrix">
-      <created>1623937100694</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1623937100694</updated>
-    </task>
-    <task id="LOCAL-00117" summary="color matrix">
-      <created>1623938034055</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1623938034055</updated>
-    </task>
-    <task id="LOCAL-00118" summary="color matrix">
-      <created>1623938077242</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1623938077242</updated>
     </task>
     <task id="LOCAL-00119" summary="color matrix">
       <created>1623939151802</created>
@@ -431,7 +401,35 @@
       <option name="project" value="LOCAL" />
       <updated>1624290115897</updated>
     </task>
-    <option name="localTasksCounter" value="164" />
+    <task id="LOCAL-00164" summary="theme">
+      <created>1624290194702</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1624290194702</updated>
+    </task>
+    <task id="LOCAL-00165" summary="theme">
+      <created>1624290260659</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1624290260659</updated>
+    </task>
+    <task id="LOCAL-00166" summary="theme">
+      <created>1624290406046</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1624290406046</updated>
+    </task>
+    <task id="LOCAL-00167" summary="theme">
+      <created>1624290478307</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1624290478308</updated>
+    </task>
+    <option name="localTasksCounter" value="168" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
