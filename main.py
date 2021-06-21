@@ -589,6 +589,7 @@ def page5(state):
                     fig.update_layout({"yaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN[state.select_columns_corr])))})
                     fig.update_traces(marker=dict(size=2))
                     fig.update_traces(diagonal_visible=False)
+                    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
                     st.plotly_chart(fig)
             elif state.select_columns_corr==["Toutes les colonnes"]:
                 df_sans_NaN = state.data.dropna()
