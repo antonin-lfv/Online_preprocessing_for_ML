@@ -81,34 +81,6 @@
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
     </task>
-    <task id="LOCAL-00107" summary="col">
-      <created>1623844839990</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1623844839991</updated>
-    </task>
-    <task id="LOCAL-00108" summary="col">
-      <created>1623856428003</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1623856428003</updated>
-    </task>
-    <task id="LOCAL-00109" summary="col">
-      <created>1623856592352</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1623856592352</updated>
-    </task>
-    <task id="LOCAL-00110" summary="col">
-      <created>1623856672467</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1623856672468</updated>
-    </task>
     <task id="LOCAL-00111" summary="money symbols">
       <created>1623910526464</created>
       <option name="number" value="00111" />
@@ -424,7 +396,35 @@
       <option name="project" value="LOCAL" />
       <updated>1624264722240</updated>
     </task>
-    <option name="localTasksCounter" value="156" />
+    <task id="LOCAL-00156" summary="titre">
+      <created>1624264915366</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1624264915366</updated>
+    </task>
+    <task id="LOCAL-00157" summary="titre">
+      <created>1624264974200</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1624264974200</updated>
+    </task>
+    <task id="LOCAL-00158" summary="titre">
+      <created>1624265008676</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1624265008677</updated>
+    </task>
+    <task id="LOCAL-00159" summary="titre">
+      <created>1624265070432</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1624265070432</updated>
+    </task>
+    <option name="localTasksCounter" value="160" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -479,10 +479,10 @@
     <state width="1346" height="200" key="GridCell.Tab.0.right/-1920.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1623404954334" />
     <state width="1899" height="304" key="GridCell.Tab.0.right/-1920.-180.1920.1080/0.0.1440.900@-1920.-180.1920.1080" timestamp="1623780080308" />
     <state width="1346" height="199" key="GridCell.Tab.0.right/0.25.1440.799@0.25.1440.799" timestamp="1623850018533" />
-    <state x="-1396" y="68" key="Vcs.Push.Dialog.v2" timestamp="1624264723872">
+    <state x="-1396" y="68" key="Vcs.Push.Dialog.v2" timestamp="1624265072191">
       <screen x="-1920" y="-155" width="1920" height="1055" />
     </state>
-    <state x="-1396" y="68" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@-1920.-155.1920.1055" timestamp="1624264723872" />
+    <state x="-1396" y="68" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@-1920.-155.1920.1055" timestamp="1624265072191" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1623939153243" />
     <state x="-1396" y="68" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.797@-1920.-155.1920.1055" timestamp="1623267361970" />
     <state x="-1396" y="68" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.798@-1920.-155.1920.1055" timestamp="1623259872757" />

@@ -15,7 +15,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
 from streamlit.hashing import _CodeHasher
-import base64
 try:
     # Before Streamlit 0.65
     from streamlit.ReportThread import get_report_ctx
@@ -91,14 +90,6 @@ def clean_data(x):# enlever les symboles d'une colonne
         return(x.replace('$', '').replace(',', '').replace('€', '').replace('£', ''))
     return(x)
 
-def get_table_download_link(df):
-    """Generates a link allowing the data in a given panda dataframe to be downloaded
-    in:  dataframe
-    out: href string
-    """
-    csv = df.to_csv(index=False)
-    b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
-    href = f'<a href="data:file/csv;base64,{b64}">Télécharger le dataset modifié</a>'
 
 ###### Session data ######
 class _SessionState:
@@ -263,8 +254,6 @@ def page2(state):
     if state.data is not None :
         with col1_1:
             state.separateur = st.text_input("Séparateur (optionnel): ", state.separateur or "")
-        with col2_1 :
-            st.markdown(get_table_download_link(state.data), unsafe_allow_html=True)
         st.write("##")
         st.markdown("<p class='petite_section'>Si des colonnes de votre dataset contiennent des dates, des symboles de monnaies ou des virgules qui empêchent le bon typage alors selectionnez les ici : </p>",unsafe_allow_html=True)
         col1_1, b_1, col2_1, c_1, col3_1 = st.beta_columns((1, 0.2, 1, 0.2, 1))  # pour time series
