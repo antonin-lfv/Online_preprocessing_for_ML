@@ -262,7 +262,7 @@ def page2(state):
     if state.data is not None :
         with col1_1:
             state.separateur = st.text_input("Séparateur (optionnel): ", state.separateur or "")
-        with col2_2 :
+        with col2_1 :
             st.markdown(get_table_download_link(state.data), unsafe_allow_html=True)
         st.write("##")
         st.markdown("<p class='petite_section'>Si des colonnes de votre dataset contiennent des dates, des symboles de monnaies ou des virgules qui empêchent le bon typage alors selectionnez les ici : </p>",unsafe_allow_html=True)
