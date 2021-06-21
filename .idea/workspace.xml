@@ -20,10 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="sep">
-      <change afterPath="$PROJECT_DIR$/images/Tranche 1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/streamlit-logo-secondary-colormark-darktext.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.streamlit/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.streamlit/config.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,20 +87,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00113" summary="sep">
-      <created>1623932638729</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1623932638730</updated>
-    </task>
-    <task id="LOCAL-00114" summary="time series, money, float coma">
-      <created>1623936437388</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1623936437388</updated>
     </task>
     <task id="LOCAL-00115" summary="time series, money, float coma">
       <created>1623936601796</created>
@@ -434,7 +417,21 @@
       <option name="project" value="LOCAL" />
       <updated>1624265270201</updated>
     </task>
-    <option name="localTasksCounter" value="162" />
+    <task id="LOCAL-00162" summary="theme">
+      <created>1624290072609</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1624290072610</updated>
+    </task>
+    <task id="LOCAL-00163" summary="theme">
+      <created>1624290115897</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1624290115897</updated>
+    </task>
+    <option name="localTasksCounter" value="164" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -462,7 +459,8 @@
     <MESSAGE value="sep" />
     <MESSAGE value="empty df" />
     <MESSAGE value="titre" />
-    <option name="LAST_COMMIT_MESSAGE" value="titre" />
+    <MESSAGE value="theme" />
+    <option name="LAST_COMMIT_MESSAGE" value="theme" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1346" height="199" key="GridCell.Tab.0.bottom" timestamp="1623850018534">
