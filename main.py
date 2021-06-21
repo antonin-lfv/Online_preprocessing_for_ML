@@ -671,8 +671,8 @@ def page6(state):
                                     st.write("##")
                                     st.markdown('<p class="section">Entrez vos données</p>', unsafe_allow_html=True)
                                     for col in X.columns.tolist() :
-                                        state.col = st.text_input(col, state.col or "")
-                                        features.append(state.col)
+                                        col = st.text_input(col)
+                                        features.append(col)
 
                                     if "" not in features :
                                         x = np.array(features).reshape(1, len(features))
