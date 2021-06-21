@@ -673,7 +673,7 @@ def page6(state):
                                     for col in X.columns.tolist() :
                                         col = st.text_input(col)
                                         features.append(col)
-
+                                    st.write(features)
                                     if "" not in features :
                                         x = np.array(features).reshape(1, len(features))
                                         p = (model.predict(x))
