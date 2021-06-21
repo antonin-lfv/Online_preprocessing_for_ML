@@ -263,7 +263,7 @@ def page2(state):
         with col1_1:
             state.separateur = st.text_input("Séparateur (optionnel): ", state.separateur or "")
         with col2_2 :
-            st.markdown(get_table_download_link(df), unsafe_allow_html=True)
+            st.markdown(get_table_download_link(state.data), unsafe_allow_html=True)
         st.write("##")
         st.markdown("<p class='petite_section'>Si des colonnes de votre dataset contiennent des dates, des symboles de monnaies ou des virgules qui empêchent le bon typage alors selectionnez les ici : </p>",unsafe_allow_html=True)
         col1_1, b_1, col2_1, c_1, col3_1 = st.beta_columns((1, 0.2, 1, 0.2, 1))  # pour time series
