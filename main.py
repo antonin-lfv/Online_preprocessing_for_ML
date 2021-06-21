@@ -673,13 +673,18 @@ def page6(state):
                                     for col in X.columns.tolist() :
                                         col = st.text_input(col)
                                         features.append(col)
-                                    st.write(features)
-                                    st.write(X.columns)
+                                    if state.features and state.nom_col and state.target and state.p :
+                                        st.info("Derniere prédiction : "+str(state.p)+" avec : ")
+                                        st.write(pd.concat([pd.Series(state.features), state.nom_col]))
+                                    state.features = features
+                                    state.nom_col = X.columns
+                                    #st.write(features)
+                                    #st.write(X.columns)
                                     if "" not in features :
                                         x = np.array(features).reshape(1, len(features))
-                                        p = (model.predict(x))
+                                        state.p = (model.predict(x))
                                         st.write("##")
-                                        st.success("Prédiction de la target "+state.target+" : "+str(p))
+                                        st.success("Prédiction de la target "+state.target+" : "+str(state.p))
                                 except :
                                     with col1:
                                         st.write("##")
