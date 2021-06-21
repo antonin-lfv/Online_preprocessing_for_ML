@@ -245,7 +245,7 @@ def page1(state):
 ### section du dataset ###
 ##########################
 def page2(state):
-    st.markdown('<p class="grand_titre">Analyse du dataset</p>', unsafe_allow_html=True)
+    st.markdown('<p class="grand_titre">Chargement du dataset</p>', unsafe_allow_html=True)
     st.write("##")
 
     state.file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type, "FileSize": uploaded_file.size}
