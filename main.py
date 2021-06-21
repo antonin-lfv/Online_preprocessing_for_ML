@@ -36,7 +36,7 @@ st.markdown("""
     box-sizing: border-box;
     text-align: center;
     width: 100%;
-    border: solid #CD2727 5px;
+    border: solid #2e86de 6px;
     padding: 5px;
 }
 .intro{
