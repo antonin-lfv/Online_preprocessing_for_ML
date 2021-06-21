@@ -606,6 +606,7 @@ def page5(state):
                     fig.update_layout(width=900, height=700,margin=dict(l=40, r=50, b=40, t=40),font=dict(size=7))
                     fig.update_traces(marker=dict(size=2))
                     fig.update_traces(diagonal_visible=False)
+                    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)',plot_bgcolor='rgba(0,0,0,0)')
                     st.plotly_chart(fig)
             elif len(state.select_columns_corr)>1 and "Toutes les colonnes" in state.select_columns_corr :
                 st.error("Erreur de saisi !")
