@@ -36,7 +36,7 @@ st.markdown("""
     box-sizing: border-box;
     text-align: center;
     width: 100%;
-    border: solid #8B0000 6px;
+    border: solid #F65323 6px;
     padding: 5px;
 }
 .intro{
@@ -174,9 +174,6 @@ def _get_state(hash_funcs=None):
 
 
 ####### Streamlit home ######
-st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow_html=True)
-st.write("##")
-
 st.cache()
 uploaded_file = st.sidebar.file_uploader("Chargez votre dataset", type=['csv', 'xls'])
 if uploaded_file is not None:
@@ -228,6 +225,7 @@ def main():
 ### Accueil ###
 ###############
 def page1(state):
+    st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow_html=True)
     st.write("##")
     st.markdown(
         '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes pour développer votre modèle, ou simplement pour visualiser vos données. ' +
@@ -642,6 +640,8 @@ def page5(state):
 ######## Section ML #######
 ###########################
 def page6(state):
+    st.markdown('<p class="first_titre">Machine Learning</p>', unsafe_allow_html=True)
+    st.write("##")
     PAGES_ML = {
         "KNN": page1_ML,
         "PCA": page2_ML,
@@ -737,6 +737,8 @@ def page2_ML(state):
 ########    D L     #######
 ###########################
 def page7(state):
+    st.markdown('<p class="first_titre">Deep Learning</p>', unsafe_allow_html=True)
+    st.write("##")
     PAGES_DL = {
         "MLP": page1_DL,
         "RNN": page2_DL,

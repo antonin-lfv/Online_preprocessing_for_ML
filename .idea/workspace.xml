@@ -19,10 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="sep">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="sep" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,13 +85,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00134" summary="session">
-      <created>1624032910753</created>
-      <option name="number" value="00134" />
-      <option name="presentableId" value="LOCAL-00134" />
-      <option name="project" value="LOCAL" />
-      <updated>1624032910753</updated>
     </task>
     <task id="LOCAL-00135" summary="session">
       <created>1624034412466</created>
@@ -432,7 +422,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624291683565</updated>
     </task>
-    <option name="localTasksCounter" value="183" />
+    <task id="LOCAL-00183" summary="ML and DL pages">
+      <created>1624378451289</created>
+      <option name="number" value="00183" />
+      <option name="presentableId" value="LOCAL-00183" />
+      <option name="project" value="LOCAL" />
+      <updated>1624378451290</updated>
+    </task>
+    <option name="localTasksCounter" value="184" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -461,7 +458,8 @@
     <MESSAGE value="empty df" />
     <MESSAGE value="titre" />
     <MESSAGE value="theme" />
-    <option name="LAST_COMMIT_MESSAGE" value="theme" />
+    <MESSAGE value="ML and DL pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="ML and DL pages" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1346" height="199" key="GridCell.Tab.0.bottom" timestamp="1623850018534">
