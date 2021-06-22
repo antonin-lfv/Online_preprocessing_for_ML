@@ -645,8 +645,6 @@ def page6(state):
         "PCA": page2_ML,
     }
 
-    st.write("##")
-    st.markdown('<p class="grand_titre_section_ML_DL">Machine Learning</p>', unsafe_allow_html=True)
     st.sidebar.subheader("Algorithmes")
     page_ml = st.sidebar.radio("", list(PAGES_ML.keys()))
     PAGES_ML[page_ml](state)
@@ -742,8 +740,6 @@ def page7(state):
         "RNN": page2_DL,
     }
 
-    st.write("##")
-    st.markdown('<p class="grand_titre_section_ML_DL">Deap Learning</p>', unsafe_allow_html=True)
     st.sidebar.subheader("Algorithmes")
     page_dl = st.sidebar.radio("", list(PAGES_DL.keys()))
     PAGES_DL[page_dl](state)
