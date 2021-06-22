@@ -347,7 +347,6 @@ def page2(state):
 #############################
 def page3(state):
     if state.data is not None:
-        st.write('##')
         st.markdown('<p class="grand_titre">Analyse des colonnes</p>', unsafe_allow_html=True)
         st.write('##')
         options = state.data.columns.to_list()
@@ -417,11 +416,10 @@ def page3(state):
 
 
 ##########################
-### Section Graphiques ###
+###Section Mat de corr ###
 ##########################
 def page4(state):
     if state.data is not None:
-            st.write("##")
             st.markdown('<p class="grand_titre">Matrice de corrélations</p>', unsafe_allow_html=True)
             col1, b, col2 = st.beta_columns((1, 1, 2))
             df_sans_NaN = state.data
@@ -483,11 +481,10 @@ def page4(state):
 
 
 ###########################
-### Section Mat de corr ###
+###  Section Graphiques ###
 ###########################
 def page5(state):
     if state.data is not None:
-        st.write("##")
         st.markdown('<p class="grand_titre">Graphiques et regressions</p>', unsafe_allow_html=True)
         col1, b, col2, c, col3, d, col4 = st.beta_columns((7)) # pour les autres select
         col_num = col_numeric(state.data)+state.col_to_time
