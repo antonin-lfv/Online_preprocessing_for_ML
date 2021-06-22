@@ -63,7 +63,7 @@ De plus, les caractéristiques principales de ce dataset sont affichées sur le 
 <br/>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/63207451/122611487-b1f64f00-d081-11eb-9af5-2fbb85e9e3bf.png">
+  <img src="https://user-images.githubusercontent.com/63207451/122967684-043db580-d38b-11eb-804b-c104e448a4e1.png">
 </p>
 
 <br/>
