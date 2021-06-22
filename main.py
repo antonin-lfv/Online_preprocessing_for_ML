@@ -720,7 +720,7 @@ def page2_ML(state):
         with col1:
             st.write("##")
             st.markdown('<p class="section">Selection des colonnes pour le modèle (target+features)</p>',unsafe_allow_html=True)
-            state.choix_col_PCA = st.multiselect("Choisir au moins deux colonnes",["Toutes les colonnes"] + state.data.columns.tolist(), state.choix_col_PCA)
+            state.choix_col_PCA = st.multiselect("Choisir au moins deux colonnes",state.data.columns.tolist(), state.choix_col_PCA)
         if len(state.choix_col_PCA) > 1:
             df_ml = state.data[state.choix_col_PCA]
             df_ml = df_ml.dropna(axis=0)
