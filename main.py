@@ -203,6 +203,7 @@ def main():
     else :
         if state.data is not None :
             state.clear()
+        st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow_html=True)
         st.write("##")
         st.markdown(
             '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes pour développer votre modèle, ou simplement pour visualiser vos données. ' +
