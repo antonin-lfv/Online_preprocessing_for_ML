@@ -767,9 +767,6 @@ def page2_ML(state):
                             paper_bgcolor='rgba(0,0,0,0)',
                             plot_bgcolor='rgba(0,0,0,0)',
                         )
-                        fig.update_traces(
-                            marker_coloraxis=None
-                        )
                         st.plotly_chart(fig)
                     except:
                         st.write("##")
