@@ -755,9 +755,8 @@ def page2_ML(state):
                         st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
                         # résultats points
                         state.df = pd.concat([pd.Series(x_pca[:, 0]), pd.Series(x_pca[:, 1]),pd.Series(state.df_ml_origine[state.target_PCA])], axis=1)
-                        fig=px.scatter(state.df, x=state.df.columns[0], y=state.df.columns[1], color=state.df.columns[2])
-                        state.df.columns[0]="x"
-                        state.df.columns[1]="y"
+                        state.df.columns=["x", "y", str(state.target_PCA)]
+                        fig=px.scatter(state.df, x="x", y="y", color=str(state.target_PCA))
                         fig.update_layout(
                             template='simple_white',
                             font=dict(size=10),
