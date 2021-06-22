@@ -701,6 +701,7 @@ def page1_ML(state):
                                     if "" not in features :
                                         x = np.array(features).reshape(1, len(features))
                                         state.p = (model.predict(x))
+                                        st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
                                         st.write("##")
                                         st.success("Prédiction de la target "+state.target+" : "+str(state.p))
                                 except :
