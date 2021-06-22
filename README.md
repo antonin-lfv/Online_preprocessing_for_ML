@@ -14,7 +14,7 @@
 <p align="center">
 Cette application web developpée en python et publiée grâce à Streamlit a pour but d'accélérer l'exploration des données, et la mise en place d'algorithmes de machine learning. Elle est basée sur un système multi-pages, qui conserve les widgets entre celles-ci grâce à un système de Session. Le principe est simple, vous déposez votre dataset sous le format csv ou xls sur le volet gauche, puis le Menu apparaîtra. À partir de là il faudra se rendre dans la section <b>Chargement du dataset</b> pour l'importer, et effectuer des réglages sur celui-ci comme ajouter un séparateur, transformer des colonnes en Time-Series, ou supprimer des symboles qui empêchent un typage en float. <br/>
 Puis, libre à vous de faire votre analyse des données, observer les colonnes, leurs statistiques, les corrélations entre elles. Depuis la section <b>graphiques et regressions</b> vous pourrez tracer des graphiques avec des points, des courbes, des histogrammes ou même des coordonnées géographiques et effectuer des regressions linéaires et polynomiales. <br/>
-Enfin, vous avez la possibilité de créer des modèles de machine learning rapidement comme des KNN pour effectuer des prédictions.
+Enfin, vous avez la possibilité de créer des modèles de machine learning ou de deep learning rapidement comme des KNN ou des réseaux de neurones récurrents pour effectuer des prédictions.
   </p>
   
 <br/>
@@ -25,9 +25,10 @@ Enfin, vous avez la possibilité de créer des modèles de machine learning rapi
     - [Accueil](#Accueil)
     - [Chargement du dataset](#Chargement-du-dataset)
     - [Analyse des colonnes](#Analyse-des-colonnes)
-    - [Graphiques et regressions](#Graphiques-et-regressions)
     - [Matrice de corrélation](#Matrice-de-corrélation)
-    - [Machine Learning - KNN](#Machine-Learning---KNN)
+    - [Graphiques et regressions](#Graphiques-et-regressions)
+    - [Machine Learning](#Machine-Learning)
+    - [Deep Learning](#Deep-Learning)
 
 
 <br/>
@@ -71,15 +72,19 @@ De plus, les caractéristiques principales de ce dataset sont affichées sur le 
 
 <br/>
 
-## Graphiques et regressions
-
-<br/>
-
 ## Matrice de corrélation
 
 <br/>
 
-## Machine Learning - KNN
+## Graphiques et regressions
+
+<br/>
+
+## Machine Learning
+
+<br/>
+
+## Deep Learning
 
 <br/>
 
