@@ -754,9 +754,8 @@ def page2_ML(state):
                         st.write("##")
                         st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
                         # résultats points
-                        state.df = pd.concat([pd.Series(x_pca[:, 0]), pd.Series(x_pca[:, 1]),pd.Series(state.df_ml_origine[state.target_PCA])])
-                        fig=px.scatter(state.df, x=state.df[:,0], y=state.df[:,1], color=state.df[:,2])
-                        #fig.add_scatter(x=x_pca[:, 0],y=x_pca[:, 1], marker=dict(color=y, size=10), mode='markers',)
+                        state.df = pd.concat([pd.Series(x_pca[:, 0]), pd.Series(x_pca[:, 1]),pd.Series(state.df_ml_origine[state.target_PCA])], axis=1)
+                        fig=px.scatter(state.df, x=state.df.columns[0], y=state.df.columns[1], color=state.df.columns[2])
                         fig.update_layout(
                             template='simple_white',
                             font=dict(size=10),
@@ -767,7 +766,6 @@ def page2_ML(state):
                             plot_bgcolor='rgba(0,0,0,0)',
                         )
                         st.plotly_chart(fig)
-
                     except:
                         st.write("##")
                         st.error("Erreur de chargement!")
