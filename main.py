@@ -733,7 +733,7 @@ def page2_ML(state):
                 with col1:
                     # encodage !
                     state.col_to_encodage_PCA = st.multiselect("Selectionner les colonnes à encoder",
-                                                       ["Toutes les colonnes"] + state.choix_col_PCA,
+                                                       state.choix_col_PCA,
                                                            state.col_to_encodage_PCA)
                     for col in state.col_to_encodage_PCA:
                         st.write("encodage colonne " + col + " : " + str(df_ml[col].unique().tolist()) + "->" + str(np.arange(len(df_ml[col].unique()))))
