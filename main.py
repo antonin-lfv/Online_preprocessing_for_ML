@@ -36,7 +36,7 @@ st.markdown("""
     box-sizing: border-box;
     text-align: center;
     width: 100%;
-    border: solid #2e86de 6px;
+    border: solid #8B0000 6px;
     padding: 5px;
 }
 .intro{
@@ -45,6 +45,13 @@ st.markdown("""
 }
 .grand_titre {
     font-size:30px !important;
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-color: #2782CD;
+    text-decoration-thickness: 5px;
+}
+.grand_titre_section_ML_DL {
+    font-size:40px !important;
     font-weight: bold;
     text-decoration: underline;
     text-decoration-color: #2782CD;
@@ -185,9 +192,10 @@ def main():
         "Accueil": page1,
         "Chargement du dataset": page2,
         "Analyse des colonnes": page3,
-        "Graphiques et Regressions": page4,
-        "Matrice de corrélation": page5,
-        "Machine Learning - KNN": page6,
+        "Matrice de corrélation": page4,
+        "Graphiques et Regressions" : page5,
+        "Machine Learning": page6,
+        "Deep Learning" : page7
     }
 
     if uploaded_file is not None :
@@ -414,6 +422,72 @@ def page3(state):
 ##########################
 def page4(state):
     if state.data is not None:
+            st.write("##")
+            st.markdown('<p class="grand_titre">Matrice de corrélations</p>', unsafe_allow_html=True)
+            col1, b, col2 = st.beta_columns((1, 1, 2))
+            df_sans_NaN = state.data
+            with col1:
+                state.couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + df_sans_NaN.columns.tolist(), (['Selectionner une colonne'] + df_sans_NaN.columns.tolist()).index(state.couleur_corr) if state.couleur_corr else 0)
+                st.write("##")
+            state.select_columns_corr = st.multiselect("Choisir au moins deux colonnes",[ "Toutes les colonnes"] + col_numeric(df_sans_NaN), state.select_columns_corr)
+            if len(state.select_columns_corr)>1 and "Toutes les colonnes" not in state.select_columns_corr:
+                df_sans_NaN = pd.concat([state.data[col] for col in state.select_columns_corr],axis=1).dropna()
+                if len(df_sans_NaN) == 0:
+                    st.write("##")
+                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
+                else :
+                    if state.couleur_corr!='Selectionner une colonne':
+                        fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[state.select_columns_corr]), color=state.couleur_corr, color_continuous_scale='Bluered_r')
+                    else :
+                        fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[state.select_columns_corr]))
+                    fig.update_layout(width=900, height=700,margin=dict(l=40, r=50, b=40, t=40), font=dict(size=7))
+                    fig.update_layout({"xaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN[state.select_columns_corr])))})
+                    fig.update_layout({"yaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN[state.select_columns_corr])))})
+                    fig.update_traces(marker=dict(size=2))
+                    fig.update_traces(diagonal_visible=False)
+                    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
+                    st.plotly_chart(fig)
+            elif state.select_columns_corr==["Toutes les colonnes"]:
+                df_sans_NaN = state.data.dropna()
+                if len(df_sans_NaN) == 0:
+                    st.write("##")
+                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
+                else :
+                    if state.couleur_corr!='Selectionner une colonne':
+                        fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN), color=state.couleur_corr)
+                    else :
+                        fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
+                    fig.update_layout({"xaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN)))})
+                    fig.update_layout({"yaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN)))})
+                    fig.update_traces(marker=dict(size=2))
+                    fig.update_layout(width=900, height=700,margin=dict(l=40, r=50, b=40, t=40),font=dict(size=7))
+                    fig.update_traces(marker=dict(size=2))
+                    fig.update_traces(diagonal_visible=False)
+                    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)',plot_bgcolor='rgba(0,0,0,0)')
+                    st.plotly_chart(fig)
+            elif len(state.select_columns_corr)>1 and "Toutes les colonnes" in state.select_columns_corr :
+                st.error("Erreur de saisi !")
+            else :
+                pass
+    else :
+        st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
+### Fin section graphiques ###
+
+
+
+
+
+
+
+
+
+
+
+###########################
+### Section Mat de corr ###
+###########################
+def page5(state):
+    if state.data is not None:
         st.write("##")
         st.markdown('<p class="grand_titre">Graphiques et regressions</p>', unsafe_allow_html=True)
         col1, b, col2, c, col3, d, col4 = st.beta_columns((7)) # pour les autres select
@@ -551,70 +625,7 @@ def page4(state):
                 st.plotly_chart(fig)
     else :
         st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
-### Fin section graphiques ###
 
-
-
-
-
-
-
-
-
-###########################
-### Section Mat de corr ###
-###########################
-def page5(state):
-    if state.data is not None:
-            st.write("##")
-            st.markdown('<p class="grand_titre">Matrice de corrélations</p>', unsafe_allow_html=True)
-            col1, b, col2 = st.beta_columns((1, 1, 2))
-            df_sans_NaN = state.data
-            with col1:
-                state.couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + df_sans_NaN.columns.tolist(), (['Selectionner une colonne'] + df_sans_NaN.columns.tolist()).index(state.couleur_corr) if state.couleur_corr else 0)
-                st.write("##")
-            state.select_columns_corr = st.multiselect("Choisir au moins deux colonnes",[ "Toutes les colonnes"] + col_numeric(df_sans_NaN), state.select_columns_corr)
-            if len(state.select_columns_corr)>1 and "Toutes les colonnes" not in state.select_columns_corr:
-                df_sans_NaN = pd.concat([state.data[col] for col in state.select_columns_corr],axis=1).dropna()
-                if len(df_sans_NaN) == 0:
-                    st.write("##")
-                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
-                else :
-                    if state.couleur_corr!='Selectionner une colonne':
-                        fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[state.select_columns_corr]), color=state.couleur_corr, color_continuous_scale='Bluered_r')
-                    else :
-                        fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[state.select_columns_corr]))
-                    fig.update_layout(width=900, height=700,margin=dict(l=40, r=50, b=40, t=40), font=dict(size=7))
-                    fig.update_layout({"xaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN[state.select_columns_corr])))})
-                    fig.update_layout({"yaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN[state.select_columns_corr])))})
-                    fig.update_traces(marker=dict(size=2))
-                    fig.update_traces(diagonal_visible=False)
-                    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
-                    st.plotly_chart(fig)
-            elif state.select_columns_corr==["Toutes les colonnes"]:
-                df_sans_NaN = state.data.dropna()
-                if len(df_sans_NaN) == 0:
-                    st.write("##")
-                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
-                else :
-                    if state.couleur_corr!='Selectionner une colonne':
-                        fig=px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN), color=state.couleur_corr)
-                    else :
-                        fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
-                    fig.update_layout({"xaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN)))})
-                    fig.update_layout({"yaxis" + str(i+1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN)))})
-                    fig.update_traces(marker=dict(size=2))
-                    fig.update_layout(width=900, height=700,margin=dict(l=40, r=50, b=40, t=40),font=dict(size=7))
-                    fig.update_traces(marker=dict(size=2))
-                    fig.update_traces(diagonal_visible=False)
-                    fig.update_layout(paper_bgcolor='rgba(0,0,0,0)',plot_bgcolor='rgba(0,0,0,0)')
-                    st.plotly_chart(fig)
-            elif len(state.select_columns_corr)>1 and "Toutes les colonnes" in state.select_columns_corr :
-                st.error("Erreur de saisi !")
-            else :
-                pass
-    else :
-        st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 ### Fin section mat de corr ###
 
 
@@ -625,17 +636,35 @@ def page5(state):
 
 
 
+
+
 ###########################
-### Section ML ###
+######## Section ML #######
 ###########################
 def page6(state):
+    PAGES_ML = {
+        "KNN": page1_ML,
+        "PCA": page2_ML,
+    }
+
+    st.write("##")
+    st.markdown('<p class="grand_titre_section_ML_DL">Machine Learning</p>', unsafe_allow_html=True)
+    st.sidebar.subheader("Algorithmes")
+    page_ml = st.sidebar.radio("", list(PAGES_ML.keys()))
+    PAGES_ML[page_ml](state)
+### fin accueil ML ###
+
+
+
+## ML pages ##
+def page1_ML(state):
+    st.write("##")
+    st.markdown('<p class="grand_titre">KNN : k-nearest neighbors</p>', unsafe_allow_html=True)
     if state.data is not None:
-            st.write("##")
-            st.markdown('<p class="grand_titre">Machine Learning - KNN</p>', unsafe_allow_html=True)
             col1, b, col2 = st.beta_columns((1,0.2,1))
             with col1 :
                 st.write("##")
-                st.markdown('<p class="section">Selection des colonnes</p>', unsafe_allow_html=True)
+                st.markdown('<p class="section">Selection des colonnes pour le modèle (target+features)</p>', unsafe_allow_html=True)
                 state.choix_col = st.multiselect("Choisir au moins deux colonnes",["Toutes les colonnes"] + state.data.columns.tolist(), state.choix_col)
             if len(state.choix_col) > 1:
                 df_ml = state.data[state.choix_col]
@@ -684,12 +713,61 @@ def page6(state):
                                         st.error("Erreur ! Avez vous encoder toutes les features necessaires ?")
     else :
         st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
-### Fin section ML ###
+
+def page2_ML(state):
+    st.write("##")
+    st.markdown('<p class="grand_titre">PCA : Analyse en composantes principales</p>', unsafe_allow_html=True)
+    if state.data is not None:
+        st.write("##")
+    else:
+        st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
+## Fin ML pages ##
 
 
 
 
 
+
+
+
+
+
+
+###########################
+########    D L     #######
+###########################
+def page7(state):
+    PAGES_DL = {
+        "MLP": page1_DL,
+        "RNN": page2_DL,
+    }
+
+    st.write("##")
+    st.markdown('<p class="grand_titre_section_ML_DL">Deap Learning</p>', unsafe_allow_html=True)
+    st.sidebar.subheader("Algorithmes")
+    page_dl = st.sidebar.radio("", list(PAGES_DL.keys()))
+    PAGES_DL[page_dl](state)
+### Fin section DL ###
+
+
+
+## DLL pages ##
+def page1_DL(state):
+    st.write("##")
+    st.markdown('<p class="grand_titre">MLP : Multilayer Perceptron</p>', unsafe_allow_html=True)
+    if state.data is not None:
+        st.write("##")
+    else:
+        st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
+
+def page2_DL(state):
+    st.write("##")
+    st.markdown('<p class="grand_titre">RNN : Recurrent neural network</p>', unsafe_allow_html=True)
+    if state.data is not None:
+        st.write("##")
+    else:
+        st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
+## Fin ML pages ##
 
 
 
