@@ -760,7 +760,7 @@ def page2_ML(state):
                             template='simple_white',
                             font=dict(size=10),
                             autosize=False,
-                            width=1300, height=650,
+                            width=1250, height=650,
                             margin=dict(l=40, r=50, b=40, t=40),
                             paper_bgcolor='rgba(0,0,0,0)',
                             plot_bgcolor='rgba(0,0,0,0)',
