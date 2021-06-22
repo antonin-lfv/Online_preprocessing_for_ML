@@ -758,6 +758,7 @@ def page2_ML(state):
                         state.df.columns=["x", "y", str(state.target_PCA)]
                         fig=px.scatter(state.df, x="x", y="y", color=str(state.target_PCA))
                         fig.update_layout(
+                            showlegend=True,
                             template='simple_white',
                             font=dict(size=10),
                             autosize=False,
