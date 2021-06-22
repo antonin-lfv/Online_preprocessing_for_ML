@@ -646,8 +646,8 @@ def page6(state):
     }
 
     st.sidebar.subheader("Algorithmes")
-    page_ml = st.sidebar.radio("", list(PAGES_ML.keys()))
-    PAGES_ML[page_ml](state)
+    state.page_ml = st.sidebar.radio("", list(PAGES_ML.keys()), list(PAGES_ML.keys()).index(state.page_ml) if state.page_ml else 0)
+    PAGES_ML[state.page_ml](state)
 ### fin accueil ML ###
 
 
@@ -742,8 +742,8 @@ def page7(state):
     }
 
     st.sidebar.subheader("Algorithmes")
-    page_dl = st.sidebar.radio("", list(PAGES_DL.keys()))
-    PAGES_DL[page_dl](state)
+    state.page_dl = st.sidebar.radio("", list(PAGES_DL.keys()), list(PAGES_DL.keys()).index(state.page_dl) if state.page_dl else 0)
+    PAGES_DL[state.page_dl](state)
 ### Fin section DL ###
 
 
@@ -765,6 +765,9 @@ def page2_DL(state):
     else:
         st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 ## Fin ML pages ##
+
+
+
 
 
 
