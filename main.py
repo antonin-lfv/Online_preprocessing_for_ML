@@ -16,6 +16,7 @@ import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
 from streamlit.hashing import _CodeHasher
 from sklearn.decomposition import PCA
+from umap import UMAP
 try:
     # Before Streamlit 0.65
     from streamlit.ReportThread import get_report_ctx
@@ -644,6 +645,7 @@ def page6(state):
     PAGES_ML = {
         "KNN": page1_ML,
         "PCA": page2_ML,
+        "UMAP": page3_ML,
     }
 
     st.sidebar.subheader("Algorithmes")
@@ -654,6 +656,7 @@ def page6(state):
 
 
 ## ML pages ##
+# KNN
 def page1_ML(state):
     st.write("##")
     st.markdown('<p class="grand_titre">KNN : k-nearest neighbors</p>', unsafe_allow_html=True)
@@ -712,6 +715,7 @@ def page1_ML(state):
     else :
         st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 
+# PCA
 def page2_ML(state):
     st.write("##")
     st.markdown('<p class="grand_titre">PCA : Analyse en composantes principales</p>', unsafe_allow_html=True)
@@ -756,7 +760,71 @@ def page2_ML(state):
                         # résultats points
                         state.df = pd.concat([pd.Series(x_pca[:, 0]), pd.Series(x_pca[:, 1]),pd.Series(state.df_ml_origine[state.target_PCA])], axis=1)
                         state.df.columns=["x", "y", str(state.target_PCA)]
-                        fig=px.scatter(state.df, x="x", y="y", color=str(state.target_PCA), color_discrete_sequence=px.colors.qualitative.G10)
+                        fig=px.scatter(state.df, x="x", y="y", color=str(state.target_PCA), labels={'color':'{}'.format(str(state.target_PCA))}, color_discrete_sequence=px.colors.qualitative.G10)
+                        fig.update_layout(
+                            showlegend=True,
+                            template='simple_white',
+                            font=dict(size=10),
+                            autosize=False,
+                            width=1250, height=650,
+                            margin=dict(l=40, r=50, b=40, t=40),
+                            paper_bgcolor='rgba(0,0,0,0)',
+                            plot_bgcolor='rgba(0,0,0,0)',
+                        )
+                        fig.update(layout_coloraxis_showscale=False)
+                        st.plotly_chart(fig)
+                    except:
+                        st.write("##")
+                        st.error("Erreur de chargement!")
+    else:
+        st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
+
+# UMAP
+def page3_ML(state):
+    st.write("##")
+    st.markdown('<p class="grand_titre">UMAP : Uniform Manifold Approximation and Projection</p>', unsafe_allow_html=True)
+    if state.data is not None:
+        col1, b, col2 = st.beta_columns((1, 0.2, 1))
+        with col1:
+            st.write("##")
+            st.markdown('<p class="section">Selection des colonnes pour le modèle (target+features)</p>',unsafe_allow_html=True)
+            state.choix_col_UMAP = st.multiselect("Choisir au moins deux colonnes",state.data.columns.tolist(), state.choix_col_UMAP)
+        if len(state.choix_col_UMAP) > 1:
+            df_ml = state.data[state.choix_col_UMAP]
+            df_ml = df_ml.dropna(axis=0)
+            state.df_ml_origine = df_ml.copy()
+            if len(df_ml) == 0:
+                with col1:
+                    st.write("##")
+                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
+            else:
+                with col1:
+                    # encodage !
+                    state.col_to_encodage_UMAP = st.multiselect("Selectionner les colonnes à encoder",
+                                                       state.choix_col_UMAP,
+                                                           state.col_to_encodage_UMAP)
+                    for col in state.col_to_encodage_UMAP:
+                        st.write("encodage colonne " + col + " : " + str(df_ml[col].unique().tolist()) + "->" + str(np.arange(len(df_ml[col].unique()))))
+                        df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())),inplace=True)  # encodage
+                    ## on choisit notre modèle
+                    model = UMAP(random_state=0)
+                with col2:
+                    ## création des target et features à partir du dataset
+                    st.write("##")
+                    st.write("##")
+                    state.target_UMAP = st.selectbox("Target :", ["Selectionner une target"] + col_numeric(df_ml),(["Selectionner une target"] + col_numeric(df_ml)).index(state.target_UMAP) if state.target_UMAP else 0)
+                if state.target_UMAP != "Selectionner une target":
+                    y = df_ml[state.target_UMAP]  # target
+                    X = df_ml.drop(state.target_UMAP, axis=1)  # features
+                    try:
+                        model.fit(X)
+                        x_umap = model.transform(X)
+                        st.write("##")
+                        st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
+                        # résultats points
+                        state.df = pd.concat([pd.Series(x_umap[:, 0]), pd.Series(x_umap[:, 1]),pd.Series(state.df_ml_origine[state.target_UMAP])], axis=1)
+                        state.df.columns=["x", "y", str(state.target_UMAP)]
+                        fig=px.scatter(state.df, x="x", y="y", color=str(state.target_UMAP), labels={'color':'{}'.format(str(state.target_UMAP))}, color_discrete_sequence=px.colors.qualitative.G10)
                         fig.update_layout(
                             showlegend=True,
                             template='simple_white',
