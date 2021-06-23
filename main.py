@@ -760,7 +760,7 @@ def page2_ML(state):
                         # résultats points
                         state.df = pd.concat([pd.Series(x_pca[:, 0]), pd.Series(x_pca[:, 1]),pd.Series(state.df_ml_origine[state.target_PCA])], axis=1)
                         state.df.columns=["x", "y", str(state.target_PCA)]
-                        fig=px.scatter(state.df, x="x", y="y", color=str(state.target_PCA), labels={'color':'{}'.format(str(state.target_PCA))}, color_discrete_sequence=px.colors.qualitative.G10)
+                        fig=px.scatter(state.df, x="x", y="y", color=str(state.target_PCA), labels={'color':'{}'.format(str(state.target_PCA))}, color_discrete_sequence=px.colors.qualitative.Plotly)
                         fig.update_layout(
                             showlegend=True,
                             template='simple_white',
@@ -824,7 +824,7 @@ def page3_ML(state):
                         # résultats points
                         state.df = pd.concat([pd.Series(x_umap[:, 0]), pd.Series(x_umap[:, 1]),pd.Series(state.df_ml_origine[state.target_UMAP])], axis=1)
                         state.df.columns=["x", "y", str(state.target_UMAP)]
-                        fig=px.scatter(state.df, x="x", y="y", color=str(state.target_UMAP), labels={'color':'{}'.format(str(state.target_UMAP))}, color_discrete_sequence=px.colors.qualitative.G10)
+                        fig=px.scatter(state.df, x="x", y="y", color=str(state.target_UMAP), labels={'color':'{}'.format(str(state.target_UMAP))}, color_discrete_sequence=px.colors.qualitative.Plotly)
                         fig.update_layout(
                             showlegend=True,
                             template='simple_white',
