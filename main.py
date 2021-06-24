@@ -665,7 +665,7 @@ def page1_ML(state):
             with col1 :
                 st.write("##")
                 st.markdown('<p class="section">Selection des colonnes pour le modèle (target+features)</p>', unsafe_allow_html=True)
-                state.choix_col = st.multiselect("Choisir au moins deux colonnes",["Toutes les colonnes"] + state.data.columns.tolist(), state.choix_col)
+                state.choix_col = st.multiselect("Choisir au moins deux colonnes", state.data.columns.tolist(), state.choix_col)
             if len(state.choix_col) > 1:
                 df_ml = state.data[state.choix_col]
                 df_ml = df_ml.dropna(axis=0)
@@ -676,7 +676,7 @@ def page1_ML(state):
                 else :
                     with col1 :
                         # encodage !
-                        state.col_to_encodage = st.multiselect("Selectionner les colonnes à encoder",["Toutes les colonnes"] + state.choix_col, state.col_to_encodage)
+                        state.col_to_encodage = st.multiselect("Selectionner les colonnes à encoder",state.choix_col, state.col_to_encodage)
                         for col in state.col_to_encodage :
                             st.write("encodage colonne "+col+" : "+str(df_ml[col].unique().tolist())+"->"+str(np.arange(len(df_ml[col].unique()))))
                             df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())), inplace=True)  # encodage
