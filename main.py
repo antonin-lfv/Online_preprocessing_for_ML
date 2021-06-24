@@ -702,8 +702,7 @@ def page1_ML(state):
                                     st.markdown('<p class="section">Entrez vos données</p>', unsafe_allow_html=True)
                                     for col in X.columns.tolist() :
                                         col = st.text_input(col)
-                                        features.append(float(col))
-                                    st.write("test1")
+                                        features.append(col)
 
                                     if "" not in features:
                                         features = pd.DataFrame([features], columns=X.columns)  # données initiales
@@ -713,24 +712,23 @@ def page1_ML(state):
                                         model = PCA(n_components=2)
                                         model.fit(X)
                                         x_pca = model.transform(X)
-                                        st.write("test2")
                                         df = pd.concat([pd.Series(x_pca[:-1, 0]), pd.Series(x_pca[:-1, 1]),pd.Series(state.data[state.target])], axis=1)
                                         df.columns = ["x", "y", str(state.target)]
 
                                         ## KNN
-                                        state.voisins = st.slider('Nombre de voisins', min_value=4,max_value=int(len(y) * 0.2), value=state.voisins)
-                                        y_pca_knn = state.data[state.target]  # target
-                                        X_pca_knn = state.data.drop(state.target, axis=1)  # features
-                                        model = KNeighborsClassifier(n_neighbors=state.voisins)
-                                        model.fit(X_pca_knn, y_pca_knn)  # on entraine le modèle
-                                        donnee_apres_pca = [x_pca[-1, 0], x_pca[-1, 1]]
-                                        x = np.array(donnee_apres_pca).reshape(1, len(donnee_apres_pca))
                                         with col1:
                                             st.write("##")
+                                            st.write("##")
                                             st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
-                                            st.write(x.shape)
-                                            p = model.predict(x)
-                                            #st.success("Prédiction de la target "+state.target+" : "+str(p))
+                                            state.voisins = st.slider('Nombre de voisins', min_value=4,max_value=int(len(y) * 0.2), value=state.voisins)
+                                            y_pca_knn = df[state.target]  # target
+                                            X_pca_knn = df.drop(state.target, axis=1)  # features
+                                            model_knn = KNeighborsClassifier(n_neighbors=state.voisins)
+                                            model_knn.fit(X_pca_knn, y_pca_knn)  # on entraine le modèle
+                                            donnee_apres_pca = [x_pca[-1, 0], x_pca[-1, 1]]
+                                            x = np.array(donnee_apres_pca).reshape(1, len(donnee_apres_pca))
+                                            p = model_knn.predict(x)
+                                            st.success("Prédiction de la target "+state.target+" : "+str(p))
 
                                             fig = px.scatter(df, x="x", y="y", color=str(state.target), labels={'color': str(state.target)},
                                                              color_discrete_sequence=px.colors.qualitative.Plotly)
