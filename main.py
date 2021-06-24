@@ -729,7 +729,7 @@ def page1_ML(state):
                                             st.write("##")
                                             st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
                                             st.write(x.shape)
-                                            #p = model.predict(x)
+                                            p = model.predict(x)
                                             #st.success("Prédiction de la target "+state.target+" : "+str(p))
 
                                             fig = px.scatter(df, x="x", y="y", color=str(state.target), labels={'color': str(state.target)},
