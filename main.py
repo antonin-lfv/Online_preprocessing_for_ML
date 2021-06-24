@@ -691,9 +691,9 @@ def page1_ML(state):
                                 X = df_ml.drop(state.target, axis=1)  # features
                                 try :
                                     model.fit(X, y)  # on entraine le modèle
-                                    model.score(X, y)  # pourcentage de réussite
+                                    #model.score(X, y)  # pourcentage de réussite
 
-                                    model.predict(X)  # on test avec X
+                                    #model.predict(X)  # on test avec X
 
                                     features = []
                                     st.write("##")
