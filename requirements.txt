@@ -4,3 +4,4 @@ seaborn
 xlrd
 sklearn
 umap-learn
+scipy

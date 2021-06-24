@@ -17,6 +17,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from streamlit.hashing import _CodeHasher
 from sklearn.decomposition import PCA
 from umap import UMAP
+from scipy.spatial import distance
 try:
     # Before Streamlit 0.65
     from streamlit.ReportThread import get_report_ctx
@@ -99,6 +100,15 @@ def clean_data(x):# enlever les symboles d'une colonne
         return(x.replace('$', '').replace(',', '').replace('€', '').replace('£', ''))
     return(x)
 
+def distance_e(x, y):  # distance entre 2 points du plan cartésien
+    return distance.euclidean([x[0],x[1]],[y[0],y[1]])
+
+def max_dist(donnee_apres_pca, df, voisins): # pour knn, retourne la distance du voisins le plus loin
+    distances = []
+    for i in range(len(df)):
+        distances.append(distance_e(donnee_apres_pca, [df['x'].iloc[i], df['y'].iloc[i]]))
+    distances.sort()
+    return distances[voisins-1]
 
 ###### Session data ######
 class _SessionState:
@@ -680,9 +690,6 @@ def page1_ML(state):
                         for col in state.col_to_encodage :
                             st.write("encodage colonne "+col+" : "+str(df_ml[col].unique().tolist())+"->"+str(np.arange(len(df_ml[col].unique()))))
                             df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())), inplace=True)  # encodage
-                        ## on choisit notre modèle
-                        from sklearn.neighbors import KNeighborsClassifier
-                        model = KNeighborsClassifier()
                         ## création des target et features à partir du dataset
                         state.target = st.selectbox("Target :", ["Selectionner une target"] + col_numeric(df_ml), (["Selectionner une target"] + col_numeric(df_ml)).index(state.target) if state.target else 0 )
                         with col2 :
@@ -690,29 +697,79 @@ def page1_ML(state):
                                 y = df_ml[state.target]  # target
                                 X = df_ml.drop(state.target, axis=1)  # features
                                 try :
-                                    model.fit(X, y)  # on entraine le modèle
-                                    #model.score(X, y)  # pourcentage de réussite
-
-                                    #model.predict(X)  # on test avec X
-
                                     features = []
                                     st.write("##")
                                     st.markdown('<p class="section">Entrez vos données</p>', unsafe_allow_html=True)
                                     for col in X.columns.tolist() :
                                         col = st.text_input(col)
-                                        features.append(col)
+                                        features.append(float(col))
+                                    st.write("test1")
 
-                                    if "" not in features :
-                                        x = np.array(features).reshape(1, len(features))
-                                        state.p = (model.predict(x))
+                                    if "" not in features:
+                                        features = pd.DataFrame([features], columns=X.columns)  # données initiales
+                                        X = X.append(features, ignore_index=True)
+
+                                        ## PCA
+                                        model = PCA(n_components=2)
+                                        model.fit(X)
+                                        x_pca = model.transform(X)
+                                        st.write("test2")
+                                        df = pd.concat([pd.Series(x_pca[:-1, 0]), pd.Series(x_pca[:-1, 1]),pd.Series(state.data[state.target])], axis=1)
+                                        df.columns = ["x", "y", str(state.target)]
+
+                                        ## KNN
+                                        state.voisins = st.slider('Nombre de voisins', min_value=4,max_value=int(len(y) * 0.2), value=state.voisins)
+                                        y_pca_knn = state.data[state.target]  # target
+                                        X_pca_knn = state.data.drop(state.target, axis=1)  # features
+                                        model = KNeighborsClassifier(n_neighbors=state.voisins)
+                                        model.fit(X_pca_knn, y_pca_knn)  # on entraine le modèle
+                                        donnee_apres_pca = [x_pca[-1, 0], x_pca[-1, 1]]
+                                        x = np.array(donnee_apres_pca).reshape(1, len(donnee_apres_pca))
                                         with col1:
                                             st.write("##")
                                             st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
-                                            st.success("Prédiction de la target "+state.target+" : "+str(state.p))
+                                            st.write(x.shape)
+                                            #p = model.predict(x)
+                                            #st.success("Prédiction de la target "+state.target+" : "+str(p))
+
+                                            fig = px.scatter(df, x="x", y="y", color=str(state.target), labels={'color': str(state.target)},
+                                                             color_discrete_sequence=px.colors.qualitative.Plotly)
+                                            fig.update_layout(
+                                                showlegend=True,
+                                                template='simple_white',
+                                                font=dict(size=10),
+                                                autosize=False,
+                                                width=1250, height=650,
+                                                margin=dict(l=40, r=50, b=40, t=40),
+                                                paper_bgcolor='rgba(0,0,0,0)',
+                                                plot_bgcolor='rgba(0,0,0,0)',
+                                                title="Prédiction avec " + str(state.voisins) + " voisins"
+                                            )
+                                            fig.update_yaxes(
+                                                scaleanchor="x",
+                                                scaleratio=1,
+                                            )
+                                            fig.add_scatter(x=[donnee_apres_pca[0]], y=[donnee_apres_pca[1]],
+                                                            mode='markers', marker=dict(color='black'),
+                                                            name='donnees pour prédiction')
+                                            fig.add_shape(type="circle",
+                                                          xref="x", yref="y",
+                                                          x0=donnee_apres_pca[0] - max_dist(donnee_apres_pca, df, state.voisins),
+                                                          y0=donnee_apres_pca[1] - max_dist(donnee_apres_pca, df, state.voisins),
+                                                          x1=donnee_apres_pca[0] + max_dist(donnee_apres_pca, df, state.voisins),
+                                                          y1=donnee_apres_pca[1] + max_dist(donnee_apres_pca, df, state.voisins),
+                                                          line_color="red",
+                                                          fillcolor="grey"
+                                                          )
+                                            fig.update(layout_coloraxis_showscale=False)
+                                            with col1 :
+                                                st.write("##")
+                                                st.write("##")
+                                                st.plotly_chart(fig)
                                 except :
                                     with col1:
                                         st.write("##")
-                                        st.error("Erreur ! Avez vous encoder toutes les features necessaires ?")
+                                        st.error("Erreur de chargement")
     else :
         st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 
