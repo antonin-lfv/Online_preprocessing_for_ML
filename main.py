@@ -686,6 +686,7 @@ def page1_ML(state):
                 else :
                     with col1 :
                         # encodage !
+                        df_origine=df_ml.copy()
                         state.col_to_encodage = st.multiselect("Selectionner les colonnes à encoder",state.choix_col, state.col_to_encodage)
                         for col in state.col_to_encodage :
                             st.write("encodage colonne "+col+" : "+str(df_ml[col].unique().tolist())+"->"+str(np.arange(len(df_ml[col].unique()))))
@@ -712,7 +713,7 @@ def page1_ML(state):
                                         model = PCA(n_components=2)
                                         model.fit(X)
                                         x_pca = model.transform(X)
-                                        df = pd.concat([pd.Series(x_pca[:-1, 0]), pd.Series(x_pca[:-1, 1]),pd.Series(state.data[state.target])], axis=1)
+                                        df = pd.concat([pd.Series(x_pca[:-1, 0]).reset_index(drop=True), pd.Series(x_pca[:-1, 1]).reset_index(drop=True),pd.Series(df_origine[state.target]).reset_index(drop=True)], axis=1)
                                         df.columns = ["x", "y", str(state.target)]
 
                                         ## KNN
@@ -720,7 +721,12 @@ def page1_ML(state):
                                             st.write("##")
                                             st.write("##")
                                             st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
-                                            state.voisins = st.slider('Nombre de voisins', min_value=4,max_value=int(len(y) * 0.2), value=state.voisins)
+                                            with col2:
+                                                st.write("##")
+                                                st.write("##")
+                                                st.write("##")
+                                                st.write("##")
+                                                state.voisins = st.slider('Nombre de voisins', min_value=4,max_value=int(len(y) * 0.2), value=state.voisins)
                                             y_pca_knn = df[state.target]  # target
                                             X_pca_knn = df.drop(state.target, axis=1)  # features
                                             model_knn = KNeighborsClassifier(n_neighbors=state.voisins)
@@ -729,9 +735,7 @@ def page1_ML(state):
                                             x = np.array(donnee_apres_pca).reshape(1, len(donnee_apres_pca))
                                             p = model_knn.predict(x)
                                             st.success("Prédiction de la target "+state.target+" : "+str(p))
-
-                                            fig = px.scatter(df, x="x", y="y", color=str(state.target), labels={'color': str(state.target)},
-                                                             color_discrete_sequence=px.colors.qualitative.Plotly)
+                                            fig = px.scatter(df, x="x", y="y", color=str(state.target), labels={'color': str(state.target)}, color_discrete_sequence=px.colors.qualitative.Plotly)
                                             fig.update_layout(
                                                 showlegend=True,
                                                 template='simple_white',
