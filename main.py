@@ -225,6 +225,9 @@ def main():
             '<p class="intro">Un tutoriel sur l\'utilisation de ce site est disponible sur <a href="https://github.com/antonin-lfv/Online_preprocessing_for_ML">Github</a>. Si vous voulez un dataset pour '+
             'simplement tester, vous pouvez télécharger le dataset des iris <a href="https://www.kaggle.com/arshid/iris-flower-dataset">ici</a>.</p>',
             unsafe_allow_html=True)
+        st.markdown(
+            '<p class="intro">En cas de bug ou d\'erreur veuillez m\'en informer par mail ou sur Discord. (Liens sur Github)</p>',
+            unsafe_allow_html=True)
         st.write("##")
     state.sync()
 
