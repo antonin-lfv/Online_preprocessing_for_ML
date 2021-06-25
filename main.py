@@ -762,6 +762,7 @@ def page1_ML(state):
                                             with col1 :
                                                 st.write("##")
                                                 st.write("##")
+                                                st.markdown('<p class="section">Visualisation grâce à une réduction de dimensions (PCA)</p>', unsafe_allow_html=True)
                                                 st.plotly_chart(fig)
                                 except :
                                     with col1:
