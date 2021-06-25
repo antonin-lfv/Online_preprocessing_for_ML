@@ -721,12 +721,7 @@ def page1_ML(state):
                                             st.write("##")
                                             st.write("##")
                                             st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
-                                            with col2:
-                                                st.write("##")
-                                                st.write("##")
-                                                st.write("##")
-                                                st.write("##")
-                                                state.voisins = st.slider('Nombre de voisins', min_value=4,max_value=int(len(y) * 0.2), value=state.voisins)
+                                            state.voisins = st.slider('Nombre de voisins', min_value=4,max_value=int(len(y) * 0.2), value=state.voisins)
                                             y_pca_knn = df[state.target]  # target
                                             X_pca_knn = df.drop(state.target, axis=1)  # features
                                             model_knn = KNeighborsClassifier(n_neighbors=state.voisins)
