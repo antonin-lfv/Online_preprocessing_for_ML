@@ -243,11 +243,6 @@ def page1(state):
     st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow_html=True)
     st.write("##")
     st.markdown(
-        '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes pour développer votre modèle, ou simplement pour visualiser vos données. ' +
-        'Pour charger votre dataset, uploadé le depuis le volet latéral, et rendez vous dans la section "chargement du dataset".</p>',
-        unsafe_allow_html=True)
-    st.write("##")
-    st.markdown(
         '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes, visualisez vos données et créez vos modèles de Machine et Deep Learning. ' +
         'Pour charger votre dataset, uploadé le depuis le volet latéral, et rendez vous dans la section "chargement du dataset".</p>',
         unsafe_allow_html=True)
