@@ -18,6 +18,7 @@ from streamlit.hashing import _CodeHasher
 from sklearn.decomposition import PCA
 from umap import UMAP
 from scipy.spatial import distance
+from sklearn.cluster import KMeans
 try:
     # Before Streamlit 0.65
     from streamlit.ReportThread import get_report_ctx
@@ -665,8 +666,9 @@ def page6(state):
     st.write("##")
     PAGES_ML = {
         "KNN": page1_ML,
-        "PCA": page2_ML,
-        "UMAP": page3_ML,
+        "K-Means": page2_ML,
+        "PCA": page3_ML,
+        "UMAP": page4_ML,
     }
 
     st.sidebar.subheader("Algorithmes")
@@ -783,8 +785,76 @@ def page1_ML(state):
     else :
         st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 
-# PCA
+# K-Means
 def page2_ML(state):
+    st.write("##")
+    st.markdown('<p class="grand_titre">K-Means</p>', unsafe_allow_html=True)
+    if state.data is not None:
+        col1, b, col2 = st.beta_columns((1, 0.2, 1))
+        with col1:
+            st.write("##")
+            st.markdown('<p class="section">Selection des features pour le modèle</p>',unsafe_allow_html=True)
+            state.choix_col_kmeans = st.multiselect("Choisir au moins deux colonnes", col_numeric(state.data), state.choix_col_kmeans)
+        if len(state.choix_col_kmeans) > 1:
+            df_ml = state.data[state.choix_col_kmeans]
+            df_ml = df_ml.dropna(axis=0)
+            if len(df_ml) == 0:
+                with col1:
+                    st.write("##")
+                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
+            else:
+                with col1 :
+                    X = df_ml[state.choix_col_kmeans]  # features
+                    try:
+                        ## PCA
+                        model = PCA(n_components=2)
+                        model.fit(X)
+                        x_pca = model.transform(X)
+
+                        df = pd.concat([pd.Series(x_pca[:, 0]), pd.Series(x_pca[:, 1])], axis=1)
+                        df.columns = ["x", "y"]
+
+                        ## K-Means
+                        st.write("##")
+                        st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
+                        state.cluster = st.slider('Nombre de clusters', min_value=2,max_value=int(len(X) * 0.2), value=state.cluster)
+                        X_pca_kmeans = df
+
+                        modele = KMeans(n_clusters=state.cluster)
+                        modele.fit(X_pca_kmeans)
+                        y_kmeans = modele.predict(X_pca_kmeans)
+                        df["class"] = pd.Series(y_kmeans)
+
+                        fig = px.scatter(df, x=X_pca_kmeans['x'], y=X_pca_kmeans['y'], color="class", color_discrete_sequence=px.colors.qualitative.G10)
+                        fig.update_layout(
+                            showlegend=True,
+                            template='simple_white',
+                            font=dict(size=10),
+                            autosize=False,
+                            width=1250, height=650,
+                            margin=dict(l=40, r=50, b=40, t=40),
+                            paper_bgcolor='rgba(0,0,0,0)',
+                            plot_bgcolor='rgba(0,0,0,0)',
+                            title="K-Means avec " + str(state.cluster) + " Cluster",
+                        )
+                        fig.update(layout_coloraxis_showscale=False)
+                        centers = modele.cluster_centers_
+                        fig.add_scatter(x=centers[:, 0], y=centers[:, 1], mode='markers',marker=dict(color='black', size=15), opacity=0.4, name='Centroïdes')
+                        st.write("##")
+                        st.markdown(
+                            '<p class="section">Visualisation grâce à une réduction de dimensions (PCA)</p>',
+                            unsafe_allow_html=True)
+                        st.write("##")
+                        st.plotly_chart(fig)
+                    except:
+                        with col1:
+                            st.write("##")
+                            st.error("Erreur de chargement")
+    else:
+        st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
+
+# PCA
+def page3_ML(state):
     st.write("##")
     st.markdown('<p class="grand_titre">PCA : Analyse en composantes principales</p>', unsafe_allow_html=True)
     if state.data is not None:
@@ -848,7 +918,7 @@ def page2_ML(state):
         st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 
 # UMAP
-def page3_ML(state):
+def page4_ML(state):
     st.write("##")
     st.markdown('<p class="grand_titre">UMAP : Uniform Manifold Approximation and Projection</p>', unsafe_allow_html=True)
     if state.data is not None:
