@@ -288,6 +288,7 @@ def page2(state):
             state.col_to_time = st.multiselect('Conversion Time Series',
                                                 state.data.columns.tolist(),
                                                state.col_to_time)
+            st.write("##")
             state.col_to_drop = st.multiselect('Supprimer une colonne',
                                                 state.data.columns.tolist(),
                                                state.col_to_drop)
