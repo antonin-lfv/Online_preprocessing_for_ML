@@ -665,9 +665,9 @@ def page6(state):
     st.markdown('<p class="first_titre">Machine Learning</p>', unsafe_allow_html=True)
     st.write("##")
     PAGES_ML = {
-        "KNN": page1_ML,
+        "K-nearest neighbors": page1_ML,
         "K-Means": page2_ML,
-        "SVM": page3_ML,
+        "Support Vector Machine": page3_ML,
         "PCA": page4_ML,
         "UMAP": page5_ML,
     }
