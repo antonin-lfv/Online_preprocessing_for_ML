@@ -190,6 +190,7 @@ def _get_state(hash_funcs=None):
 st.cache()
 uploaded_file = st.sidebar.file_uploader("Chargez votre dataset", type=['csv', 'xls'])
 if uploaded_file is not None:
+    file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type,"FileSize": uploaded_file.size}
     st.sidebar.success('Fichier chargé avec succès !')
 
 
@@ -207,14 +208,12 @@ def main():
         "Machine Learning": page6,
         "Deep Learning" : page7
     }
-
-    if uploaded_file is not None :
-        st.sidebar.title('Menu')
-        st.sidebar.subheader('Data visualisation and ML')
-        page=st.sidebar.radio("", list(PAGES.keys()))
+    if uploaded_file is not None:
+        st.sidebar.title('Menu :bulb:')
+        page = st.sidebar.radio("", list(PAGES.keys()))
         PAGES[page](state)
-    else :
-        if state.data is not None :
+    else:
+        if state.data is not None:
             state.clear()
         st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow_html=True)
         st.write("##")
@@ -223,7 +222,7 @@ def main():
             'Pour charger votre dataset, uploadé le depuis le volet latéral, et rendez vous dans la section "chargement du dataset".</p>',
             unsafe_allow_html=True)
         st.markdown(
-            '<p class="intro">Un tutoriel sur l\'utilisation de ce site est disponible sur <a href="https://github.com/antonin-lfv/Online_preprocessing_for_ML">Github</a>. Si vous voulez un dataset pour '+
+            '<p class="intro">Un tutoriel sur l\'utilisation de ce site est disponible sur <a href="https://github.com/antonin-lfv/Online_preprocessing_for_ML">Github</a>. Si vous voulez un dataset pour ' +
             'simplement tester, vous pouvez télécharger le dataset des iris <a href="https://www.kaggle.com/arshid/iris-flower-dataset">ici</a>.</p>',
             unsafe_allow_html=True)
         st.markdown(
@@ -276,7 +275,6 @@ def page2(state):
     st.markdown('<p class="grand_titre">Chargement du dataset</p>', unsafe_allow_html=True)
     st.write("##")
 
-    state.file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type, "FileSize": uploaded_file.size}
     col1_1, b_1, col2_1 = st.beta_columns((1, 0.1, 1))
     col1, b, col2 = st.beta_columns((2.7, 0.3, 1))
     if state.data is not None :
@@ -340,7 +338,7 @@ def page2(state):
 
     if state.data is None:
         try:
-            if 'csv' in state.file_details['FileName']:
+            if 'csv' in file_details['FileName']:
                 if state.separateur != "":
                     data = pd.read_csv(uploaded_file, sep=state.separateur, engine='python')
                     state.data = data
@@ -355,7 +353,7 @@ def page2(state):
                     data = pd.read_csv(uploaded_file, engine='python')
                     state.data = data
         except:
-            st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
+            st.warning('Veuillez charger votre dataset')
 ### Fin section du dataset ###
 
 
@@ -370,9 +368,9 @@ def page2(state):
 ### Section de la colonne ###
 #############################
 def page3(state):
+    st.markdown('<p class="grand_titre">Analyse des colonnes</p>', unsafe_allow_html=True)
+    st.write('##')
     if state.data is not None:
-        st.markdown('<p class="grand_titre">Analyse des colonnes</p>', unsafe_allow_html=True)
-        st.write('##')
         options = state.data.columns.to_list()
         state.slider_col = st.multiselect(
             'Selectionner une ou plusieurs colonnes',
@@ -443,8 +441,9 @@ def page3(state):
 ###Section Mat de corr ###
 ##########################
 def page4(state):
+    st.markdown('<p class="grand_titre">Matrice de corrélations</p>', unsafe_allow_html=True)
+    st.write("##")
     if state.data is not None:
-            st.markdown('<p class="grand_titre">Matrice de corrélations</p>', unsafe_allow_html=True)
             col1, b, col2 = st.beta_columns((1, 1, 2))
             df_sans_NaN = state.data
             with col1:
@@ -508,8 +507,9 @@ def page4(state):
 ###  Section Graphiques ###
 ###########################
 def page5(state):
+    st.markdown('<p class="grand_titre">Graphiques et regressions</p>', unsafe_allow_html=True)
+    st.write("##")
     if state.data is not None:
-        st.markdown('<p class="grand_titre">Graphiques et regressions</p>', unsafe_allow_html=True)
         col1, b, col2, c, col3, d, col4 = st.beta_columns((7)) # pour les autres select
         col_num = col_numeric(state.data)+state.col_to_time
         with col1 :
@@ -671,7 +671,7 @@ def page6(state):
         "UMAP": page4_ML,
     }
 
-    st.sidebar.subheader("Algorithmes")
+    st.sidebar.subheader("Algorithmes :control_knobs:")
     state.page_ml = st.sidebar.radio("", list(PAGES_ML.keys()), list(PAGES_ML.keys()).index(state.page_ml) if state.page_ml else 0)
     PAGES_ML[state.page_ml](state)
 ### fin accueil ML ###
@@ -1003,7 +1003,7 @@ def page7(state):
         "RNN": page2_DL,
     }
 
-    st.sidebar.subheader("Algorithmes")
+    st.sidebar.subheader("Algorithmes :control_knobs:")
     state.page_dl = st.sidebar.radio("", list(PAGES_DL.keys()), list(PAGES_DL.keys()).index(state.page_dl) if state.page_dl else 0)
     PAGES_DL[state.page_dl](state)
 ### Fin section DL ###
