@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="sep" />
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="sep">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,27 +87,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00192" summary="ML and DL pages">
-      <created>1624385635813</created>
-      <option name="number" value="00192" />
-      <option name="presentableId" value="LOCAL-00192" />
-      <option name="project" value="LOCAL" />
-      <updated>1624385635813</updated>
-    </task>
-    <task id="LOCAL-00193" summary="ML and DL pages">
-      <created>1624386415144</created>
-      <option name="number" value="00193" />
-      <option name="presentableId" value="LOCAL-00193" />
-      <option name="project" value="LOCAL" />
-      <updated>1624386415144</updated>
-    </task>
-    <task id="LOCAL-00194" summary="ML and DL pages">
-      <created>1624386457531</created>
-      <option name="number" value="00194" />
-      <option name="presentableId" value="LOCAL-00194" />
-      <option name="project" value="LOCAL" />
-      <updated>1624386457531</updated>
     </task>
     <task id="LOCAL-00195" summary="ML and DL pages">
       <created>1624386566175</created>
@@ -429,7 +410,28 @@
       <option name="project" value="LOCAL" />
       <updated>1624796793877</updated>
     </task>
-    <option name="localTasksCounter" value="241" />
+    <task id="LOCAL-00241" summary="drop">
+      <created>1624796998537</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
+      <option name="project" value="LOCAL" />
+      <updated>1624796998537</updated>
+    </task>
+    <task id="LOCAL-00242" summary="drop">
+      <created>1624797073586</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
+      <option name="project" value="LOCAL" />
+      <updated>1624797073586</updated>
+    </task>
+    <task id="LOCAL-00243" summary="drop">
+      <created>1624797138937</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
+      <option name="project" value="LOCAL" />
+      <updated>1624797138937</updated>
+    </task>
+    <option name="localTasksCounter" value="244" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -507,7 +509,7 @@
     <state width="1346" height="200" key="GridCell.Tab.0.right/-1920.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1623404954334" />
     <state width="1899" height="304" key="GridCell.Tab.0.right/-1920.-180.1920.1080/0.0.1440.900@-1920.-180.1920.1080" timestamp="1623780080308" />
     <state width="1346" height="199" key="GridCell.Tab.0.right/0.25.1440.799@0.25.1440.799" timestamp="1623850018533" />
-    <state x="393" y="194" key="Vcs.Push.Dialog.v2" timestamp="1624797074871">
+    <state x="393" y="194" key="Vcs.Push.Dialog.v2" timestamp="1624797139999">
       <screen x="0" y="25" width="1440" height="796" />
     </state>
     <state x="-1396" y="68" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@-1920.-155.1920.1055" timestamp="1624627188339" />
@@ -522,7 +524,7 @@
     <state x="-1396" y="51" key="Vcs.Push.Dialog.v2/-1920.-155.1920.974/0.25.1440.875@-1920.-155.1920.974" timestamp="1623329018807" />
     <state x="393" y="210" key="Vcs.Push.Dialog.v2/-1920.-155.1920.974/0.25.1440.875@0.25.1440.875" timestamp="1623332848954" />
     <state x="-1396" y="48" key="Vcs.Push.Dialog.v2/-1920.-180.1920.1080/0.0.1440.900@-1920.-180.1920.1080" timestamp="1624443691584" />
-    <state x="393" y="194" key="Vcs.Push.Dialog.v2/0.25.1440.796@0.25.1440.796" timestamp="1624797074871" />
+    <state x="393" y="194" key="Vcs.Push.Dialog.v2/0.25.1440.796@0.25.1440.796" timestamp="1624797139999" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/0.25.1440.797@0.25.1440.797" timestamp="1624187269688" />
     <state x="393" y="195" key="Vcs.Push.Dialog.v2/0.25.1440.799@0.25.1440.799" timestamp="1624650806984" />
     <state x="393" y="195" key="Vcs.Push.Dialog.v2/0.25.1440.801@0.25.1440.801" timestamp="1624650154198" />
