@@ -288,10 +288,6 @@ def page2(state):
             state.col_to_time = st.multiselect('Conversion Time Series',
                                                 state.data.columns.tolist(),
                                                state.col_to_time)
-            st.write("##")
-            state.col_to_drop = st.multiselect('Supprimer une colonne',
-                                                state.data.columns.tolist(),
-                                               state.col_to_drop)
         with col2_1:
             state.col_to_float_money = st.multiselect('Conversion Monnaies',
                                                 state.data.columns.tolist() ,
@@ -305,14 +301,6 @@ def page2(state):
                 for col in state.col_to_time:
                     try:
                         state.data[col] = pd.to_datetime(state.data[col])
-                        st.success("Transformation effectuée !")
-                    except:
-                        st.error("Transformation impossible ou déjà effectuée")
-        if len(state.col_to_drop)>0:
-            with col1_1:
-                for col in state.col_to_drop:
-                    try:
-                        state.data = state.data.drop(col)
                         st.success("Transformation effectuée !")
                     except:
                         st.error("Transformation impossible ou déjà effectuée")
