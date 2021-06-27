@@ -281,13 +281,16 @@ def page2(state):
         with col1_1:
             state.separateur = st.text_input("Séparateur (optionnel): ", state.separateur or "")
         st.write("##")
-        st.markdown("<p class='petite_section'>Si des colonnes de votre dataset contiennent des dates, des symboles de monnaies ou des virgules qui empêchent le bon typage alors selectionnez les ici : </p>",unsafe_allow_html=True)
+        st.markdown("<p class='petite_section'>Modifications du dataset : </p>",unsafe_allow_html=True)
         col1_1, b_1, col2_1, c_1, col3_1 = st.beta_columns((1, 0.2, 1, 0.2, 1))  # pour time series
         st.write("##")
         with col1_1:
             state.col_to_time = st.multiselect('Conversion Time Series',
                                                 state.data.columns.tolist(),
                                                state.col_to_time)
+            state.col_to_drop = st.multiselect('Supprimer une colonne',
+                                                state.data.columns.tolist(),
+                                               state.col_to_drop)
         with col2_1:
             state.col_to_float_money = st.multiselect('Conversion Monnaies',
                                                 state.data.columns.tolist() ,
@@ -301,6 +304,14 @@ def page2(state):
                 for col in state.col_to_time:
                     try:
                         state.data[col] = pd.to_datetime(state.data[col])
+                        st.success("Transformation effectuée !")
+                    except:
+                        st.error("Transformation impossible ou déjà effectuée")
+        if len(state.col_to_drop)>0:
+            with col1_1:
+                for col in state.col_to_drop:
+                    try:
+                        state.data.drop(col, axis=1, inplace=True)
                         st.success("Transformation effectuée !")
                     except:
                         st.error("Transformation impossible ou déjà effectuée")
