@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="sep">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="sep" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,20 +85,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00190" summary="ML and DL pages">
-      <created>1624380430352</created>
-      <option name="number" value="00190" />
-      <option name="presentableId" value="LOCAL-00190" />
-      <option name="project" value="LOCAL" />
-      <updated>1624380430352</updated>
-    </task>
-    <task id="LOCAL-00191" summary="ML and DL pages">
-      <created>1624384608134</created>
-      <option name="number" value="00191" />
-      <option name="presentableId" value="LOCAL-00191" />
-      <option name="project" value="LOCAL" />
-      <updated>1624384608134</updated>
     </task>
     <task id="LOCAL-00192" summary="ML and DL pages">
       <created>1624385635813</created>
@@ -431,7 +415,21 @@
       <option name="project" value="LOCAL" />
       <updated>1624789913401</updated>
     </task>
-    <option name="localTasksCounter" value="239" />
+    <task id="LOCAL-00239" summary="drop">
+      <created>1624796753601</created>
+      <option name="number" value="00239" />
+      <option name="presentableId" value="LOCAL-00239" />
+      <option name="project" value="LOCAL" />
+      <updated>1624796753601</updated>
+    </task>
+    <task id="LOCAL-00240" summary="drop">
+      <created>1624796793876</created>
+      <option name="number" value="00240" />
+      <option name="presentableId" value="LOCAL-00240" />
+      <option name="project" value="LOCAL" />
+      <updated>1624796793877</updated>
+    </task>
+    <option name="localTasksCounter" value="241" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -477,7 +475,8 @@
     <MESSAGE value="DL" />
     <MESSAGE value="k-means" />
     <MESSAGE value="KNN" />
-    <option name="LAST_COMMIT_MESSAGE" value="KNN" />
+    <MESSAGE value="drop" />
+    <option name="LAST_COMMIT_MESSAGE" value="drop" />
   </component>
   <component name="WindowStateProjectService">
     <state x="100" y="125" width="1240" height="596" key="DiffContextDialog" timestamp="1624789825564">
