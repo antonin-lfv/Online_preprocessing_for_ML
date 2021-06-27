@@ -667,8 +667,9 @@ def page6(state):
     PAGES_ML = {
         "KNN": page1_ML,
         "K-Means": page2_ML,
-        "PCA": page3_ML,
-        "UMAP": page4_ML,
+        "SVM": page3_ML,
+        "PCA": page4_ML,
+        "UMAP": page5_ML,
     }
 
     st.sidebar.subheader("Algorithmes :control_knobs:")
@@ -853,8 +854,18 @@ def page2_ML(state):
     else:
         st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 
-# PCA
+# SVM
 def page3_ML(state):
+    st.write("##")
+    st.markdown('<p class="grand_titre">SVM : Support Vector Machine</p>', unsafe_allow_html=True)
+    if state.data is not None:
+        st.write("##")
+        # Noyau linéaire, noyau quadratique, noyau polynomiale, noyau Gaussien
+    else:
+        st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
+
+# PCA
+def page4_ML(state):
     st.write("##")
     st.markdown('<p class="grand_titre">PCA : Analyse en composantes principales</p>', unsafe_allow_html=True)
     if state.data is not None:
@@ -918,7 +929,7 @@ def page3_ML(state):
         st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 
 # UMAP
-def page4_ML(state):
+def page5_ML(state):
     st.write("##")
     st.markdown('<p class="grand_titre">UMAP : Uniform Manifold Approximation and Projection</p>', unsafe_allow_html=True)
     if state.data is not None:
