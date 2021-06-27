@@ -312,7 +312,7 @@ def page2(state):
             with col1_1:
                 for col in state.col_to_drop:
                     try:
-                        state.data = state.data.drop(col, axis=1)
+                        state.data = state.data.drop(col)
                         st.success("Transformation effectuée !")
                     except:
                         st.error("Transformation impossible ou déjà effectuée")
