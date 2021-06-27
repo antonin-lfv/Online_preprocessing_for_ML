@@ -671,7 +671,6 @@ def page6(state):
         "PCA": page4_ML,
         "UMAP": page5_ML,
     }
-
     st.sidebar.subheader("Algorithmes :control_knobs:")
     state.page_ml = st.sidebar.radio("", list(PAGES_ML.keys()), list(PAGES_ML.keys()).index(state.page_ml) if state.page_ml else 0)
     PAGES_ML[state.page_ml](state)
