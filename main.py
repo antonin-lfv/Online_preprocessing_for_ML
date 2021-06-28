@@ -188,7 +188,7 @@ def _get_state(hash_funcs=None):
 
 ####### Streamlit home ######
 st.cache()
-uploaded_file = st.sidebar.file_uploader("Chargez votre dataset", type=['csv', 'xls'])
+uploaded_file = st.sidebar.file_uploader("Chargez votre dataset 📚", type=['csv', 'xls'])
 if uploaded_file is not None:
     file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type,"FileSize": uploaded_file.size}
     st.sidebar.success('Fichier chargé avec succès !')
@@ -858,7 +858,35 @@ def page3_ML(state):
     st.write("##")
     st.markdown('<p class="grand_titre">SVM : Support Vector Machine</p>', unsafe_allow_html=True)
     if state.data is not None:
-        st.write("##")
+        col1, b, col2 = st.beta_columns((1, 0.2, 1))
+        with col1:
+            st.write("##")
+            st.markdown('<p class="section">Selection des colonnes pour le modèle (target+features)</p>',
+                        unsafe_allow_html=True)
+            state.choix_col_SVM = st.multiselect("Choisir au moins deux colonnes", state.data.columns.tolist(),
+                                             state.choix_col)
+        if len(state.choix_col_SVM) > 1:
+            df_ml = state.data[state.choix_col_SVM]
+            df_ml = df_ml.dropna(axis=0)
+            if len(df_ml) == 0:
+                with col1:
+                    st.write("##")
+                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
+            else:
+                with col1:
+                    # encodage !
+                    state.col_to_encodage_SVM = st.multiselect("Selectionner les colonnes à encoder", state.choix_col_SVM,state.col_to_encodage_SVM)
+                    for col in state.col_to_encodage_SVM:
+                        st.write("encodage colonne " + col + " : " + str(df_ml[col].unique().tolist()) + "->" + str(np.arange(len(df_ml[col].unique()))))
+                        df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())),inplace=True)  # encodage
+                    ## création des target et features à partir du dataset
+                    state.target_SVM = st.selectbox("Target :", ["Selectionner une target"] + col_numeric(df_ml),(["Selectionner une target"] + col_numeric(df_ml)).index(state.target_SVM) if state.target_SVM else 0)
+                    with col2:
+                        if state.target_SVM != "Selectionner une target":
+                            y = df_ml[state.target_SVM]  # target
+                            X = df_ml.drop(state.target_SVM, axis=1)  # features
+                            st.write(y)
+                            st.write(X)
         # Noyau linéaire, noyau quadratique, noyau polynomiale, noyau Gaussien
     else:
         st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
