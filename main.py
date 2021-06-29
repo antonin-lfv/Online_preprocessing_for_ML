@@ -19,6 +19,7 @@ from sklearn.decomposition import PCA
 from umap import UMAP
 from scipy.spatial import distance
 from sklearn.cluster import KMeans
+from sklearn.svm import SVC
 try:
     # Before Streamlit 0.65
     from streamlit.ReportThread import get_report_ctx
@@ -223,7 +224,7 @@ def main():
             unsafe_allow_html=True)
         st.markdown(
             '<p class="intro">Un tutoriel sur l\'utilisation de ce site est disponible sur <a href="https://github.com/antonin-lfv/Online_preprocessing_for_ML">Github</a>. Si vous voulez un dataset pour ' +
-            'simplement tester, vous pouvez télécharger le dataset des iris <a href="https://www.kaggle.com/arshid/iris-flower-dataset">ici</a>.</p>',
+            'simplement tester, vous pouvez télécharger le dataset des iris <a href="https://gist.github.com/netj/8836201">ici</a>.</p>',
             unsafe_allow_html=True)
         st.markdown(
             '<p class="intro">En cas de bug ou d\'erreur veuillez m\'en informer par mail ou sur Discord. (Liens sur Github)</p>',
@@ -863,10 +864,16 @@ def page3_ML(state):
             st.write("##")
             st.markdown('<p class="section">Selection des colonnes pour le modèle (target+features)</p>',
                         unsafe_allow_html=True)
-            state.choix_col_SVM = st.multiselect("Choisir au moins deux colonnes", state.data.columns.tolist(),
-                                             state.choix_col)
-        if len(state.choix_col_SVM) > 1:
-            df_ml = state.data[state.choix_col_SVM]
+            state.x1_svm = st.selectbox('première donnée', col_numeric(state.data),
+                                               col_numeric(state.data).index(state.x1_svm) if state.x1_svm else 0)
+            state.x2_svm = st.selectbox('deuxième donnée', col_numeric(state.data),
+                                               col_numeric(state.data).index(state.x2_svm) if state.x2_svm else 1)
+            state.target_SVM = st.selectbox("Target :", ["Selectionner une target"] + state.data.columns,
+                                            (["Selectionner une target"] + state.data.columns).index(
+                                                state.target_SVM) if state.target_SVM else 0)
+        if x1_svm != 'première donnée' and x2_svm != 'deuxième donnée' and state.target_SVM != "Selectionner une target" :
+            df_ml = state.data[[state.x1_svm, state.x2_svm, state.target_SVM]]
+            df_ml.columns = [state.x1_svm, state.x2_svm, state.target_SVM]
             df_ml = df_ml.dropna(axis=0)
             if len(df_ml) == 0:
                 with col1:
@@ -879,15 +886,44 @@ def page3_ML(state):
                     for col in state.col_to_encodage_SVM:
                         st.write("encodage colonne " + col + " : " + str(df_ml[col].unique().tolist()) + "->" + str(np.arange(len(df_ml[col].unique()))))
                         df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())),inplace=True)  # encodage
-                    ## création des target et features à partir du dataset
-                    state.target_SVM = st.selectbox("Target :", ["Selectionner une target"] + col_numeric(df_ml),(["Selectionner une target"] + col_numeric(df_ml)).index(state.target_SVM) if state.target_SVM else 0)
                     with col2:
-                        if state.target_SVM != "Selectionner une target":
-                            y = df_ml[state.target_SVM]  # target
-                            X = df_ml.drop(state.target_SVM, axis=1)  # features
-                            st.write(y)
-                            st.write(X)
-        # Noyau linéaire, noyau quadratique, noyau polynomiale, noyau Gaussien
+                        y = df_ml[state.target_SVM]  # target
+                        X = df_ml.drop(state.target_SVM, axis=1)  # features
+                        # Data
+                        fig = px.scatter(df_ml, x=state.x1_svm, y=state.x2_svm, color=state.target_SVM,
+                                         color_continuous_scale=px.colors.diverging.Picnic)
+                        fig.update(layout_coloraxis_showscale=False)
+                        # Modele
+                        model = SVC(kernel='linear', C=1E10)
+                        model.fit(X, y)
+                        # Support Vectors
+                        fig.add_scatter(x=model.support_vectors_[:, 0],
+                                        y=model.support_vectors_[:, 1],
+                                        mode='markers',
+                                        name="Support vectors",
+                                        marker=dict(size=12,
+                                                    line=dict(width=1,
+                                                              color='DarkSlateGrey'
+                                                              ),
+                                                    color='rgba(0,0,0,0)'),
+                                        )
+                        # hyperplan
+                        w = model.coef_[0]
+                        a = -w[0] / w[1]
+                        xx = np.linspace(X[state.x1_svm].min(), X[state.x1_svm].max())
+                        yy = a * xx - (model.intercept_[0]) / w[1]
+                        fig.add_scatter(x=xx, y=yy, line=dict(color='black', width=2), name='Hyperplan')
+
+                        # Hyperplans up et down
+                        b = model.support_vectors_[0]
+                        yy_down = a * xx + (b[1] - a * b[0])
+                        fig.add_scatter(x=xx, y=yy_down, line=dict(color='black', width=1, dash='dot'), name='Marges')
+                        b = model.support_vectors_[-1]
+                        yy_up = a * xx + (b[1] - a * b[0])
+                        fig.add_scatter(x=xx, y=yy_up, line=dict(color='black', width=1, dash='dot'), showlegend=False)
+
+                        st.plotly_chart(fig)
+
     else:
         st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 
