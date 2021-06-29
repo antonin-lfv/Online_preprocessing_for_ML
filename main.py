@@ -858,74 +858,7 @@ def page2_ML(state):
 def page3_ML(state):
     st.write("##")
     st.markdown('<p class="grand_titre">SVM : Support Vector Machine</p>', unsafe_allow_html=True)
-    if state.data is not None:
-        col1, b, col2 = st.beta_columns((1, 0.2, 1))
-        with col1:
-            st.write("##")
-            st.markdown('<p class="section">Selection des colonnes pour le modèle (target+features)</p>',
-                        unsafe_allow_html=True)
-            state.x1_svm = st.selectbox('première donnée', col_numeric(state.data),
-                                               col_numeric(state.data).index(state.x1_svm) if state.x1_svm else 0)
-            state.x2_svm = st.selectbox('deuxième donnée', col_numeric(state.data),
-                                               col_numeric(state.data).index(state.x2_svm) if state.x2_svm else 1)
-            state.target_SVM = st.selectbox("Target :", ["Selectionner une target"] + state.data.columns,
-                                            (["Selectionner une target"] + state.data.columns).index(
-                                                state.target_SVM) if state.target_SVM else 0)
-        if state.x1_svm != 'première donnée' and state.x2_svm != 'deuxième donnée' and state.target_SVM != "Selectionner une target" :
-            df_ml = state.data[[state.x1_svm, state.x2_svm, state.target_SVM]]
-            df_ml.columns = [state.x1_svm, state.x2_svm, state.target_SVM]
-            df_ml = df_ml.dropna(axis=0)
-            if len(df_ml) == 0:
-                with col1:
-                    st.write("##")
-                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
-            else:
-                with col1:
-                    # encodage !
-                    state.col_to_encodage_SVM = st.multiselect("Selectionner les colonnes à encoder", state.choix_col_SVM,state.col_to_encodage_SVM)
-                    for col in state.col_to_encodage_SVM:
-                        st.write("encodage colonne " + col + " : " + str(df_ml[col].unique().tolist()) + "->" + str(np.arange(len(df_ml[col].unique()))))
-                        df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())),inplace=True)  # encodage
-                    with col2:
-                        y = df_ml[state.target_SVM]  # target
-                        X = df_ml.drop(state.target_SVM, axis=1)  # features
-                        # Data
-                        fig = px.scatter(df_ml, x=state.x1_svm, y=state.x2_svm, color=state.target_SVM,
-                                         color_continuous_scale=px.colors.diverging.Picnic)
-                        fig.update(layout_coloraxis_showscale=False)
-                        # Modele
-                        model = SVC(kernel='linear', C=1E10)
-                        model.fit(X, y)
-                        # Support Vectors
-                        fig.add_scatter(x=model.support_vectors_[:, 0],
-                                        y=model.support_vectors_[:, 1],
-                                        mode='markers',
-                                        name="Support vectors",
-                                        marker=dict(size=12,
-                                                    line=dict(width=1,
-                                                              color='DarkSlateGrey'
-                                                              ),
-                                                    color='rgba(0,0,0,0)'),
-                                        )
-                        # hyperplan
-                        w = model.coef_[0]
-                        a = -w[0] / w[1]
-                        xx = np.linspace(X[state.x1_svm].min(), X[state.x1_svm].max())
-                        yy = a * xx - (model.intercept_[0]) / w[1]
-                        fig.add_scatter(x=xx, y=yy, line=dict(color='black', width=2), name='Hyperplan')
 
-                        # Hyperplans up et down
-                        b = model.support_vectors_[0]
-                        yy_down = a * xx + (b[1] - a * b[0])
-                        fig.add_scatter(x=xx, y=yy_down, line=dict(color='black', width=1, dash='dot'), name='Marges')
-                        b = model.support_vectors_[-1]
-                        yy_up = a * xx + (b[1] - a * b[0])
-                        fig.add_scatter(x=xx, y=yy_up, line=dict(color='black', width=1, dash='dot'), showlegend=False)
-
-                        st.plotly_chart(fig)
-
-    else:
-        st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 
 # PCA
 def page4_ML(state):
