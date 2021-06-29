@@ -871,7 +871,7 @@ def page3_ML(state):
             state.target_SVM = st.selectbox("Target :", ["Selectionner une target"] + state.data.columns,
                                             (["Selectionner une target"] + state.data.columns).index(
                                                 state.target_SVM) if state.target_SVM else 0)
-        if x1_svm != 'première donnée' and x2_svm != 'deuxième donnée' and state.target_SVM != "Selectionner une target" :
+        if state.x1_svm != 'première donnée' and state.x2_svm != 'deuxième donnée' and state.target_SVM != "Selectionner une target" :
             df_ml = state.data[[state.x1_svm, state.x2_svm, state.target_SVM]]
             df_ml.columns = [state.x1_svm, state.x2_svm, state.target_SVM]
             df_ml = df_ml.dropna(axis=0)
