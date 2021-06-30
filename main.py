@@ -22,6 +22,7 @@ from sklearn.cluster import KMeans
 from sklearn.svm import SVC
 import tensorflow as tf
 import PIL.Image
+import tensorflow_hub as hub
 try:
     # Before Streamlit 0.65
     from streamlit.ReportThread import get_report_ctx
@@ -113,6 +114,30 @@ def max_dist(donnee_apres_pca, df, voisins): # pour knn, retourne la distance du
         distances.append(distance_e(donnee_apres_pca, [df['x'].iloc[i], df['y'].iloc[i]]))
     distances.sort()
     return distances[voisins-1]
+
+def tensor_to_image(tensor):
+    tensor = tensor*255
+    tensor = np.array(tensor, dtype=np.uint8)
+    if np.ndim(tensor)>3:
+        assert tensor.shape[0] == 1
+        tensor = tensor[0]
+    return PIL.Image.fromarray(tensor)
+
+def load_img(path_to_img):
+    max_dim = 512
+    img = tf.io.read_file(path_to_img)
+    img = tf.image.decode_image(img, channels=3)
+    img = tf.image.convert_image_dtype(img, tf.float32)
+
+    shape = tf.cast(tf.shape(img)[:-1], tf.float32)
+    long_dim = max(shape)
+    scale = max_dim / long_dim
+
+    new_shape = tf.cast(shape * scale, tf.int32)
+
+    img = tf.image.resize(img, new_shape)
+    img = img[tf.newaxis, :]
+    return img
 
 ###### Session data ######
 class _SessionState:
@@ -211,27 +236,11 @@ def main():
         "Machine Learning": page6,
         "Deep Learning" : page7
     }
-    if uploaded_file is not None:
-        st.sidebar.title('Menu :bulb:')
-        page = st.sidebar.radio("", list(PAGES.keys()))
-        PAGES[page](state)
-    else:
-        if state.data is not None:
-            state.clear()
-        st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow_html=True)
-        st.write("##")
-        st.markdown(
-            '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes, visualisez vos données et créez vos modèles de Machine et Deep Learning. ' +
-            'Pour charger votre dataset, uploadé le depuis le volet latéral, et rendez vous dans la section "chargement du dataset".</p>',
-            unsafe_allow_html=True)
-        st.markdown(
-            '<p class="intro">Un tutoriel sur l\'utilisation de ce site est disponible sur <a href="https://github.com/antonin-lfv/Online_preprocessing_for_ML">Github</a>. Si vous voulez un dataset pour ' +
-            'simplement tester, vous pouvez télécharger le dataset des iris <a href="https://gist.github.com/netj/8836201">ici</a>.</p>',
-            unsafe_allow_html=True)
-        st.markdown(
-            '<p class="intro">En cas de bug ou d\'erreur veuillez m\'en informer par mail ou sur Discord. (Liens sur Github)</p>',
-            unsafe_allow_html=True)
-        st.write("##")
+    st.sidebar.title('Menu :bulb:')
+    page = st.sidebar.radio("", list(PAGES.keys()))
+    PAGES[page](state)
+    if state.data is not None:
+        state.clear()
     state.sync()
 
 
@@ -276,7 +285,6 @@ def page1(state):
 ##########################
 def page2(state):
     st.markdown('<p class="grand_titre">Chargement du dataset</p>', unsafe_allow_html=True)
-    st.write("##")
 
     col1_1, b_1, col2_1 = st.beta_columns((1, 0.1, 1))
     col1, b, col2 = st.beta_columns((2.7, 0.3, 1))
@@ -1118,11 +1126,60 @@ def page7(state):
 def page1_DL(state):
     st.write("##")
     st.markdown('<p class="grand_titre">Transfert de style neuronal</p>', unsafe_allow_html=True)
-    if state.data is not None:
+    st.write("##")
+    content_path = {'chat' : 'images/tensorflow_images/chat1.jpg'}
+    style_path = {'Van_Gogh1' : 'images/tensorflow_images/Van_Gogh1.jpg'}
+    col1, b, col2 = st.beta_columns((1, 0.2, 1))
+    with col1:
+        st.markdown('<p class="section">Selectionner une image de contenu</p>',unsafe_allow_html=True)
+        state.image_contenu = st.selectbox("Choisir une image", list(content_path.keys()),list(content_path.keys()).index(state.image_contenu) if state.image_contenu else 0)
+        content_image = load_img(content_path[state.image_contenu])
+        content_image_plot = tf.squeeze(content_image, axis=0)
+        fig = px.imshow(content_image_plot)
+        fig.update_xaxes(showticklabels=False).update_yaxes(showticklabels=False)
+        fig.update_layout(
+            showlegend=False,
+            font=dict(size=10),
+            width=600, height=300,
+            margin=dict(l=40, r=50, b=40, t=40),
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+        )
+        st.plotly_chart(fig)
+    with col2:
+        st.markdown('<p class="section">Selectionner une image de style</p>', unsafe_allow_html=True)
+        state.image_style = st.selectbox("Choisir une image", list(style_path.keys()),list(style_path.keys()).index(state.image_style) if state.image_style else 0)
+        style_image = load_img(style_path[state.image_style])
+        style_image_plot = tf.squeeze(style_image, axis=0)
+        fig = px.imshow(style_image_plot)
+        fig.update_xaxes(showticklabels=False).update_yaxes(showticklabels=False)
+        fig.update_layout(
+            showlegend=False,
+            font=dict(size=10),
+            width=600, height=300,
+            margin=dict(l=40, r=50, b=40, t=40),
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+        )
+        st.plotly_chart(fig)
+    if st.button("Lancer le transfert"):
         st.write("##")
+        st.markdown('<p class="section">Résultat</p>', unsafe_allow_html=True)
+        hub_model = hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2')
+        stylized_image = hub_model(tf.constant(content_image), tf.constant(style_image))[0]
+        img = tensor_to_image(stylized_image)
+        fig = px.imshow(img)
+        fig.update_xaxes(showticklabels=False).update_yaxes(showticklabels=False)
+        fig.update_layout(
+            showlegend=False,
+            font=dict(size=10),
+            width=1300, height=600,
+            margin=dict(l=40, r=50, b=40, t=40),
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+        )
+        st.plotly_chart(fig)
 
-    else:
-        st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 
 def page2_DL(state):
     st.write("##")
