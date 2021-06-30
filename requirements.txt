@@ -6,5 +6,4 @@ sklearn
 umap-learn
 scipy
 tensorflow
-time
 functools
