@@ -20,6 +20,8 @@ from umap import UMAP
 from scipy.spatial import distance
 from sklearn.cluster import KMeans
 from sklearn.svm import SVC
+import tensorflow as tf
+import PIL.Image
 try:
     # Before Streamlit 0.65
     from streamlit.ReportThread import get_report_ctx
@@ -1118,7 +1120,7 @@ def page1_DL(state):
     st.markdown('<p class="grand_titre">Transfert de style neuronal</p>', unsafe_allow_html=True)
     if state.data is not None:
         st.write("##")
-        st.write("Section en cours de developpement")
+
     else:
         st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 
