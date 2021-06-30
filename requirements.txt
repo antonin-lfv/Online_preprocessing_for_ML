@@ -6,3 +6,4 @@ sklearn
 umap-learn
 scipy
 tensorflow
+tensorflow_hub
