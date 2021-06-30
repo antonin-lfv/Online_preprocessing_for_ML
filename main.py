@@ -1101,8 +1101,8 @@ def page7(state):
     st.markdown('<p class="first_titre">Deep Learning</p>', unsafe_allow_html=True)
     st.write("##")
     PAGES_DL = {
-        "MLP": page1_DL,
-        "RNN": page2_DL,
+        "Transfert de style neuronal": page1_DL,
+        "GAN": page2_DL,
     }
 
     st.sidebar.subheader("Algorithmes :control_knobs:")
@@ -1112,10 +1112,10 @@ def page7(state):
 
 
 
-## DLL pages ##
+## DL pages ##
 def page1_DL(state):
     st.write("##")
-    st.markdown('<p class="grand_titre">MLP : Multilayer Perceptron</p>', unsafe_allow_html=True)
+    st.markdown('<p class="grand_titre">Transfert de style neuronal</p>', unsafe_allow_html=True)
     if state.data is not None:
         st.write("##")
         st.write("Section en cours de developpement")
@@ -1124,13 +1124,13 @@ def page1_DL(state):
 
 def page2_DL(state):
     st.write("##")
-    st.markdown('<p class="grand_titre">RNN : Recurrent neural network</p>', unsafe_allow_html=True)
+    st.markdown('<p class="grand_titre">GAN : Generative adversarial network</p>', unsafe_allow_html=True)
     if state.data is not None:
         st.write("##")
         st.write("Section en cours de developpement")
     else:
         st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
-## Fin ML pages ##
+## Fin DL pages ##
 
 
 
