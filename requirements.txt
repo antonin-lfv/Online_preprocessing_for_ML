@@ -5,5 +5,3 @@ xlrd
 sklearn
 umap-learn
 scipy
-tensorflow
-functools
