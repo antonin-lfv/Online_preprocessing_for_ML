@@ -1127,9 +1127,11 @@ def page1_DL(state):
     st.write("##")
     st.markdown('<p class="grand_titre">Transfert de style neuronal</p>', unsafe_allow_html=True)
     st.write("##")
-    content_path = {'chat' : 'images/tensorflow_images/chat1.jpg',}
-    style_path = {'Van_Gogh1' : 'images/tensorflow_images/Van_Gogh1.jpg',
-                  'Guernica' : 'images/tensorflow_images/GUERNICA.jpg'}
+    content_path = {'Chat' : 'images/tensorflow_images/chat1.jpg',
+                    'Los Angeles street':'images/tensorflow_images/LA_street.jpg'}
+    style_path = {'La nuit étoilée - Van_Gogh' : 'images/tensorflow_images/Van_Gogh1.jpg',
+                  'Guernica - Picasso' : 'images/tensorflow_images/GUERNICA.jpg',
+                  'Mondrian' : 'images/tensorflow_images/mondrian-tableau-II.jpg'}
     col1, b, col2 = st.beta_columns((1, 0.2, 1))
     with col1:
         st.markdown('<p class="section">Selectionner une image de contenu</p>',unsafe_allow_html=True)
