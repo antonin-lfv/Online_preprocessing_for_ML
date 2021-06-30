@@ -858,6 +858,98 @@ def page2_ML(state):
 def page3_ML(state):
     st.write("##")
     st.markdown('<p class="grand_titre">SVM : Support Vector Machine</p>', unsafe_allow_html=True)
+    if state.data is not None:
+        st.write("##")
+        st.markdown('<p class="section">Selection des features et de la target</p>', unsafe_allow_html=True)
+        col1, b, col2 = st.beta_columns((1, 0.2, 1))
+        with col1:
+            state.choix_col_SVM = st.multiselect("Choisir deux colonnes", col_numeric(state.data),state.choix_col_SVM)
+            state.choix_target_SVM = st.selectbox("Choisir la target", state.data.columns.tolist(), state.data.columns.tolist().index(state.choix_target_SVM) if state.choix_target_SVM else 0)
+
+            if len(state.choix_col_SVM)==2 :
+                target = state.choix_target_SVM
+                features = state.choix_col_SVM
+
+                # dataset avec features + target
+                df = state.data[[target] + features]
+                df.dropna(axis=0)
+
+                if len(df) == 0:
+                    with col1:
+                        st.write("##")
+                        st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
+                else:
+                    if len(df[target].unique().tolist()) > 1 :
+                        with col2 :
+                            state.classes_SVM = st.multiselect("Choisir deux classes", df[state.choix_target_SVM].unique().tolist(), state.classes_SVM)
+                            if len(state.classes_SVM) >1 :
+                                df = df.loc[(df[target] == state.classes_SVM[0]) | (df[target] == state.classes_SVM[1])]
+                                y = df[target]
+                                X = df[features]
+                                state.choix_kernel = st.selectbox("Choisir le type de noyau", ['Linéaire'], ['Linéaire'].index(state.choix_kernel) if state.choix_kernel else 0)
+
+                                if state.choix_kernel == 'Linéaire' :
+                                    fig = px.scatter(df, x=features[0], y=features[1], color=target,
+                                                     color_continuous_scale=px.colors.diverging.Picnic)
+                                    fig.update(layout_coloraxis_showscale=False)
+
+                                    from sklearn.svm import SVC  # "Support vector classifier"
+                                    model = SVC(kernel='linear', C=1E10)
+                                    model.fit(X, y)
+
+                                    # Support Vectors
+                                    fig.add_scatter(x=model.support_vectors_[:, 0],
+                                                    y=model.support_vectors_[:, 1],
+                                                    mode='markers',
+                                                    name="Support vectors",
+                                                    marker=dict(size=12,
+                                                                line=dict(width=1,
+                                                                          color='DarkSlateGrey'
+                                                                          ),
+                                                                color='rgba(0,0,0,0)'),
+                                                    )
+
+                                    # hyperplan
+                                    w = model.coef_[0]
+                                    a = -w[0] / w[1]
+                                    xx = np.linspace(df[features[0]].min(), df[features[0]].max())
+                                    yy = a * xx - (model.intercept_[0]) / w[1]
+                                    fig.add_scatter(x=xx, y=yy, line=dict(color='black', width=2), name='Hyperplan')
+
+                                    # Hyperplans up et down
+                                    b = model.support_vectors_[0]
+                                    yy_down = a * xx + (b[1] - a * b[0])
+                                    fig.add_scatter(x=xx, y=yy_down, line=dict(color='black', width=1, dash='dot'),
+                                                    name='Marges')
+                                    b = model.support_vectors_[-1]
+                                    yy_up = a * xx + (b[1] - a * b[0])
+                                    fig.add_scatter(x=xx, y=yy_up, line=dict(color='black', width=1, dash='dot'),
+                                                    showlegend=False)
+                                    fig.update_layout(
+                                        showlegend=True,
+                                        template='simple_white',
+                                        font=dict(size=10),
+                                        autosize=False,
+                                        width=1250, height=650,
+                                        margin=dict(l=40, r=50, b=40, t=40),
+                                        paper_bgcolor='rgba(0,0,0,0)',
+                                        plot_bgcolor='rgba(0,0,0,0)',
+                                    )
+                                    with col1 :
+                                        st.write("##")
+                                        st.plotly_chart(fig)
+
+                            elif len(state.classes_SVM) >2:
+                                st.warning("Saisie invalide - trop de colonne selectionnées")
+
+                    else :
+                        st.warning("Le dataset ne contient qu'une classe")
+            elif len(state.choix_col_SVM)>2:
+                st.warning("Saisie invalide - trop de colonne selectionnées")
+
+
+    else:
+        st.warning('Rendez-vous dans la section Chargement du dataset pour importer votre dataset')
 
 
 # PCA
