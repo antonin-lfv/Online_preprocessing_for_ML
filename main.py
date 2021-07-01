@@ -215,7 +215,7 @@ def _get_state(hash_funcs=None):
 
 
 ####### Streamlit home ######
-st.cache()
+
 uploaded_file = st.sidebar.file_uploader("Chargez votre dataset 📚", type=['csv', 'xls'])
 if uploaded_file is not None:
     file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type,"FileSize": uploaded_file.size}
@@ -285,7 +285,6 @@ def page1(state):
 ##########################
 def page2(state):
     st.markdown('<p class="grand_titre">Chargement du dataset</p>', unsafe_allow_html=True)
-
     col1_1, b_1, col2_1 = st.beta_columns((1, 0.1, 1))
     col1, b, col2 = st.beta_columns((2.7, 0.3, 1))
     if state.data is not None :
@@ -347,17 +346,17 @@ def page2(state):
                 sum(pd.DataFrame(state.data).isnull().sum(axis=1).tolist()) * 100 / (state.data.shape[0] * state.data.shape[1]), 2),
                      ' % (', sum(pd.DataFrame(state.data).isnull().sum(axis=1).tolist()), ')')
 
-    if state.data is None:
+    else :
         try:
             if 'csv' in file_details['FileName']:
-                if state.separateur != "":
+                if state.separateur:
                     data = pd.read_csv(uploaded_file, sep=state.separateur, engine='python')
                     state.data = data
                 else :
                     data = pd.read_csv(uploaded_file, engine='python')
                     state.data = data
             else:
-                if state.separateur != "":
+                if state.separateur:
                     data = pd.read_excel(uploaded_file, sep=state.separateur, engine='python')
                     state.data = data
                 else :
