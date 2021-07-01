@@ -20,7 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="req">
-      <change afterPath="$PROJECT_DIR$/images/tensorflow_images/mondrian-tableau-II.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/tensorflow_images/Le cri.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,12 +47,12 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/images/tensorflow_images" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/images/tensorflow_images" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/images/tensorflow_images" />
       <recent name="$PROJECT_DIR$/images" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/images/tensorflow_images" />
     </key>
   </component>
   <component name="RunManager">
@@ -92,20 +93,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00221" summary="knn pca">
-      <created>1624578943683</created>
-      <option name="number" value="00221" />
-      <option name="presentableId" value="LOCAL-00221" />
-      <option name="project" value="LOCAL" />
-      <updated>1624578943683</updated>
-    </task>
-    <task id="LOCAL-00222" summary="knn pca">
-      <created>1624579670175</created>
-      <option name="number" value="00222" />
-      <option name="presentableId" value="LOCAL-00222" />
-      <option name="project" value="LOCAL" />
-      <updated>1624579670175</updated>
     </task>
     <task id="LOCAL-00223" summary="knn pca">
       <created>1624621382242</created>
@@ -436,7 +423,21 @@
       <option name="project" value="LOCAL" />
       <updated>1625091538514</updated>
     </task>
-    <option name="localTasksCounter" value="270" />
+    <task id="LOCAL-00270" summary="neurones">
+      <created>1625091975412</created>
+      <option name="number" value="00270" />
+      <option name="presentableId" value="LOCAL-00270" />
+      <option name="project" value="LOCAL" />
+      <updated>1625091975412</updated>
+    </task>
+    <task id="LOCAL-00271" summary="DL">
+      <created>1625092128617</created>
+      <option name="number" value="00271" />
+      <option name="presentableId" value="LOCAL-00271" />
+      <option name="project" value="LOCAL" />
+      <updated>1625092128618</updated>
+    </task>
+    <option name="localTasksCounter" value="272" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -477,7 +478,6 @@
     <MESSAGE value="UMAP" />
     <MESSAGE value="knn pca" />
     <MESSAGE value="home" />
-    <MESSAGE value="DL" />
     <MESSAGE value="k-means" />
     <MESSAGE value="KNN" />
     <MESSAGE value="drop" />
@@ -487,7 +487,8 @@
     <MESSAGE value="Tf" />
     <MESSAGE value="req" />
     <MESSAGE value="neurones" />
-    <option name="LAST_COMMIT_MESSAGE" value="neurones" />
+    <MESSAGE value="DL" />
+    <option name="LAST_COMMIT_MESSAGE" value="DL" />
   </component>
   <component name="WindowStateProjectService">
     <state x="100" y="125" width="1240" height="596" key="DiffContextDialog" timestamp="1624789825564">
@@ -518,7 +519,7 @@
     <state width="1346" height="200" key="GridCell.Tab.0.right/-1920.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1623404954334" />
     <state width="1899" height="304" key="GridCell.Tab.0.right/-1920.-180.1920.1080/0.0.1440.900@-1920.-180.1920.1080" timestamp="1623780080308" />
     <state width="1346" height="199" key="GridCell.Tab.0.right/0.25.1440.799@0.25.1440.799" timestamp="1623850018533" />
-    <state x="393" y="194" key="Vcs.Push.Dialog.v2" timestamp="1625091539864">
+    <state x="393" y="194" key="Vcs.Push.Dialog.v2" timestamp="1625092130133">
       <screen x="0" y="25" width="1440" height="799" />
     </state>
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@-1920.-155.1920.1055" timestamp="1625084214485" />
@@ -528,7 +529,7 @@
     <state x="-1396" y="68" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.798@-1920.-155.1920.1055" timestamp="1623259872757" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.798@0.25.1440.798" timestamp="1624831616382" />
     <state x="-1396" y="68" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.799@-1920.-155.1920.1055" timestamp="1625090958061" />
-    <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.799@0.25.1440.799" timestamp="1625091539864" />
+    <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.799@0.25.1440.799" timestamp="1625092130133" />
     <state x="-1396" y="68" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.801@-1920.-155.1920.1055" timestamp="1625088394620" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.801@0.25.1440.801" timestamp="1624889241378" />
     <state x="-1396" y="51" key="Vcs.Push.Dialog.v2/-1920.-155.1920.974/0.25.1440.875@-1920.-155.1920.974" timestamp="1623329018807" />

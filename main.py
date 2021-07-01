@@ -1130,7 +1130,8 @@ def page1_DL(state):
     content_path = {'Chat' : 'images/tensorflow_images/chat1.jpg',
                     'Los Angeles street':'images/tensorflow_images/LA_street.jpg'}
     style_path = {'La nuit étoilée - Van_Gogh' : 'images/tensorflow_images/Van_Gogh1.jpg',
-                  'Guernica - Picasso' : 'images/tensorflow_images/GUERNICA.jpg',}
+                  'Guernica - Picasso' : 'images/tensorflow_images/GUERNICA.jpg',
+                  'Le cri' : 'images/tensorflow_images/Le cri.jpg'}
     col1, b, col2 = st.beta_columns((1, 0.2, 1))
     with col1:
         st.markdown('<p class="section">Selectionner une image de contenu</p>',unsafe_allow_html=True)
