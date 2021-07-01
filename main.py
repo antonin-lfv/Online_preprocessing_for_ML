@@ -215,7 +215,7 @@ def _get_state(hash_funcs=None):
 
 
 ####### Streamlit home ######
-
+st.cache()
 uploaded_file = st.sidebar.file_uploader("Chargez votre dataset 📚", type=['csv', 'xls'])
 if uploaded_file is not None:
     file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type,"FileSize": uploaded_file.size}
