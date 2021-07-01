@@ -346,7 +346,7 @@ def page2(state):
                 sum(pd.DataFrame(state.data).isnull().sum(axis=1).tolist()) * 100 / (state.data.shape[0] * state.data.shape[1]), 2),
                      ' % (', sum(pd.DataFrame(state.data).isnull().sum(axis=1).tolist()), ')')
 
-    else :
+    if state.data is None:
         try:
             if 'csv' in file_details['FileName']:
                 if state.separateur:
