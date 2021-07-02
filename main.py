@@ -219,6 +219,7 @@ st.cache()
 uploaded_file = st.sidebar.file_uploader("Chargez votre dataset 📚", type=['csv', 'xls'])
 if uploaded_file is not None:
     file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type,"FileSize": uploaded_file.size}
+    st.sidebar.write(uploaded_file)
     st.sidebar.success('Fichier chargé avec succès !')
 
 
@@ -227,6 +228,7 @@ if uploaded_file is not None:
 #####################
 def main():
     state = _get_state()
+    st.sidebar.write(state.data is None)
     PAGES = {
         "Accueil": page1,
         "Chargement du dataset": page2,
@@ -285,6 +287,7 @@ def page1(state):
 ##########################
 def page2(state):
     st.markdown('<p class="grand_titre">Chargement du dataset</p>', unsafe_allow_html=True)
+
     col1_1, b_1, col2_1 = st.beta_columns((1, 0.1, 1))
     col1, b, col2 = st.beta_columns((2.7, 0.3, 1))
     if state.data is not None :
@@ -347,23 +350,29 @@ def page2(state):
                      ' % (', sum(pd.DataFrame(state.data).isnull().sum(axis=1).tolist()), ')')
 
     if state.data is None:
-        try:
-            if 'csv' in file_details['FileName']:
-                if state.separateur:
-                    data = pd.read_csv(uploaded_file, sep=state.separateur, engine='python')
-                    state.data = data
-                else :
-                    data = pd.read_csv(uploaded_file, engine='python')
-                    state.data = data
-            else:
-                if state.separateur:
-                    data = pd.read_excel(uploaded_file, sep=state.separateur, engine='python')
-                    state.data = data
-                else :
-                    data = pd.read_csv(uploaded_file, engine='python')
-                    state.data = data
-        except:
-            st.warning('Veuillez charger votre dataset')
+        st.write("test1")
+        #try:
+        if 'csv' in file_details['FileName']:
+            st.write("test2")
+            if state.separateur is not None:
+                st.write("sep")
+                data = pd.read_csv(uploaded_file, sep=state.separateur, engine='python')
+                state.data = data
+            else :
+                st.write("pas sep")
+                data = pd.read_csv(uploaded_file, engine='python')
+                state.data = data
+                st.write(data)
+                st.write(state.data)
+        else:
+            if state.separateur is not None :
+                data = pd.read_excel(uploaded_file, sep=state.separateur, engine='python')
+                state.data = data
+            else :
+                data = pd.read_csv(uploaded_file, engine='python')
+                state.data = data
+       # except:
+            #st.warning('Veuillez charger votre dataset')
 ### Fin section du dataset ###
 
 
@@ -1129,8 +1138,7 @@ def page1_DL(state):
     content_path = {'Chat' : 'images/tensorflow_images/chat1.jpg',
                     'Los Angeles street':'images/tensorflow_images/LA_street.jpg'}
     style_path = {'La nuit étoilée - Van_Gogh' : 'images/tensorflow_images/Van_Gogh1.jpg',
-                  'Guernica - Picasso' : 'images/tensorflow_images/GUERNICA.jpg',
-                  'Le cri' : 'images/tensorflow_images/Le cri.jpg'}
+                  'Guernica - Picasso' : 'images/tensorflow_images/GUERNICA.jpg',}
     col1, b, col2 = st.beta_columns((1, 0.2, 1))
     with col1:
         st.markdown('<p class="section">Selectionner une image de contenu</p>',unsafe_allow_html=True)

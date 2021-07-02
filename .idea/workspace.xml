@@ -93,27 +93,6 @@
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
     </task>
-    <task id="LOCAL-00224" summary="knn pca">
-      <created>1624621711271</created>
-      <option name="number" value="00224" />
-      <option name="presentableId" value="LOCAL-00224" />
-      <option name="project" value="LOCAL" />
-      <updated>1624621711271</updated>
-    </task>
-    <task id="LOCAL-00225" summary="knn pca">
-      <created>1624621723107</created>
-      <option name="number" value="00225" />
-      <option name="presentableId" value="LOCAL-00225" />
-      <option name="project" value="LOCAL" />
-      <updated>1624621723107</updated>
-    </task>
-    <task id="LOCAL-00226" summary="knn pca">
-      <created>1624622051925</created>
-      <option name="number" value="00226" />
-      <option name="presentableId" value="LOCAL-00226" />
-      <option name="project" value="LOCAL" />
-      <updated>1624622051926</updated>
-    </task>
     <task id="LOCAL-00227" summary="knn pca">
       <created>1624622155294</created>
       <option name="number" value="00227" />
@@ -436,7 +415,28 @@
       <option name="project" value="LOCAL" />
       <updated>1625140248871</updated>
     </task>
-    <option name="localTasksCounter" value="273" />
+    <task id="LOCAL-00273" summary="ML">
+      <created>1625171652719</created>
+      <option name="number" value="00273" />
+      <option name="presentableId" value="LOCAL-00273" />
+      <option name="project" value="LOCAL" />
+      <updated>1625171652719</updated>
+    </task>
+    <task id="LOCAL-00274" summary="ML">
+      <created>1625171869061</created>
+      <option name="number" value="00274" />
+      <option name="presentableId" value="LOCAL-00274" />
+      <option name="project" value="LOCAL" />
+      <updated>1625171869061</updated>
+    </task>
+    <task id="LOCAL-00275" summary="ML">
+      <created>1625171907817</created>
+      <option name="number" value="00275" />
+      <option name="presentableId" value="LOCAL-00275" />
+      <option name="project" value="LOCAL" />
+      <updated>1625171907817</updated>
+    </task>
+    <option name="localTasksCounter" value="276" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -462,7 +462,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="col" />
     <MESSAGE value="money symbols" />
     <MESSAGE value="time series, money, float coma" />
     <MESSAGE value="color matrix" />
@@ -487,12 +486,14 @@
     <MESSAGE value="neurones" />
     <MESSAGE value="DL" />
     <MESSAGE value="style image" />
-    <option name="LAST_COMMIT_MESSAGE" value="style image" />
+    <MESSAGE value="ML" />
+    <option name="LAST_COMMIT_MESSAGE" value="ML" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="100" y="125" width="1240" height="596" key="DiffContextDialog" timestamp="1624789825564">
-      <screen x="0" y="25" width="1440" height="796" />
+    <state x="-1787" y="-22" width="1654" height="790" key="DiffContextDialog" timestamp="1625233706718">
+      <screen x="-1920" y="-155" width="1920" height="1055" />
     </state>
+    <state x="-1787" y="-22" width="1654" height="790" key="DiffContextDialog/-1920.-155.1920.1055/0.25.1440.796@-1920.-155.1920.1055" timestamp="1625233706718" />
     <state x="100" y="125" width="1240" height="596" key="DiffContextDialog/0.25.1440.796@0.25.1440.796" timestamp="1624789825564" />
     <state width="1346" height="199" key="GridCell.Tab.0.bottom" timestamp="1623850018534">
       <screen x="0" y="25" width="1440" height="799" />
@@ -518,10 +519,10 @@
     <state width="1346" height="200" key="GridCell.Tab.0.right/-1920.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1623404954334" />
     <state width="1899" height="304" key="GridCell.Tab.0.right/-1920.-180.1920.1080/0.0.1440.900@-1920.-180.1920.1080" timestamp="1623780080308" />
     <state width="1346" height="199" key="GridCell.Tab.0.right/0.25.1440.799@0.25.1440.799" timestamp="1623850018533" />
-    <state x="393" y="194" key="Vcs.Push.Dialog.v2" timestamp="1625140252753">
+    <state x="393" y="194" key="Vcs.Push.Dialog.v2" timestamp="1625171909355">
       <screen x="0" y="25" width="1440" height="796" />
     </state>
-    <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@-1920.-155.1920.1055" timestamp="1625084214485" />
+    <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@-1920.-155.1920.1055" timestamp="1625171909355" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1625140252753" />
     <state x="-1396" y="68" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.797@-1920.-155.1920.1055" timestamp="1623267361970" />
     <state x="393" y="193" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.797@0.25.1440.797" timestamp="1624291685091" />
