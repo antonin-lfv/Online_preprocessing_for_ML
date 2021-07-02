@@ -350,20 +350,14 @@ def page2(state):
                      ' % (', sum(pd.DataFrame(state.data).isnull().sum(axis=1).tolist()), ')')
 
     if state.data is None:
-        st.write("test1")
         #try:
         if 'csv' in file_details['FileName']:
-            st.write("test2")
             if state.separateur is not None:
-                st.write("sep")
                 data = pd.read_csv(uploaded_file, sep=state.separateur, engine='python')
                 state.data = data
             else :
-                st.write("pas sep")
                 data = pd.read_csv(uploaded_file, engine='python')
                 state.data = data
-                st.write(data)
-                st.write(state.data)
         else:
             if state.separateur is not None :
                 data = pd.read_excel(uploaded_file, sep=state.separateur, engine='python')
