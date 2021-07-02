@@ -216,11 +216,13 @@ def _get_state(hash_funcs=None):
 
 ####### Streamlit home ######
 st.cache()
-uploaded_file = st.sidebar.file_uploader("Chargez votre dataset 📚", type=['csv', 'xls'])
-if uploaded_file is not None:
-    file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type,"FileSize": uploaded_file.size}
-    st.sidebar.write(uploaded_file)
-    st.sidebar.success('Fichier chargé avec succès !')
+uploaded_file = "Datasets/iris.csv"
+file_details = {"FileName" : 'csv'}
+#uploaded_file = st.sidebar.file_uploader("Chargez votre dataset 📚", type=['csv', 'xls'])
+#if uploaded_file is not None:
+#    file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type,"FileSize": uploaded_file.size}
+#    st.sidebar.write(uploaded_file)
+#    st.sidebar.success('Fichier chargé avec succès !')
 
 
 #####################
@@ -228,7 +230,6 @@ if uploaded_file is not None:
 #####################
 def main():
     state = _get_state()
-    st.sidebar.write(state.data is None)
     PAGES = {
         "Accueil": page1,
         "Chargement du dataset": page2,
@@ -350,23 +351,23 @@ def page2(state):
                      ' % (', sum(pd.DataFrame(state.data).isnull().sum(axis=1).tolist()), ')')
 
     if state.data is None:
-        #try:
-        if 'csv' in file_details['FileName']:
-            if state.separateur is not None:
-                data = pd.read_csv(uploaded_file, sep=state.separateur, engine='python')
-                state.data = data
-            else :
-                data = pd.read_csv(uploaded_file, engine='python')
-                state.data = data
-        else:
-            if state.separateur is not None :
-                data = pd.read_excel(uploaded_file, sep=state.separateur, engine='python')
-                state.data = data
-            else :
-                data = pd.read_csv(uploaded_file, engine='python')
-                state.data = data
-       # except:
-            #st.warning('Veuillez charger votre dataset')
+        try:
+            if 'csv' in file_details['FileName']:
+                if state.separateur is not None:
+                    data = pd.read_csv(uploaded_file, sep=state.separateur, engine='python')
+                    state.data = data
+                else :
+                    data = pd.read_csv(uploaded_file, engine='python')
+                    state.data = data
+            else:
+                if state.separateur is not None :
+                    data = pd.read_excel(uploaded_file, sep=state.separateur, engine='python')
+                    state.data = data
+                else :
+                    data = pd.read_csv(uploaded_file, engine='python')
+                    state.data = data
+        except:
+            st.warning('Veuillez charger votre dataset')
 ### Fin section du dataset ###
 
 
