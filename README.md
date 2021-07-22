@@ -42,7 +42,7 @@ En arrivant sur le DashBoard, vous verrez ceci :
 <br/>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/63207451/122967570-e1130600-d38a-11eb-91dc-3d2e669c9e65.png" >
+  <img width="1439" alt="Capture d’écran 2021-07-22 à 18 56 51" src="https://user-images.githubusercontent.com/63207451/126678415-b7980d3d-1364-45d2-9b88-4b73aae43ca6.png">
 </p>
 
 <br/>
@@ -64,7 +64,7 @@ De plus, les caractéristiques principales de ce dataset sont affichées sur le 
 <br/>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/63207451/122967684-043db580-d38b-11eb-804b-c104e448a4e1.png">
+  <img width="1439" alt="Capture d’écran 2021-07-22 à 18 57 47" src="https://user-images.githubusercontent.com/63207451/126678557-f687704b-535d-47bf-801b-3008c926e1ef.png">
 </p>
 
 <br/>
@@ -72,12 +72,28 @@ De plus, les caractéristiques principales de ce dataset sont affichées sur le 
 ## Analyse des colonnes
 
 <br/>
+<p align="center">
+  <img width="1439" alt="Capture d’écran 2021-07-22 à 18 58 24" src="https://user-images.githubusercontent.com/63207451/126678641-70c74b1d-0bde-4215-91ce-28ec5d9e5ac7.png">
+</p>
+
+<br/>
 
 ## Matrice de corrélation
 
 <br/>
+<p align="center">
+  <img width="1439" alt="Capture d’écran 2021-07-22 à 18 59 36" src="https://user-images.githubusercontent.com/63207451/126678828-a2d20126-694c-4c9b-9613-ee1d6a3ef466.png">
+</p>
+
+<br/>
+
 
 ## Section graphiques
+
+<br/>
+<p align="center">
+<img width="1439" alt="Capture d’écran 2021-07-22 à 19 02 28" src="https://user-images.githubusercontent.com/63207451/126679232-d2968749-9b57-40ba-9543-5410342abd3c.png">
+</p>
 
 <br/>
 
