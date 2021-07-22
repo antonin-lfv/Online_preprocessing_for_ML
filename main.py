@@ -189,10 +189,10 @@ if choix_page == "Accueil" :
     st.write("##")
     st.markdown(
         '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes, visualisez vos données et créez vos modèles de Machine et Deep Learning. ' +
-        'Pour charger votre dataset, uploadé le depuis le volet latéral, et rendez vous dans la section "Dataset".</p>',
+        'Pour charger votre dataset, uploadez le depuis le volet latéral, et rendez vous dans la section "Dataset".</p>',
         unsafe_allow_html=True)
     st.markdown(
-        '<p class="intro">Un tutoriel sur l\'utilisation de ce site est disponible sur <a href="https://github.com/antonin-lfv/Online_preprocessing_for_ML">Github</a>. Si vous souhaitez un dataset pour ' +
+        '<p class="intro">Un tutoriel sur l\'utilisation de ce site est disponible sur [Github](https://github.com/antonin-lfv/Online_preprocessing_for_ML). Si vous souhaitez un dataset pour ' +
         'simplement tester, vous pouvez télécharger le dataset des iris <a href="https://www.kaggle.com/arshid/iris-flower-dataset">ici</a>.</p>',
         unsafe_allow_html=True)
     st.markdown(
