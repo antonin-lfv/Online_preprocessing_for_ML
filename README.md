@@ -6,7 +6,7 @@
 <br/>
 
 <p align="center">
-  <a href="https://github.com/antonin-lfv/Online_preprocessing_for_ML"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg"/></a>
+  <a href="https://share.streamlit.io/antonin-lfv/online_preprocessing_for_ml/main.py"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg"/></a>
   </p>
 
 <br/>
