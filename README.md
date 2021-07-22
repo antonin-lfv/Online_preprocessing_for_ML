@@ -29,6 +29,7 @@ Dans la section ML, vous sera possible d'effectuer des KNN, K-Means, SVM, PCA et
     - [Matrice de corrélation](#Matrice-de-corrélation)
     - [Section graphiques](#Section-graphiques)
     - [Machine Learning](#Machine-Learning)
+      - [k-nearest neighbors](#k-nearest-neighbors)
     - [Deep Learning](#Deep-Learning)
 
 
