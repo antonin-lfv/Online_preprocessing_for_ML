@@ -15,3 +15,9 @@ textColor = '#222f3e'
 
 # Font family for all text in the app, except code blocks. One of "sans serif", "serif", or "monospace".
 font = "sans serif"
+
+[deprecation]
+
+# Set to false to disable the deprecation warning for the file uploader encoding.
+# Default: "True"
+showfileUploaderEncoding = "False"
