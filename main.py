@@ -358,7 +358,7 @@ elif choix_page == "Analyse des colonnes" :
                 st.write('##')
 
     else :
-        st.warning("Veuillez charger un dataset")
+        st.warning("Veuillez charger vos données et vous rendre dans la section Dataset")
 ############# Page 3 #############
 
 
@@ -433,7 +433,7 @@ elif choix_page == "Matrice de corrélations" :
         else:
             pass
     else:
-        st.warning("Veuillez charger un dataset")
+        st.warning("Veuillez charger vos données et vous rendre dans la section Dataset")
 ############# Page 4 #############
 
 
@@ -597,7 +597,7 @@ elif choix_page == "Section graphiques":
                 )
                 st.plotly_chart(fig)
     else :
-        st.warning("Veuillez charger un dataset")
+        st.warning("Veuillez charger vos données et vous rendre dans la section Dataset")
 ############# Page 5 #############
 
 

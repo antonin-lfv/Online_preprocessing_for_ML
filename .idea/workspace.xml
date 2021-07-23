@@ -19,10 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="update streamlit 84.2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="update streamlit 84.2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,13 +97,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00232" summary="home">
-      <created>1624627166778</created>
-      <option name="number" value="00232" />
-      <option name="presentableId" value="LOCAL-00232" />
-      <option name="project" value="LOCAL" />
-      <updated>1624627166778</updated>
     </task>
     <task id="LOCAL-00233" summary="home">
       <created>1624627186429</created>
@@ -444,7 +434,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626971760983</updated>
     </task>
-    <option name="localTasksCounter" value="281" />
+    <task id="LOCAL-00281" summary="update streamlit 84.2">
+      <created>1626974664340</created>
+      <option name="number" value="00281" />
+      <option name="presentableId" value="LOCAL-00281" />
+      <option name="project" value="LOCAL" />
+      <updated>1626974664341</updated>
+    </task>
+    <option name="localTasksCounter" value="282" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -493,9 +490,9 @@
     <MESSAGE value="style image" />
     <MESSAGE value="ML" />
     <MESSAGE value="start" />
-    <MESSAGE value="update streamlit 84.2" />
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="update streamlit 84.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="update streamlit 84.2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="184" y="82" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1626689429539">
@@ -531,8 +528,8 @@
     <state width="1346" height="200" key="GridCell.Tab.0.right/-1920.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1623404954334" />
     <state width="1899" height="304" key="GridCell.Tab.0.right/-1920.-180.1920.1080/0.0.1440.900@-1920.-180.1920.1080" timestamp="1623780080308" />
     <state width="1346" height="199" key="GridCell.Tab.0.right/0.25.1440.799@0.25.1440.799" timestamp="1623850018533" />
-    <state x="393" y="195" key="Vcs.Push.Dialog.v2" timestamp="1626971762270">
-      <screen x="0" y="25" width="1440" height="801" />
+    <state x="393" y="194" key="Vcs.Push.Dialog.v2" timestamp="1626975006497">
+      <screen x="0" y="25" width="1440" height="796" />
     </state>
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@-1920.-155.1920.1055" timestamp="1625236413163" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1625140252753" />
@@ -551,6 +548,7 @@
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/0.25.1440.797@0.25.1440.797" timestamp="1624187269688" />
     <state x="393" y="195" key="Vcs.Push.Dialog.v2/0.25.1440.799@0.25.1440.799" timestamp="1624650806984" />
     <state x="393" y="195" key="Vcs.Push.Dialog.v2/0.25.1440.801@0.25.1440.801" timestamp="1624650154198" />
+    <state x="393" y="194" key="Vcs.Push.Dialog.v2/1440.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1626975006497" />
     <state x="393" y="195" key="Vcs.Push.Dialog.v2/1440.-155.1920.1055/0.25.1440.801@0.25.1440.801" timestamp="1626971762270" />
     <state width="960" height="540" key="XDebugger.FullValuePopup" timestamp="1624381331801">
       <screen x="-1920" y="-180" width="1920" height="1080" />
