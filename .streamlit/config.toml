@@ -21,3 +21,7 @@ font = "sans serif"
 # Set to false to disable the deprecation warning for the file uploader encoding.
 # Default: "True"
 showfileUploaderEncoding = "False"
+
+[global]
+
+dataFrameSerialization = "legacy"
