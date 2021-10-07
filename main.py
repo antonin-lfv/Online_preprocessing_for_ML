@@ -222,7 +222,7 @@ elif choix_page == 'Dataset' :
     col1_1, b_1, col2_1 = st.beta_columns((1, 0.1, 1))
     col1, b, col2 = st.beta_columns((2.7, 0.2, 1))
     if "data" in st.session_state :
-        my_expander = st.expander(label="Options de preprocessing")
+        my_expander = st.beta_expander(label="Options de preprocessing")
         with my_expander :
             with col1_1:
                 st.session_state.separateur = st.text_input("Séparateur (optionnel): ")
