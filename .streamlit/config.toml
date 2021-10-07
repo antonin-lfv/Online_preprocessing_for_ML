@@ -1,4 +1,18 @@
 [global]
+# By default, Streamlit checks if the Python watchdog module is available and, if not, prints a warning asking for you to install it. The watchdog module is not required, but highly recommended. It improves Streamlit's ability to detect changes to files in your filesystem.
+# If you'd like to turn off this warning, set this to True.
+# Default: false
+disableWatchdogWarning = false
+
+# If True, will show a warning when you run a Streamlit-enabled script via "python my_script.py".
+# Default: true
+showWarningOnDirectExecution = true
+
+# DataFrame serialization.
+# Acceptable values:
+# - 'legacy': Serialize DataFrames using Streamlit's custom format. Slow but battle-tested.
+# - 'arrow': Serialize DataFrames using Apache Arrow. Much faster and versatile.
+# Default: 'arrow'
 dataFrameSerialization = "legacy"
 
 [theme]
