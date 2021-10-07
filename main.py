@@ -277,10 +277,11 @@ elif choix_page == 'Dataset' :
             with col1_1:
                 for col in st.session_state["drop_col"]:
                     try:
-                        st.session_state.data = st.session_state.data.drop(st.session_state.data[col], axis=1)
+                        st.session_state.data.drop(columns=[st.session_state.data[col]], axis=1)
                         st.success("Colonnes "+col+" supprimée !")
                     except:
                         st.error("Transformation impossible ou déjà effectuée")
+                        st.error(col)
 
             with col1:
                 st.write("##")
