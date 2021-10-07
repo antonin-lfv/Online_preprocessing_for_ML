@@ -19,8 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="update streamlit 88 - adding st.download and st.expander">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="update streamlit 1.0 !">
+      <change beforePath="$PROJECT_DIR$/.streamlit/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.streamlit/config.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,13 +99,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00237" summary="k-means">
-      <created>1624719968175</created>
-      <option name="number" value="00237" />
-      <option name="presentableId" value="LOCAL-00237" />
-      <option name="project" value="LOCAL" />
-      <updated>1624719968175</updated>
     </task>
     <task id="LOCAL-00238" summary="KNN">
       <created>1624789913401</created>
@@ -443,7 +436,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632385611494</updated>
     </task>
-    <option name="localTasksCounter" value="286" />
+    <task id="LOCAL-00286" summary="update streamlit 1.0 !">
+      <created>1633590819745</created>
+      <option name="number" value="00286" />
+      <option name="presentableId" value="LOCAL-00286" />
+      <option name="project" value="LOCAL" />
+      <updated>1633590819745</updated>
+    </task>
+    <option name="localTasksCounter" value="287" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -469,7 +469,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="empty df" />
     <MESSAGE value="titre" />
     <MESSAGE value="theme" />
     <MESSAGE value="ML and DL pages" />
@@ -494,7 +493,8 @@
     <MESSAGE value="fix error" />
     <MESSAGE value="update streamlit 88 - adding st.download and st.expander" />
     <MESSAGE value="0.89 version" />
-    <option name="LAST_COMMIT_MESSAGE" value="0.89 version" />
+    <MESSAGE value="update streamlit 1.0 !" />
+    <option name="LAST_COMMIT_MESSAGE" value="update streamlit 1.0 !" />
   </component>
   <component name="WindowStateProjectService">
     <state x="184" y="82" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1626689429539">
