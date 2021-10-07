@@ -162,6 +162,8 @@ if uploaded_file is not None:
 # Session
 if "col_to_time" not in st.session_state:
     st.session_state.col_to_time = ""
+if "drop_col" not in st.session_state:
+    st.session_state.drop_col = ""
 if "col_to_float_money" not in st.session_state:
     st.session_state.col_to_float_money = ""
 if "col_to_float_coma" not in st.session_state:
@@ -246,6 +248,10 @@ elif choix_page == 'Dataset' :
                 st.session_state.col_to_float_coma = st.multiselect('Conversion string avec virgules vers float',
                                st.session_state.data.columns.tolist(),
                                )
+            with col1_1:
+                st.session_state.drop_col = st.multiselect(label='Drop columns',
+                               options=st.session_state.data.columns.tolist(),
+                               )
 
             with col1_1:
                 for col in st.session_state["col_to_time"]:
@@ -266,6 +272,13 @@ elif choix_page == 'Dataset' :
                     try:
                         st.session_state.data[col] = st.session_state.data[col].apply(lambda x: float(str(x).replace(',', '.')))
                         st.success("Transformation de "+col+" effectuée !")
+                    except:
+                        st.error("Transformation impossible ou déjà effectuée")
+            with col1_1:
+                for col in st.session_state["drop_col"]:
+                    try:
+                        st.session_state.data = st.session_state.data.drop[st.session_state.data[col]]
+                        st.success("Colonnes "+col+" supprimée !")
                     except:
                         st.error("Transformation impossible ou déjà effectuée")
 

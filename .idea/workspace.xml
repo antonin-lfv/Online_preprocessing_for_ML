@@ -20,7 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="update streamlit 1.0">
-      <change beforePath="$PROJECT_DIR$/.streamlit/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.streamlit/config.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,13 +99,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00245" summary="SVM">
-      <created>1624831598192</created>
-      <option name="number" value="00245" />
-      <option name="presentableId" value="LOCAL-00245" />
-      <option name="project" value="LOCAL" />
-      <updated>1624831598193</updated>
     </task>
     <task id="LOCAL-00246" summary="SVM">
       <created>1624831614789</created>
@@ -443,7 +436,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633609046952</updated>
     </task>
-    <option name="localTasksCounter" value="294" />
+    <task id="LOCAL-00294" summary="update streamlit 1.0">
+      <created>1633609180889</created>
+      <option name="number" value="00294" />
+      <option name="presentableId" value="LOCAL-00294" />
+      <option name="project" value="LOCAL" />
+      <updated>1633609180890</updated>
+    </task>
+    <option name="localTasksCounter" value="295" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -509,11 +509,11 @@
       <screen x="-1920" y="-155" width="1920" height="1055" />
     </state>
     <state x="-1787" y="-22" width="1654" height="790" key="DiffContextDialog/-1920.-155.1920.1055/0.25.1440.796@-1920.-155.1920.1055" timestamp="1625233706718" />
-    <state x="393" y="193" key="Vcs.Push.Dialog.v2" timestamp="1633609048302">
+    <state x="393" y="193" key="Vcs.Push.Dialog.v2" timestamp="1633609182458">
       <screen x="0" y="25" width="1440" height="790" />
     </state>
     <state x="-1396" y="101" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@-1920.-123.1920.1055" timestamp="1633591202342" />
-    <state x="393" y="193" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@0.25.1440.790" timestamp="1633609048302" />
+    <state x="393" y="193" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@0.25.1440.790" timestamp="1633609182458" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@-1920.-155.1920.1055" timestamp="1625236413163" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1625140252753" />
     <state x="-1396" y="68" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.799@-1920.-155.1920.1055" timestamp="1625090958061" />
