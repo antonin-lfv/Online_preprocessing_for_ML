@@ -20,7 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="update streamlit 1.0 !">
-      <change beforePath="$PROJECT_DIR$/.streamlit/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.streamlit/config.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,20 +100,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00238" summary="KNN">
-      <created>1624789913401</created>
-      <option name="number" value="00238" />
-      <option name="presentableId" value="LOCAL-00238" />
-      <option name="project" value="LOCAL" />
-      <updated>1624789913401</updated>
-    </task>
-    <task id="LOCAL-00239" summary="drop">
-      <created>1624796753601</created>
-      <option name="number" value="00239" />
-      <option name="presentableId" value="LOCAL-00239" />
-      <option name="project" value="LOCAL" />
-      <updated>1624796753601</updated>
     </task>
     <task id="LOCAL-00240" summary="drop">
       <created>1624796793876</created>
@@ -443,7 +430,21 @@
       <option name="project" value="LOCAL" />
       <updated>1633590819745</updated>
     </task>
-    <option name="localTasksCounter" value="287" />
+    <task id="LOCAL-00287" summary="update streamlit 1.0 !">
+      <created>1633591048466</created>
+      <option name="number" value="00287" />
+      <option name="presentableId" value="LOCAL-00287" />
+      <option name="project" value="LOCAL" />
+      <updated>1633591048466</updated>
+    </task>
+    <task id="LOCAL-00288" summary="update streamlit 1.0 !">
+      <created>1633591201175</created>
+      <option name="number" value="00288" />
+      <option name="presentableId" value="LOCAL-00288" />
+      <option name="project" value="LOCAL" />
+      <updated>1633591201175</updated>
+    </task>
+    <option name="localTasksCounter" value="289" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -509,10 +510,10 @@
       <screen x="-1920" y="-155" width="1920" height="1055" />
     </state>
     <state x="-1787" y="-22" width="1654" height="790" key="DiffContextDialog/-1920.-155.1920.1055/0.25.1440.796@-1920.-155.1920.1055" timestamp="1625233706718" />
-    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2" timestamp="1633591049675">
+    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2" timestamp="1633591202342">
       <screen x="-1920" y="-123" width="1920" height="1055" />
     </state>
-    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@-1920.-123.1920.1055" timestamp="1633591049675" />
+    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@-1920.-123.1920.1055" timestamp="1633591202342" />
     <state x="393" y="193" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@0.25.1440.790" timestamp="1632385616525" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@-1920.-155.1920.1055" timestamp="1625236413163" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1625140252753" />

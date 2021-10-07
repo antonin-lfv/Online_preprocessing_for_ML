@@ -14,7 +14,6 @@ from sklearn.metrics import r2_score
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
-from streamlit.hashing import _CodeHasher
 from sklearn.decomposition import PCA
 from umap import UMAP
 from scipy.spatial import distance
