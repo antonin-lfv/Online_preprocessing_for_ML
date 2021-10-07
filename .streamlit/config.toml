@@ -8,6 +8,8 @@ disableWatchdogWarning = false
 # Default: true
 showWarningOnDirectExecution = true
 
+dataFrameSerialization = "legacy"
+
 [theme]
 base="light"
 
