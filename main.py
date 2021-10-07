@@ -236,9 +236,9 @@ elif choix_page == 'Dataset' :
             col1_1, b_1, col2_1, c_1, col3_1 = st.columns((1, 0.2, 1, 0.2, 1))  # pour time series
             st.write("##")
             option_col_update = st.session_state.data.columns.tolist()
-            if st.session_state["col_to_time"] :
-                for col in option_col_update :
-                    option_col_update.remove(col)
+            if st.session_state["col_to_time"]:
+                for col in option_col_update:
+                    st.session_state.data.columns.tolist().remove(col)
 
             with col1_1:
                 st.session_state.col_to_time = st.multiselect(label='Conversion Time Series',
