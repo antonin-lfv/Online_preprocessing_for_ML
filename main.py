@@ -235,22 +235,26 @@ elif choix_page == 'Dataset' :
             st.markdown("<p class='petite_section'>Modifications du dataset : </p>", unsafe_allow_html=True)
             col1_1, b_1, col2_1, c_1, col3_1 = st.columns((1, 0.2, 1, 0.2, 1))  # pour time series
             st.write("##")
+            option_col_update = st.session_state.data.columns.tolist()
+            if st.session_state["col_to_time"] :
+                for col in option_col_update :
+                    option_col_update.remove(col)
 
             with col1_1:
                 st.session_state.col_to_time = st.multiselect(label='Conversion Time Series',
-                               options=st.session_state.data.columns.tolist(),
+                               options=option_col_update,
                                )
             with col2_1:
                 st.session_state.col_to_float_money = st.multiselect('Conversion Monnaies',
-                               st.session_state.data.columns.tolist(),
+                               options = option_col_update,
                                )
             with col3_1:
                 st.session_state.col_to_float_coma = st.multiselect('Conversion string avec virgules vers float',
-                               st.session_state.data.columns.tolist(),
+                               options = option_col_update,
                                )
             with col1_1:
                 st.session_state.drop_col = st.multiselect(label='Drop columns',
-                               options=st.session_state.data.columns.tolist(),
+                               options=option_col_update,
                                )
 
             with col1_1:
