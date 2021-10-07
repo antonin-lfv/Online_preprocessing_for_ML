@@ -191,7 +191,7 @@ if choix_page == "Accueil" :
         'Pour charger votre dataset, uploadez le depuis le volet latéral, et rendez vous dans la section "Dataset".</p>',
         unsafe_allow_html=True)
     st.markdown(
-        '<p class="intro">Un tutoriel sur l\'utilisation de ce site est disponible sur [Github](https://github.com/antonin-lfv/Online_preprocessing_for_ML). Si vous souhaitez un dataset pour ' +
+        '<p class="intro">Un tutoriel sur l\'utilisation de ce site est disponible sur <a href="https://github.com/antonin-lfv/Online_preprocessing_for_ML">Github</a>. Si vous souhaitez un dataset pour ' +
         'simplement tester, vous pouvez télécharger le dataset des iris <a href="https://www.kaggle.com/arshid/iris-flower-dataset">ici</a>.</p>',
         unsafe_allow_html=True)
     st.markdown(
@@ -219,8 +219,8 @@ elif choix_page == 'Dataset' :
     if "data" not in st.session_state :
         load_data()
 
-    col1_1, b_1, col2_1 = st.columns((1, 0.1, 1))
-    col1, b, col2 = st.columns((2.7, 0.2, 1))
+    col1_1, b_1, col2_1 = st.beta_columns((1, 0.1, 1))
+    col1, b, col2 = st.beta_columns((2.7, 0.2, 1))
     if "data" in st.session_state :
         my_expander = st.expander(label="Options de preprocessing")
         with my_expander :
@@ -231,7 +231,7 @@ elif choix_page == 'Dataset' :
             load_data()
 
             st.markdown("<p class='petite_section'>Modifications du dataset : </p>", unsafe_allow_html=True)
-            col1_1, b_1, col2_1, c_1, col3_1 = st.columns((1, 0.2, 1, 0.2, 1))  # pour time series
+            col1_1, b_1, col2_1, c_1, col3_1 = st.beta_columns((1, 0.2, 1, 0.2, 1))  # pour time series
             st.write("##")
 
             with col1_1:
@@ -310,7 +310,7 @@ elif choix_page == "Analyse des colonnes" :
             options,
         )
         if st.session_state.slider_col:
-            col1, b, col2, c = st.columns((1.1, 0.1, 1.1, 0.3))
+            col1, b, col2, c = st.beta_columns((1.1, 0.1, 1.1, 0.3))
             with col1:
                 st.write('##')
                 st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
@@ -323,7 +323,7 @@ elif choix_page == "Analyse des colonnes" :
                 n_data = st.session_state.data[col].to_numpy()
 
                 st.write('##')
-                col1, b, col2, c = st.columns((1, 1, 2, 0.5))
+                col1, b, col2, c = st.beta_columns((1, 1, 2, 0.5))
                 with col1:
                     st.markdown('<p class="nom_colonne_page3">' + col + '</p>', unsafe_allow_html=True)
                     st.write(data_col.head(20))
@@ -381,7 +381,7 @@ elif choix_page == "Matrice de corrélations" :
     st.markdown('<p class="grand_titre">Matrice de corrélations</p>', unsafe_allow_html=True)
     st.write("##")
     if 'data' in st.session_state :
-        col1, b, col2 = st.columns((1, 1, 2))
+        col1, b, col2 = st.beta_columns((1, 1, 2))
         df_sans_NaN = st.session_state.data
         with col1:
             st.session_state.couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + df_sans_NaN.columns.tolist(),
@@ -453,7 +453,7 @@ elif choix_page == "Section graphiques":
     st.markdown('<p class="grand_titre">Graphiques et regressions</p>', unsafe_allow_html=True)
     st.write("##")
     if 'data' in st.session_state:
-        col1, b, col2, c, col3, d, col4 = st.columns((7))  # pour les autres select
+        col1, b, col2, c, col3, d, col4 = st.beta_columns((7))  # pour les autres select
         col_num = col_numeric(st.session_state.data) + st.session_state.col_to_time
         with col1:
             st.write("##")
@@ -624,7 +624,7 @@ elif choix_page == "Machine Learning":
         st.write("##")
         st.markdown('<p class="grand_titre">KNN : k-nearest neighbors</p>', unsafe_allow_html=True)
         if 'data' in st.session_state:
-            col1, b, col2 = st.columns((1, 0.2, 1))
+            col1, b, col2 = st.beta_columns((1, 0.2, 1))
             with col1:
                 st.write("##")
                 st.markdown('<p class="section">Selection des colonnes pour le modèle (target+features)</p>',
@@ -748,7 +748,7 @@ elif choix_page == "Machine Learning":
         st.write("##")
         st.markdown('<p class="grand_titre">K-Means</p>', unsafe_allow_html=True)
         if 'data' in st.session_state :
-            col1, b, col2 = st.columns((1, 0.2, 1))
+            col1, b, col2 = st.beta_columns((1, 0.2, 1))
             with col1:
                 st.write("##")
                 st.markdown('<p class="section">Selection des features pour le modèle</p>', unsafe_allow_html=True)
@@ -822,7 +822,7 @@ elif choix_page == "Machine Learning":
         if 'data' in st.session_state :
             st.write("##")
             st.markdown('<p class="section">Selection des features et de la target</p>', unsafe_allow_html=True)
-            col1, b, col2 = st.columns((1, 0.2, 1))
+            col1, b, col2 = st.beta_columns((1, 0.2, 1))
             with col1:
                 st.session_state.choix_col_SVM = st.multiselect("Choisir deux colonnes", col_numeric(st.session_state.data),
                                                      )
@@ -930,7 +930,7 @@ elif choix_page == "Machine Learning":
         st.write("##")
         st.markdown('<p class="grand_titre">PCA : Analyse en composantes principales</p>', unsafe_allow_html=True)
         if 'data' in st.session_state :
-            col1, b, col2 = st.columns((1, 0.2, 1))
+            col1, b, col2 = st.beta_columns((1, 0.2, 1))
             with col1:
                 st.write("##")
                 st.markdown('<p class="section">Selection des colonnes pour le modèle PCA (target+features)</p>',
@@ -1002,7 +1002,7 @@ elif choix_page == "Machine Learning":
         st.write("##")
         st.markdown('<p class="grand_titre">UMAP : Uniform Manifold Approximation and Projection</p>',unsafe_allow_html=True)
         if 'data' in st.session_state :
-            col1, b, col2 = st.columns((1, 0.2, 1))
+            col1, b, col2 = st.beta_columns((1, 0.2, 1))
             with col1:
                 st.write("##")
                 st.markdown('<p class="section">Selection des colonnes pour le modèle UMAP (target+features)</p>',
@@ -1096,7 +1096,7 @@ elif choix_page == "Deep Learning":
                         'Los Angeles street': 'images/tensorflow_images/LA_street.jpg'}
         style_path = {'La nuit étoilée - Van_Gogh': 'images/tensorflow_images/Van_Gogh1.jpg',
                       'Guernica - Picasso': 'images/tensorflow_images/GUERNICA.jpg', }
-        col1, b, col2 = st.columns((1, 0.2, 1))
+        col1, b, col2 = st.beta_columns((1, 0.2, 1))
         with col1:
             st.markdown('<p class="section">Selectionner une image de contenu</p>', unsafe_allow_html=True)
             st.session_state.image_contenu = st.selectbox("Choisir une image", list(content_path.keys()),
