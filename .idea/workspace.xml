@@ -509,50 +509,17 @@
       <screen x="-1920" y="-155" width="1920" height="1055" />
     </state>
     <state x="-1787" y="-22" width="1654" height="790" key="DiffContextDialog/-1920.-155.1920.1055/0.25.1440.796@-1920.-155.1920.1055" timestamp="1625233706718" />
-    <state x="100" y="125" width="1240" height="596" key="DiffContextDialog/0.25.1440.796@0.25.1440.796" timestamp="1624789825564" />
-    <state width="1346" height="199" key="GridCell.Tab.0.bottom" timestamp="1623850018534">
-      <screen x="0" y="25" width="1440" height="799" />
+    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2" timestamp="1633591049675">
+      <screen x="-1920" y="-123" width="1920" height="1055" />
     </state>
-    <state width="1899" height="304" key="GridCell.Tab.0.bottom/-1920.-180.1920.1080/0.0.1440.900@-1920.-180.1920.1080" timestamp="1623780080308" />
-    <state width="1346" height="199" key="GridCell.Tab.0.bottom/0.25.1440.799@0.25.1440.799" timestamp="1623850018534" />
-    <state width="1346" height="199" key="GridCell.Tab.0.center" timestamp="1623850018533">
-      <screen x="0" y="25" width="1440" height="799" />
-    </state>
-    <state width="1899" height="304" key="GridCell.Tab.0.center/-1920.-180.1920.1080/0.0.1440.900@-1920.-180.1920.1080" timestamp="1623780080307" />
-    <state width="1346" height="199" key="GridCell.Tab.0.center/0.25.1440.799@0.25.1440.799" timestamp="1623850018533" />
-    <state width="1346" height="199" key="GridCell.Tab.0.left" timestamp="1623850018533">
-      <screen x="0" y="25" width="1440" height="799" />
-    </state>
-    <state width="1899" height="304" key="GridCell.Tab.0.left/-1920.-180.1920.1080/0.0.1440.900@-1920.-180.1920.1080" timestamp="1623780080306" />
-    <state width="1346" height="199" key="GridCell.Tab.0.left/0.25.1440.799@0.25.1440.799" timestamp="1623850018533" />
-    <state width="1346" height="199" key="GridCell.Tab.0.right" timestamp="1623850018533">
-      <screen x="0" y="25" width="1440" height="799" />
-    </state>
-    <state width="1899" height="304" key="GridCell.Tab.0.right/-1920.-180.1920.1080/0.0.1440.900@-1920.-180.1920.1080" timestamp="1623780080308" />
-    <state width="1346" height="199" key="GridCell.Tab.0.right/0.25.1440.799@0.25.1440.799" timestamp="1623850018533" />
-    <state x="393" y="193" key="Vcs.Push.Dialog.v2" timestamp="1632385616525">
-      <screen x="0" y="25" width="1440" height="790" />
-    </state>
-    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@-1920.-123.1920.1055" timestamp="1631812923197" />
+    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@-1920.-123.1920.1055" timestamp="1633591049675" />
     <state x="393" y="193" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@0.25.1440.790" timestamp="1632385616525" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@-1920.-155.1920.1055" timestamp="1625236413163" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1625140252753" />
-    <state x="393" y="193" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.797@0.25.1440.797" timestamp="1624291685091" />
-    <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.798@0.25.1440.798" timestamp="1624831616382" />
     <state x="-1396" y="68" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.799@-1920.-155.1920.1055" timestamp="1625090958061" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.799@0.25.1440.799" timestamp="1625092130133" />
     <state x="-1396" y="68" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.801@-1920.-155.1920.1055" timestamp="1625088394620" />
-    <state x="393" y="194" key="Vcs.Push.Dialog.v2/-1920.-155.1920.1055/0.25.1440.801@0.25.1440.801" timestamp="1624889241378" />
-    <state x="-1396" y="48" key="Vcs.Push.Dialog.v2/-1920.-180.1920.1080/0.0.1440.900@-1920.-180.1920.1080" timestamp="1624443691584" />
-    <state x="393" y="194" key="Vcs.Push.Dialog.v2/0.25.1440.796@0.25.1440.796" timestamp="1624797545469" />
-    <state x="393" y="194" key="Vcs.Push.Dialog.v2/0.25.1440.797@0.25.1440.797" timestamp="1624187269688" />
-    <state x="393" y="195" key="Vcs.Push.Dialog.v2/0.25.1440.799@0.25.1440.799" timestamp="1624650806984" />
-    <state x="393" y="195" key="Vcs.Push.Dialog.v2/0.25.1440.801@0.25.1440.801" timestamp="1624650154198" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/1440.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1626975006497" />
     <state x="393" y="195" key="Vcs.Push.Dialog.v2/1440.-155.1920.1055/0.25.1440.801@0.25.1440.801" timestamp="1627030893339" />
-    <state width="960" height="540" key="XDebugger.FullValuePopup" timestamp="1624381331801">
-      <screen x="-1920" y="-180" width="1920" height="1080" />
-    </state>
-    <state width="960" height="540" key="XDebugger.FullValuePopup/-1920.-180.1920.1080/0.0.1440.900@-1920.-180.1920.1080" timestamp="1624381331801" />
   </component>
 </project>
