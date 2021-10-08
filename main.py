@@ -1107,9 +1107,10 @@ elif choix_page == "Deep Learning":
         st.markdown('<p class="grand_titre">Transfert de style neuronal</p>', unsafe_allow_html=True)
         st.write("##")
         content_path = {'Chat': 'images/tensorflow_images/chat1.jpg',
-                        'Los Angeles street': 'images/tensorflow_images/LA_street.jpg'}
+                        }
         style_path = {'La nuit étoilée - Van_Gogh': 'images/tensorflow_images/Van_Gogh1.jpg',
-                      'Guernica - Picasso': 'images/tensorflow_images/GUERNICA.jpg', }
+                      'Guernica - Picasso': 'images/tensorflow_images/GUERNICA.jpg',
+                      'Le cri' : 'images/tensorflow_images/LE_cri.jpg'}
         col1, b, col2 = st.columns((1, 0.2, 1))
         with col1:
             st.markdown('<p class="section">Selectionner une image de contenu</p>', unsafe_allow_html=True)
