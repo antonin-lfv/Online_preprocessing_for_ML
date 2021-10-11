@@ -39,7 +39,6 @@ st.markdown("""
 .intro{
     text-align: justify;
     font-size:20px !important;
-    font-family: "sans-serif";
 }
 .grand_titre {
     font-size:30px !important;
