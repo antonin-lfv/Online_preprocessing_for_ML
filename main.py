@@ -627,7 +627,7 @@ elif choix_page == "Machine Learning":
     st.write("##")
     # Pages
     PAGES_ML = ["K-nearest neighbors", "K-Means", "Support Vector Machine", "PCA", "UMAP"]
-    st.sidebar.title('Algo ML :control_knobs:')
+    st.sidebar.title('Machine Learning :control_knobs:')
     st.sidebar.radio(label="", options=PAGES_ML, key="choix_page_ml")
 
 
@@ -1097,7 +1097,7 @@ elif choix_page == "Deep Learning":
     st.write("##")
     # Pages
     PAGES_DL = ["Transfert de style neuronal", "GAN"]
-    st.sidebar.title('Algo DL :control_knobs:')
+    st.sidebar.title('Deep Learning :control_knobs:')
     choix_page_dl = st.sidebar.radio(label="", options=PAGES_DL)
 
     if choix_page_dl == "Transfert de style neuronal":
