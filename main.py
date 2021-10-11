@@ -203,7 +203,6 @@ elif choix_page == 'Dataset' :
                                              "FileType": uploaded_file.type,
                                              "FileSize": uploaded_file.size}
             st.success('Fichier chargé avec succès !')
-    with c2 :
         st.button(label="Supprimer le dataset", on_click=delete_data)
 
 
