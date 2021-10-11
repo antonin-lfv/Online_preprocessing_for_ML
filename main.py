@@ -178,7 +178,7 @@ if "degres" not in st.session_state:
 
 
 # Pages principales
-PAGES = ["Accueil", "Dataset", "Analyse des colonnes", "Matrice de corrélations", "Section graphiques", "▶ Machine Learning", "▶ Deep Learning"]
+PAGES = ["Accueil", "Dataset", "Analyse des colonnes", "Matrice de corrélations", "Section graphiques", "Machine Learning", "Deep Learning"]
 st.sidebar.title('Menu :bulb:')
 choix_page = st.sidebar.radio(label="", options=PAGES)
 
@@ -625,7 +625,7 @@ elif choix_page == "Section graphiques":
 
 
 ############# ML section #############
-elif choix_page == "▶ Machine Learning":
+elif choix_page == "Machine Learning":
     st.markdown('<p class="first_titre">Machine Learning</p>', unsafe_allow_html=True)
     st.write("##")
     # Pages
@@ -1095,7 +1095,7 @@ elif choix_page == "▶ Machine Learning":
 
 
 ############# DL section #############
-elif choix_page == "▶ Deep Learning":
+elif choix_page == "Deep Learning":
     st.markdown('<p class="first_titre">Deep Learning</p>', unsafe_allow_html=True)
     st.write("##")
     # Pages
