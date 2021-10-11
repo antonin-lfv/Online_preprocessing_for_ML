@@ -96,6 +96,10 @@ def load_data():
     except:
         pass
 
+def delete_data():
+    if "data" in st.session_state :
+        st.session_state["data"]=NULL
+
 def max_std(dataset):# colonne de maximum de variance
     l = []
     for nom in dataset.columns:
@@ -151,22 +155,6 @@ def load_img(path_to_img):
 ##################################
 
 
-# Session
-if "col_to_time" not in st.session_state:
-    st.session_state.col_to_time = ""
-if "drop_col" not in st.session_state:
-    st.session_state.drop_col = ""
-if "col_to_float_money" not in st.session_state:
-    st.session_state.col_to_float_money = ""
-if "col_to_float_coma" not in st.session_state:
-    st.session_state.col_to_float_coma = ""
-if "separateur" not in st.session_state:
-    st.session_state.separateur = ""
-if "slider_col" not in st.session_state:
-    st.session_state.slider_col = ""
-if "degres" not in st.session_state:
-    st.session_state.degres = ""
-
 
 # Pages principales
 PAGES = ["Accueil", "Dataset", "Analyse des colonnes", "Matrice de corrélations", "Section graphiques", "Machine Learning", "Deep Learning"]
@@ -208,13 +196,17 @@ elif choix_page == 'Dataset' :
     st.markdown('<p class="grand_titre">Chargement du dataset</p>', unsafe_allow_html=True)
     st.write('##')
     uploaded_file = st.file_uploader("Chargez votre dataset 📚", type=['csv', 'xls'])
-    if uploaded_file is not None:
-        st.session_state.file_details = {"FileName": uploaded_file.name,
-                                         "FileType": uploaded_file.type,
-                                         "FileSize": uploaded_file.size}
-        st.success('Fichier chargé avec succès !')
+    c1,c2=st.columns((1,1))
+    with c1 :
+        if uploaded_file is not None:
+            st.session_state.file_details = {"FileName": uploaded_file.name,
+                                             "FileType": uploaded_file.type,
+                                             "FileSize": uploaded_file.size}
+            st.success('Fichier chargé avec succès !')
+    with c2 :
+        st.button(label="Supprimer le dataset", on_click=delete_data)
 
-    st.write(st.session_state.file_details["FileName"])
+
 
     if "data" not in st.session_state :
         load_data()

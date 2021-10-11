@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Color theme">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,41 +100,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00268" summary="neurones">
-      <created>1625090955587</created>
-      <option name="number" value="00268" />
-      <option name="presentableId" value="LOCAL-00268" />
-      <option name="project" value="LOCAL" />
-      <updated>1625090955588</updated>
-    </task>
-    <task id="LOCAL-00269" summary="neurones">
-      <created>1625091538514</created>
-      <option name="number" value="00269" />
-      <option name="presentableId" value="LOCAL-00269" />
-      <option name="project" value="LOCAL" />
-      <updated>1625091538514</updated>
-    </task>
-    <task id="LOCAL-00270" summary="neurones">
-      <created>1625091975412</created>
-      <option name="number" value="00270" />
-      <option name="presentableId" value="LOCAL-00270" />
-      <option name="project" value="LOCAL" />
-      <updated>1625091975412</updated>
-    </task>
-    <task id="LOCAL-00271" summary="DL">
-      <created>1625092128617</created>
-      <option name="number" value="00271" />
-      <option name="presentableId" value="LOCAL-00271" />
-      <option name="project" value="LOCAL" />
-      <updated>1625092128618</updated>
-    </task>
-    <task id="LOCAL-00272" summary="style image">
-      <created>1625140248870</created>
-      <option name="number" value="00272" />
-      <option name="presentableId" value="LOCAL-00272" />
-      <option name="project" value="LOCAL" />
-      <updated>1625140248871</updated>
     </task>
     <task id="LOCAL-00273" summary="ML">
       <created>1625171652719</created>
@@ -443,7 +409,42 @@
       <option name="project" value="LOCAL" />
       <updated>1633983819706</updated>
     </task>
-    <option name="localTasksCounter" value="317" />
+    <task id="LOCAL-00317" summary="Color theme">
+      <created>1633984037626</created>
+      <option name="number" value="00317" />
+      <option name="presentableId" value="LOCAL-00317" />
+      <option name="project" value="LOCAL" />
+      <updated>1633984037626</updated>
+    </task>
+    <task id="LOCAL-00318" summary="Color theme">
+      <created>1633984110255</created>
+      <option name="number" value="00318" />
+      <option name="presentableId" value="LOCAL-00318" />
+      <option name="project" value="LOCAL" />
+      <updated>1633984110255</updated>
+    </task>
+    <task id="LOCAL-00319" summary="Color theme">
+      <created>1633984155693</created>
+      <option name="number" value="00319" />
+      <option name="presentableId" value="LOCAL-00319" />
+      <option name="project" value="LOCAL" />
+      <updated>1633984155693</updated>
+    </task>
+    <task id="LOCAL-00320" summary="Color theme">
+      <created>1633984191257</created>
+      <option name="number" value="00320" />
+      <option name="presentableId" value="LOCAL-00320" />
+      <option name="project" value="LOCAL" />
+      <updated>1633984191257</updated>
+    </task>
+    <task id="LOCAL-00321" summary="Color theme">
+      <created>1633984271377</created>
+      <option name="number" value="00321" />
+      <option name="presentableId" value="LOCAL-00321" />
+      <option name="project" value="LOCAL" />
+      <updated>1633984271377</updated>
+    </task>
+    <option name="localTasksCounter" value="322" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -521,12 +522,12 @@
       <screen x="0" y="25" width="1440" height="790" />
     </state>
     <state width="1419" height="191" key="GridCell.Tab.0.right/-1920.-123.1920.1055/0.25.1440.790@0.25.1440.790" timestamp="1633609786961" />
-    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2" timestamp="1633983820875">
+    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2" timestamp="1633984272496">
       <screen x="-1920" y="-123" width="1920" height="1055" />
     </state>
     <state x="-1396" y="101" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@-1920.-123.1920.1055" timestamp="1633979374491" />
     <state x="393" y="193" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@0.25.1440.790" timestamp="1633610840873" />
-    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.794@-1920.-123.1920.1055" timestamp="1633983820875" />
+    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.794@-1920.-123.1920.1055" timestamp="1633984272496" />
     <state x="393" y="193" key="Vcs.Push.Dialog.v2/0.25.1440.791@0.25.1440.791" timestamp="1633724048406" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/1440.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1626975006497" />
     <state x="393" y="195" key="Vcs.Push.Dialog.v2/1440.-155.1920.1055/0.25.1440.801@0.25.1440.801" timestamp="1627030893339" />
