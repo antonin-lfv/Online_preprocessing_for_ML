@@ -623,8 +623,6 @@ elif choix_page == "Section graphiques":
 
 ############# ML section #############
 elif choix_page == "Machine Learning":
-    st.markdown('<p class="first_titre">Machine Learning</p>', unsafe_allow_html=True)
-    st.write("##")
     # Pages
     PAGES_ML = ["K-nearest neighbors", "K-Means", "Support Vector Machine", "PCA", "UMAP"]
     st.sidebar.title('Machine Learning :control_knobs:')
@@ -1093,8 +1091,6 @@ elif choix_page == "Machine Learning":
 
 ############# DL section #############
 elif choix_page == "Deep Learning":
-    st.markdown('<p class="first_titre">Deep Learning</p>', unsafe_allow_html=True)
-    st.write("##")
     # Pages
     PAGES_DL = ["Transfert de style neuronal", "GAN"]
     st.sidebar.title('Deep Learning :control_knobs:')
