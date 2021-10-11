@@ -33,7 +33,7 @@ st.markdown("""
     box-sizing: border-box;
     text-align: center;
     width: 100%;
-    border: solid #F65323 6px;
+    border: solid #52BE80 3px;
     padding: 5px;
 }
 .intro{
