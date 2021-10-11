@@ -214,6 +214,8 @@ elif choix_page == 'Dataset' :
                                          "FileSize": uploaded_file.size}
         st.success('Fichier chargé avec succès !')
 
+    st.write(st.session_state.file_details["FileName"])
+
     if "data" not in st.session_state :
         load_data()
 
