@@ -44,7 +44,7 @@ st.markdown("""
     font-size:30px !important;
     font-weight: bold;
     text-decoration: underline;
-    text-decoration-color: #2782CD;
+    text-decoration-color: #E74C3C;
     text-decoration-thickness: 5px;
 }
 .grand_titre_section_ML_DL {
