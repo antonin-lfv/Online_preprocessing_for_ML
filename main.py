@@ -632,7 +632,6 @@ elif choix_page == "Machine Learning":
 
 
     if st.session_state.choix_page_ml == "K-nearest neighbors" :
-        st.write("##")
         st.markdown('<p class="grand_titre">KNN : k-nearest neighbors</p>', unsafe_allow_html=True)
         if 'data' in st.session_state:
             col1, b, col2 = st.columns((1, 0.2, 1))
@@ -756,7 +755,6 @@ elif choix_page == "Machine Learning":
 
 
     elif st.session_state.choix_page_ml == "K-Means" :
-        st.write("##")
         st.markdown('<p class="grand_titre">K-Means</p>', unsafe_allow_html=True)
         if 'data' in st.session_state :
             col1, b, col2 = st.columns((1, 0.2, 1))
@@ -828,7 +826,6 @@ elif choix_page == "Machine Learning":
 
 
     elif st.session_state.choix_page_ml == "Support Vector Machine" :
-        st.write("##")
         st.markdown('<p class="grand_titre">SVM : Support Vector Machine</p>', unsafe_allow_html=True)
         if 'data' in st.session_state :
             st.write("##")
@@ -938,7 +935,6 @@ elif choix_page == "Machine Learning":
 
 
     elif st.session_state.choix_page_ml == "PCA" :
-        st.write("##")
         st.markdown('<p class="grand_titre">PCA : Analyse en composantes principales</p>', unsafe_allow_html=True)
         if 'data' in st.session_state :
             col1, b, col2 = st.columns((1, 0.2, 1))
@@ -1010,7 +1006,6 @@ elif choix_page == "Machine Learning":
 
 
     elif st.session_state.choix_page_ml == "UMAP" :
-        st.write("##")
         st.markdown('<p class="grand_titre">UMAP : Uniform Manifold Approximation and Projection</p>',unsafe_allow_html=True)
         if 'data' in st.session_state :
             col1, b, col2 = st.columns((1, 0.2, 1))
@@ -1098,7 +1093,6 @@ elif choix_page == "Deep Learning":
     choix_page_dl = st.sidebar.radio(label="", options=PAGES_DL)
 
     if choix_page_dl == "Transfert de style neuronal":
-        st.write("##")
         st.markdown('<p class="grand_titre">Transfert de style neuronal</p>', unsafe_allow_html=True)
         st.write("##")
         content_path = {'Chat': 'images/tensorflow_images/chat1.jpg',
@@ -1160,7 +1154,6 @@ elif choix_page == "Deep Learning":
             st.plotly_chart(fig)
 
     elif choix_page_dl == "GAN":
-        st.write("##")
         st.markdown('<p class="grand_titre">GAN : Generative adversarial network</p>', unsafe_allow_html=True)
         if 'data' in st.session_state :
             st.write("##")
