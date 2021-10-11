@@ -151,15 +151,6 @@ def load_img(path_to_img):
 ##################################
 
 
-
-uploaded_file = st.sidebar.file_uploader("Chargez votre dataset 📚", type=['csv', 'xls'])
-if uploaded_file is not None:
-    st.session_state.file_details = {"FileName": uploaded_file.name,
-                                     "FileType": uploaded_file.type,
-                                     "FileSize": uploaded_file.size}
-    st.sidebar.success('Fichier chargé avec succès !')
-
-
 # Session
 if "col_to_time" not in st.session_state:
     st.session_state.col_to_time = ""
@@ -214,6 +205,12 @@ if choix_page == "Accueil" :
 
 ############# Page 2 #############
 elif choix_page == 'Dataset' :
+    uploaded_file = st.sidebar.file_uploader("Chargez votre dataset 📚", type=['csv', 'xls'])
+    if uploaded_file is not None:
+        st.session_state.file_details = {"FileName": uploaded_file.name,
+                                         "FileType": uploaded_file.type,
+                                         "FileSize": uploaded_file.size}
+        st.sidebar.success('Fichier chargé avec succès !')
     st.markdown('<p class="grand_titre">Chargement du dataset</p>', unsafe_allow_html=True)
     st.write('##')
     if uploaded_file == None :
