@@ -80,6 +80,7 @@ st.markdown("""
 
 ###### Fonctions #######
 
+
 def load_data():
     try:
         if 'csv' in st.session_state.file_details['FileName']:

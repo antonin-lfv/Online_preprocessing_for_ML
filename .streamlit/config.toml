@@ -14,7 +14,7 @@ dataFrameSerialization = "legacy"
 base="light"
 
 # Primary accent color for interactive elements.
-primaryColor = '#2e86de'
+primaryColor = '#229954'
 
 # Background color for the main content area.
 backgroundColor= '#FFF'
