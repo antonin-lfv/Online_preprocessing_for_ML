@@ -98,20 +98,6 @@
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
     </task>
-    <task id="LOCAL-00261" summary="req">
-      <created>1625087289779</created>
-      <option name="number" value="00261" />
-      <option name="presentableId" value="LOCAL-00261" />
-      <option name="project" value="LOCAL" />
-      <updated>1625087289779</updated>
-    </task>
-    <task id="LOCAL-00262" summary="req">
-      <created>1625087507412</created>
-      <option name="number" value="00262" />
-      <option name="presentableId" value="LOCAL-00262" />
-      <option name="project" value="LOCAL" />
-      <updated>1625087507412</updated>
-    </task>
     <task id="LOCAL-00263" summary="req">
       <created>1625088393124</created>
       <option name="number" value="00263" />
@@ -441,7 +427,21 @@
       <option name="project" value="LOCAL" />
       <updated>1633978508772</updated>
     </task>
-    <option name="localTasksCounter" value="310" />
+    <task id="LOCAL-00310" summary="Color theme">
+      <created>1633978836008</created>
+      <option name="number" value="00310" />
+      <option name="presentableId" value="LOCAL-00310" />
+      <option name="project" value="LOCAL" />
+      <updated>1633978836008</updated>
+    </task>
+    <task id="LOCAL-00311" summary="Color theme">
+      <created>1633978864857</created>
+      <option name="number" value="00311" />
+      <option name="presentableId" value="LOCAL-00311" />
+      <option name="project" value="LOCAL" />
+      <updated>1633978864857</updated>
+    </task>
+    <option name="localTasksCounter" value="312" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -519,10 +519,10 @@
       <screen x="0" y="25" width="1440" height="790" />
     </state>
     <state width="1419" height="191" key="GridCell.Tab.0.right/-1920.-123.1920.1055/0.25.1440.790@0.25.1440.790" timestamp="1633609786961" />
-    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2" timestamp="1633978511147">
+    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2" timestamp="1633978865972">
       <screen x="-1920" y="-123" width="1920" height="1055" />
     </state>
-    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@-1920.-123.1920.1055" timestamp="1633978511147" />
+    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@-1920.-123.1920.1055" timestamp="1633978865972" />
     <state x="393" y="193" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@0.25.1440.790" timestamp="1633610840873" />
     <state x="393" y="193" key="Vcs.Push.Dialog.v2/0.25.1440.791@0.25.1440.791" timestamp="1633724048406" />
     <state x="393" y="194" key="Vcs.Push.Dialog.v2/1440.-155.1920.1055/0.25.1440.796@0.25.1440.796" timestamp="1626975006497" />
