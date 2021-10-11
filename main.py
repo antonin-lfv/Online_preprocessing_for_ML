@@ -161,20 +161,7 @@ if uploaded_file is not None:
 
 
 # Session
-if "col_to_time" not in st.session_state:
-    st.session_state.col_to_time = ""
-if "drop_col" not in st.session_state:
-    st.session_state.drop_col = ""
-if "col_to_float_money" not in st.session_state:
-    st.session_state.col_to_float_money = ""
-if "col_to_float_coma" not in st.session_state:
-    st.session_state.col_to_float_coma = ""
-if "separateur" not in st.session_state:
-    st.session_state.separateur = ""
-if "slider_col" not in st.session_state:
-    st.session_state.slider_col = ""
-if "degres" not in st.session_state:
-    st.session_state.degres = ""
+
 
 
 # Pages principales
