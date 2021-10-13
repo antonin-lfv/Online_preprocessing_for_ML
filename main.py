@@ -196,6 +196,7 @@ if choix_page == "Accueil" :
     st.markdown(
         '<p class="intro">En cas de bug ou d\'erreur veuillez m\'en informer par mail ou sur Discord. (Liens sur Github)</p>',
         unsafe_allow_html=True)
+    st.text_area("OUI, yjqgkrfgjyqsodufyo qsgdfkjgfils hf SHF uhslif uslidgu")
     st.write("##")
 ############# Page 1 #############
 
@@ -213,7 +214,7 @@ elif choix_page == 'Dataset' :
     st.markdown('<p class="grand_titre">Chargement du dataset</p>', unsafe_allow_html=True)
     st.write('##')
     if uploaded_file == None :
-        st.warning("Veuillez charger un dataset")
+        st.info("Veuillez charger un dataset")
 
     if "data" not in st.session_state :
         load_data()
@@ -371,7 +372,7 @@ elif choix_page == "Analyse des colonnes" :
                 st.write('##')
 
     else :
-        st.warning("Veuillez charger vos données et vous rendre dans la section Dataset")
+        st.info("Veuillez charger vos données et vous rendre dans la section Dataset")
 ############# Page 3 #############
 
 
@@ -446,7 +447,7 @@ elif choix_page == "Matrice de corrélations" :
         else:
             pass
     else:
-        st.warning("Veuillez charger vos données et vous rendre dans la section Dataset")
+        st.info("Veuillez charger vos données et vous rendre dans la section Dataset")
 ############# Page 4 #############
 
 
@@ -610,7 +611,7 @@ elif choix_page == "Section graphiques":
                 )
                 st.plotly_chart(fig)
     else :
-        st.warning("Veuillez charger vos données et vous rendre dans la section Dataset")
+        st.info("Veuillez charger vos données et vous rendre dans la section Dataset")
 ############# Page 5 #############
 
 
@@ -749,7 +750,7 @@ elif choix_page == "Machine Learning":
                                         st.write("##")
                                         st.error("Erreur de chargement")
         else:
-            st.warning('Rendez-vous dans la section Dataset pour importer votre dataset')
+            st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
 
     elif st.session_state.choix_page_ml == "K-Means" :
@@ -820,7 +821,7 @@ elif choix_page == "Machine Learning":
                                 st.write("##")
                                 st.error("Erreur de chargement")
         else:
-            st.warning('Rendez-vous dans la section Dataset pour importer votre dataset')
+            st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
 
     elif st.session_state.choix_page_ml == "Support Vector Machine" :
@@ -929,7 +930,7 @@ elif choix_page == "Machine Learning":
 
 
         else:
-            st.warning('Rendez-vous dans la section Dataset pour importer votre dataset')
+            st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
 
     elif st.session_state.choix_page_ml == "PCA" :
@@ -1000,7 +1001,7 @@ elif choix_page == "Machine Learning":
                             st.write("##")
                             st.error("Erreur de chargement!")
         else:
-            st.warning('Rendez-vous dans la section Dataset pour importer votre dataset')
+            st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
 
     elif st.session_state.choix_page_ml == "UMAP" :
@@ -1071,7 +1072,7 @@ elif choix_page == "Machine Learning":
                             st.write("##")
                             st.error("Erreur de chargement!")
         else:
-            st.warning('Rendez-vous dans la section Dataset pour importer votre dataset')
+            st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 ############# ML section #############
 
 
@@ -1157,12 +1158,5 @@ elif choix_page == "Deep Learning":
             st.write("##")
             st.write("Section en cours de developpement")
         else:
-            st.warning('Rendez-vous dans la section Dataset pour importer votre dataset')
+            st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 ############# ML section #############
-
-
-
-
-
-
-
