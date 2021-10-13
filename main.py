@@ -196,7 +196,6 @@ if choix_page == "Accueil" :
     st.markdown(
         '<p class="intro">En cas de bug ou d\'erreur veuillez m\'en informer par mail ou sur Discord. (Liens sur Github)</p>',
         unsafe_allow_html=True)
-    st.text_area("OUI, yjqgkrfgjyqsodufyo qsgdfkjgfils hf SHF uhslif uslidgu")
     st.write("##")
 ############# Page 1 #############
 
