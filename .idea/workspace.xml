@@ -19,8 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="tf">
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Génération de citations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/file_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test/file_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,13 +102,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00294" summary="update streamlit 1.0">
-      <created>1633609180889</created>
-      <option name="number" value="00294" />
-      <option name="presentableId" value="LOCAL-00294" />
-      <option name="project" value="LOCAL" />
-      <updated>1633609180890</updated>
     </task>
     <task id="LOCAL-00295" summary="update streamlit 1.0">
       <created>1633609512382</created>
@@ -445,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634231639396</updated>
     </task>
-    <option name="localTasksCounter" value="343" />
+    <task id="LOCAL-00343" summary="Génération de citations">
+      <created>1634232385347</created>
+      <option name="number" value="00343" />
+      <option name="presentableId" value="LOCAL-00343" />
+      <option name="project" value="LOCAL" />
+      <updated>1634232385347</updated>
+    </task>
+    <option name="localTasksCounter" value="344" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -471,7 +472,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="home" />
     <MESSAGE value="k-means" />
     <MESSAGE value="KNN" />
     <MESSAGE value="drop" />
@@ -496,7 +496,8 @@
     <MESSAGE value="Color theme" />
     <MESSAGE value="st message" />
     <MESSAGE value="tf" />
-    <option name="LAST_COMMIT_MESSAGE" value="tf" />
+    <MESSAGE value="Génération de citations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Génération de citations" />
   </component>
   <component name="WindowStateProjectService">
     <state x="184" y="82" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1626689429539">
@@ -539,10 +540,10 @@
       <screen x="-1920" y="-123" width="1920" height="1055" />
     </state>
     <state x="-1452" y="41" key="SettingsEditor/-1920.-123.1920.1055/0.25.1440.790@-1920.-123.1920.1055" timestamp="1634227442214" />
-    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2" timestamp="1634231640814">
+    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2" timestamp="1634232386481">
       <screen x="-1920" y="-123" width="1920" height="1055" />
     </state>
-    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@-1920.-123.1920.1055" timestamp="1634231640814" />
+    <state x="-1396" y="101" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@-1920.-123.1920.1055" timestamp="1634232386481" />
     <state x="393" y="193" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.790@0.25.1440.790" timestamp="1633610840873" />
     <state x="-1396" y="101" key="Vcs.Push.Dialog.v2/-1920.-123.1920.1055/0.25.1440.794@-1920.-123.1920.1055" timestamp="1633985438580" />
     <state x="393" y="193" key="Vcs.Push.Dialog.v2/0.25.1440.791@0.25.1440.791" timestamp="1633724048406" />

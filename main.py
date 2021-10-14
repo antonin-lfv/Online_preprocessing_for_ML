@@ -22,8 +22,6 @@ from sklearn.svm import SVC
 import tensorflow as tf
 import PIL.Image
 import tensorflow_hub as hub
-from transformers import CamembertModel, CamembertTokenizer
-from transformers import pipeline, logging
 
 ####### html/css config ########
 st.set_page_config(layout="wide")
@@ -1160,22 +1158,15 @@ elif choix_page == "Deep Learning":
         st.markdown('<p class="grand_titre">Génération de citations</p>', unsafe_allow_html=True)
         st.write("##")
 
-        # You can replace "camembert-base" with any other model from the table, e.g. "camembert/camembert-large".
-        tokenizer = CamembertTokenizer.from_pretrained("camembert/camembert-base-wikipedia-4gb")
-        camembert = CamembertModel.from_pretrained("camembert/camembert-base-wikipedia-4gb")
-
-        camembert.eval()
-
-        camembert_fill_mask = pipeline("fill-mask", model="camembert/camembert-base-wikipedia-4gb",
-                                       tokenizer="camembert/camembert-base-wikipedia-4gb")
-        logging.set_verbosity_warning()
-        logging.set_verbosity_error()
-
         texte_fill = st.text_input(label="Saisissez le début d'une citation")
 
-        if texte_fill :
-            results = camembert_fill_mask(texte_fill+" <mask>!")
-            st.info([results[i]['sequence'] for i in range(len(results))][0])
+        from transformers import CamembertModel, CamembertTokenizer
+        from transformers import pipeline, logging
+
+        camembert_fill_mask = pipeline("fill-mask", model="camembert/camembert-base-wikipedia-4gb",tokenizer="camembert/camembert-base-wikipedia-4gb")
+        logging.set_verbosity_error()
+        results = camembert_fill_mask("La putain de sa <mask>!")
+        #st.info([results[i]['sequence'] for i in range(len(results))])
 
 
     elif choix_page_dl == "GAN":
