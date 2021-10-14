@@ -1159,4 +1159,5 @@ elif choix_page == "Deep Learning":
         else:
             st.write("##")
             st.info('Section en developpement')
+
 ############# ML section #############
