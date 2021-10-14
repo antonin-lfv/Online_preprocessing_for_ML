@@ -22,6 +22,8 @@ from sklearn.svm import SVC
 import tensorflow as tf
 import PIL.Image
 import tensorflow_hub as hub
+from transformers import CamembertModel, CamembertTokenizer
+from transformers import pipeline, logging
 
 ####### html/css config ########
 st.set_page_config(layout="wide")
@@ -178,7 +180,7 @@ PAGES = ["Accueil", "Dataset", "Analyse des colonnes", "Matrice de corrélations
 st.sidebar.title('Menu :bulb:')
 choix_page = st.sidebar.radio(label="", options=PAGES)
 
-
+camembert_fill_mask = pipeline("fill-mask", model="camembert/camembert-base-wikipedia-4gb",tokenizer="camembert/camembert-base-wikipedia-4gb")
 
 
 ############# Page 1 #############
@@ -1157,10 +1159,7 @@ elif choix_page == "Deep Learning":
     elif choix_page_dl == "Génération de citations":
         st.markdown('<p class="grand_titre">Génération de citations</p>', unsafe_allow_html=True)
         st.write("##")
-        from transformers import CamembertModel, CamembertTokenizer
-        from transformers import pipeline, logging
-        camembert_fill_mask = pipeline("fill-mask", model="camembert/camembert-base-wikipedia-4gb",tokenizer="camembert/camembert-base-wikipedia-4gb")
-        logging.set_verbosity_error()
+
         col1,b,col2 = st.columns((1,0.1,1))
         with col1 :
             texte_fill = st.text_input(label="Saisissez le début d'une citation")
