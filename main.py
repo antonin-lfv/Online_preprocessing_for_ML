@@ -1159,7 +1159,7 @@ elif choix_page == "Deep Learning":
 
 
     elif choix_page_dl == "GAN":
-        st.markdown('<p class="GAN : Generative adversarial network</p>', unsafe_allow_html=True)
+        st.markdown('<p class="grand_titre">GAN : Generative adversarial network</p>', unsafe_allow_html=True)
         st.write("##")
         st.info("Section en developpement")
 
