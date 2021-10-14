@@ -22,6 +22,8 @@ from sklearn.svm import SVC
 import tensorflow as tf
 import PIL.Image
 import tensorflow_hub as hub
+from transformers import CamembertModel, CamembertTokenizer
+from transformers import pipeline
 
 ####### html/css config ########
 st.set_page_config(layout="wide")
@@ -1086,7 +1088,7 @@ elif choix_page == "Machine Learning":
 ############# DL section #############
 elif choix_page == "Deep Learning":
     # Pages
-    PAGES_DL = ["Transfert de style neuronal", "GAN"]
+    PAGES_DL = ["Transfert de style neuronal", "Génération de citations"]
     st.sidebar.title('Deep Learning :control_knobs:')
     choix_page_dl = st.sidebar.radio(label="", options=PAGES_DL)
 
@@ -1151,13 +1153,29 @@ elif choix_page == "Deep Learning":
             )
             st.plotly_chart(fig)
 
-    elif choix_page_dl == "GAN":
-        st.markdown('<p class="grand_titre">GAN : Generative adversarial network</p>', unsafe_allow_html=True)
-        if 'data' in st.session_state :
-            st.write("##")
-            st.write("Section en cours de developpement")
-        else:
-            st.write("##")
-            st.info('Section en developpement')
 
-############# ML section #############
+    elif choix_page_dl == "Génération de citations":
+        st.markdown('<p class="grand_titre">Génération de citations</p>', unsafe_allow_html=True)
+        st.write("##")
+
+        # You can replace "camembert-base" with any other model from the table, e.g. "camembert/camembert-large".
+        tokenizer = CamembertTokenizer.from_pretrained("camembert/camembert-base-wikipedia-4gb")
+        camembert = CamembertModel.from_pretrained("camembert/camembert-base-wikipedia-4gb")
+
+        camembert.eval()
+
+        camembert_fill_mask = pipeline("fill-mask", model="camembert/camembert-base-wikipedia-4gb",
+                                       tokenizer="camembert/camembert-base-wikipedia-4gb")
+
+        texte_fill = st.text_input(label="Saisissez le début d'une citation")
+
+        if texte_fill :
+            results = camembert_fill_mask(texte_fill+" <mask>!")
+            st.info([results[i]['sequence'] + '\n' for i in range(len(results))][0])
+
+
+    elif choix_page_dl == "GAN":
+        st.markdown('<p class="GAN : Generative adversarial network</p>', unsafe_allow_html=True)
+        st.info("Section en developpement")
+
+############# DL section #############
