@@ -1157,5 +1157,5 @@ elif choix_page == "Deep Learning":
             st.write("##")
             st.write("Section en cours de developpement")
         else:
-            st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+            st.info('Section en developpement')
 ############# ML section #############
