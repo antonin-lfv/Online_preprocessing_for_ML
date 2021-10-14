@@ -1158,7 +1158,11 @@ elif choix_page == "Deep Learning":
         st.markdown('<p class="grand_titre">Génération de citations</p>', unsafe_allow_html=True)
         st.write("##")
 
-        texte_fill = st.text_input(label="Saisissez le début d'une citation")
+        col1,b,col2 = st.columns((1,0.1,1))
+        with col1 :
+            texte_fill = st.text_input(label="Saisissez le début d'une citation")
+            if texte_fill :
+                st.write(texte_fill)
 
         from transformers import CamembertModel, CamembertTokenizer
         from transformers import pipeline, logging
