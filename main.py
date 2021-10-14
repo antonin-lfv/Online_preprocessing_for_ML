@@ -22,8 +22,6 @@ from sklearn.svm import SVC
 import tensorflow as tf
 import PIL.Image
 import tensorflow_hub as hub
-from transformers import CamembertModel, CamembertTokenizer
-from transformers import pipeline, logging
 
 ####### html/css config ########
 st.set_page_config(layout="wide")
