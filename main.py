@@ -1088,9 +1088,11 @@ elif choix_page == "Machine Learning":
 ############# DL section #############
 elif choix_page == "Deep Learning":
     # Pages
-    PAGES_DL = ["Transfert de style neuronal", "Génération de citations"]
+    PAGES_DL = ["Transfert de style neuronal", "Génération de citations", "GAN"]
     st.sidebar.title('Deep Learning :control_knobs:')
     choix_page_dl = st.sidebar.radio(label="", options=PAGES_DL)
+
+
 
     if choix_page_dl == "Transfert de style neuronal":
         st.markdown('<p class="grand_titre">Transfert de style neuronal</p>', unsafe_allow_html=True)

@@ -8,3 +8,4 @@ scipy
 tensorflow
 tensorflow_hub
 transformers
+sentencepiece
