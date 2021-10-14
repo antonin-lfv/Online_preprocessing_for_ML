@@ -9,3 +9,4 @@ tensorflow
 tensorflow_hub
 transformers
 sentencepiece
+torch
