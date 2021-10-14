@@ -23,7 +23,7 @@ import tensorflow as tf
 import PIL.Image
 import tensorflow_hub as hub
 from transformers import CamembertModel, CamembertTokenizer
-from transformers import pipeline
+from transformers import pipeline, logging
 
 ####### html/css config ########
 st.set_page_config(layout="wide")
@@ -1168,12 +1168,14 @@ elif choix_page == "Deep Learning":
 
         camembert_fill_mask = pipeline("fill-mask", model="camembert/camembert-base-wikipedia-4gb",
                                        tokenizer="camembert/camembert-base-wikipedia-4gb")
+        logging.set_verbosity_warning()
+        logging.set_verbosity_error()
 
         texte_fill = st.text_input(label="Saisissez le début d'une citation")
 
         if texte_fill :
             results = camembert_fill_mask(texte_fill+" <mask>!")
-            st.info([results[i]['sequence'] + '\n' for i in range(len(results))][0])
+            st.info([results[i]['sequence'] for i in range(len(results))][0])
 
 
     elif choix_page_dl == "GAN":
