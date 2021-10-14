@@ -1157,21 +1157,18 @@ elif choix_page == "Deep Learning":
     elif choix_page_dl == "Génération de citations":
         st.markdown('<p class="grand_titre">Génération de citations</p>', unsafe_allow_html=True)
         st.write("##")
-
+        from transformers import CamembertModel, CamembertTokenizer
+        from transformers import pipeline, logging
+        camembert_fill_mask = pipeline("fill-mask", model="camembert/camembert-base-wikipedia-4gb",tokenizer="camembert/camembert-base-wikipedia-4gb")
+        logging.set_verbosity_error()
         col1,b,col2 = st.columns((1,0.1,1))
         with col1 :
             texte_fill = st.text_input(label="Saisissez le début d'une citation")
             if texte_fill :
-                st.write(texte_fill)
+                results = camembert_fill_mask(texte_fill+" <mask>!")
+                st.write(results[0]['sequence'])
 
-        from transformers import CamembertModel, CamembertTokenizer
-        from transformers import pipeline, logging
-
-        camembert_fill_mask = pipeline("fill-mask", model="camembert/camembert-base-wikipedia-4gb",tokenizer="camembert/camembert-base-wikipedia-4gb")
-        logging.set_verbosity_error()
-        results = camembert_fill_mask("La putain de sa <mask>!")
         #st.write([results[i]['sequence'] for i in range(len(results))])
-        st.write(results[0]['sequence'])
 
 
     elif choix_page_dl == "GAN":
