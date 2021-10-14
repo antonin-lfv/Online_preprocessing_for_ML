@@ -180,9 +180,6 @@ PAGES = ["Accueil", "Dataset", "Analyse des colonnes", "Matrice de corrélations
 st.sidebar.title('Menu :bulb:')
 choix_page = st.sidebar.radio(label="", options=PAGES)
 
-camembert_fill_mask = pipeline("fill-mask", model="camembert/camembert-base-wikipedia-4gb",tokenizer="camembert/camembert-base-wikipedia-4gb")
-
-
 ############# Page 1 #############
 if choix_page == "Accueil" :
     st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow_html=True)
@@ -1159,19 +1156,13 @@ elif choix_page == "Deep Learning":
     elif choix_page_dl == "Génération de citations":
         st.markdown('<p class="grand_titre">Génération de citations</p>', unsafe_allow_html=True)
         st.write("##")
+        st.info("Section en developpement")
 
-        col1,b,col2 = st.columns((1,0.1,1))
-        with col1 :
-            texte_fill = st.text_input(label="Saisissez le début d'une citation")
-            if texte_fill :
-                results = camembert_fill_mask(texte_fill+" <mask>!")
-                st.write(results[0]['sequence'])
-
-        #st.write([results[i]['sequence'] for i in range(len(results))])
 
 
     elif choix_page_dl == "GAN":
         st.markdown('<p class="GAN : Generative adversarial network</p>', unsafe_allow_html=True)
+        st.write("##")
         st.info("Section en developpement")
 
 ############# DL section #############
