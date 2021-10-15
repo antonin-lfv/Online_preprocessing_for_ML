@@ -5,3 +5,13 @@ camembert_fill_mask = pipeline("fill-mask", model="camembert/camembert-base-wiki
 logging.set_verbosity_error()
 results = camembert_fill_mask("Plotly c'est <mask>!")
 print([results[i]['sequence'] for i in range(len(results))])
+
+
+
+
+
+
+
+
+
+
