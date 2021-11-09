@@ -1195,8 +1195,7 @@ elif choix_page == "Deep Learning":
             with c2 :
                 photo_input = st.file_uploader("Choisissez une photo")
                 st.write(type(photo_input))
-                test = np.array(photo_input.read())
-                st.write(test)
+                st.write(photo_input.read())
                 #imi = Image.fromarray(photo_to_detect)
                 #imi.save("images/tensorflow_images/objects_detector/input.png")
                 #photo_to_detect = "images/tensorflow_images/objects_detector/input.png"
