@@ -1203,10 +1203,12 @@ elif choix_page == "Deep Learning":
                 elif choix_photo_to_detect=="Chiens":
                     photo_to_detect = 'images/tensorflow_images/objects_detector/dogs.jpeg'
 
-        image_place = st.empty()
+        st.write("##")
+        placeholder_image = st.empty()
+        st.write("##")
         if photo_to_detect:
             st.write("##")
-            image_place.image(photo_to_detect)
+            placeholder_image.image(photo_to_detect)
 
         if photo_to_detect :
             if placeholder_button.button("Lancer la détection"):
@@ -1263,8 +1265,7 @@ elif choix_page == "Deep Learning":
                 plt.imshow(image_np_with_detections[0])
                 plt.savefig("images/tensorflow_images/objects_detector/output.png")
                 st.write("##")
-                image_place = st.empty()
-                image_place.image("images/tensorflow_images/objects_detector/output.png")
+                placeholder_image.image("images/tensorflow_images/objects_detector/output.png")
 
 
     elif choix_page_dl == "Génération de citations":
