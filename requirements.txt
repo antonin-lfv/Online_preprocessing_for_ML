@@ -1,0 +1,16 @@
+plotly
+matplotlib
+seaborn
+xlrd
+sklearn
+umap-learn
+scipy
+tensorflow
+tensorflow_hub
+torch
+tensorflow-object-detection-api
+
+
+
+
+
