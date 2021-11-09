@@ -1204,7 +1204,7 @@ elif choix_page == "Deep Learning":
             placeholder_image.image(photo_to_detect)
 
         if photo_to_detect :
-            if placeholder_button.button("Lancer la détection"):
+            if st.button("Lancer la détection"):
                 image_np = load_image_into_numpy_array(photo_to_detect)
                 detector = get_model_detection()
                 detector_output = detector(image_np)
