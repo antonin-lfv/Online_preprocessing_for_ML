@@ -171,7 +171,7 @@ def get_model_transfert_learning():
 
 @st.cache
 def get_model_detection():
-    return hub.load("models/faster_rcnn_inception_resnet_v2_640x640_1")
+    return hub.load("https://tfhub.dev/tensorflow/centernet/resnet50v1_fpn_512x512/1")
 
 ##################################
 ####### Code streamlit app #######
