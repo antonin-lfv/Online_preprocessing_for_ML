@@ -1162,6 +1162,7 @@ elif choix_page == "Deep Learning":
         st.markdown('<p class="grand_titre">Détection d\'objets sur une image</p>', unsafe_allow_html=True)
         st.write("##")
         c1, c2 = st.columns(2)
+        photo_to_detect = None
         with c1:
             image_mode = st.multiselect(options=["Image locale", "Selectionner parmi vos images"], default="Image locale", label="")
         if image_mode == "Selectionner parmi vos images":
