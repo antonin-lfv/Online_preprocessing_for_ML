@@ -1164,7 +1164,7 @@ elif choix_page == "Deep Learning":
         c1, c2 = st.columns(2)
         photo_to_detect = None
         with c1:
-            image_mode = st.selectbox(options=["Image locale", "Selectionner parmi vos images"], default="Image locale", label="")
+            image_mode = st.selectbox(options=["Image locale", "Selectionner parmi vos images"], label="")
         if image_mode == "Selectionner parmi vos images":
             photo_to_detect = st.file_uploader("Choisissez une photo")
         elif image_mode == "Image locale" :
