@@ -1201,7 +1201,7 @@ elif choix_page == "Deep Learning":
                 image.save("images/tensorflow_images/objects_detector/input.png")
                 #imi = Image.fromarray(photo_to_detect)
                 #imi.save("images/tensorflow_images/objects_detector/input.png")
-                #photo_to_detect = "images/tensorflow_images/objects_detector/input.png"
+                photo_to_detect = "images/tensorflow_images/objects_detector/input.png"
         elif image_mode == "Image locale" :
             with c2 :
                 choix_photo_to_detect = st.selectbox(options=["Plage", "New-York", "Chiens"],label="")
