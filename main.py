@@ -1193,7 +1193,10 @@ elif choix_page == "Deep Learning":
             placeholder_button = st.empty()
         if image_mode == "Selectionner parmi vos images":
             with c2 :
-                photo_to_detect = st.file_uploader("Choisissez une photo")
+                photo_input = st.file_uploader("Choisissez une photo")
+                imi = Image.fromarray(photo_to_detect)
+                imi.save("images/tensorflow_images/objects_detector/input.png")
+                photo_to_detect = "images/tensorflow_images/objects_detector/input.png"
         elif image_mode == "Image locale" :
             with c2 :
                 choix_photo_to_detect = st.selectbox(options=["Plage", "New-York", "Chiens"],label="")
