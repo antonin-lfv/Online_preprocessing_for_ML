@@ -1189,6 +1189,7 @@ elif choix_page == "Deep Learning":
         photo_to_detect = None
         with c1:
             image_mode = st.selectbox(options=["Image locale", "Selectionner parmi vos images"], label="")
+            st.write("##")
             placeholder_button = st.empty()
         if image_mode == "Selectionner parmi vos images":
             with c2 :
