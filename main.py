@@ -1196,7 +1196,6 @@ elif choix_page == "Deep Learning":
                 photo_to_detect = 'images/tensorflow_images/objects_detector/NYC_street.jpeg'
             elif choix_photo_to_detect=="Chiens":
                 photo_to_detect = 'images/tensorflow_images/objects_detector/dogs.jpeg'
-        with c2:
             placeholder_button = st.empty()
 
         st.write("##")
