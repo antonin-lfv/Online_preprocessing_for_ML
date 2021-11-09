@@ -165,7 +165,13 @@ def load_image_into_numpy_array(path):
     (im_width, im_height) = image.size
     return np.array(image.getdata()).reshape((1, im_height, im_width, 3)).astype(np.uint8)
 
+@st.cache
+def get_model_transfert_learning():
+    return hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2')
 
+@st.cache
+def get_model_detection():
+    return hub.load("https://tfhub.dev/tensorflow/faster_rcnn/inception_resnet_v2_640x640/1")
 
 ##################################
 ####### Code streamlit app #######
@@ -1158,7 +1164,7 @@ elif choix_page == "Deep Learning":
         if st.button("Lancer le transfert"):
             st.write("##")
             st.markdown('<p class="section">Résultat</p>', unsafe_allow_html=True)
-            hub_model = hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2')
+            hub_model = get_model_transfert_learning()
             stylized_image = hub_model(tf.constant(content_image), tf.constant(style_image))[0]
             img = tensor_to_image(stylized_image)
             fig = px.imshow(img)
@@ -1172,6 +1178,8 @@ elif choix_page == "Deep Learning":
                 plot_bgcolor='rgba(0,0,0,0)',
             )
             st.plotly_chart(fig)
+
+
 
     elif choix_page_dl == "Détection d'objets sur une image":
         st.markdown('<p class="grand_titre">Détection d\'objets sur une image</p>', unsafe_allow_html=True)
@@ -1200,7 +1208,7 @@ elif choix_page == "Deep Learning":
             with c2 :
                 if st.button("Lancer la détection"):
                     image_np = load_image_into_numpy_array(photo_to_detect)
-                    detector = hub.load("https://tfhub.dev/tensorflow/faster_rcnn/inception_resnet_v2_640x640/1")
+                    detector = get_model_detection
                     detector_output = detector(image_np)
 
                     COCO17_HUMAN_POSE_KEYPOINTS = [(0, 1),
