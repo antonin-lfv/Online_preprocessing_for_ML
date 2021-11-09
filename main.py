@@ -1231,7 +1231,7 @@ elif choix_page == "Deep Learning":
                                                    (14, 16)]
 
                     PATH_TO_LABELS = 'mscoco_label_map.pbtxt'
-                    category_index = label_map_util.create_category_index_from_labelmap(PATH_TO_LABELS, use_display_name=True)
+                    category_index = label_map_util2.create_category_index_from_labelmap(PATH_TO_LABELS, use_display_name=True)
 
                     label_id_offset = 0
                     image_np_with_detections = image_np.copy()
