@@ -1259,9 +1259,9 @@ elif choix_page == "Deep Learning":
 
                     plt.figure(figsize=(24, 32))
                     plt.imshow(image_np_with_detections[0])
-                    plt.savefig("images/tensorflow_images/objects_detector")
+                    plt.savefig("images/tensorflow_images/objects_detector/output")
                     st.write("##")
-                    st.image("images/tensorflow_images/objects_detector")
+                    st.image("images/tensorflow_images/objects_detector/output")
 
 
     elif choix_page_dl == "Génération de citations":
