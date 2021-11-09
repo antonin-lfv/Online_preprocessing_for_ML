@@ -19,14 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Génération de citations">
-      <change afterPath="$PROJECT_DIR$/images/tensorflow_images/objects_detector/NYC_street.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/tensorflow_images/objects_detector/beach.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/tensorflow_images/objects_detector/dogs.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="objects detection">
       <change beforePath="$PROJECT_DIR$/Icon&#10;" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/image_detector/detector_img1.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,13 +103,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00306" summary="Neural transfert">
-      <created>1633722968317</created>
-      <option name="number" value="00306" />
-      <option name="presentableId" value="LOCAL-00306" />
-      <option name="project" value="LOCAL" />
-      <updated>1633722968317</updated>
     </task>
     <task id="LOCAL-00307" summary="Neural transfert">
       <created>1633724046552</created>
@@ -453,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636468810347</updated>
     </task>
-    <option name="localTasksCounter" value="355" />
+    <task id="LOCAL-00355" summary="objects detection">
+      <created>1636470519454</created>
+      <option name="number" value="00355" />
+      <option name="presentableId" value="LOCAL-00355" />
+      <option name="project" value="LOCAL" />
+      <updated>1636470519454</updated>
+    </task>
+    <option name="localTasksCounter" value="356" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -479,7 +473,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="k-means" />
     <MESSAGE value="KNN" />
     <MESSAGE value="drop" />
     <MESSAGE value="menu" />
@@ -504,6 +497,7 @@
     <MESSAGE value="st message" />
     <MESSAGE value="tf" />
     <MESSAGE value="Génération de citations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Génération de citations" />
+    <MESSAGE value="objects detection" />
+    <option name="LAST_COMMIT_MESSAGE" value="objects detection" />
   </component>
 </project>
