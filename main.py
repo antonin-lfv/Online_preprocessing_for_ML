@@ -1189,6 +1189,7 @@ elif choix_page == "Deep Learning":
         photo_to_detect = None
         with c1:
             image_mode = st.selectbox(options=["Image locale", "Selectionner parmi vos images"], label="")
+            placeholder_button = st.empty()
         if image_mode == "Selectionner parmi vos images":
             with c2 :
                 photo_to_detect = st.file_uploader("Choisissez une photo")
@@ -1208,7 +1209,7 @@ elif choix_page == "Deep Learning":
             image_place.image(photo_to_detect)
 
         if photo_to_detect :
-            if st.button("Lancer la détection"):
+            if placeholder_button.button("Lancer la détection"):
                 image_np = load_image_into_numpy_array(photo_to_detect)
                 detector = get_model_detection()
                 detector_output = detector(image_np)
