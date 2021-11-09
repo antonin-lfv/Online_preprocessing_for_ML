@@ -1184,7 +1184,7 @@ elif choix_page == "Deep Learning":
 
 
     elif choix_page_dl == "Détection d'objets":
-        st.markdown('<p class="grand_titre">Détection d\'objets sur une image</p>', unsafe_allow_html=True)
+        st.markdown('<p class="grand_titre">Détection d\'objets</p>', unsafe_allow_html=True)
         st.write("##")
         c1, c2 = st.columns(2)
         photo_to_detect = None
