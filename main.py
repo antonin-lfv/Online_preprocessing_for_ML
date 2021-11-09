@@ -1189,6 +1189,7 @@ elif choix_page == "Deep Learning":
         c1, c2 = st.columns(2)
         photo_to_detect = None
         with c1:
+            placeholder_button = st.empty()
             choix_photo_to_detect = st.selectbox(options=["Plage", "New-York", "Chiens"],label="")
             if choix_photo_to_detect=="Plage":
                 photo_to_detect = 'images/tensorflow_images/objects_detector/beach.jpeg'
@@ -1204,7 +1205,7 @@ elif choix_page == "Deep Learning":
             placeholder_image.image(photo_to_detect)
 
         if photo_to_detect :
-            if st.button("Lancer la détection"):
+            if placeholder_button.button("Lancer la détection"):
                 image_np = load_image_into_numpy_array(photo_to_detect)
                 detector = get_model_detection()
                 detector_output = detector(image_np)
