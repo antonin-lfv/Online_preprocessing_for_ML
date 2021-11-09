@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="objects detection">
       <change beforePath="$PROJECT_DIR$/Icon&#10;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,13 +104,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00307" summary="Neural transfert">
-      <created>1633724046552</created>
-      <option name="number" value="00307" />
-      <option name="presentableId" value="LOCAL-00307" />
-      <option name="project" value="LOCAL" />
-      <updated>1633724046552</updated>
     </task>
     <task id="LOCAL-00308" summary="Neural transfert">
       <created>1633978315842</created>
@@ -447,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636470519454</updated>
     </task>
-    <option name="localTasksCounter" value="356" />
+    <task id="LOCAL-00356" summary="objects detection">
+      <created>1636470820345</created>
+      <option name="number" value="00356" />
+      <option name="presentableId" value="LOCAL-00356" />
+      <option name="project" value="LOCAL" />
+      <updated>1636470820346</updated>
+    </task>
+    <option name="localTasksCounter" value="357" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
