@@ -114,48 +114,6 @@
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
     </task>
-    <task id="LOCAL-00359" summary="objects detection">
-      <created>1636471382747</created>
-      <option name="number" value="00359" />
-      <option name="presentableId" value="LOCAL-00359" />
-      <option name="project" value="LOCAL" />
-      <updated>1636471382747</updated>
-    </task>
-    <task id="LOCAL-00360" summary="objects detection">
-      <created>1636471470362</created>
-      <option name="number" value="00360" />
-      <option name="presentableId" value="LOCAL-00360" />
-      <option name="project" value="LOCAL" />
-      <updated>1636471470362</updated>
-    </task>
-    <task id="LOCAL-00361" summary="objects detection">
-      <created>1636471737453</created>
-      <option name="number" value="00361" />
-      <option name="presentableId" value="LOCAL-00361" />
-      <option name="project" value="LOCAL" />
-      <updated>1636471737453</updated>
-    </task>
-    <task id="LOCAL-00362" summary="objects detection">
-      <created>1636471813240</created>
-      <option name="number" value="00362" />
-      <option name="presentableId" value="LOCAL-00362" />
-      <option name="project" value="LOCAL" />
-      <updated>1636471813240</updated>
-    </task>
-    <task id="LOCAL-00363" summary="objects detection">
-      <created>1636472015624</created>
-      <option name="number" value="00363" />
-      <option name="presentableId" value="LOCAL-00363" />
-      <option name="project" value="LOCAL" />
-      <updated>1636472015624</updated>
-    </task>
-    <task id="LOCAL-00364" summary="objects detection">
-      <created>1636472054580</created>
-      <option name="number" value="00364" />
-      <option name="presentableId" value="LOCAL-00364" />
-      <option name="project" value="LOCAL" />
-      <updated>1636472054580</updated>
-    </task>
     <task id="LOCAL-00365" summary="objects detection">
       <created>1636472095320</created>
       <option name="number" value="00365" />
@@ -457,7 +415,49 @@
       <option name="project" value="LOCAL" />
       <updated>1636499840438</updated>
     </task>
-    <option name="localTasksCounter" value="408" />
+    <task id="LOCAL-00408" summary="objects detection">
+      <created>1636500130649</created>
+      <option name="number" value="00408" />
+      <option name="presentableId" value="LOCAL-00408" />
+      <option name="project" value="LOCAL" />
+      <updated>1636500130649</updated>
+    </task>
+    <task id="LOCAL-00409" summary="objects detection">
+      <created>1636500170350</created>
+      <option name="number" value="00409" />
+      <option name="presentableId" value="LOCAL-00409" />
+      <option name="project" value="LOCAL" />
+      <updated>1636500170350</updated>
+    </task>
+    <task id="LOCAL-00410" summary="objects detection">
+      <created>1636500206900</created>
+      <option name="number" value="00410" />
+      <option name="presentableId" value="LOCAL-00410" />
+      <option name="project" value="LOCAL" />
+      <updated>1636500206900</updated>
+    </task>
+    <task id="LOCAL-00411" summary="objects detection">
+      <created>1636500237952</created>
+      <option name="number" value="00411" />
+      <option name="presentableId" value="LOCAL-00411" />
+      <option name="project" value="LOCAL" />
+      <updated>1636500237952</updated>
+    </task>
+    <task id="LOCAL-00412" summary="objects detection">
+      <created>1636500257072</created>
+      <option name="number" value="00412" />
+      <option name="presentableId" value="LOCAL-00412" />
+      <option name="project" value="LOCAL" />
+      <updated>1636500257072</updated>
+    </task>
+    <task id="LOCAL-00413" summary="objects detection">
+      <created>1636500299666</created>
+      <option name="number" value="00413" />
+      <option name="presentableId" value="LOCAL-00413" />
+      <option name="project" value="LOCAL" />
+      <updated>1636500299666</updated>
+    </task>
+    <option name="localTasksCounter" value="414" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">

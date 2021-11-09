@@ -1114,7 +1114,7 @@ elif choix_page == "Machine Learning":
 ############# DL section #############
 elif choix_page == "Deep Learning":
     # Pages
-    PAGES_DL = ["Transfert de style neuronal", "Détection d'objets sur une image","Génération de citations", "GAN"]
+    PAGES_DL = ["Transfert de style neuronal", "Détection d'objets","Génération de citations", "GAN"]
     st.sidebar.title('Deep Learning :control_knobs:')
     choix_page_dl = st.sidebar.radio(label="", options=PAGES_DL)
 
@@ -1183,7 +1183,7 @@ elif choix_page == "Deep Learning":
 
 
 
-    elif choix_page_dl == "Détection d'objets sur une image":
+    elif choix_page_dl == "Détection d'objets":
         st.markdown('<p class="grand_titre">Détection d\'objets sur une image</p>', unsafe_allow_html=True)
         st.write("##")
         c1, c2 = st.columns(2)
