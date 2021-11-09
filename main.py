@@ -1163,12 +1163,12 @@ elif choix_page == "Deep Learning":
         st.write("##")
         c1, c2 = st.columns(2)
         with c1:
-            image_mode = st.multiselect(options=["Image locale", "Selectionner parmi vos images"], default="Image locale")
+            image_mode = st.multiselect(options=["Image locale", "Selectionner parmi vos images"], default="Image locale", label="")
         if image_mode == "Selectionner parmi vos images":
             photo_to_detect = st.file_uploader("Choisissez une photo")
         elif image_mode == "Image locale" :
             with c2 :
-                choix_photo_to_detect = st.multiselect(options=["Plage", "New-York", "Chiens"])
+                choix_photo_to_detect = st.multiselect(options=["Plage", "New-York", "Chiens"],label="")
                 if choix_photo_to_detect=="Plage":
                     photo_to_detect = 'images/tensorflow_images/objects_detector/beach.jpeg'
                 elif choix_photo_to_detect=="New-York":
