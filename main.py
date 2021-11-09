@@ -1161,11 +1161,6 @@ elif choix_page == "Deep Learning":
     elif choix_page_dl == "Détection d'objets sur une image":
         st.markdown('<p class="grand_titre">Détection d\'objets sur une image</p>', unsafe_allow_html=True)
         st.write("##")
-
-
-    elif choix_page_dl == "Génération de citations":
-        st.markdown('<p class="grand_titre">Génération de citations</p>', unsafe_allow_html=True)
-        st.write("##")
         c1, c2 = st.columns(2)
         with c1:
             image_mode = st.multiselect(options=["Image locale", "Selectionner parmi vos images"], default="Image locale")
@@ -1184,6 +1179,11 @@ elif choix_page == "Deep Learning":
         if photo_to_detect :
             st.image(photo_to_detect)
 
+
+    elif choix_page_dl == "Génération de citations":
+        st.markdown('<p class="grand_titre">Génération de citations</p>', unsafe_allow_html=True)
+        st.write("##")
+        st.info("Section en developpement")
 
 
 
