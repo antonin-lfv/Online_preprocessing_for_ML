@@ -1,6 +1,7 @@
 # Importations
 import streamlit as st
 import plotly.express as px
+import binascii
 import numpy as np
 from collections import Counter
 import pandas as pd
