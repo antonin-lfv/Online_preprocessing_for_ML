@@ -1263,6 +1263,7 @@ elif choix_page == "Deep Learning":
                 plt.imshow(image_np_with_detections[0])
                 plt.savefig("images/tensorflow_images/objects_detector/output.png")
                 st.write("##")
+                image_place = st.empty()
                 image_place.image("images/tensorflow_images/objects_detector/output.png")
 
 
