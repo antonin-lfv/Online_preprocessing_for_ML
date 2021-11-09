@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="objects detection">
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="objects detection" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -113,41 +111,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00346" summary="Génération de citations">
-      <created>1634234271393</created>
-      <option name="number" value="00346" />
-      <option name="presentableId" value="LOCAL-00346" />
-      <option name="project" value="LOCAL" />
-      <updated>1634234271393</updated>
-    </task>
-    <task id="LOCAL-00347" summary="Génération de citations">
-      <created>1634234626581</created>
-      <option name="number" value="00347" />
-      <option name="presentableId" value="LOCAL-00347" />
-      <option name="project" value="LOCAL" />
-      <updated>1634234626581</updated>
-    </task>
-    <task id="LOCAL-00348" summary="Génération de citations">
-      <created>1634234819186</created>
-      <option name="number" value="00348" />
-      <option name="presentableId" value="LOCAL-00348" />
-      <option name="project" value="LOCAL" />
-      <updated>1634234819186</updated>
-    </task>
-    <task id="LOCAL-00349" summary="Génération de citations">
-      <created>1634235146876</created>
-      <option name="number" value="00349" />
-      <option name="presentableId" value="LOCAL-00349" />
-      <option name="project" value="LOCAL" />
-      <updated>1634235146876</updated>
-    </task>
-    <task id="LOCAL-00350" summary="Génération de citations">
-      <created>1634235211099</created>
-      <option name="number" value="00350" />
-      <option name="presentableId" value="LOCAL-00350" />
-      <option name="project" value="LOCAL" />
-      <updated>1634235211099</updated>
     </task>
     <task id="LOCAL-00351" summary="Génération de citations">
       <created>1634235513817</created>
@@ -457,7 +420,42 @@
       <option name="project" value="LOCAL" />
       <updated>1636498840947</updated>
     </task>
-    <option name="localTasksCounter" value="395" />
+    <task id="LOCAL-00395" summary="objects detection">
+      <created>1636499108887</created>
+      <option name="number" value="00395" />
+      <option name="presentableId" value="LOCAL-00395" />
+      <option name="project" value="LOCAL" />
+      <updated>1636499108888</updated>
+    </task>
+    <task id="LOCAL-00396" summary="objects detection">
+      <created>1636499172357</created>
+      <option name="number" value="00396" />
+      <option name="presentableId" value="LOCAL-00396" />
+      <option name="project" value="LOCAL" />
+      <updated>1636499172357</updated>
+    </task>
+    <task id="LOCAL-00397" summary="objects detection">
+      <created>1636499252788</created>
+      <option name="number" value="00397" />
+      <option name="presentableId" value="LOCAL-00397" />
+      <option name="project" value="LOCAL" />
+      <updated>1636499252788</updated>
+    </task>
+    <task id="LOCAL-00398" summary="objects detection">
+      <created>1636499296590</created>
+      <option name="number" value="00398" />
+      <option name="presentableId" value="LOCAL-00398" />
+      <option name="project" value="LOCAL" />
+      <updated>1636499296590</updated>
+    </task>
+    <task id="LOCAL-00399" summary="objects detection">
+      <created>1636499347200</created>
+      <option name="number" value="00399" />
+      <option name="presentableId" value="LOCAL-00399" />
+      <option name="project" value="LOCAL" />
+      <updated>1636499347200</updated>
+    </task>
+    <option name="localTasksCounter" value="400" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
