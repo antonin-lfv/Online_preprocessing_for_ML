@@ -1198,7 +1198,7 @@ elif choix_page == "Deep Learning":
                 stream = BytesIO(photo_input.read())
                 image = Image.open(stream).convert("RGBA")
                 stream.close()
-                image.save("images/tensorflow_images/objects_detector/input.jpeg")
+                image.save("images/tensorflow_images/objects_detector/input.png")
                 #imi = Image.fromarray(photo_to_detect)
                 #imi.save("images/tensorflow_images/objects_detector/input.png")
                 #photo_to_detect = "images/tensorflow_images/objects_detector/input.png"
