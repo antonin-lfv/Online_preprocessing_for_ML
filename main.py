@@ -22,6 +22,14 @@ from sklearn.svm import SVC
 import tensorflow as tf
 import PIL.Image
 import tensorflow_hub as hub
+from PIL import Image, ImageDraw, ImageFont
+import os
+from six import BytesIO
+import io
+# pip install tensorflow-object-detection-api
+from object_detection.utils import visualization_utils as viz_utils
+from object_detection.utils import label_map_util
+from object_detection.utils import ops as utils_ops
 
 ####### html/css config ########
 st.set_page_config(layout="wide")
@@ -1083,7 +1091,7 @@ elif choix_page == "Machine Learning":
 ############# DL section #############
 elif choix_page == "Deep Learning":
     # Pages
-    PAGES_DL = ["Transfert de style neuronal", "Génération de citations", "GAN"]
+    PAGES_DL = ["Transfert de style neuronal", "Détection d'objets sur une image","Génération de citations", "GAN"]
     st.sidebar.title('Deep Learning :control_knobs:')
     choix_page_dl = st.sidebar.radio(label="", options=PAGES_DL)
 
@@ -1150,11 +1158,33 @@ elif choix_page == "Deep Learning":
             )
             st.plotly_chart(fig)
 
+    elif choix_page_dl == "Détection d'objets sur une image":
+        st.markdown('<p class="grand_titre">Détection d\'objets sur une image</p>', unsafe_allow_html=True)
+        st.write("##")
+
 
     elif choix_page_dl == "Génération de citations":
         st.markdown('<p class="grand_titre">Génération de citations</p>', unsafe_allow_html=True)
         st.write("##")
-        st.info("Section en developpement")
+        c1, c2 = st.columns(2)
+        with c1:
+            image_mode = st.multiselect(options=["Image locale", "Selectionner parmi vos images"], default="Image locale")
+        if image_mode == "Selectionner parmi vos images":
+            photo_to_detect = st.file_uploader("Choisissez une photo")
+        elif image_mode == "Image locale" :
+            with c2 :
+                choix_photo_to_detect = st.multiselect(options=["Plage", "New-York", "Chiens"])
+                if choix_photo_to_detect=="Plage":
+                    photo_to_detect = 'images/tensorflow_images/objects_detector/beach.jpeg'
+                elif choix_photo_to_detect=="New-York":
+                    photo_to_detect = 'images/tensorflow_images/objects_detector/NYC_street.jpeg'
+                elif choix_photo_to_detect=="Chiens":
+                    photo_to_detect = 'images/tensorflow_images/objects_detector/dogs.jpeg'
+
+        if photo_to_detect :
+            st.image(photo_to_detect)
+
+
 
 
 
