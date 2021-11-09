@@ -1208,7 +1208,7 @@ elif choix_page == "Deep Learning":
         if photo_to_detect:
             st.write("##")
             with c1:
-                placeholder_image.image(photo_to_detect)
+                st.image(photo_to_detect)
 
         if photo_to_detect :
             if placeholder_button.button("Lancer la détection"):
@@ -1266,7 +1266,7 @@ elif choix_page == "Deep Learning":
                 plt.savefig("images/tensorflow_images/objects_detector/output.png")
                 st.write("##")
                 with c2:
-                    placeholder_image.image("images/tensorflow_images/objects_detector/output.png")
+                    st.image("images/tensorflow_images/objects_detector/output.png")
 
 
     elif choix_page_dl == "Génération de citations":
