@@ -1208,7 +1208,7 @@ elif choix_page == "Deep Learning":
             with c2 :
                 if st.button("Lancer la détection"):
                     image_np = load_image_into_numpy_array(photo_to_detect)
-                    detector = get_model_detection
+                    detector = get_model_detection()
                     detector_output = detector(image_np)
 
                     COCO17_HUMAN_POSE_KEYPOINTS = [(0, 1),
