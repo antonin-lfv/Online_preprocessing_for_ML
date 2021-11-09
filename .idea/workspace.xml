@@ -20,9 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="objects detection">
-      <change afterPath="$PROJECT_DIR$/images/tensorflow_images/objects_detector/pont_1.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/tensorflow_images/objects_detector/street_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,27 +113,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00367" summary="objects detection">
-      <created>1636472567829</created>
-      <option name="number" value="00367" />
-      <option name="presentableId" value="LOCAL-00367" />
-      <option name="project" value="LOCAL" />
-      <updated>1636472567829</updated>
-    </task>
-    <task id="LOCAL-00368" summary="objects detection">
-      <created>1636472638293</created>
-      <option name="number" value="00368" />
-      <option name="presentableId" value="LOCAL-00368" />
-      <option name="project" value="LOCAL" />
-      <updated>1636472638294</updated>
-    </task>
-    <task id="LOCAL-00369" summary="objects detection">
-      <created>1636473378842</created>
-      <option name="number" value="00369" />
-      <option name="presentableId" value="LOCAL-00369" />
-      <option name="project" value="LOCAL" />
-      <updated>1636473378842</updated>
     </task>
     <task id="LOCAL-00370" summary="objects detection">
       <created>1636473962673</created>
@@ -459,7 +436,28 @@
       <option name="project" value="LOCAL" />
       <updated>1636501039373</updated>
     </task>
-    <option name="localTasksCounter" value="416" />
+    <task id="LOCAL-00416" summary="objects detection">
+      <created>1636501179493</created>
+      <option name="number" value="00416" />
+      <option name="presentableId" value="LOCAL-00416" />
+      <option name="project" value="LOCAL" />
+      <updated>1636501179493</updated>
+    </task>
+    <task id="LOCAL-00417" summary="objects detection">
+      <created>1636501317569</created>
+      <option name="number" value="00417" />
+      <option name="presentableId" value="LOCAL-00417" />
+      <option name="project" value="LOCAL" />
+      <updated>1636501317569</updated>
+    </task>
+    <task id="LOCAL-00418" summary="objects detection">
+      <created>1636501357085</created>
+      <option name="number" value="00418" />
+      <option name="presentableId" value="LOCAL-00418" />
+      <option name="project" value="LOCAL" />
+      <updated>1636501357086</updated>
+    </task>
+    <option name="localTasksCounter" value="419" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
