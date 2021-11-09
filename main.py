@@ -1195,7 +1195,7 @@ elif choix_page == "Deep Learning":
         if image_mode == "Selectionner parmi vos images":
             with c2 :
                 photo_input = st.file_uploader("Choisissez une photo")
-                stream = BytesIO(photo_input)
+                stream = BytesIO(photo_input.read())
                 image = Image.open(stream).convert("RGBA")
                 stream.close()
                 image.save("images/tensorflow_images/objects_detector/input.jpeg")
