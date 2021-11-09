@@ -1189,28 +1189,13 @@ elif choix_page == "Deep Learning":
         c1, c2 = st.columns(2)
         photo_to_detect = None
         with c1:
-            image_mode = st.selectbox(options=["Image locale", "Selectionner parmi vos images"], label="")
-            st.write("##")
-            placeholder_button = st.empty()
-        if image_mode == "Selectionner parmi vos images":
-            with c2 :
-                photo_input = st.file_uploader("Choisissez une photo")
-                stream = BytesIO(photo_input.read())
-                image = Image.open(stream).convert("RGBA")
-                stream.close()
-                image.save("images/tensorflow_images/objects_detector/input.png")
-                #imi = Image.fromarray(photo_to_detect)
-                #imi.save("images/tensorflow_images/objects_detector/input.png")
-                photo_to_detect = "images/tensorflow_images/objects_detector/input.png"
-        elif image_mode == "Image locale" :
-            with c2 :
-                choix_photo_to_detect = st.selectbox(options=["Plage", "New-York", "Chiens"],label="")
-                if choix_photo_to_detect=="Plage":
-                    photo_to_detect = 'images/tensorflow_images/objects_detector/beach.jpeg'
-                elif choix_photo_to_detect=="New-York":
-                    photo_to_detect = 'images/tensorflow_images/objects_detector/NYC_street.jpeg'
-                elif choix_photo_to_detect=="Chiens":
-                    photo_to_detect = 'images/tensorflow_images/objects_detector/dogs.jpeg'
+            choix_photo_to_detect = st.selectbox(options=["Plage", "New-York", "Chiens"],label="")
+            if choix_photo_to_detect=="Plage":
+                photo_to_detect = 'images/tensorflow_images/objects_detector/beach.jpeg'
+            elif choix_photo_to_detect=="New-York":
+                photo_to_detect = 'images/tensorflow_images/objects_detector/NYC_street.jpeg'
+            elif choix_photo_to_detect=="Chiens":
+                photo_to_detect = 'images/tensorflow_images/objects_detector/dogs.jpeg'
 
         st.write("##")
         placeholder_image = st.empty()
