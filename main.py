@@ -1199,7 +1199,7 @@ elif choix_page == "Deep Learning":
             elif choix_photo_to_detect=="Rue 2":
                 photo_to_detect = 'images/tensorflow_images/objects_detector/street_2.jpeg'
             elif choix_photo_to_detect=="Rue 3":
-                photo_to_detect = 'images/tensorflow_images/objects_detector/street_3.jpeg'
+                photo_to_detect = 'images/tensorflow_images/objects_detector/street_3.png'
             elif choix_photo_to_detect=="Pont":
                 photo_to_detect = 'images/tensorflow_images/objects_detector/pont_1.jpeg'
             st.write("##")
