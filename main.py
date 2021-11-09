@@ -1237,6 +1237,8 @@ elif choix_page == "Deep Learning":
                     label_id_offset = 0
                     image_np_with_detections = image_np.copy()
 
+                    result = {key: value.numpy() for key, value in detector_output.items()}
+
                     # Use keypoints if available in detections
                     keypoints, keypoint_scores = None, None
                     if 'detection_keypoints' in result:
