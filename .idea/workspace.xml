@@ -35,6 +35,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="1tiUdb6uJw795w7Sr2mcUad3BIe" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -103,13 +111,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00328" summary="Color theme">
-      <created>1633985248105</created>
-      <option name="number" value="00328" />
-      <option name="presentableId" value="LOCAL-00328" />
-      <option name="project" value="LOCAL" />
-      <updated>1633985248105</updated>
     </task>
     <task id="LOCAL-00329" summary="Color theme">
       <created>1633985436859</created>
@@ -447,7 +448,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636480690443</updated>
     </task>
-    <option name="localTasksCounter" value="377" />
+    <task id="LOCAL-00377" summary="objects detection">
+      <created>1636481269153</created>
+      <option name="number" value="00377" />
+      <option name="presentableId" value="LOCAL-00377" />
+      <option name="project" value="LOCAL" />
+      <updated>1636481269154</updated>
+    </task>
+    <option name="localTasksCounter" value="378" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
