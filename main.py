@@ -92,7 +92,8 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
-st.sidebar.markdown("""<img src="https://github.com/antonin-lfv/Online_preprocessing_for_ML/blob/master/logo.png" class="center">""", unsafe_allow_html=True)
+st.sidebar.image("logo.png", use_column_width=True)
+st.write("##")
 
 ###### Fonctions #######
 
