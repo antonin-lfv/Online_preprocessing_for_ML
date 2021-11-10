@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://share.streamlit.io/antonin-lfv/online_preprocessing_for_ml/main.py"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg"/></a>
-  [![Codacy Badge](https://app.codacy.com/project/badge/Grade/24ff1896d8a548b2a6800b6836bf21fb)](https://www.codacy.com/gh/antonin-lfv/Online_preprocessing_for_ML/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=antonin-lfv/Online_preprocessing_for_ML&amp;utm_campaign=Badge_Grade)
+  <a href="https://www.codacy.com/gh/antonin-lfv/Online_preprocessing_for_ML/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=antonin-lfv/Online_preprocessing_for_ML&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/24ff1896d8a548b2a6800b6836bf21fb" height="20"/></a>
   </p>
 
 <br/>
