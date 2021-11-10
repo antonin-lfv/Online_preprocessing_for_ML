@@ -222,7 +222,7 @@ if choix_page == "Accueil" :
     st.markdown('<p class="first_titre">No-code AI platform</p>', unsafe_allow_html=True)
     st.write("##")
     st.markdown(
-        '<p class="intro">Bienvenue sur la no-code AI platforme ! Déposez vos datasets csv et excel ou choisissez en un parmi ceux proposés, et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes, visualisez vos données et créez vos modèles de Machine et Deep Learning. ' +
+        '<p class="intro">Bienvenue sur la no-code AI platform ! Déposez vos datasets csv et excel ou choisissez en un parmi ceux proposés, et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes, visualisez vos données et créez vos modèles de Machine et Deep Learning. ' +
         'Pour charger votre dataset, uploadez le depuis le volet latéral, et rendez vous dans la section "Dataset". Si vous effectuez des modifications sur le dataset, il faudra le télécharger pour pouvoir l\'utiliser sur les autres pages. La section Deep Learning ne requiert aucun dataset, elle repose sur des '+
         'modèles prè-entrainés de tensorflow.</p>',
         unsafe_allow_html=True)
