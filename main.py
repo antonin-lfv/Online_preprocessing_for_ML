@@ -207,6 +207,7 @@ if "degres" not in st.session_state:
 
 
 #uploaded_file = st.sidebar.file_uploader("Chargez votre dataset 📚", type=['csv', 'xls'])
+uploaded_file = 0
 #if uploaded_file is not None:
 #    st.session_state.file_details = {"FileName": uploaded_file.name,
 #                                     "FileType": uploaded_file.type,
