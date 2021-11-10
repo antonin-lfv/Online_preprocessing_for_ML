@@ -43,7 +43,7 @@ st.markdown("""
     box-sizing: border-box;
     text-align: center;
     width: 100%;
-    border: solid #52BE80 3px;
+    border: solid #ff8002 3px;
     padding: 5px;
 }
 .intro{
@@ -54,7 +54,7 @@ st.markdown("""
     font-size:30px !important;
     font-weight: bold;
     text-decoration: underline;
-    text-decoration-color: #E74C3C;
+    text-decoration-color: #ff8002;
     text-decoration-thickness: 5px;
 }
 .grand_titre_section_ML_DL {
