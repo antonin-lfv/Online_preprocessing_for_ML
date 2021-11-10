@@ -16,7 +16,7 @@ primaryColor = '#ff8002' # couleur des bouttons
 backgroundColor= '#f5f6f7' # fond de page
 
 # Background color used for the sidebar and most interactive widgets.
-secondaryBackgroundColor = '#848e9c'  # sidebar couleur
+secondaryBackgroundColor = '#b7bdc5'  # sidebar couleur
 
 # Color used for almost all text.
 textColor = '#222f3e' # couleur du texte
@@ -29,3 +29,9 @@ font = "sans serif"
 # Set to false to disable the deprecation warning for the file uploader encoding.
 # Default: "True"
 showfileUploaderEncoding = "False"
+
+[server]
+
+# Max size, in megabytes, for files uploaded with the file_uploader.
+# Default: 200
+maxUploadSize = 200
