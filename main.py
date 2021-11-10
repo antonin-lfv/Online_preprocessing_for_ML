@@ -1124,7 +1124,7 @@ elif choix_page == "Machine Learning":
 elif choix_page == "Deep Learning":
     # Pages
     PAGES_DL = ["Transfert de style neuronal", "Détection d'objets","Génération de citations", "GAN"]
-    st.sidebar.title('Deep Learning :control_knobs:')
+    st.sidebar.title('Deep Learning :brain:')
     choix_page_dl = st.sidebar.radio(label="", options=PAGES_DL)
 
 
