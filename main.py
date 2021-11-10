@@ -1189,15 +1189,13 @@ elif choix_page == "Deep Learning":
         c1, c2 = st.columns(2)
         photo_to_detect = None
         with c1:
-            choix_photo_to_detect = st.selectbox(options=["Plage", "Rue 1", "Rue 2", "Rue 3", "Chiens", "Pont"],label="")
+            choix_photo_to_detect = st.selectbox(options=["Plage", "Rue 1", "Rue 3", "Chiens", "Pont"],label="")
             if choix_photo_to_detect=="Plage":
                 photo_to_detect = 'images/tensorflow_images/objects_detector/beach.jpeg'
             elif choix_photo_to_detect=="Chiens":
                 photo_to_detect = 'images/tensorflow_images/objects_detector/dogs.jpeg'
             elif choix_photo_to_detect=="Rue 1":
                 photo_to_detect = 'images/tensorflow_images/objects_detector/street_1.jpeg'
-            elif choix_photo_to_detect=="Rue 2":
-                photo_to_detect = 'images/tensorflow_images/objects_detector/street_2.jpeg'
             elif choix_photo_to_detect=="Rue 3":
                 photo_to_detect = 'images/tensorflow_images/objects_detector/street_3.png'
             elif choix_photo_to_detect=="Pont":
@@ -1209,7 +1207,6 @@ elif choix_page == "Deep Learning":
         placeholder_image = st.empty()
         if photo_to_detect:
             st.write("##")
-            st.write(photo_to_detect)
             placeholder_image.image(photo_to_detect)
 
         if photo_to_detect :
