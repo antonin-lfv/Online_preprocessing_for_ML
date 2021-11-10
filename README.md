@@ -20,56 +20,58 @@ En cours de développement ...
 
 # Index
 
-1. [Interface](#Interface)
-    - [Accueil](#Accueil)
-    - [Dataset](#Dataset)
-    - [Analyse des colonnes](#Analyse-des-colonnes)
-    - [Matrice de corrélation](#Matrice-de-corrélation)
-    - [Section graphiques](#Section-graphiques)
-    - [Machine Learning](#Machine-Learning)
-      - [k-nearest neighbors](#k-nearest-neighbors)
-      - [k-Means](#K-Means)
-      - [Support Vector Machine](#Support-Vector-Machine)
-      - [PCA](#PCA)
-      - [UMAP](#UMAP)
-    - [Deep Learning](#Deep-Learning)
-      - [Transfert de style neuronal](#Transfert-de-style-neuronal)
-      - [Détection d'objets](#Détection-dobjets)
-      - [Génération de citations](#Génération-de-citations)
-      - [GAN](#GAN)
+- [Accueil](#Accueil)
+- [Dataset](#Dataset)
+- [Analyse des colonnes](#Analyse-des-colonnes)
+- [Matrice de corrélation](#Matrice-de-corrélation)
+- [Section graphiques](#Section-graphiques)
+- [Machine Learning](#Machine-Learning)
+  - [k-nearest neighbors](#k-nearest-neighbors)
+  - [k-Means](#K-Means)
+  - [Support Vector Machine](#Support-Vector-Machine)
+  - [PCA](#PCA)
+  - [UMAP](#UMAP)
+- [Deep Learning](#Deep-Learning)
+  - [Transfert de style neuronal](#Transfert-de-style-neuronal)
+  - [Détection d'objets](#Détection-dobjets)
+  - [Génération de citations](#Génération-de-citations)
+  - [GAN](#GAN)
 
 
 <br/>
 
-# Interface
 
-## Accueil
+# Accueil
 
-## Dataset
+# Dataset
 
-## Analyse des colonnes
+# Analyse des colonnes
 
-## Matrice de corrélation
+# Matrice de corrélation
 
-## Section graphiques
+# Section graphiques
 
-## Machine Learning
+# Machine Learning
 
-### k-nearest neighbors
+## k-nearest neighbors
 
-### k-Means
+## k-Means
 
-### Support Vector Machine
+## Support Vector Machine
 
-### PCA
+## PCA
 
-### UMAP
+## UMAP
 
-## Deep Learning
+# Deep Learning
 
-### Transfert de style neuronal
+## Transfert de style neuronal
 
-### GAN
+## Détection d'objets
+
+## Génération de citations
+
+## GAN
 
 <br/>
 
