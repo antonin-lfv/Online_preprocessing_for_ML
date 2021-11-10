@@ -94,6 +94,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.sidebar.image("logo.png", use_column_width=True, width=70)
 st.write("##")
+st.write("##")
 
 ###### Fonctions #######
 
