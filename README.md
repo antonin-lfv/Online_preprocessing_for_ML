@@ -28,7 +28,7 @@ En cas de bug important, veuillez me le signaler pour qu'il puisse être corrig�
 
 1. [Interface](#Interface)
     - [Accueil](#Accueil)
-    - [Chargement du dataset](#Chargement-du-dataset)
+    - [Dataset](#Dataset)
     - [Analyse des colonnes](#Analyse-des-colonnes)
     - [Matrice de corrélation](#Matrice-de-corrélation)
     - [Section graphiques](#Section-graphiques)
@@ -61,7 +61,7 @@ En arrivant sur le DashBoard, vous verrez ceci :
 <br/>
 Il vous faut ici choisir un dataset csv ou excel de votre machine, en cliquant sur le bouton <b>Browse files</b>. Une fois cela effectuée, le menu lateral apparaîtra. Pour ensuite pouvoir utiliser votre fichier, il faut vous rendre à la page 2, nommée <b>Chargement du dataset</b>. <br/>
 
-## Chargement du dataset
+## Dataset
 
 Sur cette page, plusieurs modifications sont possibles sur le dataset : 
 - Ajout d'un séparateur si besoin
