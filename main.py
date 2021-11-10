@@ -94,7 +94,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.sidebar.image("logo.png", use_column_width=True, width=70)
 st.sidebar.write("##")
-st.sidebar.write("##")
 
 ###### Fonctions #######
 
@@ -206,8 +205,7 @@ if "degres" not in st.session_state:
     st.session_state.degres = ""
 
 
-uploaded_file = st.sidebar.file_uploader("", type=['csv', 'xls'])
-st.sidebar.subheader("Chargez votre dataset 📚")
+uploaded_file = st.sidebar.file_uploader("Chargez votre dataset 📚", type=['csv', 'xls'])
 if uploaded_file is not None:
     st.session_state.file_details = {"FileName": uploaded_file.name,
                                      "FileType": uploaded_file.type,
