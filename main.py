@@ -35,7 +35,6 @@ from label_map_util2 import *
 
 ####### html/css config ########
 st.set_page_config(layout="wide")
-st.sidebar.image('logo.png', width=60 )
 st.markdown("""
 <style>
 .first_titre {
@@ -85,8 +84,15 @@ st.markdown("""
     text-decoration-color: #000;
     text-decoration-thickness: 1px;
 }
+.center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
 </style>
 """, unsafe_allow_html=True)
+st.sidebar.markdown("""<img src="logo.png" class="center">""", unsafe_allow_html=True)
 
 ###### Fonctions #######
 
