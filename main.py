@@ -661,7 +661,7 @@ elif choix_page == "Section graphiques":
 elif choix_page == "Machine Learning":
     # Pages
     PAGES_ML = ["K-nearest neighbors", "K-Means", "Support Vector Machine", "PCA", "UMAP"]
-    st.sidebar.title('Machine Learning :control_knobs:')
+    st.sidebar.title('Machine Learning  :brain:')
     st.sidebar.radio(label="", options=PAGES_ML, key="choix_page_ml")
 
 
