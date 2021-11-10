@@ -1209,6 +1209,7 @@ elif choix_page == "Deep Learning":
         placeholder_image = st.empty()
         if photo_to_detect:
             st.write("##")
+            st.write(photo_to_detect)
             placeholder_image.image(photo_to_detect)
 
         if photo_to_detect :
