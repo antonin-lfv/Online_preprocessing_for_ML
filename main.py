@@ -43,7 +43,7 @@ st.markdown("""
     box-sizing: border-box;
     text-align: center;
     width: 100%;
-    border: solid #ff8002 3px;
+    border: solid #ff8002 5px;
     padding: 5px;
 }
 .intro{
@@ -211,7 +211,7 @@ choix_page = st.sidebar.radio(label="", options=PAGES)
 
 ############# Page 1 #############
 if choix_page == "Accueil" :
-    st.markdown('<p class="first_titre">Preprocessing automatique</p>', unsafe_allow_html=True)
+    st.markdown('<p class="first_titre">No-code AI platform</p>', unsafe_allow_html=True)
     st.write("##")
     st.markdown(
         '<p class="intro">Bienvenue sur le site de Preprocessing en ligne ! Déposez vos datasets csv et excel et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes, visualisez vos données et créez vos modèles de Machine et Deep Learning. ' +
