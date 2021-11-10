@@ -35,7 +35,7 @@ from label_map_util2 import *
 
 ####### html/css config ########
 st.set_page_config(layout="wide")
-st.sidebar.image('logo.png')
+st.sidebar.image('logo.png', width=60 )
 st.markdown("""
 <style>
 .first_titre {
