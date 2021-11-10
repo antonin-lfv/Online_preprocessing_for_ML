@@ -98,19 +98,20 @@ st.sidebar.write("##")
 ###### Fonctions #######
 
 def load_data():
-    try:
-        if 'csv' in st.session_state.file_details['FileName']:
-            if st.session_state.separateur != "":
-                st.session_state.data = pd.read_csv(uploaded_file, sep=st.session_state.separateur, engine='python')
-            else:
-                st.session_state.data = pd.read_csv(uploaded_file)
-        else:
-            if st.session_state.separateur != "":
-                st.session_state.data = pd.read_excel(uploaded_file, sep=st.session_state.separateur, engine='python')
-            else:
-                st.session_state.data = pd.read_excel(uploaded_file)
-    except:
-        pass
+    st.session_state.data = pd.read_csv('Datasets/iris.csv')
+    #try:
+        #if 'csv' in st.session_state.file_details['FileName']:
+            #if st.session_state.separateur != "":
+                #st.session_state.data = pd.read_csv(uploaded_file, sep=st.session_state.separateur, engine='python')
+            #else:
+                #st.session_state.data = pd.read_csv(uploaded_file)
+        #else:
+            #if st.session_state.separateur != "":
+                #st.session_state.data = pd.read_excel(uploaded_file, sep=st.session_state.separateur, engine='python')
+            #else:
+                #st.session_state.data = pd.read_excel(uploaded_file)
+    #except:
+        #pass
 
 def max_std(dataset):# colonne de maximum de variance
     l = []
@@ -205,12 +206,12 @@ if "degres" not in st.session_state:
     st.session_state.degres = ""
 
 
-uploaded_file = st.sidebar.file_uploader("Chargez votre dataset 📚", type=['csv', 'xls'])
-if uploaded_file is not None:
-    st.session_state.file_details = {"FileName": uploaded_file.name,
-                                     "FileType": uploaded_file.type,
-                                     "FileSize": uploaded_file.size}
-    st.sidebar.success('Fichier chargé avec succès !')
+#uploaded_file = st.sidebar.file_uploader("Chargez votre dataset 📚", type=['csv', 'xls'])
+#if uploaded_file is not None:
+#    st.session_state.file_details = {"FileName": uploaded_file.name,
+#                                     "FileType": uploaded_file.type,
+#                                     "FileSize": uploaded_file.size}
+#    st.sidebar.success('Fichier chargé avec succès !')
 
 # Pages principales
 PAGES = ["Accueil", "Dataset", "Analyse des colonnes", "Matrice de corrélations", "Section graphiques", "Machine Learning", "Deep Learning"]
@@ -227,8 +228,7 @@ if choix_page == "Accueil" :
         'modèles prè-entrainés de tensorflow.</p>',
         unsafe_allow_html=True)
     st.markdown(
-        '<p class="intro">Un tutoriel sur l\'utilisation de ce site est disponible sur <a href="https://github.com/antonin-lfv/Online_preprocessing_for_ML">Github</a>. Si vous souhaitez un dataset pour ' +
-        'simplement tester, vous pouvez télécharger le dataset des iris <a href="https://www.kaggle.com/arshid/iris-flower-dataset">ici</a>.</p>',
+        '<p class="intro">Un tutoriel sur l\'utilisation de ce site est disponible sur <a href="https://github.com/antonin-lfv/Online_preprocessing_for_ML">Github</a>.</p>',
         unsafe_allow_html=True)
     st.markdown(
         '<p class="intro">En cas de bug ou d\'erreur veuillez m\'en informer par mail ou sur Discord. (Liens sur Github)</p>',
