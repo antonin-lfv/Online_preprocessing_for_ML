@@ -72,11 +72,6 @@ En cours de développement ...
 
 ### GAN
 
-
-<p align="center">
-<img width="1439" alt="Capture d’écran 2021-07-22 à 19 17 34" src="https://user-images.githubusercontent.com/63207451/126681154-fa50acbe-766b-44a1-89a6-43288f06d6f6.png">
-</p>
-
 <br/>
 
 <br/>
