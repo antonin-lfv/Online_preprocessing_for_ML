@@ -297,7 +297,7 @@ elif choix_page == 'Dataset' :
                     st.write("##")
                     st.info("Rechargez votre dataset pour le modifier, en cliquant 2 FOIS sur le bouton ci-dessous")
                 if st.button("Modifier le dataset"):
-                    dataset_choix = "Choisir un dataset personnel"
+                    dataset_choix = ""
                     st.session_state.choix_dataset = ""
                     st.session_state.clear()
 
