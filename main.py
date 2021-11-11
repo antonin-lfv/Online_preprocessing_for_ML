@@ -231,14 +231,11 @@ if choix_page == "Accueil" :
     st.markdown(
         '<p class="intro"><b>Commencez par choisir un dataset dans la section Dataset !</b></p>',
         unsafe_allow_html=True)
-    st.write("##")
-    st.write("##")
     _,_,_,_,_,c6 = st.columns(6)
     with c6:
         st.subheader("Liens")
         st.write("• [GitHub](https://github.com/antonin-lfv/Online_preprocessing_for_ML/blob/master/README.md)")
         st.write("• [Mon site](https://antonin-lfv.github.io)")
-        st.write("##")
 ############# Page 1 #############
 
 
