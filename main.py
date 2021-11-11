@@ -647,7 +647,7 @@ elif choix_page == "Section graphiques":
         if st.session_state.abscisse_plot and st.session_state.ordonnee_plot:
             if st.session_state.type_plot == 'Latitude/Longitude':
                 fig = go.Figure()
-                df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot], st.session_state.data[st.session_state.ordonnee_plot]],
+                df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot].reset_index(drop=True), st.session_state.data[st.session_state.ordonnee_plot].reset_index(drop=True)],
                                         axis=1).dropna()
                 if len(df_sans_NaN) == 0:
                     st.warning('Le dataset composé des 2 colonnes selectionnées après dropna() est vide !')
@@ -668,7 +668,7 @@ elif choix_page == "Section graphiques":
                     st.plotly_chart(fig)
             elif st.session_state.type_plot == 'Histogramme':
                 fig = go.Figure()
-                df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot], st.session_state.data[st.session_state.ordonnee_plot]],
+                df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot].reset_index(drop=True), st.session_state.data[st.session_state.ordonnee_plot].reset_index(drop=True)],
                                         axis=1).dropna()
                 if len(df_sans_NaN) == 0:
                     st.warning('Le dataset composé des 2 colonnes selectionnées après dropna() est vide !')
@@ -682,7 +682,7 @@ elif choix_page == "Section graphiques":
                     st.session_state.moyenne = st.checkbox("Moyenne")
                     st.session_state.minimum = st.checkbox("Minimum")
                 fig = go.Figure()
-                df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot], st.session_state.data[st.session_state.ordonnee_plot]],
+                df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot].reset_index(drop=True), st.session_state.data[st.session_state.ordonnee_plot].reset_index(drop=True)],
                                         axis=1).dropna()
                 if len(df_sans_NaN) == 0:
                     st.warning('Le dataset composé des 2 colonnes selectionnées après dropna() est vide !')
@@ -938,7 +938,7 @@ elif choix_page == "Machine Learning":
                             model.fit(X)
                             x_pca = model.transform(X)
 
-                            df = pd.concat([pd.Series(x_pca[:, 0]), pd.Series(x_pca[:, 1])], axis=1)
+                            df = pd.concat([pd.Series(x_pca[:, 0]).reset_index(drop=True), pd.Series(x_pca[:, 1]).reset_index(drop=True)], axis=1)
                             df.columns = ["x", "y"]
 
                             ## K-Means
@@ -1142,9 +1142,10 @@ elif choix_page == "Machine Learning":
                             st.write("##")
                             st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
                             # résultats points
-                            st.session_state.df = pd.concat([pd.Series(x_pca[:, 0]), pd.Series(x_pca[:, 1]),
-                                                  pd.Series(st.session_state.df_ml_origine[st.session_state.target_PCA])], axis=1)
+                            st.session_state.df = pd.concat([pd.Series(x_pca[:, 0]).reset_index(drop=True), pd.Series(x_pca[:, 1]).reset_index(drop=True),
+                                                  pd.Series(st.session_state.df_ml_origine[st.session_state.target_PCA]).reset_index(drop=True)], axis=1)
                             st.session_state.df.columns = ["x", "y", str(st.session_state.target_PCA)]
+                            st.write(st.session_state.df)
                             fig = px.scatter(st.session_state.df, x="x", y="y", color=str(st.session_state.target_PCA),
                                              labels={'color': '{}'.format(str(st.session_state.target_PCA))},
                                              color_discrete_sequence=px.colors.qualitative.Plotly)
