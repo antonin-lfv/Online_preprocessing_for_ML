@@ -225,14 +225,12 @@ if choix_page == "Accueil" :
         'modèles prè-entrainés de tensorflow.</p>',
         unsafe_allow_html=True)
     st.write("##")
-    st.write("##")
     st.markdown(
         '<p class="intro">Un tutoriel sur l\'utilisation de ce site est disponible sur le repo Github. En cas de bug ou d\'erreur veuillez m\'en informer par mail ou sur Discord.</p>',
         unsafe_allow_html=True)
     st.markdown(
         '<p class="intro"><b>Commencez par choisir un dataset dans la section Dataset !</b></p>',
         unsafe_allow_html=True)
-    st.write("##")
     st.write("##")
     st.write("##")
     _,_,_,_,_,c6 = st.columns(6)
