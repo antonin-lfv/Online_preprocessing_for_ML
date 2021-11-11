@@ -220,17 +220,27 @@ if choix_page == "Accueil" :
     st.markdown('<p class="first_titre">No-code AI platform</p>', unsafe_allow_html=True)
     st.write("##")
     st.markdown(
-        '<p class="intro">Bienvenue sur la no-code AI platform ! Déposez vos datasets csv et excel ou choisissez en un parmi ceux proposés, et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes, visualisez vos données et créez vos modèles de Machine et Deep Learning. ' +
-        'Pour charger votre dataset, uploadez le depuis le volet latéral, et rendez vous dans la section "Dataset". Si vous effectuez des modifications sur le dataset, il faudra le télécharger pour pouvoir l\'utiliser sur les autres pages. La section Deep Learning ne requiert aucun dataset, elle repose sur des '+
+        '<p class="intro">Bienvenue sur la <b>no-code AI platform</b> ! Déposez vos datasets csv ou excel ou choisissez en un parmi ceux proposés et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes, visualisez vos données, et créez vos modèles de Machine Learning en toute simplicité.'+
+        ' Si vous choisissez de travailler avec votre dataset et que vous voulez effectuez des modifications sur celui-ci, il faudra le télécharger une fois les modifications faites pour pouvoir l\'utiliser sur les autres pages. La section Deep Learning ne requiert aucun dataset, elle repose sur des '+
         'modèles prè-entrainés de tensorflow.</p>',
         unsafe_allow_html=True)
+    st.write("##")
+    st.write("##")
     st.markdown(
-        '<p class="intro">Un tutoriel sur l\'utilisation de ce site est disponible sur <a href="https://github.com/antonin-lfv/Online_preprocessing_for_ML">Github</a>.</p>',
+        '<p class="intro">Un tutoriel sur l\'utilisation de ce site est disponible sur le repo Github. En cas de bug ou d\'erreur veuillez m\'en informer par mail ou sur Discord.</p>',
         unsafe_allow_html=True)
     st.markdown(
-        '<p class="intro">En cas de bug ou d\'erreur veuillez m\'en informer par mail ou sur Discord. (Liens sur Github)</p>',
+        '<p class="intro"><b>Commencez par choisir un dataset dans la section Dataset !</b></p>',
         unsafe_allow_html=True)
     st.write("##")
+    st.write("##")
+    st.write("##")
+    _,_,_,_,_,c6 = st.columns(6)
+    with c6:
+        st.subheader("Liens")
+        st.write("• [GitHub](https://github.com/antonin-lfv/Online_preprocessing_for_ML/blob/master/README.md)")
+        st.write("• [Mon site](https://antonin-lfv.github.io)")
+        st.write("##")
 ############# Page 1 #############
 
 
@@ -249,7 +259,7 @@ elif choix_page == 'Dataset' :
     col1_1, b_1, col2_1 = st.columns((1, 0.1, 1))
     col1, b, col2 = st.columns((2.7, 0.2, 1))
     with col1_1:
-        dataset_choix = st.selectbox("Dataset", ["Choisissez une option", "Iris", "Choisir un dataset personnel"], )
+        dataset_choix = st.selectbox("Dataset", ["Choisissez une option", "Iris", "Penguins","Choisir un dataset personnel"], )
         message_ = st.empty()
 
     if 'choix_dataset' in st.session_state :
@@ -258,7 +268,7 @@ elif choix_page == 'Dataset' :
 
     if dataset_choix == "Choisissez une option":
         if 'choix_dataset' in st.session_state:
-            if st.session_state.choix_dataset == "Le fichier chargé est le dataset des iris":
+            if st.session_state.choix_dataset == "Le fichier chargé est le dataset des iris" or st.session_state.choix_dataset == "Le fichier chargé est le dataset des penguins":
                 with col1:
                     st.write("##")
                     st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
@@ -306,6 +316,29 @@ elif choix_page == 'Dataset' :
     if dataset_choix=="Iris" :
         st.session_state.data = pd.read_csv('Datasets/iris.csv')
         st.session_state.choix_dataset = "Le fichier chargé est le dataset des iris"
+        with col1_1:
+            message_.success(st.session_state.choix_dataset)
+
+        with col1:
+            st.write("##")
+            st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
+            st.write(st.session_state.data.head(50))
+            st.write("##")
+
+        with col2:
+            st.write("##")
+            st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
+            st.write(' - Taille:', st.session_state.data.shape)
+            st.write(' - Nombre de valeurs:', st.session_state.data.shape[0] * st.session_state.data.shape[1])
+            st.write(' - Type des colonnes:', st.session_state.data.dtypes.value_counts())
+            st.write(' - Pourcentage de valeurs manquantes:', round(
+                sum(pd.DataFrame(st.session_state.data).isnull().sum(axis=1).tolist()) * 100 / (
+                        st.session_state.data.shape[0] * st.session_state.data.shape[1]), 2),
+                     ' % (', sum(pd.DataFrame(st.session_state.data).isnull().sum(axis=1).tolist()), ')')
+
+    if dataset_choix=="Penguins" :
+        st.session_state.data = pd.read_csv('Datasets/penguins.csv')
+        st.session_state.choix_dataset = "Le fichier chargé est le dataset des penguins"
         with col1_1:
             message_.success(st.session_state.choix_dataset)
 
@@ -504,7 +537,7 @@ elif choix_page == "Analyse des colonnes" :
                 st.write('##')
 
     else :
-        st.info("Veuillez charger vos données et vous rendre dans la section Dataset")
+        st.info("Veuillez charger vos données dans la section Dataset")
 ############# Page 3 #############
 
 
@@ -579,7 +612,7 @@ elif choix_page == "Matrice de corrélations" :
         else:
             pass
     else:
-        st.info("Veuillez charger vos données et vous rendre dans la section Dataset")
+        st.info("Veuillez charger vos données dans la section Dataset")
 ############# Page 4 #############
 
 
@@ -743,7 +776,7 @@ elif choix_page == "Section graphiques":
                 )
                 st.plotly_chart(fig)
     else :
-        st.info("Veuillez charger vos données et vous rendre dans la section Dataset")
+        st.info("Veuillez charger vos données dans la section Dataset")
 ############# Page 5 #############
 
 
@@ -881,6 +914,7 @@ elif choix_page == "Machine Learning":
                                         st.write("##")
                                         st.error("Erreur de chargement")
         else:
+            st.write("##")
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
 
@@ -952,6 +986,7 @@ elif choix_page == "Machine Learning":
                                 st.write("##")
                                 st.error("Erreur de chargement")
         else:
+            st.write("##")
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
 
@@ -1061,6 +1096,7 @@ elif choix_page == "Machine Learning":
 
 
         else:
+            st.write("##")
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
 
@@ -1104,6 +1140,7 @@ elif choix_page == "Machine Learning":
                     if st.session_state.target_PCA != "Selectionner une target":
                         y = df_ml[st.session_state.target_PCA]  # target
                         X = df_ml.drop(st.session_state.target_PCA, axis=1)  # features
+
                         try:
                             model.fit(X)
                             x_pca = model.transform(X)
@@ -1132,6 +1169,7 @@ elif choix_page == "Machine Learning":
                             st.write("##")
                             st.error("Erreur de chargement!")
         else:
+            st.write("##")
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
 
@@ -1203,6 +1241,7 @@ elif choix_page == "Machine Learning":
                             st.write("##")
                             st.error("Erreur de chargement!")
         else:
+            st.write("##")
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 ############# ML section #############
 
