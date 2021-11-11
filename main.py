@@ -207,12 +207,13 @@ if "slider_col" not in st.session_state:
 if "degres" not in st.session_state:
     st.session_state.degres = ""
 
-#uploaded_file = 0
+
 
 # Pages principales
 PAGES = ["Accueil", "Dataset", "Analyse des colonnes", "Matrice de corrélations", "Section graphiques", "Machine Learning", "Deep Learning"]
 st.sidebar.title('Menu :bulb:')
 choix_page = st.sidebar.radio(label="", options=PAGES)
+
 
 ############# Page 1 #############
 if choix_page == "Accueil" :
@@ -760,7 +761,6 @@ elif choix_page == "Machine Learning":
     st.sidebar.radio(label="", options=PAGES_ML, key="choix_page_ml")
 
 
-
     if st.session_state.choix_page_ml == "K-nearest neighbors" :
         st.markdown('<p class="grand_titre">KNN : k-nearest neighbors</p>', unsafe_allow_html=True)
         if 'data' in st.session_state:
@@ -1223,7 +1223,6 @@ elif choix_page == "Deep Learning":
     choix_page_dl = st.sidebar.radio(label="", options=PAGES_DL)
 
 
-
     if choix_page_dl == "Transfert de style neuronal":
         st.markdown('<p class="grand_titre">Transfert de style neuronal</p>', unsafe_allow_html=True)
         st.write("##")
@@ -1284,7 +1283,6 @@ elif choix_page == "Deep Learning":
                 plot_bgcolor='rgba(0,0,0,0)',
             )
             st.plotly_chart(fig)
-
 
 
     elif choix_page_dl == "Détection d'objets":
@@ -1377,11 +1375,25 @@ elif choix_page == "Deep Learning":
         st.info("Section en developpement")
 
 
-
-
     elif choix_page_dl == "GAN":
         st.markdown('<p class="grand_titre">GAN : Generative adversarial network</p>', unsafe_allow_html=True)
         st.write("##")
         st.info("Section en developpement")
-
 ############# DL section #############
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
