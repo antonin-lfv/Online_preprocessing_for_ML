@@ -178,11 +178,11 @@ def load_image_into_numpy_array(path):
     (im_width, im_height) = image.size
     return np.array(image.getdata()).reshape((1, im_height, im_width, 3)).astype(np.uint8)
 
-@st.cache
+@st.cache(ttl=60)
 def get_model_transfert_learning():
     return hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2')
 
-@st.cache
+@st.cache(ttl=60)
 def get_model_detection():
     return hub.load("https://tfhub.dev/tensorflow/centernet/resnet50v1_fpn_512x512/1")
 
