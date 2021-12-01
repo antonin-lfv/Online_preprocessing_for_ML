@@ -20,7 +20,7 @@ Enfin, la partie Deep Learning peut être traitée indépendamment, elle contien
 <p/>
 <br>
 
-> Pour accéder au site, cliquez sur le bouton "Open in streamlit" en haut du ReadMe
+> Pour accéder au site, cliquez sur le bouton **"Open in streamlit"** en haut du ReadMe
 
 <br>
 
