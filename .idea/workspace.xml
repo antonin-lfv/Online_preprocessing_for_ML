@@ -22,6 +22,8 @@
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="structure + theme">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Icon&#10;" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/tensorflow_images/objects_detector/street_1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +64,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/models" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
@@ -92,6 +95,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -118,13 +122,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-    </task>
-    <task id="LOCAL-00418" summary="objects detection">
-      <created>1636501357085</created>
-      <option name="number" value="00418" />
-      <option name="presentableId" value="LOCAL-00418" />
-      <option name="project" value="LOCAL" />
-      <updated>1636501357086</updated>
+      <workItem from="1638353908154" duration="56000" />
     </task>
     <task id="LOCAL-00419" summary="objects detection">
       <created>1636501623585</created>
@@ -462,8 +460,18 @@
       <option name="project" value="LOCAL" />
       <updated>1636730414222</updated>
     </task>
-    <option name="localTasksCounter" value="467" />
+    <task id="LOCAL-00467" summary="structure + theme">
+      <created>1636995171198</created>
+      <option name="number" value="00467" />
+      <option name="presentableId" value="LOCAL-00467" />
+      <option name="project" value="LOCAL" />
+      <updated>1636995171198</updated>
+    </task>
+    <option name="localTasksCounter" value="468" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">

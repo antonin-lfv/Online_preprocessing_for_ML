@@ -1254,7 +1254,7 @@ elif choix_page == "Machine Learning":
 ############# DL section #############
 elif choix_page == "Deep Learning":
     # Pages
-    PAGES_DL = ["Transfert de style neuronal", "Détection d'objets","Génération de citations", "GAN"]
+    PAGES_DL = ["Transfert de style neuronal", "Détection d'objets"]
     st.sidebar.title('Deep Learning  :brain:')
     choix_page_dl = st.sidebar.radio(label="", options=PAGES_DL)
 
@@ -1404,17 +1404,6 @@ elif choix_page == "Deep Learning":
                 st.write("##")
                 placeholder_image.image("images/tensorflow_images/objects_detector/output.png")
 
-
-    elif choix_page_dl == "Génération de citations":
-        st.markdown('<p class="grand_titre">Génération de citations</p>', unsafe_allow_html=True)
-        st.write("##")
-        st.info("Section en developpement")
-
-
-    elif choix_page_dl == "GAN":
-        st.markdown('<p class="grand_titre">GAN : Generative adversarial network</p>', unsafe_allow_html=True)
-        st.write("##")
-        st.info("Section en developpement")
 ############# DL section #############
 
 
