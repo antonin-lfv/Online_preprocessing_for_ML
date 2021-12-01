@@ -37,8 +37,6 @@ Enfin, la partie Deep Learning peut être traité indépendamment, elle contient
 - [Deep Learning](#Deep-Learning)
   - [Transfert de style neuronal](#Transfert-de-style-neuronal)
   - [Détection d'objets](#Détection-dobjets)
-  - [Génération de citations](#Génération-de-citations)
-  - [GAN](#GAN)
 
 
 <br/>
