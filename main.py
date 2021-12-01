@@ -1148,7 +1148,6 @@ elif choix_page == "Machine Learning":
                             st.session_state.df = pd.concat([pd.Series(x_pca[:, 0]).reset_index(drop=True), pd.Series(x_pca[:, 1]).reset_index(drop=True),
                                                   pd.Series(st.session_state.df_ml_origine[st.session_state.target_PCA]).reset_index(drop=True)], axis=1)
                             st.session_state.df.columns = ["x", "y", str(st.session_state.target_PCA)]
-                            st.write(st.session_state.df)
                             fig = px.scatter(st.session_state.df, x="x", y="y", color=str(st.session_state.target_PCA),
                                              labels={'color': '{}'.format(str(st.session_state.target_PCA))},
                                              color_discrete_sequence=px.colors.qualitative.Plotly)
