@@ -21,7 +21,7 @@ Enfin, la partie Deep Learning peut être traité indépendamment, elle contient
   
 <br/>
 
-# Index
+# Overview des pages
 
 - [Accueil](#Accueil)
 - [Dataset](#Dataset)
