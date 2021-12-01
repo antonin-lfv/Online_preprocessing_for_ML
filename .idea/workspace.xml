@@ -22,7 +22,6 @@
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="structure + theme">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Icon&#10;" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/tensorflow_images/objects_detector/street_1.jpeg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,14 +121,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1623251491652</updated>
-      <workItem from="1638353908154" duration="56000" />
-    </task>
-    <task id="LOCAL-00419" summary="objects detection">
-      <created>1636501623585</created>
-      <option name="number" value="00419" />
-      <option name="presentableId" value="LOCAL-00419" />
-      <option name="project" value="LOCAL" />
-      <updated>1636501623585</updated>
+      <workItem from="1638353908154" duration="810000" />
     </task>
     <task id="LOCAL-00420" summary="objects detection">
       <created>1636547130104</created>
@@ -467,7 +459,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636995171198</updated>
     </task>
-    <option name="localTasksCounter" value="468" />
+    <task id="LOCAL-00468" summary="structure + theme">
+      <created>1638353973500</created>
+      <option name="number" value="00468" />
+      <option name="presentableId" value="LOCAL-00468" />
+      <option name="project" value="LOCAL" />
+      <updated>1638353973500</updated>
+    </task>
+    <option name="localTasksCounter" value="469" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -207,6 +207,8 @@ if "slider_col" not in st.session_state:
     st.session_state.slider_col = ""
 if "degres" not in st.session_state:
     st.session_state.degres = ""
+if "file_details" not in st.session_state:
+    st.session_state.file_details = ""
 
 
 
