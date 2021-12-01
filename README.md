@@ -14,7 +14,8 @@
 
 <br/>
 
-En cours de développement ...
+La No-code AI platform est un site développé avec Python et déployé avec Streamlit, qui permet de faire du Machine/Deep Learning sans écrire de code. La partie analyse et Machine Learning repose sur l'utilisation d'un dataset, qui peut être soit un dataset déjà disponible sur le site (les iris, ou les penguins), soit un dataset de votre choix que vous aurez uploadé, et avec qui vous pourrez effectuer du preprocessing directement depuis la page d'upload (Attention à bien re télécharger le dataset modifié et de le re uploader). Une fois le dataset choisi, vous pouvez l'utiliser pour alimenter des algorithmes tels que des SVM, des K-Means, des KNN ou encore des réductions de dimension.
+Enfin, la partie Deep Learning peut être traité indépendamment, elle contient deux modèles, un transfert de style neuronal et un modèle de détection d'objets sur une image, où des images sont déjà disponibles.
 
 <br/>
 
