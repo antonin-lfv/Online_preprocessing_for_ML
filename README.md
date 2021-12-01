@@ -45,7 +45,7 @@ Enfin, la partie Deep Learning peut être traitée indépendamment, elle contien
 # Accueil
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/63207451/144222004-d9721f6e-1618-4713-8096-1e4b5e4ae060.png" height="850">
+<img src="https://user-images.githubusercontent.com/63207451/144222004-d9721f6e-1618-4713-8096-1e4b5e4ae060.png" height="600">
 </p>
   <br/>
 
