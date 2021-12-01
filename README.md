@@ -56,13 +56,13 @@ Enfin, la partie Deep Learning peut être traitée indépendamment, elle contien
 <br>
 
 Vous voici sur la page dataset, là où vous allez choisir vos données. 
-
 Initialement la page est comme ceci :
 
 <br>
 <p align="center">
 <img src="https://user-images.githubusercontent.com/63207451/144222112-65e16ab0-3443-4cbe-a9f2-8ba3c97ab89f.png" height="400">
 </p>
+<br>
 
 Soit vous choisisez un dataset déjà prêt :
 
@@ -70,6 +70,7 @@ Soit vous choisisez un dataset déjà prêt :
 <p align="center">
 <img src="https://user-images.githubusercontent.com/63207451/144223120-b5d65c93-82ec-4798-850e-2ab10e8a099d.png" height="400">
 </p>
+<br>
 
 Soit vous choisissez le votre :
 
