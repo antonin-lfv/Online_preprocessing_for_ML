@@ -44,7 +44,11 @@ Enfin, la partie Deep Learning peut être traité indépendamment, elle contient
 
 # Accueil
 
+https://user-images.githubusercontent.com/63207451/144222004-d9721f6e-1618-4713-8096-1e4b5e4ae060.png
+
 # Dataset
+
+https://user-images.githubusercontent.com/63207451/144222112-65e16ab0-3443-4cbe-a9f2-8ba3c97ab89f.png
 
 # Analyse des colonnes
 
