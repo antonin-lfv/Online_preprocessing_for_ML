@@ -69,9 +69,7 @@ En cours de développement ...
 
 ## Détection d'objets
 
-## Génération de citations
 
-## GAN
 
 <br/>
 
