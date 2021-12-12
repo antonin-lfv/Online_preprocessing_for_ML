@@ -680,10 +680,16 @@ elif choix_page == "Machine Learning":
     if st.session_state.choix_page_ml == "K-nearest neighbors":
         st.markdown('<p class="grand_titre">KNN : k-nearest neighbors</p>', unsafe_allow_html=True)
         st.write("##")
-        exp1, exp2, exp3 = st.columns((1, 0.2, 1))
+        exp1, exp2, exp3 = st.columns((1, 0.2, 0.6))
         with exp1:
-            with st.expander("Tips"):
-                st.subheader("Explication")
+            with st.expander("Principe de l'algorithme KNN"):
+                st.write("""
+                * 1ère étape : Choix du nombre de voisins k
+                * 2ème étape : Calcul de la distance entre le point non classifié et tous les autre
+                * 3ème étape : Sélection des k plus proches voisins
+                * 4ème étape : On compte le nombre de voisins dans chaque classe
+                * 5ème étape : Attribution de la classe la plus présente à notre point 
+                """)
         if 'data' in st.session_state:
             col1, b, col2 = st.columns((1, 0.2, 1))
             with col1:
@@ -814,10 +820,19 @@ elif choix_page == "Machine Learning":
     elif st.session_state.choix_page_ml == "K-Means":
         st.markdown('<p class="grand_titre">K-Means</p>', unsafe_allow_html=True)
         st.write("##")
-        exp1, exp2, exp3 = st.columns((1, 0.2, 1))
+        exp1, exp2, exp3 = st.columns((1, 0.2, 0.5))
         with exp1:
-            with st.expander("Tips"):
-                st.subheader("Explication")
+            with st.expander("Principe de l'algorithme des K-means"):
+                st.write("""
+                Le but est de diviser les points en k clusters.
+                * 1ère étape : On place au hasard les k centroïdes
+                * 2ème étape : Pour chaque point, on lui associe l'étiquette du centroïde le plus proche
+                * 3ème étape : On calcul le centre de gravité des k clusters que nous venons de créer 
+                * 4ème étape : On réitère les étapes 2 et 3 jusqu'à temps que les centroïdes ne bougent plus
+                
+                On peut utiliser diverses techniques pour choisir les premiers centroïdes, et diverses métriques 
+                pour évaluer les distances.
+                """)
         if 'data' in st.session_state:
             col1, b, col2 = st.columns((1, 0.2, 1))
             with col1:
@@ -894,10 +909,14 @@ elif choix_page == "Machine Learning":
     elif st.session_state.choix_page_ml == "Support Vector Machine":
         st.markdown('<p class="grand_titre">SVM : Support Vector Machine</p>', unsafe_allow_html=True)
         st.write("##")
-        exp1, exp2, exp3 = st.columns((1, 0.2, 1))
+        exp1, exp2, exp3 = st.columns((1, 0.2, 0.5))
         with exp1:
-            with st.expander("Tips"):
-                st.subheader("Explication")
+            with st.expander("Principe des Support Vector Machine"):
+                st.write("""
+                Le but est de séparer les classes à l'aide d'une droite/courbe qui va maximiser sa distance avec les points les plus proches (les support vectors).
+                
+                On peut pour cela utiliser différents noyaux qui peuvent être linéaire ou polynomial.
+                """)
         if 'data' in st.session_state:
             st.write("##")
             st.markdown('<p class="section">Selection des features et de la target</p>', unsafe_allow_html=True)
@@ -1014,10 +1033,18 @@ elif choix_page == "Machine Learning":
     elif st.session_state.choix_page_ml == "PCA":
         st.markdown('<p class="grand_titre">PCA : Analyse en composantes principales</p>', unsafe_allow_html=True)
         st.write("##")
-        exp1, exp2, exp3 = st.columns((1, 0.2, 1))
+        exp1, exp2, exp3 = st.columns((1, 0.2, 0.6))
         with exp1:
-            with st.expander("Tips"):
-                st.subheader("Explication")
+            with st.expander("Principe du PCA"):
+                st.write("""
+                Le PCA s'applique sur des variables quantitatives de même importance.
+                * 1ère étape : on détermine la matrice de covariance entre chaque variable
+                * 2ème étape : Par normalisation de cette dernière, on obtient la matrice de corrélation
+                * 3ème étape : Par diagonalisation on trouve les elements propres
+                * 4ème étape : On détermine les composantes principales
+                * 5ème étape : On calcul la matrice des saturations
+                * 6ème étape : Représentation graphique
+                """)
         if 'data' in st.session_state:
             col1, b, col2 = st.columns((1, 0.2, 1))
             with col1:
@@ -1097,11 +1124,6 @@ elif choix_page == "Machine Learning":
     elif st.session_state.choix_page_ml == "UMAP":
         st.markdown('<p class="grand_titre">UMAP : Uniform Manifold Approximation and Projection</p>',
                     unsafe_allow_html=True)
-        st.write("##")
-        exp1, exp2, exp3 = st.columns((1, 0.2, 1))
-        with exp1:
-            with st.expander("Tips"):
-                st.subheader("Explication")
         if 'data' in st.session_state:
             col1, b, col2 = st.columns((1, 0.2, 1))
             with col1:
