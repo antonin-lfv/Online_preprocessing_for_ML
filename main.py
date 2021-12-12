@@ -420,7 +420,7 @@ elif choix_page == "Analyse des colonnes":
         options = st.session_state.data.columns.to_list()
         st.session_state.slider_col = st.multiselect(
             'Selectionner une ou plusieurs colonnes',
-            options,
+            options, help="Choisissez les colonnes à analyser"
         )
         if st.session_state.slider_col:
             col1, b, col2, c = st.columns((1.1, 0.1, 1.1, 0.3))
@@ -486,10 +486,12 @@ elif choix_page == "Matrice de corrélations":
         with col1:
             st.session_state.couleur_corr = st.selectbox('Couleur',
                                                          ['Selectionner une colonne'] + df_sans_NaN.columns.tolist(),
+                                                         help="Choisissez la variable catégorielle pour la coloration des classes"
                                                          )
             st.write("##")
         st.session_state.select_columns_corr = st.multiselect("Choisir au moins deux colonnes",
                                                               ["Toutes les colonnes"] + col_numeric(df_sans_NaN),
+                                                              help="Choisissez vos features"
                                                               )
         if len(st.session_state.select_columns_corr) > 1 and "Toutes les colonnes" not in st.session_state.select_columns_corr:
             df_sans_NaN = pd.concat([st.session_state.data[col] for col in st.session_state.select_columns_corr],
@@ -552,23 +554,22 @@ elif choix_page == "Section graphiques":
         col1, b, col2, c, col3, d, col4 = st.columns((7))  # pour les autres select
         col_num = col_numeric(st.session_state.data) + col_temporal(st.session_state.data)
         with col1:
-            st.write("##")
-            st.session_state.abscisse_plot = st.selectbox('Données en abscisses', col_num,
-                                                          )
-            st.session_state.ordonnee_plot = st.selectbox('Données en ordonnées', col_num[::-1],
-                                                          )
-            # couleur_plot = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
+            with st.expander("Données") :
+                st.session_state.abscisse_plot = st.selectbox('Données en abscisses', col_num,
+                                                              )
+                st.session_state.ordonnee_plot = st.selectbox('Données en ordonnées', col_num[::-1],
+                                                              )
         with col2:
-            st.write("##")
-            st.session_state.type_plot = st.radio("Type de plot",
-                                                  ['Points', 'Courbe', 'Latitude/Longitude', 'Histogramme'],
-                                                  )
-            type_plot_dict = {
-                'Courbe': 'lines',
-                'Points': 'markers',
-                'Latitude/Longitude': 'map',
-            }
-        st.write('##')
+            with st.expander("Type de graphique"):
+                st.session_state.type_plot = st.radio(label="",
+                                                      options=['Points', 'Courbe', 'Latitude/Longitude', 'Histogramme'],
+                                                      help="Choisissez le type qui vous convient"
+                                                      )
+                type_plot_dict = {
+                    'Courbe': 'lines',
+                    'Points': 'markers',
+                    'Latitude/Longitude': 'map',
+                }
         if st.session_state.abscisse_plot and st.session_state.ordonnee_plot:
             if st.session_state.type_plot == 'Latitude/Longitude':
                 fig = go.Figure()
@@ -604,11 +605,10 @@ elif choix_page == "Section graphiques":
                                       y=df_sans_NaN[st.session_state.ordonnee_plot])
             else:
                 with col3:
-                    st.write("##")
-                    st.write("##")
-                    st.checkbox("Maximum", key="maximum")
-                    st.session_state.moyenne = st.checkbox("Moyenne")
-                    st.session_state.minimum = st.checkbox("Minimum")
+                    with st.expander("Indices statistiques"):
+                        st.checkbox("Maximum", key="maximum")
+                        st.session_state.moyenne = st.checkbox("Moyenne")
+                        st.session_state.minimum = st.checkbox("Minimum")
                 fig = go.Figure()
                 df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot].reset_index(drop=True),
                                          st.session_state.data[st.session_state.ordonnee_plot].reset_index(drop=True)],
@@ -621,16 +621,15 @@ elif choix_page == "Section graphiques":
                                     mode=type_plot_dict[st.session_state.type_plot], name='', showlegend=False)
                     # if abscisse_plot not in col_to_time and ordonnee_plot not in col_to_time :
                     with col4:
-                        st.write("##")
                         if st.session_state.type_plot == 'Points' or st.session_state.type_plot == 'Courbe':
                             if st.session_state.abscisse_plot not in st.session_state.col_to_time and st.session_state.ordonnee_plot not in st.session_state.col_to_time:
-                                st.write("##")
-                                st.session_state.trendline = st.checkbox("Regression linéaire")
-                                st.session_state.polynom_feat = st.checkbox("Regression polynomiale")
-                                if st.session_state.polynom_feat:
-                                    st.session_state.degres = st.slider('Degres de la regression polynomiale',
-                                                                        min_value=2,
-                                                                        max_value=100)
+                                with st.expander("Regréssion"):
+                                    st.session_state.trendline = st.checkbox("Regression linéaire")
+                                    st.session_state.polynom_feat = st.checkbox("Regression polynomiale")
+                                    if st.session_state.polynom_feat:
+                                        st.session_state.degres = st.slider('Degres de la regression polynomiale',
+                                                                            min_value=2,
+                                                                            max_value=100)
                     if st.session_state.trendline:
                         # regression linaire
                         X = df_sans_NaN[st.session_state.abscisse_plot].values.reshape(-1, 1)
@@ -700,6 +699,7 @@ elif choix_page == "Section graphiques":
                     paper_bgcolor='rgba(0,0,0,0)',
                     plot_bgcolor='rgba(0,0,0,0)',
                 )
+                st.write("##")
                 st.plotly_chart(fig)
     else:
         st.info("Veuillez charger vos données dans la section Dataset")
@@ -714,6 +714,11 @@ elif choix_page == "Machine Learning":
 
     if st.session_state.choix_page_ml == "K-nearest neighbors":
         st.markdown('<p class="grand_titre">KNN : k-nearest neighbors</p>', unsafe_allow_html=True)
+        st.write("##")
+        exp1, exp2, exp3 = st.columns((1, 0.2, 1))
+        with exp1:
+            with st.expander("Tips"):
+                st.subheader("Explication")
         if 'data' in st.session_state:
             col1, b, col2 = st.columns((1, 0.2, 1))
             with col1:
@@ -843,6 +848,11 @@ elif choix_page == "Machine Learning":
 
     elif st.session_state.choix_page_ml == "K-Means":
         st.markdown('<p class="grand_titre">K-Means</p>', unsafe_allow_html=True)
+        st.write("##")
+        exp1, exp2, exp3 = st.columns((1, 0.2, 1))
+        with exp1:
+            with st.expander("Tips"):
+                st.subheader("Explication")
         if 'data' in st.session_state:
             col1, b, col2 = st.columns((1, 0.2, 1))
             with col1:
@@ -918,6 +928,11 @@ elif choix_page == "Machine Learning":
 
     elif st.session_state.choix_page_ml == "Support Vector Machine":
         st.markdown('<p class="grand_titre">SVM : Support Vector Machine</p>', unsafe_allow_html=True)
+        st.write("##")
+        exp1, exp2, exp3 = st.columns((1, 0.2, 1))
+        with exp1:
+            with st.expander("Tips"):
+                st.subheader("Explication")
         if 'data' in st.session_state:
             st.write("##")
             st.markdown('<p class="section">Selection des features et de la target</p>', unsafe_allow_html=True)
@@ -1033,6 +1048,11 @@ elif choix_page == "Machine Learning":
 
     elif st.session_state.choix_page_ml == "PCA":
         st.markdown('<p class="grand_titre">PCA : Analyse en composantes principales</p>', unsafe_allow_html=True)
+        st.write("##")
+        exp1, exp2, exp3 = st.columns((1, 0.2, 1))
+        with exp1:
+            with st.expander("Tips"):
+                st.subheader("Explication")
         if 'data' in st.session_state:
             col1, b, col2 = st.columns((1, 0.2, 1))
             with col1:
@@ -1112,6 +1132,11 @@ elif choix_page == "Machine Learning":
     elif st.session_state.choix_page_ml == "UMAP":
         st.markdown('<p class="grand_titre">UMAP : Uniform Manifold Approximation and Projection</p>',
                     unsafe_allow_html=True)
+        st.write("##")
+        exp1, exp2, exp3 = st.columns((1, 0.2, 1))
+        with exp1:
+            with st.expander("Tips"):
+                st.subheader("Explication")
         if 'data' in st.session_state:
             col1, b, col2 = st.columns((1, 0.2, 1))
             with col1:
