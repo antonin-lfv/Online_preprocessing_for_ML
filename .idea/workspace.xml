@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Matrices corr">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Matrices corr" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -135,13 +133,7 @@
       <workItem from="1639324133143" duration="2007000" />
       <workItem from="1639341159747" duration="2921000" />
       <workItem from="1639344769097" duration="330000" />
-    </task>
-    <task id="LOCAL-00434" summary="objects detection">
-      <created>1636550971948</created>
-      <option name="number" value="00434" />
-      <option name="presentableId" value="LOCAL-00434" />
-      <option name="project" value="LOCAL" />
-      <updated>1636550971949</updated>
+      <workItem from="1639345521472" duration="74000" />
     </task>
     <task id="LOCAL-00435" summary="objects detection">
       <created>1636551058275</created>
@@ -479,7 +471,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639345091199</updated>
     </task>
-    <option name="localTasksCounter" value="483" />
+    <task id="LOCAL-00483" summary="Matrices corr">
+      <created>1639345583413</created>
+      <option name="number" value="00483" />
+      <option name="presentableId" value="LOCAL-00483" />
+      <option name="project" value="LOCAL" />
+      <updated>1639345583414</updated>
+    </task>
+    <option name="localTasksCounter" value="484" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
