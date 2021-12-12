@@ -133,14 +133,7 @@
       <workItem from="1639324133143" duration="2007000" />
       <workItem from="1639341159747" duration="2921000" />
       <workItem from="1639344769097" duration="330000" />
-      <workItem from="1639345521472" duration="74000" />
-    </task>
-    <task id="LOCAL-00435" summary="objects detection">
-      <created>1636551058275</created>
-      <option name="number" value="00435" />
-      <option name="presentableId" value="LOCAL-00435" />
-      <option name="project" value="LOCAL" />
-      <updated>1636551058275</updated>
+      <workItem from="1639345521472" duration="328000" />
     </task>
     <task id="LOCAL-00436" summary="objects detection">
       <created>1636551121894</created>
@@ -478,7 +471,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639345583414</updated>
     </task>
-    <option name="localTasksCounter" value="484" />
+    <task id="LOCAL-00484" summary="Matrices corr">
+      <created>1639345601306</created>
+      <option name="number" value="00484" />
+      <option name="presentableId" value="LOCAL-00484" />
+      <option name="project" value="LOCAL" />
+      <updated>1639345601306</updated>
+    </task>
+    <option name="localTasksCounter" value="485" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
