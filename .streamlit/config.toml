@@ -13,10 +13,10 @@ base="light"
 primaryColor = '#ff8002' # couleur des bouttons
 
 # Background color for the main content area.
-backgroundColor= '#f5f6f7' # fond de page
+# backgroundColor= '#f5f6f7' # fond de page
 
 # Background color used for the sidebar and most interactive widgets.
-secondaryBackgroundColor = '#d2d6db'  # sidebar couleur
+# secondaryBackgroundColor = '#d2d6db'  # sidebar couleur
 
 # Color used for almost all text.
 textColor = '#222f3e' # couleur du texte
