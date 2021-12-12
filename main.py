@@ -516,7 +516,7 @@ elif choix_page == "Matrice de corrélations" :
                                             color=st.session_state.couleur_corr, color_continuous_scale='Bluered_r')
                 else:
                     fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[st.session_state.select_columns_corr]))
-                fig.update_layout(width=1000, height=700, margin=dict(l=40, r=50, b=40, t=40), font=dict(size=7))
+                fig.update_layout(width=1000, height=700, margin=dict(l=40, r=50, b=40, t=40), font=dict(size=10))
                 fig.update_layout({"xaxis" + str(i + 1): dict(showticklabels=False) for i in
                                    range(len(col_numeric(df_sans_NaN[st.session_state.select_columns_corr])))})
                 fig.update_layout({"yaxis" + str(i + 1): dict(showticklabels=False) for i in
@@ -540,7 +540,7 @@ elif choix_page == "Matrice de corrélations" :
                 fig.update_layout(
                     {"yaxis" + str(i + 1): dict(showticklabels=False) for i in range(len(col_numeric(df_sans_NaN)))})
                 fig.update_traces(marker=dict(size=2))
-                fig.update_layout(width=1000, height=700, margin=dict(l=40, r=50, b=40, t=40), font=dict(size=7))
+                fig.update_layout(width=1000, height=700, margin=dict(l=40, r=50, b=40, t=40), font=dict(size=10))
                 fig.update_traces(marker=dict(size=7))
                 fig.update_traces(diagonal_visible=False)
                 fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
