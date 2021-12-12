@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Matrices corr" />
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Matrices corr">
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -132,13 +134,7 @@
       <workItem from="1639270674077" duration="7267000" />
       <workItem from="1639324133143" duration="2007000" />
       <workItem from="1639341159747" duration="2921000" />
-    </task>
-    <task id="LOCAL-00432" summary="objects detection">
-      <created>1636550755626</created>
-      <option name="number" value="00432" />
-      <option name="presentableId" value="LOCAL-00432" />
-      <option name="project" value="LOCAL" />
-      <updated>1636550755627</updated>
+      <workItem from="1639344769097" duration="306000" />
     </task>
     <task id="LOCAL-00433" summary="objects detection">
       <created>1636550927622</created>
@@ -476,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639344686076</updated>
     </task>
-    <option name="localTasksCounter" value="481" />
+    <task id="LOCAL-00481" summary="Matrices corr">
+      <created>1639344795009</created>
+      <option name="number" value="00481" />
+      <option name="presentableId" value="LOCAL-00481" />
+      <option name="project" value="LOCAL" />
+      <updated>1639344795010</updated>
+    </task>
+    <option name="localTasksCounter" value="482" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
