@@ -20,9 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Matrices corr">
+      <change afterPath="$PROJECT_DIR$/logo/NAP_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logo/background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logo/plotly_grand.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logo/python.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logo/streamlit.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.streamlit/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.streamlit/config.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,22 +78,23 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/models" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/logo" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/logo" />
       <recent name="$PROJECT_DIR$/models" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Datasets" />
       <recent name="$PROJECT_DIR$/images/tensorflow_images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/logo" />
       <recent name="$PROJECT_DIR$/Test" />
       <recent name="$PROJECT_DIR$/images/tensorflow_images/objects_detector" />
       <recent name="$PROJECT_DIR$/images/image_detector" />
       <recent name="$PROJECT_DIR$/images" />
-      <recent name="$PROJECT_DIR$/images/tensorflow_images" />
     </key>
   </component>
   <component name="RunManager">
@@ -132,14 +142,7 @@
       <workItem from="1638353908154" duration="926000" />
       <workItem from="1638361466569" duration="60000" />
       <workItem from="1639268511699" duration="2154000" />
-      <workItem from="1639270674077" duration="1104000" />
-    </task>
-    <task id="LOCAL-00424" summary="objects detection">
-      <created>1636548004274</created>
-      <option name="number" value="00424" />
-      <option name="presentableId" value="LOCAL-00424" />
-      <option name="project" value="LOCAL" />
-      <updated>1636548004274</updated>
+      <workItem from="1639270674077" duration="6316000" />
     </task>
     <task id="LOCAL-00425" summary="objects detection">
       <created>1636548217763</created>
@@ -477,7 +480,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639271276867</updated>
     </task>
-    <option name="localTasksCounter" value="473" />
+    <task id="LOCAL-00473" summary="Matrices corr">
+      <created>1639271843742</created>
+      <option name="number" value="00473" />
+      <option name="presentableId" value="LOCAL-00473" />
+      <option name="project" value="LOCAL" />
+      <updated>1639271843743</updated>
+    </task>
+    <option name="localTasksCounter" value="474" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

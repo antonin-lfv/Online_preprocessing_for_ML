@@ -26,12 +26,12 @@ st.set_page_config(layout="wide")
 st.markdown("""
 <style>
 .first_titre {
-    font-size:50px !important;
+    font-size:75px !important;
     font-weight: bold;
     box-sizing: border-box;
     text-align: center;
     width: 100%;
-    border: solid #ff8002 5px;
+    // border: solid #4976E4 5px;
     padding: 5px;
 }
 .intro{
@@ -80,8 +80,9 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
-st.sidebar.image("logo.png", use_column_width=True, width=70)
+st.sidebar.image("logo/NAP_logo.png", use_column_width=True, width=70)
 st.sidebar.write("##")
+
 
 ###### Fonctions #######
 
@@ -100,33 +101,40 @@ def load_data():
     except:
         pass
 
-def max_std(dataset):# colonne de maximum de variance
+
+def max_std(dataset):  # colonne de maximum de variance
     l = []
     for nom in dataset.columns:
         if type(dataset[nom][0]) != object and type(dataset[nom][0]) != str:
             l.append([dataset[nom].std(), nom])
     return (max(l))
 
-def col_numeric(df):#retourne les colonnes numériques d'un dataframe
+
+def col_numeric(df):  # retourne les colonnes numériques d'un dataframe
     return df.select_dtypes(include=np.number).columns.tolist()
 
-def col_temporal(df):#retourne les colonnes temporelles d'un dataframe
+
+def col_temporal(df):  # retourne les colonnes temporelles d'un dataframe
     return df.select_dtypes(include=np.datetime64).columns.tolist()
 
-def clean_data(x):# enlever les symboles d'une colonne
+
+def clean_data(x):  # enlever les symboles d'une colonne
     if isinstance(x, str):
-        return(x.replace('$', '').replace(',', '').replace('€', '').replace('£', ''))
-    return(x)
+        return (x.replace('$', '').replace(',', '').replace('€', '').replace('£', ''))
+    return (x)
+
 
 def distance_e(x, y):  # distance entre 2 points du plan cartésien
-    return distance.euclidean([x[0],x[1]],[y[0],y[1]])
+    return distance.euclidean([x[0], x[1]], [y[0], y[1]])
 
-def max_dist(donnee_apres_pca, df, voisins): # pour knn, retourne la distance du voisins le plus loin
+
+def max_dist(donnee_apres_pca, df, voisins):  # pour knn, retourne la distance du voisins le plus loin
     distances = []
     for i in range(len(df)):
         distances.append(distance_e(donnee_apres_pca, [df['x'].iloc[i], df['y'].iloc[i]]))
     distances.sort()
-    return distances[voisins-1]
+    return distances[voisins - 1]
+
 
 ##################################
 ####### Code streamlit app #######
@@ -151,56 +159,55 @@ if "degres" not in st.session_state:
 if "file_details" not in st.session_state:
     st.session_state.file_details = ""
 
-
-
 # Pages principales
-PAGES = ["Accueil", "Dataset", "Analyse des colonnes", "Matrice de corrélations", "Section graphiques", "Machine Learning"]
+PAGES = ["Accueil", "Dataset", "Analyse des colonnes", "Matrice de corrélations", "Section graphiques",
+         "Machine Learning"]
 st.sidebar.title('Menu :bulb:')
 choix_page = st.sidebar.radio(label="", options=PAGES)
 
-
 ############# Page 1 #############
-if choix_page == "Accueil" :
-    st.markdown('<p class="first_titre">No-code AI platform</p>', unsafe_allow_html=True)
+if choix_page == "Accueil":
+    st.markdown('<p class="first_titre">No-code AI Platform</p>', unsafe_allow_html=True)
+    st.write("---")
+    c1, c2 = st.columns(2)
+    with c2:
+        st.write("##")
+        st.write("##")
+        st.image("logo/background.png")
     st.write("##")
-    st.markdown(
-        '<p class="intro">Bienvenue sur la <b>no-code AI platform</b> ! Déposez vos datasets csv ou excel ou choisissez en un parmi ceux proposés et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes, visualisez vos données, et créez vos modèles de Machine Learning en toute simplicité.'+
-        ' Si vous choisissez de travailler avec votre dataset et que vous voulez effectuez des modifications sur celui-ci, il faudra le télécharger une fois les modifications faites pour pouvoir l\'utiliser sur les autres pages. </p>',
-        unsafe_allow_html=True)
-    st.write("##")
-    st.markdown(
-        '<p class="intro">Un tutoriel sur l\'utilisation de ce site est disponible sur le repo Github. En cas de bug ou d\'erreur veuillez m\'en informer par mail ou sur Discord.</p>',
-        unsafe_allow_html=True)
-    st.markdown(
-        '<p class="intro"><b>Commencez par choisir un dataset dans la section Dataset !</b></p>',
-        unsafe_allow_html=True)
-    _,_,_,_,_,c6 = st.columns(6)
-    with c6:
+    with c1:
+        st.write("##")
+        st.markdown(
+            '<p class="intro">Bienvenue sur la <b>no-code AI platform</b> ! Déposez vos datasets csv ou excel ou choisissez en un parmi ceux proposés et commencez votre analyse dès maintenant ! Cherchez les variables les plus intéressantes, visualisez vos données, et créez vos modèles de Machine Learning en toute simplicité.' +
+            ' Si vous choisissez de travailler avec votre dataset et que vous voulez effectuez des modifications sur celui-ci, il faudra le télécharger une fois les modifications faites pour pouvoir l\'utiliser sur les autres pages. </p>',
+            unsafe_allow_html=True)
+        st.write("##")
+        st.markdown(
+            '<p class="intro">Un tutoriel sur l\'utilisation de ce site est disponible sur le repo Github. En cas de bug ou d\'erreur veuillez m\'en informer par mail ou sur Discord.</p>',
+            unsafe_allow_html=True)
+        st.markdown(
+            '<p class="intro"><b>Commencez par choisir un dataset dans la section Dataset !</b></p>',
+            unsafe_allow_html=True)
+    c1, _, _, _, _, _ = st.columns(6)
+    with c1:
+        st.write("##")
         st.subheader("Liens")
-        st.write("• [GitHub](https://github.com/antonin-lfv/Online_preprocessing_for_ML/blob/master/README.md)")
+        st.write("• [Mon profil GitHub](https://github.com/antonin-lfv/Online_preprocessing_for_ML/blob/master/README.md)")
         st.write("• [Mon site](https://antonin-lfv.github.io)")
 ############# Page 1 #############
 
-
-
-
-
-
-
-
-
-
 ############# Page 2 #############
-elif choix_page == 'Dataset' :
+elif choix_page == 'Dataset':
     st.markdown('<p class="grand_titre">Chargement du dataset</p>', unsafe_allow_html=True)
     st.write('##')
     col1_1, b_1, col2_1 = st.columns((1, 0.1, 1))
     col1, b, col2 = st.columns((2.7, 0.2, 1))
     with col1_1:
-        dataset_choix = st.selectbox("Dataset", ["Choisissez une option", "Iris", "Penguins","Choisir un dataset personnel"], )
+        dataset_choix = st.selectbox("Dataset",
+                                     ["Choisissez une option", "Iris", "Penguins", "Choisir un dataset personnel"], )
         message_ = st.empty()
 
-    if 'choix_dataset' in st.session_state :
+    if 'choix_dataset' in st.session_state:
         with col1_1:
             message_.success(st.session_state.choix_dataset)
 
@@ -250,8 +257,7 @@ elif choix_page == 'Dataset' :
                     st.session_state.choix_dataset = ""
                     st.session_state.clear()
 
-
-    if dataset_choix=="Iris" :
+    if dataset_choix == "Iris":
         st.session_state.data = pd.read_csv('Datasets/iris.csv')
         st.session_state.choix_dataset = "Le fichier chargé est le dataset des iris"
         with col1_1:
@@ -274,7 +280,7 @@ elif choix_page == 'Dataset' :
                         st.session_state.data.shape[0] * st.session_state.data.shape[1]), 2),
                      ' % (', sum(pd.DataFrame(st.session_state.data).isnull().sum(axis=1).tolist()), ')')
 
-    if dataset_choix=="Penguins" :
+    if dataset_choix == "Penguins":
         st.session_state.data = pd.read_csv('Datasets/penguins.csv')
         st.session_state.choix_dataset = "Le fichier chargé est le dataset des penguins"
         with col1_1:
@@ -298,30 +304,30 @@ elif choix_page == 'Dataset' :
                      ' % (', sum(pd.DataFrame(st.session_state.data).isnull().sum(axis=1).tolist()), ')')
 
 
-    elif dataset_choix=="Choisir un dataset personnel" :
+    elif dataset_choix == "Choisir un dataset personnel":
 
         with col2_1:
             uploaded_file = st.file_uploader("", type=['csv', 'xls'])
-            #uploaded_file = 0
+            # uploaded_file = 0
             if uploaded_file is not None:
                 st.session_state.file_details = {"FileName": uploaded_file.name,
-                                                "FileType": uploaded_file.type,
-                                                "FileSize": uploaded_file.size}
-                st.success('Fichier '+st.session_state.file_details['FileName']+' chargé avec succès !')
+                                                 "FileType": uploaded_file.type,
+                                                 "FileSize": uploaded_file.size}
+                st.success('Fichier ' + st.session_state.file_details['FileName'] + ' chargé avec succès !')
 
         if 'data' in st.session_state:
             del st.session_state.data
 
-        if uploaded_file == None :
+        if uploaded_file == None:
             with col2_1:
                 st.info("Veuillez charger un dataset")
 
-        if "data" not in st.session_state :
+        if "data" not in st.session_state:
             load_data()
 
-        if "data" in st.session_state :
+        if "data" in st.session_state:
             my_expander = st.expander(label="Options de preprocessing")
-            with my_expander :
+            with my_expander:
                 with col1_1:
                     st.write("##")
                     st.write("##")
@@ -338,47 +344,48 @@ elif choix_page == 'Dataset' :
 
                 with col1_1:
                     st.session_state.col_to_time = st.multiselect(label='Conversion Time Series',
-                                   options=option_col_update,
-                                   )
+                                                                  options=option_col_update,
+                                                                  )
                 with col2_1:
                     st.session_state.col_to_float_money = st.multiselect('Conversion Monnaies',
-                                   options = option_col_update,
-                                   )
+                                                                         options=option_col_update,
+                                                                         )
                 with col3_1:
                     st.session_state.col_to_float_coma = st.multiselect('Conversion string avec virgules vers float',
-                                   options = option_col_update,
-                                   )
+                                                                        options=option_col_update,
+                                                                        )
                 with col1_1:
                     st.session_state.drop_col = st.multiselect(label='Drop columns',
-                                   options=option_col_update,
-                                   )
+                                                               options=option_col_update,
+                                                               )
 
                 with col1_1:
                     for col in st.session_state["col_to_time"]:
                         try:
                             st.session_state.data[col] = pd.to_datetime(st.session_state.data[col])
-                            st.success("Transformation de "+col+" effectuée !")
+                            st.success("Transformation de " + col + " effectuée !")
                         except:
                             st.error("Transformation impossible ou déjà effectuée")
                 with col2_1:
                     for col in st.session_state.col_to_float_money:
                         try:
                             st.session_state.data[col] = st.session_state.data[col].apply(clean_data).astype('float')
-                            st.success("Transformation de "+col+" effectuée !")
+                            st.success("Transformation de " + col + " effectuée !")
                         except:
                             st.error("Transformation impossible ou déjà effectuée")
                 with col3_1:
                     for col in st.session_state.col_to_float_coma:
                         try:
-                            st.session_state.data[col] = st.session_state.data[col].apply(lambda x: float(str(x).replace(',', '.')))
-                            st.success("Transformation de "+col+" effectuée !")
+                            st.session_state.data[col] = st.session_state.data[col].apply(
+                                lambda x: float(str(x).replace(',', '.')))
+                            st.success("Transformation de " + col + " effectuée !")
                         except:
                             st.error("Transformation impossible ou déjà effectuée")
                 with col1_1:
                     for col in st.session_state["drop_col"]:
                         try:
                             st.session_state.data = st.session_state.data.drop(columns=col, axis=1)
-                            st.success("Colonnes "+col+" supprimée !")
+                            st.success("Colonnes " + col + " supprimée !")
                         except:
                             st.error("Transformation impossible ou déjà effectuée")
 
@@ -398,27 +405,18 @@ elif choix_page == 'Dataset' :
                         sum(pd.DataFrame(st.session_state.data).isnull().sum(axis=1).tolist()) * 100 / (
                                 st.session_state.data.shape[0] * st.session_state.data.shape[1]), 2),
                              ' % (', sum(pd.DataFrame(st.session_state.data).isnull().sum(axis=1).tolist()), ')')
-                st.download_button(data=st.session_state.data.to_csv(), label="Télécharger le dataset modifié", file_name='dataset.csv')
+                st.download_button(data=st.session_state.data.to_csv(), label="Télécharger le dataset modifié",
+                                   file_name='dataset.csv')
         st.session_state.choix_dataset = "Vous avez choisi de selectionner votre dataset"
         with col1_1:
             message_.success(st.session_state.choix_dataset)
 ############# Page 2 #############
 
-
-
-
-
-
-
-
-
-
-
 ############# Page 3 #############
-elif choix_page == "Analyse des colonnes" :
+elif choix_page == "Analyse des colonnes":
     st.markdown('<p class="grand_titre">Analyse des colonnes</p>', unsafe_allow_html=True)
     st.write('##')
-    if 'data' in st.session_state :
+    if 'data' in st.session_state:
         options = st.session_state.data.columns.to_list()
         st.session_state.slider_col = st.multiselect(
             'Selectionner une ou plusieurs colonnes',
@@ -474,48 +472,39 @@ elif choix_page == "Analyse des colonnes" :
                     ### Fin section données ###
                 st.write('##')
 
-    else :
+    else:
         st.info("Veuillez charger vos données dans la section Dataset")
 ############# Page 3 #############
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ############# Page 4 #############
-elif choix_page == "Matrice de corrélations" :
+elif choix_page == "Matrice de corrélations":
     st.markdown('<p class="grand_titre">Matrice de corrélations</p>', unsafe_allow_html=True)
     st.write("##")
-    if 'data' in st.session_state :
+    if 'data' in st.session_state:
         col1, b, col2 = st.columns((1, 1, 2))
         df_sans_NaN = st.session_state.data
         with col1:
-            st.session_state.couleur_corr = st.selectbox('Couleur', ['Selectionner une colonne'] + df_sans_NaN.columns.tolist(),
-                                              )
+            st.session_state.couleur_corr = st.selectbox('Couleur',
+                                                         ['Selectionner une colonne'] + df_sans_NaN.columns.tolist(),
+                                                         )
             st.write("##")
         st.session_state.select_columns_corr = st.multiselect("Choisir au moins deux colonnes",
-                                                   ["Toutes les colonnes"] + col_numeric(df_sans_NaN),
-                                                   )
+                                                              ["Toutes les colonnes"] + col_numeric(df_sans_NaN),
+                                                              )
         if len(st.session_state.select_columns_corr) > 1 and "Toutes les colonnes" not in st.session_state.select_columns_corr:
-            df_sans_NaN = pd.concat([st.session_state.data[col] for col in st.session_state.select_columns_corr], axis=1).dropna()
+            df_sans_NaN = pd.concat([st.session_state.data[col] for col in st.session_state.select_columns_corr],
+                                    axis=1).dropna()
             if len(df_sans_NaN) == 0:
                 st.write("##")
                 st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
             else:
                 if st.session_state.couleur_corr != 'Selectionner une colonne':
-                    fig = px.scatter_matrix(st.session_state.data, dimensions=col_numeric(df_sans_NaN[st.session_state.select_columns_corr]),
+                    fig = px.scatter_matrix(st.session_state.data,
+                                            dimensions=col_numeric(df_sans_NaN[st.session_state.select_columns_corr]),
                                             color=st.session_state.couleur_corr, color_continuous_scale='Bluered_r')
                 else:
-                    fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN[st.session_state.select_columns_corr]))
+                    fig = px.scatter_matrix(df_sans_NaN,
+                                            dimensions=col_numeric(df_sans_NaN[st.session_state.select_columns_corr]))
                 fig.update_layout(width=1000, height=700, margin=dict(l=40, r=50, b=40, t=40), font=dict(size=10))
                 fig.update_layout({"xaxis" + str(i + 1): dict(showticklabels=False) for i in
                                    range(len(col_numeric(df_sans_NaN[st.session_state.select_columns_corr])))})
@@ -532,7 +521,8 @@ elif choix_page == "Matrice de corrélations" :
                 st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
             else:
                 if st.session_state.couleur_corr != 'Selectionner une colonne':
-                    fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN), color=st.session_state.couleur_corr)
+                    fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN),
+                                            color=st.session_state.couleur_corr)
                 else:
                     fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN))
                 fig.update_layout(
@@ -545,23 +535,14 @@ elif choix_page == "Matrice de corrélations" :
                 fig.update_traces(diagonal_visible=False)
                 fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
                 st.plotly_chart(fig)
-        elif len(st.session_state.select_columns_corr) > 1 and "Toutes les colonnes" in st.session_state.select_columns_corr:
+        elif len(
+                st.session_state.select_columns_corr) > 1 and "Toutes les colonnes" in st.session_state.select_columns_corr:
             st.error("Erreur de saisi !")
         else:
             pass
     else:
         st.info("Veuillez charger vos données dans la section Dataset")
 ############# Page 4 #############
-
-
-
-
-
-
-
-
-
-
 
 ############# Page 5 #############
 elif choix_page == "Section graphiques":
@@ -573,14 +554,15 @@ elif choix_page == "Section graphiques":
         with col1:
             st.write("##")
             st.session_state.abscisse_plot = st.selectbox('Données en abscisses', col_num,
-                                               )
+                                                          )
             st.session_state.ordonnee_plot = st.selectbox('Données en ordonnées', col_num[::-1],
-                                               )
+                                                          )
             # couleur_plot = st.selectbox('Couleur', ['Selectionner une colonne'] + data.columns.tolist())
         with col2:
             st.write("##")
-            st.session_state.type_plot = st.radio("Type de plot", ['Points', 'Courbe', 'Latitude/Longitude', 'Histogramme'],
-                                       )
+            st.session_state.type_plot = st.radio("Type de plot",
+                                                  ['Points', 'Courbe', 'Latitude/Longitude', 'Histogramme'],
+                                                  )
             type_plot_dict = {
                 'Courbe': 'lines',
                 'Points': 'markers',
@@ -590,7 +572,8 @@ elif choix_page == "Section graphiques":
         if st.session_state.abscisse_plot and st.session_state.ordonnee_plot:
             if st.session_state.type_plot == 'Latitude/Longitude':
                 fig = go.Figure()
-                df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot].reset_index(drop=True), st.session_state.data[st.session_state.ordonnee_plot].reset_index(drop=True)],
+                df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot].reset_index(drop=True),
+                                         st.session_state.data[st.session_state.ordonnee_plot].reset_index(drop=True)],
                                         axis=1).dropna()
                 if len(df_sans_NaN) == 0:
                     st.warning('Le dataset composé des 2 colonnes selectionnées après dropna() est vide !')
@@ -611,12 +594,14 @@ elif choix_page == "Section graphiques":
                     st.plotly_chart(fig)
             elif st.session_state.type_plot == 'Histogramme':
                 fig = go.Figure()
-                df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot].reset_index(drop=True), st.session_state.data[st.session_state.ordonnee_plot].reset_index(drop=True)],
+                df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot].reset_index(drop=True),
+                                         st.session_state.data[st.session_state.ordonnee_plot].reset_index(drop=True)],
                                         axis=1).dropna()
                 if len(df_sans_NaN) == 0:
                     st.warning('Le dataset composé des 2 colonnes selectionnées après dropna() est vide !')
                 else:
-                    fig.add_histogram(x=df_sans_NaN[st.session_state.abscisse_plot], y=df_sans_NaN[st.session_state.ordonnee_plot])
+                    fig.add_histogram(x=df_sans_NaN[st.session_state.abscisse_plot],
+                                      y=df_sans_NaN[st.session_state.ordonnee_plot])
             else:
                 with col3:
                     st.write("##")
@@ -625,12 +610,14 @@ elif choix_page == "Section graphiques":
                     st.session_state.moyenne = st.checkbox("Moyenne")
                     st.session_state.minimum = st.checkbox("Minimum")
                 fig = go.Figure()
-                df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot].reset_index(drop=True), st.session_state.data[st.session_state.ordonnee_plot].reset_index(drop=True)],
+                df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot].reset_index(drop=True),
+                                         st.session_state.data[st.session_state.ordonnee_plot].reset_index(drop=True)],
                                         axis=1).dropna()
                 if len(df_sans_NaN) == 0:
                     st.warning('Le dataset composé des 2 colonnes selectionnées après dropna() est vide !')
                 else:
-                    fig.add_scatter(x=df_sans_NaN[st.session_state.abscisse_plot], y=df_sans_NaN[st.session_state.ordonnee_plot],
+                    fig.add_scatter(x=df_sans_NaN[st.session_state.abscisse_plot],
+                                    y=df_sans_NaN[st.session_state.ordonnee_plot],
                                     mode=type_plot_dict[st.session_state.type_plot], name='', showlegend=False)
                     # if abscisse_plot not in col_to_time and ordonnee_plot not in col_to_time :
                     with col4:
@@ -641,8 +628,9 @@ elif choix_page == "Section graphiques":
                                 st.session_state.trendline = st.checkbox("Regression linéaire")
                                 st.session_state.polynom_feat = st.checkbox("Regression polynomiale")
                                 if st.session_state.polynom_feat:
-                                    st.session_state.degres = st.slider('Degres de la regression polynomiale', min_value=2,
-                                                             max_value=100)
+                                    st.session_state.degres = st.slider('Degres de la regression polynomiale',
+                                                                        min_value=2,
+                                                                        max_value=100)
                     if st.session_state.trendline:
                         # regression linaire
                         X = df_sans_NaN[st.session_state.abscisse_plot].values.reshape(-1, 1)
@@ -713,16 +701,9 @@ elif choix_page == "Section graphiques":
                     plot_bgcolor='rgba(0,0,0,0)',
                 )
                 st.plotly_chart(fig)
-    else :
+    else:
         st.info("Veuillez charger vos données dans la section Dataset")
 ############# Page 5 #############
-
-
-
-
-
-
-
 
 ############# ML section #############
 elif choix_page == "Machine Learning":
@@ -731,8 +712,7 @@ elif choix_page == "Machine Learning":
     st.sidebar.title('Machine Learning  :brain:')
     st.sidebar.radio(label="", options=PAGES_ML, key="choix_page_ml")
 
-
-    if st.session_state.choix_page_ml == "K-nearest neighbors" :
+    if st.session_state.choix_page_ml == "K-nearest neighbors":
         st.markdown('<p class="grand_titre">KNN : k-nearest neighbors</p>', unsafe_allow_html=True)
         if 'data' in st.session_state:
             col1, b, col2 = st.columns((1, 0.2, 1))
@@ -740,8 +720,9 @@ elif choix_page == "Machine Learning":
                 st.write("##")
                 st.markdown('<p class="section">Selection des colonnes pour le modèle (target+features)</p>',
                             unsafe_allow_html=True)
-                st.session_state.choix_col = st.multiselect("Choisir au moins deux colonnes", st.session_state.data.columns.tolist(),
-                                                 )
+                st.session_state.choix_col = st.multiselect("Choisir au moins deux colonnes",
+                                                            st.session_state.data.columns.tolist(),
+                                                            )
             if len(st.session_state.choix_col) > 1:
                 df_ml = st.session_state.data[st.session_state.choix_col]
                 df_ml = df_ml.dropna(axis=0)
@@ -753,16 +734,18 @@ elif choix_page == "Machine Learning":
                     with col1:
                         # encodage !
                         df_origine = df_ml.copy()
-                        st.session_state.col_to_encodage = st.multiselect("Selectionner les colonnes à encoder", st.session_state.choix_col,
-                                                               )
+                        st.session_state.col_to_encodage = st.multiselect("Selectionner les colonnes à encoder",
+                                                                          st.session_state.choix_col,
+                                                                          )
                         for col in st.session_state.col_to_encodage:
                             st.write("encodage colonne " + col + " : " + str(df_ml[col].unique().tolist()) + "->" + str(
                                 np.arange(len(df_ml[col].unique()))))
                             df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())),
                                                inplace=True)  # encodage
                         ## création des target et features à partir du dataset
-                        st.session_state.target = st.selectbox("Target :", ["Selectionner une target"] + col_numeric(df_ml),
-                                                    )
+                        st.session_state.target = st.selectbox("Target :",
+                                                               ["Selectionner une target"] + col_numeric(df_ml),
+                                                               )
                         with col2:
                             if st.session_state.target != "Selectionner une target":
                                 y = df_ml[st.session_state.target]  # target
@@ -785,7 +768,8 @@ elif choix_page == "Machine Learning":
                                         x_pca = model.transform(X)
                                         df = pd.concat([pd.Series(x_pca[:-1, 0]).reset_index(drop=True),
                                                         pd.Series(x_pca[:-1, 1]).reset_index(drop=True),
-                                                        pd.Series(df_origine[st.session_state.target]).reset_index(drop=True)],
+                                                        pd.Series(df_origine[st.session_state.target]).reset_index(
+                                                            drop=True)],
                                                        axis=1)
                                         df.columns = ["x", "y", str(st.session_state.target)]
 
@@ -795,7 +779,7 @@ elif choix_page == "Machine Learning":
                                             st.write("##")
                                             st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
                                             st.session_state.voisins = st.slider('Nombre de voisins', min_value=4,
-                                                                      max_value=int(len(y) * 0.2))
+                                                                                 max_value=int(len(y) * 0.2))
                                             y_pca_knn = df[st.session_state.target]  # target
                                             X_pca_knn = df.drop(st.session_state.target, axis=1)  # features
                                             model_knn = KNeighborsClassifier(n_neighbors=st.session_state.voisins)
@@ -803,7 +787,8 @@ elif choix_page == "Machine Learning":
                                             donnee_apres_pca = [x_pca[-1, 0], x_pca[-1, 1]]
                                             x = np.array(donnee_apres_pca).reshape(1, len(donnee_apres_pca))
                                             p = model_knn.predict(x)
-                                            st.success("Prédiction de la target " + st.session_state.target + " : " + str(p))
+                                            st.success(
+                                                "Prédiction de la target " + st.session_state.target + " : " + str(p))
                                             fig = px.scatter(df, x="x", y="y", color=str(st.session_state.target),
                                                              labels={'color': str(st.session_state.target)},
                                                              color_discrete_sequence=px.colors.qualitative.Plotly)
@@ -856,15 +841,16 @@ elif choix_page == "Machine Learning":
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
 
-    elif st.session_state.choix_page_ml == "K-Means" :
+    elif st.session_state.choix_page_ml == "K-Means":
         st.markdown('<p class="grand_titre">K-Means</p>', unsafe_allow_html=True)
-        if 'data' in st.session_state :
+        if 'data' in st.session_state:
             col1, b, col2 = st.columns((1, 0.2, 1))
             with col1:
                 st.write("##")
                 st.markdown('<p class="section">Selection des features pour le modèle</p>', unsafe_allow_html=True)
-                st.session_state.choix_col_kmeans = st.multiselect("Choisir au moins deux colonnes", col_numeric(st.session_state.data),
-                                                        )
+                st.session_state.choix_col_kmeans = st.multiselect("Choisir au moins deux colonnes",
+                                                                   col_numeric(st.session_state.data),
+                                                                   )
             if len(st.session_state.choix_col_kmeans) > 1:
                 df_ml = st.session_state.data[st.session_state.choix_col_kmeans]
                 df_ml = df_ml.dropna(axis=0)
@@ -881,14 +867,16 @@ elif choix_page == "Machine Learning":
                             model.fit(X)
                             x_pca = model.transform(X)
 
-                            df = pd.concat([pd.Series(x_pca[:, 0]).reset_index(drop=True), pd.Series(x_pca[:, 1]).reset_index(drop=True)], axis=1)
+                            df = pd.concat([pd.Series(x_pca[:, 0]).reset_index(drop=True),
+                                            pd.Series(x_pca[:, 1]).reset_index(drop=True)], axis=1)
                             df.columns = ["x", "y"]
 
                             ## K-Means
                             st.write("##")
                             st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
-                            st.session_state.cluster = st.slider('Nombre de clusters', min_value=2, max_value=int(len(X) * 0.2),
-                                                      )
+                            st.session_state.cluster = st.slider('Nombre de clusters', min_value=2,
+                                                                 max_value=int(len(X) * 0.2),
+                                                                 )
                             X_pca_kmeans = df
 
                             modele = KMeans(n_clusters=st.session_state.cluster)
@@ -928,17 +916,19 @@ elif choix_page == "Machine Learning":
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
 
-    elif st.session_state.choix_page_ml == "Support Vector Machine" :
+    elif st.session_state.choix_page_ml == "Support Vector Machine":
         st.markdown('<p class="grand_titre">SVM : Support Vector Machine</p>', unsafe_allow_html=True)
-        if 'data' in st.session_state :
+        if 'data' in st.session_state:
             st.write("##")
             st.markdown('<p class="section">Selection des features et de la target</p>', unsafe_allow_html=True)
             col1, b, col2 = st.columns((1, 0.2, 1))
             with col1:
-                st.session_state.choix_col_SVM = st.multiselect("Choisir deux colonnes", col_numeric(st.session_state.data),
-                                                     )
-                st.session_state.choix_target_SVM = st.selectbox("Choisir la target", st.session_state.data.columns.tolist(),
-                                                      )
+                st.session_state.choix_col_SVM = st.multiselect("Choisir deux colonnes",
+                                                                col_numeric(st.session_state.data),
+                                                                )
+                st.session_state.choix_target_SVM = st.selectbox("Choisir la target",
+                                                                 st.session_state.data.columns.tolist(),
+                                                                 )
 
                 if len(st.session_state.choix_col_SVM) == 2:
                     target = st.session_state.choix_target_SVM
@@ -959,15 +949,18 @@ elif choix_page == "Machine Learning":
                             if len(df[target].unique().tolist()) > 1:
                                 with col2:
                                     st.session_state.classes_SVM = st.multiselect("Choisir deux classes",
-                                                                       df[st.session_state.choix_target_SVM].unique().tolist(),
-                                                                       )
+                                                                                  df[
+                                                                                      st.session_state.choix_target_SVM].unique().tolist(),
+                                                                                  )
                                     if len(st.session_state.classes_SVM) > 1:
                                         df = df.loc[
-                                            (df[target] == st.session_state.classes_SVM[0]) | (df[target] == st.session_state.classes_SVM[1])]
+                                            (df[target] == st.session_state.classes_SVM[0]) | (
+                                                        df[target] == st.session_state.classes_SVM[1])]
                                         y = df[target]
                                         X = df[features]
-                                        st.session_state.choix_kernel = st.selectbox("Choisir le type de noyau", ['Linéaire'],
-                                                                          )
+                                        st.session_state.choix_kernel = st.selectbox("Choisir le type de noyau",
+                                                                                     ['Linéaire'],
+                                                                                     )
 
                                         if st.session_state.choix_kernel == 'Linéaire':
                                             fig = px.scatter(df, x=features[0], y=features[1], color=target,
@@ -1038,16 +1031,17 @@ elif choix_page == "Machine Learning":
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
 
-    elif st.session_state.choix_page_ml == "PCA" :
+    elif st.session_state.choix_page_ml == "PCA":
         st.markdown('<p class="grand_titre">PCA : Analyse en composantes principales</p>', unsafe_allow_html=True)
-        if 'data' in st.session_state :
+        if 'data' in st.session_state:
             col1, b, col2 = st.columns((1, 0.2, 1))
             with col1:
                 st.write("##")
                 st.markdown('<p class="section">Selection des colonnes pour le modèle PCA (target+features)</p>',
                             unsafe_allow_html=True)
-                st.session_state.choix_col_PCA = st.multiselect("Choisir au moins deux colonnes", st.session_state.data.columns.tolist(),
-                                                     )
+                st.session_state.choix_col_PCA = st.multiselect("Choisir au moins deux colonnes",
+                                                                st.session_state.data.columns.tolist(),
+                                                                )
             if len(st.session_state.choix_col_PCA) > 1:
                 df_ml = st.session_state.data[st.session_state.choix_col_PCA]
                 df_ml = df_ml.dropna(axis=0)
@@ -1060,8 +1054,8 @@ elif choix_page == "Machine Learning":
                     with col1:
                         # encodage !
                         st.session_state.col_to_encodage_PCA = st.multiselect("Selectionner les colonnes à encoder",
-                                                                   st.session_state.choix_col_PCA,
-                                                                   )
+                                                                              st.session_state.choix_col_PCA,
+                                                                              )
                         for col in st.session_state.col_to_encodage_PCA:
                             st.write("encodage colonne " + col + " : " + str(df_ml[col].unique().tolist()) + "->" + str(
                                 np.arange(len(df_ml[col].unique()))))
@@ -1073,8 +1067,9 @@ elif choix_page == "Machine Learning":
                         ## création des target et features à partir du dataset
                         st.write("##")
                         st.write("##")
-                        st.session_state.target_PCA = st.selectbox("Target :", ["Selectionner une target"] + col_numeric(df_ml),
-                                                        )
+                        st.session_state.target_PCA = st.selectbox("Target :",
+                                                                   ["Selectionner une target"] + col_numeric(df_ml),
+                                                                   )
                     if st.session_state.target_PCA != "Selectionner une target":
                         y = df_ml[st.session_state.target_PCA]  # target
                         X = df_ml.drop(st.session_state.target_PCA, axis=1)  # features
@@ -1085,8 +1080,11 @@ elif choix_page == "Machine Learning":
                             st.write("##")
                             st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
                             # résultats points
-                            st.session_state.df = pd.concat([pd.Series(x_pca[:, 0]).reset_index(drop=True), pd.Series(x_pca[:, 1]).reset_index(drop=True),
-                                                  pd.Series(st.session_state.df_ml_origine[st.session_state.target_PCA]).reset_index(drop=True)], axis=1)
+                            st.session_state.df = pd.concat([pd.Series(x_pca[:, 0]).reset_index(drop=True),
+                                                             pd.Series(x_pca[:, 1]).reset_index(drop=True),
+                                                             pd.Series(st.session_state.df_ml_origine[
+                                                                           st.session_state.target_PCA]).reset_index(
+                                                                 drop=True)], axis=1)
                             st.session_state.df.columns = ["x", "y", str(st.session_state.target_PCA)]
                             fig = px.scatter(st.session_state.df, x="x", y="y", color=str(st.session_state.target_PCA),
                                              labels={'color': '{}'.format(str(st.session_state.target_PCA))},
@@ -1111,16 +1109,18 @@ elif choix_page == "Machine Learning":
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
 
-    elif st.session_state.choix_page_ml == "UMAP" :
-        st.markdown('<p class="grand_titre">UMAP : Uniform Manifold Approximation and Projection</p>',unsafe_allow_html=True)
-        if 'data' in st.session_state :
+    elif st.session_state.choix_page_ml == "UMAP":
+        st.markdown('<p class="grand_titre">UMAP : Uniform Manifold Approximation and Projection</p>',
+                    unsafe_allow_html=True)
+        if 'data' in st.session_state:
             col1, b, col2 = st.columns((1, 0.2, 1))
             with col1:
                 st.write("##")
                 st.markdown('<p class="section">Selection des colonnes pour le modèle UMAP (target+features)</p>',
                             unsafe_allow_html=True)
-                st.session_state.choix_col_UMAP = st.multiselect("Choisir au moins deux colonnes", st.session_state.data.columns.tolist(),
-                                                      )
+                st.session_state.choix_col_UMAP = st.multiselect("Choisir au moins deux colonnes",
+                                                                 st.session_state.data.columns.tolist(),
+                                                                 )
             if len(st.session_state.choix_col_UMAP) > 1:
                 df_ml = st.session_state.data[st.session_state.choix_col_UMAP]
                 df_ml = df_ml.dropna(axis=0)
@@ -1133,8 +1133,8 @@ elif choix_page == "Machine Learning":
                     with col1:
                         # encodage !
                         st.session_state.col_to_encodage_UMAP = st.multiselect("Selectionner les colonnes à encoder",
-                                                                    st.session_state.choix_col_UMAP,
-                                                                    )
+                                                                               st.session_state.choix_col_UMAP,
+                                                                               )
                         for col in st.session_state.col_to_encodage_UMAP:
                             st.write("encodage colonne " + col + " : " + str(df_ml[col].unique().tolist()) + "->" + str(
                                 np.arange(len(df_ml[col].unique()))))
@@ -1146,8 +1146,9 @@ elif choix_page == "Machine Learning":
                         ## création des target et features à partir du dataset
                         st.write("##")
                         st.write("##")
-                        st.session_state.target_UMAP = st.selectbox("Target :", ["Selectionner une target"] + col_numeric(df_ml),
-                                                         )
+                        st.session_state.target_UMAP = st.selectbox("Target :",
+                                                                    ["Selectionner une target"] + col_numeric(df_ml),
+                                                                    )
                     if st.session_state.target_UMAP != "Selectionner une target":
                         y = df_ml[st.session_state.target_UMAP]  # target
                         X = df_ml.drop(st.session_state.target_UMAP, axis=1)  # features
@@ -1158,7 +1159,8 @@ elif choix_page == "Machine Learning":
                             st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
                             # résultats points
                             st.session_state.df = pd.concat([pd.Series(x_umap[:, 0]), pd.Series(x_umap[:, 1]),
-                                                  pd.Series(st.session_state.df_ml_origine[st.session_state.target_UMAP])], axis=1)
+                                                             pd.Series(st.session_state.df_ml_origine[
+                                                                           st.session_state.target_UMAP])], axis=1)
                             st.session_state.df.columns = ["x", "y", str(st.session_state.target_UMAP)]
                             fig = px.scatter(st.session_state.df, x="x", y="y", color=str(st.session_state.target_UMAP),
                                              labels={'color': '{}'.format(str(st.session_state.target_UMAP))},
@@ -1182,30 +1184,3 @@ elif choix_page == "Machine Learning":
             st.write("##")
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 ############# ML section #############
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
