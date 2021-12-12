@@ -20,16 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Matrices corr">
-      <change afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logo/background.pxd/QuickLook/Icon.tiff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logo/background.pxd/QuickLook/Thumbnail.tiff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logo/background.pxd/data/0EB43EB7-0C7A-485A-9146-D00897375981" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logo/background.pxd/data/14A9CA35-6C55-411D-B969-1C01DC0DA117" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logo/background.pxd/data/2D98DDFE-9804-42A4-BF87-4FA70DF9D6E8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logo/background.pxd/data/4427B9AD-CE4F-42E9-8094-3D99B6EC1E8E" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logo/background.pxd/metadata.info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,14 +132,7 @@
       <workItem from="1638361466569" duration="60000" />
       <workItem from="1639268511699" duration="2154000" />
       <workItem from="1639270674077" duration="7267000" />
-      <workItem from="1639324133143" duration="1790000" />
-    </task>
-    <task id="LOCAL-00428" summary="objects detection">
-      <created>1636548511842</created>
-      <option name="number" value="00428" />
-      <option name="presentableId" value="LOCAL-00428" />
-      <option name="project" value="LOCAL" />
-      <updated>1636548511842</updated>
+      <workItem from="1639324133143" duration="1939000" />
     </task>
     <task id="LOCAL-00429" summary="objects detection">
       <created>1636550538971</created>
@@ -486,7 +470,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639325524833</updated>
     </task>
-    <option name="localTasksCounter" value="477" />
+    <task id="LOCAL-00477" summary="Matrices corr">
+      <created>1639325952990</created>
+      <option name="number" value="00477" />
+      <option name="presentableId" value="LOCAL-00477" />
+      <option name="project" value="LOCAL" />
+      <updated>1639325952990</updated>
+    </task>
+    <option name="localTasksCounter" value="478" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
