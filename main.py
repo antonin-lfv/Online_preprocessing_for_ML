@@ -514,7 +514,7 @@ elif choix_page == "Section graphiques":
     st.markdown('<p class="grand_titre">Graphiques et regressions</p>', unsafe_allow_html=True)
     st.write("##")
     if 'data' in st.session_state:
-        col1, b, col2, c, col3, d, col4 = st.columns((7))  # pour les autres select
+        col1, col2, col3, col4 = st.columns(4)  # pour les autres select
         col_num = col_numeric(st.session_state.data) + col_temporal(st.session_state.data)
         with col1:
             with st.expander("Données") :
