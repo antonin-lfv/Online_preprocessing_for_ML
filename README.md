@@ -16,7 +16,6 @@
 
 <p align="center">
   La <b>No-code AI platform</b> est un site développé avec <b>Python</b> et déployé avec <b>Streamlit</b>, qui permet de faire du Machine/Deep Learning sans écrire de code. La partie analyse et Machine Learning repose sur l'utilisation d'un dataset, qui peut être soit un dataset déjà disponible sur le site (les iris, ou les penguins), soit un dataset de votre choix que vous aurez uploadé, et avec qui vous pourrez effectuer du preprocessing directement depuis la page d'upload (Attention à bien re télécharger le dataset modifié et de le re uploader). Une fois le dataset choisi, vous pouvez l'utiliser pour alimenter des algorithmes tels que des SVM, des K-Means, des KNN ou encore des réductions de dimension.
-Enfin, la partie Deep Learning peut être traitée indépendamment, elle contient deux modèles, un transfert de style neuronal et un modèle de détection d'objets sur une image, où des images sont déjà disponibles.
 <p/>
 <br>
 
@@ -37,9 +36,6 @@ Enfin, la partie Deep Learning peut être traitée indépendamment, elle contien
   - [Support Vector Machine](#Support-Vector-Machine)
   - [PCA](#PCA)
   - [UMAP](#UMAP)
-- [Deep Learning](#Deep-Learning)
-  - [Transfert de style neuronal](#Transfert-de-style-neuronal)
-  - [Détection d'objets](#Détection-dobjets)
 
 
 <br/>
@@ -173,24 +169,6 @@ Création d'un modèle de K-Means :
 </p>
 
 <br/>
-
-# Deep Learning
-
-## Transfert de style neuronal
-
-<br>
-<p align="center">
-<img src="https://user-images.githubusercontent.com/63207451/144234295-ad263879-86e5-4c07-b434-da5d1a0d8586.png" height="400">
-</p>
-
-<br/>
-
-## Détection d'objets
-
-<br>
-<p align="center">
-<img src="https://user-images.githubusercontent.com/63207451/144234420-278d664e-ae63-415a-88d2-89113304d660.png" height="400">
-</p>
 
 
 <br/>
