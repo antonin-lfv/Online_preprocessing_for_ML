@@ -42,7 +42,7 @@ st.markdown("""
     font-size:30px !important;
     font-weight: bold;
     text-decoration: underline;
-    text-decoration-color: #ff8002;
+    text-decoration-color: #4976E4;
     text-decoration-thickness: 5px;
 }
 .grand_titre_section_ML_DL {
@@ -80,7 +80,7 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
-st.sidebar.image("logo/NAP_logo.png", use_column_width=True, width=70)
+st.sidebar.image("logo/NAP_logo.png", use_column_width=True)
 st.sidebar.write("##")
 
 
@@ -169,7 +169,7 @@ choix_page = st.sidebar.radio(label="", options=PAGES)
 if choix_page == "Accueil":
     st.markdown('<p class="first_titre">No-code AI Platform</p>', unsafe_allow_html=True)
     st.write("---")
-    c1, c2 = st.columns(2)
+    c1, c2 = st.columns((3,2))
     with c2:
         st.write("##")
         st.write("##")

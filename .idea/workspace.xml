@@ -20,18 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Matrices corr">
-      <change afterPath="$PROJECT_DIR$/logo/NAP_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logo/background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logo/plotly_grand.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logo/python.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logo/streamlit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.streamlit/config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.streamlit/config.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logo.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,14 +132,7 @@
       <workItem from="1638353908154" duration="926000" />
       <workItem from="1638361466569" duration="60000" />
       <workItem from="1639268511699" duration="2154000" />
-      <workItem from="1639270674077" duration="6316000" />
-    </task>
-    <task id="LOCAL-00425" summary="objects detection">
-      <created>1636548217763</created>
-      <option name="number" value="00425" />
-      <option name="presentableId" value="LOCAL-00425" />
-      <option name="project" value="LOCAL" />
-      <updated>1636548217764</updated>
+      <workItem from="1639270674077" duration="7217000" />
     </task>
     <task id="LOCAL-00426" summary="objects detection">
       <created>1636548306234</created>
@@ -487,7 +470,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639271843743</updated>
     </task>
-    <option name="localTasksCounter" value="474" />
+    <task id="LOCAL-00474" summary="Matrices corr">
+      <created>1639312404888</created>
+      <option name="number" value="00474" />
+      <option name="presentableId" value="LOCAL-00474" />
+      <option name="project" value="LOCAL" />
+      <updated>1639312404890</updated>
+    </task>
+    <option name="localTasksCounter" value="475" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
