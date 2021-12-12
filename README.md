@@ -141,7 +141,7 @@ Création d'un modèle de K-Means :
 
 <br>
 <p align="center">
-<img src="https://user-images.githubusercontent.com/63207451/144233818-415e234a-edfc-4cdf-a699-c20169a56407.png" height="400">
+<img  src="https://user-images.githubusercontent.com/63207451/145731383-ae37679c-bdb8-492d-83af-da964ff45d2c.png" height="400">
 </p>
 
 <br/>
