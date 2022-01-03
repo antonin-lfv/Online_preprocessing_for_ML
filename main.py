@@ -57,7 +57,7 @@ st.markdown("""
     font-size:20px !important;
     font-weight: bold;
     text-decoration: underline;
-    text-decoration-color: #258813;
+    text-decoration-color: #111111;
     text-decoration-thickness: 3px;
 }
 .petite_section{
@@ -167,14 +167,14 @@ elif choix_page == 'Dataset':
     col1, b, col2 = st.columns((2.7, 0.2, 1))
     with col1_1:
         dataset_choix = st.selectbox("Dataset",
-                                     ["Choisissez une option", "Iris", "Penguins", "Choisir un dataset personnel"], )
+                                     ["-- Choisissez une option --", "Iris", "Penguins", "Choisir un dataset personnel"], )
         message_ = st.empty()
 
     if 'choix_dataset' in st.session_state:
         with col1_1:
             message_.success(st.session_state.choix_dataset)
 
-    if dataset_choix == "Choisissez une option":
+    if dataset_choix == "-- Choisissez une option --":
         if 'choix_dataset' in st.session_state:
             if st.session_state.choix_dataset == "Le fichier chargé est le dataset des iris" or st.session_state.choix_dataset == "Le fichier chargé est le dataset des penguins":
                 with col1:
@@ -211,7 +211,7 @@ elif choix_page == 'Dataset':
                                 st.session_state.data.shape[0] * st.session_state.data.shape[1]), 2),
                              ' % (', sum(pd.DataFrame(st.session_state.data).isnull().sum(axis=1).tolist()), ')')
 
-                col1_modif, col2_modif = st.columns(2)
+                col1_modif, col2_modif = st.columns((2,1))
                 with col1_modif:
                     st.write("##")
                     st.info("Rechargez votre dataset pour le modifier, en cliquant 2 FOIS sur le bouton ci-dessous")
@@ -269,7 +269,7 @@ elif choix_page == 'Dataset':
 
     elif dataset_choix == "Choisir un dataset personnel":
 
-        with col2_1:
+        with col1_1:
             uploaded_file = st.file_uploader("", type=['csv', 'xls'])
             # uploaded_file = 0
             if uploaded_file is not None:
@@ -282,7 +282,7 @@ elif choix_page == 'Dataset':
             del st.session_state.data
 
         if uploaded_file == None:
-            with col2_1:
+            with col1_1:
                 st.info("Veuillez charger un dataset")
 
         if "data" not in st.session_state:
@@ -448,7 +448,7 @@ elif choix_page == "Matrice de corrélations":
         df_sans_NaN = st.session_state.data
         with col1:
             st.session_state.couleur_corr = st.selectbox('Couleur',
-                                                         ['Selectionner une colonne'] + df_sans_NaN.columns.tolist(),
+                                                         ['-- Selectionner une colonne --'] + df_sans_NaN.columns.tolist(),
                                                          help="Choisissez la variable catégorielle pour la coloration des classes"
                                                          )
             st.write("##")
@@ -463,7 +463,7 @@ elif choix_page == "Matrice de corrélations":
                 st.write("##")
                 st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
             else:
-                if st.session_state.couleur_corr != 'Selectionner une colonne':
+                if st.session_state.couleur_corr != '-- Selectionner une colonne --':
                     fig = px.scatter_matrix(st.session_state.data,
                                             dimensions=col_numeric(df_sans_NaN[st.session_state.select_columns_corr]),
                                             color=st.session_state.couleur_corr, color_continuous_scale='Bluered_r')
@@ -593,6 +593,7 @@ elif choix_page == "Section graphiques":
                                         st.session_state.degres = st.slider('Degres de la regression polynomiale',
                                                                             min_value=2,
                                                                             max_value=100)
+                    equation_col_1, equation_col_2 = st.columns(2)
                     if st.session_state.trendline:
                         # regression linaire
                         X = df_sans_NaN[st.session_state.abscisse_plot].values.reshape(-1, 1)
@@ -600,8 +601,11 @@ elif choix_page == "Section graphiques":
                         model.fit(X, df_sans_NaN[st.session_state.ordonnee_plot])
                         x_range = np.linspace(X.min(), X.max(), len(df_sans_NaN[st.session_state.ordonnee_plot]))
                         y_range = model.predict(x_range.reshape(-1, 1))
-                        fig.add_scatter(x=x_range, y=y_range, name='Regression linéaire', mode='lines',
+                        fig.add_scatter(x=x_range, y=y_range, name='<b>Regression linéaire<b>', mode='lines',
                                         marker=dict(color='red'))
+                        with equation_col_1 :
+                            with st.expander('Équation Linear regression'):
+                                st.write(f'**f(x) = {model.coef_[0].round(3)}x + {model.intercept_.round(2)}**')
                         # #################
                     if st.session_state.polynom_feat:
                         # regression polynomiale
@@ -614,9 +618,20 @@ elif choix_page == "Section graphiques":
                         model = LinearRegression(fit_intercept=False)
                         model.fit(X_poly, df_sans_NaN[st.session_state.ordonnee_plot])
                         y_poly = model.predict(x_range_poly)
-                        fig.add_scatter(x=x_range.squeeze(), y=y_poly, name='Polynomial Features',
+
+                        eq_poly = model.coef_.tolist()
+                        eq_poly[0]+=model.intercept_
+                        puissances_x = poly.get_feature_names_out()
+                        eq_final = ""
+                        for i,j in zip(eq_poly, puissances_x):
+                            eq_final+=f'{round(i, 2)}{j} + '
+                        fig.add_scatter(x=x_range.squeeze(), y=y_poly, name='<b>Polynomial Features<b>',
                                         marker=dict(color='green'))
+                        with equation_col_2:
+                            with st.expander('Équation polynomial features'):
+                                st.write(f'**f(x0) = {eq_final[:-2]}**')
                         # #################
+
                     if st.session_state.moyenne:
                         # Moyenne #
                         fig.add_hline(y=df_sans_NaN[st.session_state.ordonnee_plot].mean(),
