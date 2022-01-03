@@ -1,25 +1,28 @@
 # Importations
 import streamlit as st
 import plotly.express as px
+import plotly.graph_objects as go
 import binascii
 import numpy as np
-from collections import Counter
 import pandas as pd
 import time
 import os
-import plotly.graph_objects as go
 import webbrowser
+import matplotlib.pyplot as plt
+import seaborn as sns
+from collections import Counter
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import r2_score
-import seaborn as sns
-import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.decomposition import PCA
-from umap import UMAP
-from scipy.spatial import distance
+from sklearn.model_selection import train_test_split, GridSearchCV, learning_curve
+from sklearn import metrics
+from sklearn.metrics import *
 from sklearn.cluster import KMeans
 from sklearn.svm import SVC
+from umap import UMAP
+from scipy.spatial import distance
 from utils import *
 
 ####### html/css config ########
@@ -56,6 +59,7 @@ st.markdown("""
 .section{
     font-size:20px !important;
     font-weight: bold;
+    text-align: center;
     text-decoration: underline;
     text-decoration-color: #111111;
     text-decoration-thickness: 3px;
@@ -73,6 +77,10 @@ st.markdown("""
     text-decoration-color: #000;
     text-decoration-thickness: 1px;
 }
+.fullScreenFrame > div {
+    display: flex;
+    justify-content: center;
+}
 .center{
     display: block;
     margin-left: auto;
@@ -83,6 +91,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.sidebar.image("logo/NAP_logo.png", use_column_width=True)
 st.sidebar.write("##")
+
 
 ###### Load data #######
 def load_data():
@@ -134,7 +143,7 @@ choix_page = st.sidebar.radio(label="", options=PAGES)
 if choix_page == "Accueil":
     st.markdown('<p class="first_titre">No-code AI Platform</p>', unsafe_allow_html=True)
     st.write("---")
-    c1, c2 = st.columns((3,2))
+    c1, c2 = st.columns((3, 2))
     with c2:
         st.write("##")
         st.write("##")
@@ -155,7 +164,8 @@ if choix_page == "Accueil":
     c1, _, _, _, _, _ = st.columns(6)
     with c1:
         st.subheader("Liens")
-        st.write("• [Mon profil GitHub](https://github.com/antonin-lfv/Online_preprocessing_for_ML/blob/master/README.md)")
+        st.write(
+            "• [Mon profil GitHub](https://github.com/antonin-lfv/Online_preprocessing_for_ML/blob/master/README.md)")
         st.write("• [Mon site](https://antonin-lfv.github.io)")
 ############# Page 1 #############
 
@@ -167,7 +177,8 @@ elif choix_page == 'Dataset':
     col1, b, col2 = st.columns((2.7, 0.2, 1))
     with col1_1:
         dataset_choix = st.selectbox("Dataset",
-                                     ["-- Choisissez une option --", "Iris", "Penguins", "Choisir un dataset personnel"], )
+                                     ["-- Choisissez une option --", "Iris", "Penguins",
+                                      "Choisir un dataset personnel"], )
         message_ = st.empty()
 
     if 'choix_dataset' in st.session_state:
@@ -211,7 +222,7 @@ elif choix_page == 'Dataset':
                                 st.session_state.data.shape[0] * st.session_state.data.shape[1]), 2),
                              ' % (', sum(pd.DataFrame(st.session_state.data).isnull().sum(axis=1).tolist()), ')')
 
-                col1_modif, col2_modif = st.columns((2,1))
+                col1_modif, col2_modif = st.columns((2, 1))
                 with col1_modif:
                     st.write("##")
                     st.info("Rechargez votre dataset pour le modifier, en cliquant 2 FOIS sur le bouton ci-dessous")
@@ -448,7 +459,8 @@ elif choix_page == "Matrice de corrélations":
         df_sans_NaN = st.session_state.data
         with col1:
             st.session_state.couleur_corr = st.selectbox('Couleur',
-                                                         ['-- Selectionner une colonne --'] + df_sans_NaN.columns.tolist(),
+                                                         [
+                                                             '-- Selectionner une colonne --'] + df_sans_NaN.columns.tolist(),
                                                          help="Choisissez la variable catégorielle pour la coloration des classes"
                                                          )
             st.write("##")
@@ -517,7 +529,7 @@ elif choix_page == "Section graphiques":
         col1, col2, col3, col4 = st.columns(4)  # pour les autres select
         col_num = col_numeric(st.session_state.data) + col_temporal(st.session_state.data)
         with col1:
-            with st.expander("Données") :
+            with st.expander("Données"):
                 st.session_state.abscisse_plot = st.selectbox('Données en abscisses', col_num,
                                                               )
                 st.session_state.ordonnee_plot = st.selectbox('Données en ordonnées', col_num[::-1],
@@ -603,7 +615,7 @@ elif choix_page == "Section graphiques":
                         y_range = model.predict(x_range.reshape(-1, 1))
                         fig.add_scatter(x=x_range, y=y_range, name='<b>Regression linéaire<b>', mode='lines',
                                         marker=dict(color='red'))
-                        with equation_col_1 :
+                        with equation_col_1:
                             with st.expander('Équation Linear regression'):
                                 st.write(f'**f(x) = {model.coef_[0].round(3)}x + {model.intercept_.round(2)}**')
                         # #################
@@ -620,11 +632,11 @@ elif choix_page == "Section graphiques":
                         y_poly = model.predict(x_range_poly)
 
                         eq_poly = model.coef_.tolist()
-                        eq_poly[0]+=model.intercept_
+                        eq_poly[0] += model.intercept_
                         puissances_x = poly.get_feature_names_out()
                         eq_final = ""
-                        for i,j in zip(eq_poly, puissances_x):
-                            eq_final+=f'{round(i, 2)}{j} + '
+                        for i, j in zip(eq_poly, puissances_x):
+                            eq_final += f'{round(i, 2)}{j} + '
                         fig.add_scatter(x=x_range.squeeze(), y=y_poly, name='<b>Polynomial Features<b>',
                                         marker=dict(color='green'))
                         with equation_col_2:
@@ -693,8 +705,8 @@ elif choix_page == "Machine Learning":
     if st.session_state.choix_page_ml == "K-nearest neighbors":
         st.markdown('<p class="grand_titre">KNN : k-nearest neighbors</p>', unsafe_allow_html=True)
         st.write("##")
-        exp1, exp2, exp3 = st.columns((1, 0.2, 0.6))
-        with exp1:
+        exp1, exp2, exp3 = st.columns((0.2, 1, 0.2))
+        with exp2:
             with st.expander("Principe de l'algorithme KNN"):
                 st.write("""
                 * 1ère étape : Choix du nombre de voisins k
@@ -704,7 +716,7 @@ elif choix_page == "Machine Learning":
                 * 5ème étape : Attribution de la classe la plus présente à notre point 
                 """)
         if 'data' in st.session_state:
-            col1, b, col2 = st.columns((1, 0.2, 1))
+            b, col1, col2 = st.columns((0.1, 1, 0.1))
             with col1:
                 st.write("##")
                 st.markdown('<p class="section">Selection des colonnes pour le modèle (target+features)</p>',
@@ -720,111 +732,146 @@ elif choix_page == "Machine Learning":
                         st.write("##")
                         st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
                 else:
+                    # encodage !
+                    df_origine = df_ml.copy()
                     with col1:
-                        # encodage !
-                        df_origine = df_ml.copy()
                         st.session_state.col_to_encodage = st.multiselect("Selectionner les colonnes à encoder",
                                                                           st.session_state.choix_col,
                                                                           )
-                        for col in st.session_state.col_to_encodage:
-                            st.write("encodage colonne " + col + " : " + str(df_ml[col].unique().tolist()) + "->" + str(
-                                np.arange(len(df_ml[col].unique()))))
-                            df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())),
-                                               inplace=True)  # encodage
-                        ## création des target et features à partir du dataset
+                        with st.expander('Encodage'):
+                            for col in st.session_state.col_to_encodage:
+                                st.write("Colonne " + col + "  :  " + str(df_ml[col].unique().tolist()) + "->" + str(
+                                    np.arange(len(df_ml[col].unique()))))
+                                df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())),
+                                                   inplace=True)  # encodage
+                    ## création des target et features à partir du dataset
+                    with col1:
                         st.session_state.target = st.selectbox("Target :",
                                                                ["Selectionner une target"] + col_numeric(df_ml),
                                                                )
-                        with col2:
-                            if st.session_state.target != "Selectionner une target":
-                                y = df_ml[st.session_state.target]  # target
-                                X = df_ml.drop(st.session_state.target, axis=1)  # features
-                                try:
-                                    features = []
-                                    st.write("##")
-                                    st.markdown('<p class="section">Entrez vos données</p>', unsafe_allow_html=True)
-                                    for col in X.columns.tolist():
-                                        col = st.text_input(col)
-                                        features.append(col)
+                    if st.session_state.target != "Selectionner une target":
+                        ## KNN
+                        st.write("##")
+                        y_knn = df_ml[st.session_state.target]  # target
+                        X_knn = df_ml.drop(st.session_state.target, axis=1)  # features
 
-                                    if "" not in features:
-                                        features = pd.DataFrame([features], columns=X.columns)  # données initiales
-                                        X = X.append(features, ignore_index=True)
+                        X_train, X_test, y_train, y_test = train_test_split(X_knn, y_knn,
+                                                                            test_size=0.4,
+                                                                            random_state=4)
+                        params = {'n_neighbors': np.arange(1, 20)}
+                        grid = GridSearchCV(KNeighborsClassifier(), param_grid=params, cv=4)
+                        grid.fit(X_train.values, y_train.values)
+                        best_k = grid.best_params_['n_neighbors']
+                        best_model_knn = grid.best_estimator_
 
-                                        ## PCA
-                                        model = PCA(n_components=2)
-                                        model.fit(X)
-                                        x_pca = model.transform(X)
-                                        df = pd.concat([pd.Series(x_pca[:-1, 0]).reset_index(drop=True),
-                                                        pd.Series(x_pca[:-1, 1]).reset_index(drop=True),
-                                                        pd.Series(df_origine[st.session_state.target]).reset_index(
-                                                            drop=True)],
-                                                       axis=1)
-                                        df.columns = ["x", "y", str(st.session_state.target)]
+                        best_model_knn.fit(X_knn.values, y_knn.values)  # on entraine le modèle
 
-                                        ## KNN
-                                        with col1:
-                                            st.write("##")
-                                            st.write("##")
-                                            st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
-                                            st.session_state.voisins = st.slider('Nombre de voisins', min_value=4,
-                                                                                 max_value=int(len(y) * 0.2))
-                                            y_pca_knn = df[st.session_state.target]  # target
-                                            X_pca_knn = df.drop(st.session_state.target, axis=1)  # features
-                                            model_knn = KNeighborsClassifier(n_neighbors=st.session_state.voisins)
-                                            model_knn.fit(X_pca_knn, y_pca_knn)  # on entraine le modèle
-                                            donnee_apres_pca = [x_pca[-1, 0], x_pca[-1, 1]]
-                                            x = np.array(donnee_apres_pca).reshape(1, len(donnee_apres_pca))
-                                            p = model_knn.predict(x)
-                                            st.success(
-                                                "Prédiction de la target " + st.session_state.target + " : " + str(p))
-                                            fig = px.scatter(df, x="x", y="y", color=str(st.session_state.target),
-                                                             labels={'color': str(st.session_state.target)},
-                                                             color_discrete_sequence=px.colors.qualitative.Plotly)
-                                            fig.update_layout(
-                                                showlegend=True,
-                                                template='simple_white',
-                                                font=dict(size=10),
-                                                autosize=False,
-                                                width=1250, height=650,
-                                                margin=dict(l=40, r=50, b=40, t=40),
-                                                paper_bgcolor='rgba(0,0,0,0)',
-                                                plot_bgcolor='rgba(0,0,0,0)',
-                                                title="Prédiction avec " + str(st.session_state.voisins) + " voisins"
-                                            )
-                                            fig.update_yaxes(
-                                                scaleanchor="x",
-                                                scaleratio=1,
-                                            )
-                                            fig.add_scatter(x=[donnee_apres_pca[0]], y=[donnee_apres_pca[1]],
-                                                            mode='markers', marker=dict(color='black'),
-                                                            name='donnees pour prédiction')
-                                            fig.add_shape(type="circle",
-                                                          xref="x", yref="y",
-                                                          x0=donnee_apres_pca[0] - max_dist(donnee_apres_pca, df,
-                                                                                            st.session_state.voisins),
-                                                          y0=donnee_apres_pca[1] - max_dist(donnee_apres_pca, df,
-                                                                                            st.session_state.voisins),
-                                                          x1=donnee_apres_pca[0] + max_dist(donnee_apres_pca, df,
-                                                                                            st.session_state.voisins),
-                                                          y1=donnee_apres_pca[1] + max_dist(donnee_apres_pca, df,
-                                                                                            st.session_state.voisins),
-                                                          line_color="red",
-                                                          fillcolor="grey"
-                                                          )
-                                            fig.update(layout_coloraxis_showscale=False)
-                                            with col1:
-                                                st.write("##")
-                                                st.write("##")
-                                                st.markdown(
-                                                    '<p class="section">Visualisation grâce à une réduction de dimensions (PCA)</p>',
-                                                    unsafe_allow_html=True)
-                                                st.write("##")
-                                                st.plotly_chart(fig)
-                                except:
-                                    with col1:
-                                        st.write("##")
-                                        st.error("Erreur de chargement")
+                        with col1:
+                            st.write("##")
+                            st.write("##")
+                            st.markdown('<p class="section">Sélection des meilleurs hyper-paramètres</p>',
+                                        unsafe_allow_html=True)
+                            st.write("##")
+                            st.success(
+                                f'Le meilleur score est de {round(grid.best_score_, 3)} avec **k = {best_k}** voisins')
+
+                        # Évaluation du modèle
+                        y_pred = best_model_knn.predict(X_test.values)
+                        confus_mat = confusion_matrix(y_test, y_pred)
+                        accur = accuracy_score(y_test, y_pred)
+                        if len(y_knn.unique()) > 2:
+                            with col1:
+                                st.write("##")
+                                st.markdown(
+                                    '<p class="section">Évaluation du modèle</p>',
+                                    unsafe_allow_html=True)
+                                st.write("##")
+                                # average='micro' car nos label contiennent plus de 2 classes
+                                precis = precision_score(y_test, y_pred, average='micro')
+                                rappel = recall_score(y_test, y_pred, average='micro')
+                                F1 = f1_score(y_test, y_pred, average='micro')
+                                st.latex(f'''Précision = {round(precis, 3)}''')
+                                st.latex(f'''Recall = {round(rappel, 3)}''')
+                                st.latex(f'''F1 score = {round(F1, 3)}''')
+                        else:
+                            with col1:
+                                st.write("##")
+                                st.markdown(
+                                    '<p class="section">Évaluation du modèle</p>',
+                                    unsafe_allow_html=True)
+                                st.write("##")
+                                # label binaire
+                                precis = precision_score(y_test, y_pred)
+                                rappel = recall_score(y_test, y_pred)
+                                F1 = f1_score(y_test, y_pred)
+                                st.latex(f'''Précision = {round(precis, 3)}''')
+                                st.latex(f'''Recall = {round(rappel, 3)}''')
+                                st.latex(f'''F1 score = {round(F1, 3)}''')
+
+                            with col1:
+                                st.write("##")
+                                st.markdown(
+                                    '<p class="section">ROC curve</p>',
+                                    unsafe_allow_html=True)
+                                fpr, tpr, thresholds = roc_curve(y_test, y_pred)
+                                st.latex(f'''Auc = {round(auc(fpr, tpr), 4)}''')
+                                fig = px.area(
+                                    x=fpr, y=tpr,
+                                    labels=dict(x='False Positive Rate', y='True Positive Rate'),
+                                    width=500, height=500
+                                )
+                                fig.add_shape(
+                                    type='line', line=dict(dash='dash'),
+                                    x0=0, x1=1, y0=0, y1=1
+                                )
+
+                                fig.update_yaxes(scaleanchor="x", scaleratio=1)
+                                fig.update_xaxes(constrain='domain')
+                                fig.update_layout(
+                                    font=dict(size=10),
+                                    autosize=False,
+                                    paper_bgcolor='rgba(0,0,0,0)',
+                                    plot_bgcolor='rgba(0,0,0,0)',
+                                    width=1050, height=650,
+                                    margin=dict(l=40, r=50, b=40, t=40),
+                                )
+                                st.plotly_chart(fig)
+
+                        # Learning curve
+                        st.write("##")
+                        st.markdown(
+                            '<p class="section">Learning curves</p>',
+                            unsafe_allow_html=True)
+                        st.write("##")
+                        N, train_score, val_score = learning_curve(best_model_knn, X_train, y_train,
+                                                                   train_sizes=np.linspace(0.2,
+                                                                                           1.0,
+                                                                                           10),
+                                                                   cv=3)
+                        fig = go.Figure()
+                        fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train')
+                        fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation')
+                        fig.update_layout(
+                            showlegend=True,
+                            template='simple_white',
+                            font=dict(size=10),
+                            autosize=False,
+                            width=1250, height=650,
+                            margin=dict(l=40, r=50, b=40, t=40),
+                            paper_bgcolor='rgba(0,0,0,0)',
+                            plot_bgcolor='rgba(0,0,0,0)',
+                        )
+                        st.plotly_chart(fig)
+                        st.caption(
+                            "Il est possible que votre dataset soit trop petit pour effectuer la cross-validation dans de bonnes conditions")
+
+                        # Faire une prédiction
+                        st.write("##")
+                        st.markdown(
+                            '<p class="section">Prédiction à l\'aide du modèle</p>',
+                            unsafe_allow_html=True)
+                        st.write("##")
+
         else:
             st.write("##")
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
@@ -967,7 +1014,7 @@ elif choix_page == "Machine Learning":
                                     if len(st.session_state.classes_SVM) > 1:
                                         df = df.loc[
                                             (df[target] == st.session_state.classes_SVM[0]) | (
-                                                        df[target] == st.session_state.classes_SVM[1])]
+                                                    df[target] == st.session_state.classes_SVM[1])]
                                         y = df[target]
                                         X = df[features]
                                         st.session_state.choix_kernel = st.selectbox("Choisir le type de noyau",

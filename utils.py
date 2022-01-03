@@ -35,4 +35,4 @@ def max_dist(donnee_apres_pca, df, voisins):  # pour knn, retourne la distance d
     for i in range(len(df)):
         distances.append(distance_e(donnee_apres_pca, [df['x'].iloc[i], df['y'].iloc[i]]))
     distances.sort()
-    return distances[voisins - 1]
+    return distances[voisins-1]
