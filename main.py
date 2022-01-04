@@ -783,8 +783,7 @@ elif choix_page == "Machine Learning":
                             st.markdown('<p class="section">Sélection des meilleurs hyper-paramètres</p>',
                                         unsafe_allow_html=True)
                             st.write("##")
-                            st.success(
-                                f'Le meilleur score est de {round(grid.best_score_, 3)} avec **k = {best_k}** voisins')
+                            st.success(f'Le meilleur score est de {round(grid.best_score_, 3)} avec **k = {best_k}** voisins')
                             st.write("##")
 
                         # Évaluation du modèle
@@ -938,15 +937,16 @@ elif choix_page == "Machine Learning":
                                 st.write("##")
 
         else:
-            st.write("##")
-            st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+            with exp2:
+                st.write("##")
+                st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
 
     elif st.session_state.choix_page_ml == "K-Means":
         st.markdown('<p class="grand_titre">K-Means</p>', unsafe_allow_html=True)
         st.write("##")
-        exp1, exp2, exp3 = st.columns((1, 0.2, 0.5))
-        with exp1:
+        exp1, exp2, exp3 = st.columns((0.2, 1, 0.2))
+        with exp2:
             with st.expander("Principe de l'algorithme des K-means"):
                 st.write("""
                 Le but est de diviser les points en k clusters.
@@ -959,8 +959,8 @@ elif choix_page == "Machine Learning":
                 pour évaluer les distances.
                 """)
         if 'data' in st.session_state:
-            col1, b, col2 = st.columns((1, 0.2, 1))
-            with col1:
+            _, col1_features_choice, _ = st.columns((0.1, 1, 0.1))
+            with col1_features_choice:
                 st.write("##")
                 st.markdown('<p class="section">Selection des features pour le modèle</p>', unsafe_allow_html=True)
                 st.session_state.choix_col_kmeans = st.multiselect("Choisir au moins deux colonnes",
@@ -970,11 +970,11 @@ elif choix_page == "Machine Learning":
                 df_ml = st.session_state.data[st.session_state.choix_col_kmeans]
                 df_ml = df_ml.dropna(axis=0)
                 if len(df_ml) == 0:
-                    with col1:
+                    with col1_features_choice:
                         st.write("##")
                         st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
                 else:
-                    with col1:
+                    with col1_features_choice:
                         X = df_ml[st.session_state.choix_col_kmeans]  # features
                         try:
                             ## PCA
@@ -1006,7 +1006,7 @@ elif choix_page == "Machine Learning":
                                 template='simple_white',
                                 font=dict(size=10),
                                 autosize=False,
-                                width=1250, height=650,
+                                width=1000, height=650,
                                 margin=dict(l=40, r=50, b=40, t=40),
                                 paper_bgcolor='rgba(0,0,0,0)',
                                 plot_bgcolor='rgba(0,0,0,0)',
@@ -1027,15 +1027,16 @@ elif choix_page == "Machine Learning":
                                 st.write("##")
                                 st.error("Erreur de chargement")
         else:
-            st.write("##")
-            st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+            with exp2:
+                st.write("##")
+                st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
 
     elif st.session_state.choix_page_ml == "Support Vector Machine":
         st.markdown('<p class="grand_titre">SVM : Support Vector Machine</p>', unsafe_allow_html=True)
         st.write("##")
-        exp1, exp2, exp3 = st.columns((1, 0.2, 0.5))
-        with exp1:
+        exp1, exp2, exp3 = st.columns((0.2, 1, 0.2))
+        with exp2:
             with st.expander("Principe des Support Vector Machine"):
                 st.write("""
                 Le but est de séparer les classes à l'aide d'une droite/courbe qui va maximiser sa distance avec les points les plus proches (les support vectors).
@@ -1045,8 +1046,8 @@ elif choix_page == "Machine Learning":
         if 'data' in st.session_state:
             st.write("##")
             st.markdown('<p class="section">Selection des features et de la target</p>', unsafe_allow_html=True)
-            col1, b, col2 = st.columns((1, 0.2, 1))
-            with col1:
+            _, col1_km, _ = st.columns((0.1, 1, 0.1))
+            with col1_km:
                 st.session_state.choix_col_SVM = st.multiselect("Choisir deux colonnes",
                                                                 col_numeric(st.session_state.data),
                                                                 )
@@ -1063,7 +1064,7 @@ elif choix_page == "Machine Learning":
                     df.dropna(axis=0)
 
                     if len(df) == 0:
-                        with col1:
+                        with col1_km:
                             st.write("##")
                             st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
                     else:
@@ -1071,7 +1072,7 @@ elif choix_page == "Machine Learning":
                             st.warning("La target ne doit pas appartenir aux features")
                         else:
                             if len(df[target].unique().tolist()) > 1:
-                                with col2:
+                                with col1_km:
                                     st.session_state.classes_SVM = st.multiselect("Choisir deux classes",
                                                                                   df[
                                                                                       st.session_state.choix_target_SVM].unique().tolist(),
@@ -1132,12 +1133,12 @@ elif choix_page == "Machine Learning":
                                                 template='simple_white',
                                                 font=dict(size=10),
                                                 autosize=False,
-                                                width=1250, height=650,
+                                                width=1000, height=650,
                                                 margin=dict(l=40, r=50, b=40, t=40),
                                                 paper_bgcolor='rgba(0,0,0,0)',
                                                 plot_bgcolor='rgba(0,0,0,0)',
                                             )
-                                            with col1:
+                                            with col1_km:
                                                 st.write("##")
                                                 st.plotly_chart(fig)
 
