@@ -45,6 +45,7 @@ st.markdown("""
 .grand_titre {
     font-size:30px !important;
     font-weight: bold;
+    text-align: center;
     text-decoration: underline;
     text-decoration-color: #4976E4;
     text-decoration-thickness: 5px;
@@ -76,10 +77,6 @@ st.markdown("""
     text-decoration: underline;
     text-decoration-color: #000;
     text-decoration-thickness: 1px;
-}
-.fullScreenFrame > div {
-    display: flex;
-    justify-content: center;
 }
 .center{
     display: block;
@@ -716,8 +713,21 @@ elif choix_page == "Machine Learning":
                 * 5ème étape : Attribution de la classe la plus présente à notre point 
                 """)
         if 'data' in st.session_state:
-            b, col1, col2 = st.columns((0.1, 1, 0.1))
-            with col1:
+            _, col1_features_encode, _ = st.columns((0.1, 1, 0.1))
+            _, sub_col1, _ = st.columns((0.4, 0.5, 0.4))
+            _, col1_target, _ = st.columns((0.1, 1, 0.1))
+            _, col_best_score, _ = st.columns((0.4, 0.4, 0.4))
+            _, col_titre_eval_model, _ = st.columns((0.4, 0.4, 0.4))
+            _, col1_eval_modele, col2_eval_modele, col3_eval_modele, col4_eval_modele, _ = st.columns(
+                (0.3, 0.5, 0.5, 0.5, 0.5, 0.1))
+            _, col1_roc, _ = st.columns((0.1, 1, 0.1))
+            _, col1_AUC_value, _ = st.columns((0.4, 0.4, 0.4))
+            _, col_learning_curve, _ = st.columns((0.1, 4, 0.1))
+            _, col_data_to_predict, _ = st.columns((0.1, 0.75, 0.1))
+            _, col_pca_knn, _ = st.columns((0.1, 1, 0.1))
+            _, sub_col_prediction_knn, _ = st.columns((0.4, 0.75, 0.4))
+            _, col_pca_knn_plot, _ = st.columns((0.1, 4, 0.1))
+            with col1_features_encode:
                 st.write("##")
                 st.markdown('<p class="section">Selection des colonnes pour le modèle (target+features)</p>',
                             unsafe_allow_html=True)
@@ -728,24 +738,25 @@ elif choix_page == "Machine Learning":
                 df_ml = st.session_state.data[st.session_state.choix_col]
                 df_ml = df_ml.dropna(axis=0)
                 if len(df_ml) == 0:
-                    with col1:
+                    with col1_features_encode:
                         st.write("##")
                         st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
                 else:
                     # encodage !
                     df_origine = df_ml.copy()
-                    with col1:
+                    with col1_features_encode:
                         st.session_state.col_to_encodage = st.multiselect("Selectionner les colonnes à encoder",
                                                                           st.session_state.choix_col,
                                                                           )
+                    with sub_col1:
                         with st.expander('Encodage'):
                             for col in st.session_state.col_to_encodage:
-                                st.write("Colonne " + col + "  :  " + str(df_ml[col].unique().tolist()) + "->" + str(
+                                st.write("Colonne " + col + "  :  " + str(df_ml[col].unique().tolist()) + " -> " + str(
                                     np.arange(len(df_ml[col].unique()))))
                                 df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())),
                                                    inplace=True)  # encodage
                     ## création des target et features à partir du dataset
-                    with col1:
+                    with col1_target:
                         st.session_state.target = st.selectbox("Target :",
                                                                ["Selectionner une target"] + col_numeric(df_ml),
                                                                )
@@ -754,19 +765,19 @@ elif choix_page == "Machine Learning":
                         st.write("##")
                         y_knn = df_ml[st.session_state.target]  # target
                         X_knn = df_ml.drop(st.session_state.target, axis=1)  # features
-
                         X_train, X_test, y_train, y_test = train_test_split(X_knn, y_knn,
                                                                             test_size=0.4,
                                                                             random_state=4)
+                        # Gridsearchcv
                         params = {'n_neighbors': np.arange(1, 20)}
                         grid = GridSearchCV(KNeighborsClassifier(), param_grid=params, cv=4)
                         grid.fit(X_train.values, y_train.values)
                         best_k = grid.best_params_['n_neighbors']
                         best_model_knn = grid.best_estimator_
-
                         best_model_knn.fit(X_knn.values, y_knn.values)  # on entraine le modèle
 
-                        with col1:
+                        # Meilleurs hyper params
+                        with col_best_score:
                             st.write("##")
                             st.write("##")
                             st.markdown('<p class="section">Sélection des meilleurs hyper-paramètres</p>',
@@ -774,51 +785,87 @@ elif choix_page == "Machine Learning":
                             st.write("##")
                             st.success(
                                 f'Le meilleur score est de {round(grid.best_score_, 3)} avec **k = {best_k}** voisins')
+                            st.write("##")
 
                         # Évaluation du modèle
-                        y_pred = best_model_knn.predict(X_test.values)
-                        confus_mat = confusion_matrix(y_test, y_pred)
-                        accur = accuracy_score(y_test, y_pred)
+                        y_pred_test = best_model_knn.predict(X_test.values)
+                        y_pred_train = best_model_knn.predict(X_train.values)
                         if len(y_knn.unique()) > 2:
-                            with col1:
+                            with col_titre_eval_model:
                                 st.write("##")
                                 st.markdown(
-                                    '<p class="section">Évaluation du modèle</p>',
+                                    '<p class="section">Évaluation par rapport au train set</p>',
                                     unsafe_allow_html=True)
                                 st.write("##")
                                 # average='micro' car nos label contiennent plus de 2 classes
-                                precis = precision_score(y_test, y_pred, average='micro')
-                                rappel = recall_score(y_test, y_pred, average='micro')
-                                F1 = f1_score(y_test, y_pred, average='micro')
-                                st.latex(f'''Précision = {round(precis, 3)}''')
-                                st.latex(f'''Recall = {round(rappel, 3)}''')
-                                st.latex(f'''F1 score = {round(F1, 3)}''')
+                                # Test set
+                                precis_test = precision_score(y_test, y_pred_test, average='micro')
+                                rappel_test = recall_score(y_test, y_pred_test, average='micro')
+                                F1_test = f1_score(y_test, y_pred_test, average='micro')
+                                accur_test = accuracy_score(y_test, y_pred_test)
+                                # Train set
+                                precis_train = precision_score(y_train, y_pred_train, average='micro')
+                                rappel_train = recall_score(y_train, y_pred_train, average='micro')
+                                F1_train = f1_score(y_train, y_pred_train, average='micro')
+                                accur_train = accuracy_score(y_train, y_pred_train)
+                                with col1_eval_modele:
+                                    st.metric(label="Precision", value=round(precis_test, 3),
+                                              delta=round(precis_test - precis_train, 3))
+                                with col2_eval_modele:
+                                    st.metric(label="Recall", value=round(rappel_test, 3),
+                                              delta=round(rappel_test - rappel_train, 3))
+                                with col3_eval_modele:
+                                    st.metric(label="F1 score", value=round(F1_test, 3),
+                                              delta=round(F1_test - F1_train, 3))
+                                with col4_eval_modele:
+                                    st.metric(label="Accuracy", value=round(accur_test, 3),
+                                              delta=round(accur_test - accur_train, 3))
+
                         else:
-                            with col1:
+                            with col_titre_eval_model:
                                 st.write("##")
                                 st.markdown(
-                                    '<p class="section">Évaluation du modèle</p>',
+                                    '<p class="section">Évaluation par rapport au train set</p>',
                                     unsafe_allow_html=True)
                                 st.write("##")
                                 # label binaire
-                                precis = precision_score(y_test, y_pred)
-                                rappel = recall_score(y_test, y_pred)
-                                F1 = f1_score(y_test, y_pred)
-                                st.latex(f'''Précision = {round(precis, 3)}''')
-                                st.latex(f'''Recall = {round(rappel, 3)}''')
-                                st.latex(f'''F1 score = {round(F1, 3)}''')
+                                # Test set
+                                precis_test = precision_score(y_test, y_pred_test)
+                                rappel_test = recall_score(y_test, y_pred_test)
+                                F1_test = f1_score(y_test, y_pred_test)
+                                accur_test = accuracy_score(y_test, y_pred_test)
+                                # Train set
+                                precis_train = precision_score(y_train, y_pred_train)
+                                rappel_train = recall_score(y_train, y_pred_train)
+                                F1_train = f1_score(y_train, y_pred_train)
+                                accur_train = accuracy_score(y_train, y_pred_train)
+                                with col1_eval_modele:
+                                    st.metric(label="Precision", value=round(precis_test, 3),
+                                              delta=round(precis_test - precis_train, 3))
+                                with col2_eval_modele:
+                                    st.metric(label="Recall", value=round(rappel_test, 3),
+                                              delta=round(rappel_test - rappel_train, 3))
+                                with col3_eval_modele:
+                                    st.metric(label="F1 score", value=round(F1_test, 3),
+                                              delta=round(F1_test - F1_train, 3))
+                                with col4_eval_modele:
+                                    st.metric(label="Accuracy", value=round(accur_test, 3),
+                                              delta=round(accur_test - accur_train, 3))
 
-                            with col1:
+                            with col1_roc:
+                                st.write("##")
                                 st.write("##")
                                 st.markdown(
                                     '<p class="section">ROC curve</p>',
                                     unsafe_allow_html=True)
-                                fpr, tpr, thresholds = roc_curve(y_test, y_pred)
-                                st.latex(f'''Auc = {round(auc(fpr, tpr), 4)}''')
+                                fpr, tpr, thresholds = roc_curve(y_test, y_pred_test)
+                                with col1_AUC_value:
+                                    st.write("##")
+                                    st.info(f'Area Under the Curve (AUC) = {round(auc(fpr, tpr), 4)}')
                                 fig = px.area(
                                     x=fpr, y=tpr,
                                     labels=dict(x='False Positive Rate', y='True Positive Rate'),
-                                    width=500, height=500
+                                    width=500, height=500,
                                 )
                                 fig.add_shape(
                                     type='line', line=dict(dash='dash'),
@@ -838,39 +885,119 @@ elif choix_page == "Machine Learning":
                                 st.plotly_chart(fig)
 
                         # Learning curve
-                        st.write("##")
-                        st.markdown(
-                            '<p class="section">Learning curves</p>',
-                            unsafe_allow_html=True)
-                        st.write("##")
-                        N, train_score, val_score = learning_curve(best_model_knn, X_train, y_train,
-                                                                   train_sizes=np.linspace(0.2,
-                                                                                           1.0,
-                                                                                           10),
-                                                                   cv=3)
-                        fig = go.Figure()
-                        fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train')
-                        fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation')
-                        fig.update_layout(
-                            showlegend=True,
-                            template='simple_white',
-                            font=dict(size=10),
-                            autosize=False,
-                            width=1250, height=650,
-                            margin=dict(l=40, r=50, b=40, t=40),
-                            paper_bgcolor='rgba(0,0,0,0)',
-                            plot_bgcolor='rgba(0,0,0,0)',
-                        )
-                        st.plotly_chart(fig)
-                        st.caption(
-                            "Il est possible que votre dataset soit trop petit pour effectuer la cross-validation dans de bonnes conditions")
+                        with col_learning_curve:
+                            st.write("##")
+                            st.markdown(
+                                '<p class="section">Learning curves</p>',
+                                unsafe_allow_html=True)
+                            st.write("##")
+                            N, train_score, val_score = learning_curve(best_model_knn, X_train, y_train,
+                                                                       train_sizes=np.linspace(0.2,
+                                                                                               1.0,
+                                                                                               10),
+                                                                       cv=3, random_state=4)
+                            fig = go.Figure()
+                            fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
+                            fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
+                            fig.update_layout(
+                                showlegend=True,
+                                template='simple_white',
+                                font=dict(size=10),
+                                autosize=False,
+                                width=1250, height=650,
+                                margin=dict(l=40, r=50, b=40, t=40),
+                                paper_bgcolor='rgba(0,0,0,0)',
+                                plot_bgcolor='rgba(0,0,0,0)',
+                            )
+                            st.plotly_chart(fig)
+                            st.caption(
+                                "Il est possible que votre dataset soit trop petit pour effectuer la cross-validation dans de bonnes conditions")
 
                         # Faire une prédiction
-                        st.write("##")
-                        st.markdown(
-                            '<p class="section">Prédiction à l\'aide du modèle</p>',
-                            unsafe_allow_html=True)
-                        st.write("##")
+                        with col_data_to_predict:
+                            st.write("##")
+                            st.write("##")
+                            st.markdown('---')
+                            st.write("##")
+                            st.markdown(
+                                '<p class="section">Prédiction à l\'aide du modèle</p>',
+                                unsafe_allow_html=True)
+                            st.write("##")
+                            st.write("##")
+                            features = []
+                            st.markdown('<p class="section">Entrez vos données</p>', unsafe_allow_html=True)
+                            st.write("##")
+                            for col in X_test.columns.tolist():
+                                col = st.text_input(col)
+                                features.append(col)
+                        if "" not in features:
+                            with col_pca_knn:
+                                prediction_knn = best_model_knn.predict(np.array(features, dtype=float).reshape(1, -1))
+                                features = pd.DataFrame([features], columns=X_test.columns)  # données initiales
+                                X = X_knn.append(features, ignore_index=True)
+
+                                ## PCA
+                                model = PCA(n_components=2)
+                                model.fit(X)
+                                x_pca = model.transform(X)
+                                df = pd.concat([pd.Series(x_pca[:-1, 0]).reset_index(drop=True),
+                                                pd.Series(x_pca[:-1, 1]).reset_index(drop=True),
+                                                pd.Series(df_origine[st.session_state.target]).reset_index(
+                                                    drop=True)],
+                                               axis=1)
+                                df.columns = ["x", "y", str(st.session_state.target)]
+                                # Data à prédire après pca
+                                donnee_apres_pca = [int(df.iloc[-1]['x']), int(df.iloc[-1]['y'])]
+
+                                fig = px.scatter(df, x="x", y="y", color=str(st.session_state.target),
+                                                 labels={'color': str(st.session_state.target)},
+                                                 color_discrete_sequence=px.colors.qualitative.Plotly)
+                                fig.update_layout(
+                                    showlegend=True,
+                                    template='simple_white',
+                                    font=dict(size=10),
+                                    autosize=False,
+                                    width=1050, height=650,
+                                    margin=dict(l=40, r=50, b=40, t=40),
+                                    paper_bgcolor='rgba(0,0,0,0)',
+                                    plot_bgcolor='rgba(0,0,0,0)',
+                                    title="Prédiction avec " + str(best_k) + " voisins"
+                                )
+                                fig.update_yaxes(
+                                    scaleanchor="x",
+                                    scaleratio=1,
+                                )
+                                fig.add_scatter(x=[donnee_apres_pca[0]], y=[donnee_apres_pca[1]],
+                                                mode='markers', marker=dict(color='black'),
+                                                name='donnees pour prédiction')
+                                fig.add_shape(type="circle",
+                                              xref="x", yref="y",
+                                              x0=donnee_apres_pca[0] - max_dist(donnee_apres_pca, df,
+                                                                                best_k),
+                                              y0=donnee_apres_pca[1] - max_dist(donnee_apres_pca, df,
+                                                                                best_k),
+                                              x1=donnee_apres_pca[0] + max_dist(donnee_apres_pca, df,
+                                                                                best_k),
+                                              y1=donnee_apres_pca[1] + max_dist(donnee_apres_pca, df,
+                                                                                best_k),
+                                              line_color="red",
+                                              fillcolor="grey"
+                                              )
+                                fig.update(layout_coloraxis_showscale=False)
+                                st.write("##")
+                                st.write("##")
+                                st.markdown(
+                                    '<p class="section">Visualisation grâce à une réduction de dimensions (PCA)</p>',
+                                    unsafe_allow_html=True)
+                                st.write("##")
+                                with sub_col_prediction_knn:
+                                    st.write("##")
+                                    st.success(f'Prédiction de la target {st.session_state.target} avec les données entrées : **{str(df[st.session_state.target].unique()[int(prediction_knn[0])])}**')
+                                    st.write("##")
+                                with col_pca_knn_plot:
+                                    st.write("##")
+                                    st.plotly_chart(fig)
+                                    st.caption("La zone grisée représente l'espace dans lequel les voisins sont pris en compte, mais n'est pas exactement à l'echelle")
 
         else:
             st.write("##")
