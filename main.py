@@ -931,73 +931,11 @@ elif choix_page == "Machine Learning":
                                 col = st.text_input(col)
                                 features.append(col)
                         if "" not in features:
-                            with col_pca_knn:
-                                prediction_knn = best_model_knn.predict(np.array(features, dtype=float).reshape(1, -1))
-                                features = pd.DataFrame([features], columns=X_test.columns)  # données initiales
-                                X = X_knn.append(features, ignore_index=True)
-
-                                ## PCA
-                                model = PCA(n_components=2)
-                                model.fit(X)
-                                x_pca = model.transform(X)
-                                df = pd.concat([pd.Series(x_pca[:-1, 0]).reset_index(drop=True),
-                                                pd.Series(x_pca[:-1, 1]).reset_index(drop=True),
-                                                pd.Series(df_origine[st.session_state.target]).reset_index(
-                                                    drop=True)],
-                                               axis=1)
-                                df.columns = ["x", "y", str(st.session_state.target)]
-                                # Data à prédire après pca
-                                donnee_apres_pca = [int(df.iloc[-1]['x']), int(df.iloc[-1]['y'])]
-
-                                fig = px.scatter(df, x="x", y="y", color=str(st.session_state.target),
-                                                 labels={'color': str(st.session_state.target)},
-                                                 color_discrete_sequence=px.colors.qualitative.Plotly)
-                                fig.update_layout(
-                                    showlegend=True,
-                                    template='simple_white',
-                                    font=dict(size=10),
-                                    autosize=False,
-                                    width=1050, height=650,
-                                    margin=dict(l=40, r=50, b=40, t=40),
-                                    paper_bgcolor='rgba(0,0,0,0)',
-                                    plot_bgcolor='rgba(0,0,0,0)',
-                                    title="Prédiction avec " + str(best_k) + " voisins"
-                                )
-                                fig.update_yaxes(
-                                    scaleanchor="x",
-                                    scaleratio=1,
-                                )
-                                fig.add_scatter(x=[donnee_apres_pca[0]], y=[donnee_apres_pca[1]],
-                                                mode='markers', marker=dict(color='black'),
-                                                name='donnees pour prédiction')
-                                fig.add_shape(type="circle",
-                                              xref="x", yref="y",
-                                              x0=donnee_apres_pca[0] - max_dist(donnee_apres_pca, df,
-                                                                                best_k),
-                                              y0=donnee_apres_pca[1] - max_dist(donnee_apres_pca, df,
-                                                                                best_k),
-                                              x1=donnee_apres_pca[0] + max_dist(donnee_apres_pca, df,
-                                                                                best_k),
-                                              y1=donnee_apres_pca[1] + max_dist(donnee_apres_pca, df,
-                                                                                best_k),
-                                              line_color="red",
-                                              fillcolor="grey"
-                                              )
-                                fig.update(layout_coloraxis_showscale=False)
+                            prediction_knn = best_model_knn.predict(np.array(features, dtype=float).reshape(1, -1))
+                            with sub_col_prediction_knn:
                                 st.write("##")
+                                st.success(f'Prédiction de la target {st.session_state.target} avec les données entrées : **{str(df_origine[st.session_state.target].unique()[int(prediction_knn[0])])}**')
                                 st.write("##")
-                                st.markdown(
-                                    '<p class="section">Visualisation grâce à une réduction de dimensions (PCA)</p>',
-                                    unsafe_allow_html=True)
-                                st.write("##")
-                                with sub_col_prediction_knn:
-                                    st.write("##")
-                                    st.success(f'Prédiction de la target {st.session_state.target} avec les données entrées : **{str(df[st.session_state.target].unique()[int(prediction_knn[0])])}**')
-                                    st.write("##")
-                                with col_pca_knn_plot:
-                                    st.write("##")
-                                    st.plotly_chart(fig)
-                                    st.caption("La zone grisée représente l'espace dans lequel les voisins sont pris en compte, mais n'est pas exactement à l'echelle")
 
         else:
             st.write("##")
