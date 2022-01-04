@@ -1160,8 +1160,8 @@ elif choix_page == "Machine Learning":
     elif st.session_state.choix_page_ml == "PCA":
         st.markdown('<p class="grand_titre">PCA : Analyse en composantes principales</p>', unsafe_allow_html=True)
         st.write("##")
-        exp1, exp2, exp3 = st.columns((1, 0.2, 0.6))
-        with exp1:
+        exp1, exp2, exp3 = st.columns((0.2, 1, 0.2))
+        with exp2:
             with st.expander("Principe du PCA"):
                 st.write("""
                 Le PCA s'applique sur des variables quantitatives de même importance.
@@ -1173,8 +1173,10 @@ elif choix_page == "Machine Learning":
                 * 6ème étape : Représentation graphique
                 """)
         if 'data' in st.session_state:
-            col1, b, col2 = st.columns((1, 0.2, 1))
-            with col1:
+            _, col1_pca, _ = st.columns((0.1, 1, 0.1))
+            _, sub_col1, _ = st.columns((0.4, 0.5, 0.4))
+            _, col2_pca, _ = st.columns((0.1, 1, 0.1))
+            with col1_pca:
                 st.write("##")
                 st.markdown('<p class="section">Selection des colonnes pour le modèle PCA (target+features)</p>',
                             unsafe_allow_html=True)
@@ -1186,23 +1188,23 @@ elif choix_page == "Machine Learning":
                 df_ml = df_ml.dropna(axis=0)
                 st.session_state.df_ml_origine = df_ml.copy()
                 if len(df_ml) == 0:
-                    with col1:
+                    with col1_pca:
                         st.write("##")
                         st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
                 else:
-                    with col1:
+                    with col1_pca:
                         # encodage !
-                        st.session_state.col_to_encodage_PCA = st.multiselect("Selectionner les colonnes à encoder",
-                                                                              st.session_state.choix_col_PCA,
-                                                                              )
-                        for col in st.session_state.col_to_encodage_PCA:
-                            st.write("encodage colonne " + col + " : " + str(df_ml[col].unique().tolist()) + "->" + str(
-                                np.arange(len(df_ml[col].unique()))))
-                            df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())),
-                                               inplace=True)  # encodage
+                        st.session_state.col_to_encodage_PCA = st.multiselect("Selectionner les colonnes à encoder",st.session_state.choix_col_PCA)
+                    with sub_col1:
+                        with st.expander('Encodage'):
+                            for col in st.session_state.col_to_encodage_PCA:
+                                st.write("encodage colonne " + col + " : " + str(df_ml[col].unique().tolist()) + "->" + str(
+                                    np.arange(len(df_ml[col].unique()))))
+                                df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())),
+                                                   inplace=True)  # encodage
                         ## on choisit notre modèle
                         model = PCA(n_components=2)
-                    with col2:
+                    with col2_pca:
                         ## création des target et features à partir du dataset
                         st.write("##")
                         st.write("##")
@@ -1214,46 +1216,51 @@ elif choix_page == "Machine Learning":
                         X = df_ml.drop(st.session_state.target_PCA, axis=1)  # features
 
                         try:
-                            model.fit(X)
-                            x_pca = model.transform(X)
-                            st.write("##")
-                            st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
-                            # résultats points
-                            st.session_state.df = pd.concat([pd.Series(x_pca[:, 0]).reset_index(drop=True),
-                                                             pd.Series(x_pca[:, 1]).reset_index(drop=True),
-                                                             pd.Series(st.session_state.df_ml_origine[
-                                                                           st.session_state.target_PCA]).reset_index(
-                                                                 drop=True)], axis=1)
-                            st.session_state.df.columns = ["x", "y", str(st.session_state.target_PCA)]
-                            fig = px.scatter(st.session_state.df, x="x", y="y", color=str(st.session_state.target_PCA),
-                                             labels={'color': '{}'.format(str(st.session_state.target_PCA))},
-                                             color_discrete_sequence=px.colors.qualitative.Plotly)
-                            fig.update_layout(
-                                showlegend=True,
-                                template='simple_white',
-                                font=dict(size=10),
-                                autosize=False,
-                                width=1250, height=650,
-                                margin=dict(l=40, r=50, b=40, t=40),
-                                paper_bgcolor='rgba(0,0,0,0)',
-                                plot_bgcolor='rgba(0,0,0,0)',
-                            )
-                            fig.update(layout_coloraxis_showscale=False)
-                            st.plotly_chart(fig)
+                            with col2_pca:
+                                model.fit(X)
+                                x_pca = model.transform(X)
+                                st.write("##")
+                                st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
+                                # résultats points
+                                st.session_state.df = pd.concat([pd.Series(x_pca[:, 0]).reset_index(drop=True),
+                                                                 pd.Series(x_pca[:, 1]).reset_index(drop=True),
+                                                                 pd.Series(st.session_state.df_ml_origine[
+                                                                               st.session_state.target_PCA]).reset_index(
+                                                                     drop=True)], axis=1)
+                                st.session_state.df.columns = ["x", "y", str(st.session_state.target_PCA)]
+                                fig = px.scatter(st.session_state.df, x="x", y="y", color=str(st.session_state.target_PCA),
+                                                 labels={'color': '{}'.format(str(st.session_state.target_PCA))},
+                                                 color_discrete_sequence=px.colors.qualitative.Plotly)
+                                fig.update_layout(
+                                    showlegend=True,
+                                    template='simple_white',
+                                    font=dict(size=10),
+                                    autosize=False,
+                                    width=1050, height=650,
+                                    margin=dict(l=40, r=50, b=40, t=40),
+                                    paper_bgcolor='rgba(0,0,0,0)',
+                                    plot_bgcolor='rgba(0,0,0,0)',
+                                )
+                                fig.update(layout_coloraxis_showscale=False)
+                                st.plotly_chart(fig)
                         except:
                             st.write("##")
                             st.error("Erreur de chargement!")
         else:
-            st.write("##")
+            with exp2:
+                st.write("##")
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
 
     elif st.session_state.choix_page_ml == "UMAP":
         st.markdown('<p class="grand_titre">UMAP : Uniform Manifold Approximation and Projection</p>',
                     unsafe_allow_html=True)
+        exp1, exp2, exp3 = st.columns((0.2, 1, 0.2))
         if 'data' in st.session_state:
-            col1, b, col2 = st.columns((1, 0.2, 1))
-            with col1:
+            _, col1_umap, _ = st.columns((0.1, 1, 0.1))
+            _, sub_col1, _ = st.columns((0.4, 0.5, 0.4))
+            _, col2_umap, _ = st.columns((0.1, 1, 0.1))
+            with col1_umap:
                 st.write("##")
                 st.markdown('<p class="section">Selection des colonnes pour le modèle UMAP (target+features)</p>',
                             unsafe_allow_html=True)
@@ -1265,25 +1272,27 @@ elif choix_page == "Machine Learning":
                 df_ml = df_ml.dropna(axis=0)
                 st.session_state.df_ml_origine = df_ml.copy()
                 if len(df_ml) == 0:
-                    with col1:
+                    with col1_umap:
                         st.write("##")
                         st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
                 else:
-                    with col1:
+                    with col1_umap:
                         # encodage !
                         st.session_state.col_to_encodage_UMAP = st.multiselect("Selectionner les colonnes à encoder",
                                                                                st.session_state.choix_col_UMAP,
                                                                                )
-                        for col in st.session_state.col_to_encodage_UMAP:
-                            st.write("encodage colonne " + col + " : " + str(df_ml[col].unique().tolist()) + "->" + str(
-                                np.arange(len(df_ml[col].unique()))))
-                            df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())),
-                                               inplace=True)  # encodage
+                    with sub_col1:
+                        with st.expander('Encodage'):
+                            for col in st.session_state.col_to_encodage_UMAP:
+                                st.write("encodage colonne " + col + " : " + str(df_ml[col].unique().tolist()) + "->" + str(
+                                    np.arange(len(df_ml[col].unique()))))
+                                df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())),
+                                                   inplace=True)  # encodage
+
+                    with col2_umap:
                         ## on choisit notre modèle
                         model = UMAP(random_state=0)
-                    with col2:
                         ## création des target et features à partir du dataset
-                        st.write("##")
                         st.write("##")
                         st.session_state.target_UMAP = st.selectbox("Target :",
                                                                     ["Selectionner une target"] + col_numeric(df_ml),
@@ -1291,35 +1300,38 @@ elif choix_page == "Machine Learning":
                     if st.session_state.target_UMAP != "Selectionner une target":
                         y = df_ml[st.session_state.target_UMAP]  # target
                         X = df_ml.drop(st.session_state.target_UMAP, axis=1)  # features
-                        try:
-                            model.fit(X)
-                            x_umap = model.transform(X)
-                            st.write("##")
-                            st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
-                            # résultats points
-                            st.session_state.df = pd.concat([pd.Series(x_umap[:, 0]), pd.Series(x_umap[:, 1]),
-                                                             pd.Series(st.session_state.df_ml_origine[
-                                                                           st.session_state.target_UMAP])], axis=1)
-                            st.session_state.df.columns = ["x", "y", str(st.session_state.target_UMAP)]
-                            fig = px.scatter(st.session_state.df, x="x", y="y", color=str(st.session_state.target_UMAP),
-                                             labels={'color': '{}'.format(str(st.session_state.target_UMAP))},
-                                             color_discrete_sequence=px.colors.qualitative.Plotly)
-                            fig.update_layout(
-                                showlegend=True,
-                                template='simple_white',
-                                font=dict(size=10),
-                                autosize=False,
-                                width=1250, height=650,
-                                margin=dict(l=40, r=50, b=40, t=40),
-                                paper_bgcolor='rgba(0,0,0,0)',
-                                plot_bgcolor='rgba(0,0,0,0)',
-                            )
-                            fig.update(layout_coloraxis_showscale=False)
-                            st.plotly_chart(fig)
-                        except:
-                            st.write("##")
-                            st.error("Erreur de chargement!")
+                        with col2_umap:
+                            try:
+                                model.fit(X)
+                                x_umap = model.transform(X)
+                                st.write("##")
+                                st.write("##")
+                                st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
+                                # résultats points
+                                st.session_state.df = pd.concat([pd.Series(x_umap[:, 0]), pd.Series(x_umap[:, 1]),
+                                                                 pd.Series(st.session_state.df_ml_origine[
+                                                                               st.session_state.target_UMAP])], axis=1)
+                                st.session_state.df.columns = ["x", "y", str(st.session_state.target_UMAP)]
+                                fig = px.scatter(st.session_state.df, x="x", y="y", color=str(st.session_state.target_UMAP),
+                                                 labels={'color': '{}'.format(str(st.session_state.target_UMAP))},
+                                                 color_discrete_sequence=px.colors.qualitative.Plotly)
+                                fig.update_layout(
+                                    showlegend=True,
+                                    template='simple_white',
+                                    font=dict(size=10),
+                                    autosize=False,
+                                    width=1250, height=650,
+                                    margin=dict(l=40, r=50, b=40, t=40),
+                                    paper_bgcolor='rgba(0,0,0,0)',
+                                    plot_bgcolor='rgba(0,0,0,0)',
+                                )
+                                fig.update(layout_coloraxis_showscale=False)
+                                st.plotly_chart(fig)
+                            except:
+                                st.write("##")
+                                st.error("Erreur de chargement!")
         else:
-            st.write("##")
-            st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+            with exp2:
+                st.write("##")
+                st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 ############# ML section #############

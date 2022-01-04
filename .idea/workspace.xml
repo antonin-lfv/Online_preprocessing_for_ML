@@ -142,21 +142,8 @@
       <workItem from="1639345521472" duration="337000" />
       <workItem from="1639346648107" duration="135000" />
       <workItem from="1641227837621" duration="18382000" />
-      <workItem from="1641309802782" duration="18047000" />
-    </task>
-    <task id="LOCAL-00443" summary="objects detection">
-      <created>1636551986586</created>
-      <option name="number" value="00443" />
-      <option name="presentableId" value="LOCAL-00443" />
-      <option name="project" value="LOCAL" />
-      <updated>1636551986586</updated>
-    </task>
-    <task id="LOCAL-00444" summary="objects detection">
-      <created>1636552193987</created>
-      <option name="number" value="00444" />
-      <option name="presentableId" value="LOCAL-00444" />
-      <option name="project" value="LOCAL" />
-      <updated>1636552193987</updated>
+      <workItem from="1641309802782" duration="18135000" />
+      <workItem from="1641333800701" duration="1030000" />
     </task>
     <task id="LOCAL-00445" summary="objects detection">
       <created>1636552610767</created>
@@ -487,7 +474,21 @@
       <option name="project" value="LOCAL" />
       <updated>1641327906690</updated>
     </task>
-    <option name="localTasksCounter" value="492" />
+    <task id="LOCAL-00492" summary="KNN">
+      <created>1641329743700</created>
+      <option name="number" value="00492" />
+      <option name="presentableId" value="LOCAL-00492" />
+      <option name="project" value="LOCAL" />
+      <updated>1641329743700</updated>
+    </task>
+    <task id="LOCAL-00493" summary="KNN">
+      <created>1641329803329</created>
+      <option name="number" value="00493" />
+      <option name="presentableId" value="LOCAL-00493" />
+      <option name="project" value="LOCAL" />
+      <updated>1641329803329</updated>
+    </task>
+    <option name="localTasksCounter" value="494" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
