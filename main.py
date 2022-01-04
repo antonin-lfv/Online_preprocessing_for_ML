@@ -1152,8 +1152,9 @@ elif choix_page == "Machine Learning":
 
 
         else:
-            st.write("##")
-            st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+            with exp2:
+                st.write("##")
+                st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
 
     elif st.session_state.choix_page_ml == "PCA":
