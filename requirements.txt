@@ -5,8 +5,7 @@ xlrd
 sklearn
 umap-learn
 scipy
-
-
+more-itertools
 
 
 
