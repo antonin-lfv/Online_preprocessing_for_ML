@@ -1055,99 +1055,101 @@ elif choix_page == "Machine Learning":
                                                                  st.session_state.data.columns.tolist(),
                                                                  )
 
-                if len(st.session_state.choix_col_SVM) == 2:
-                    target = st.session_state.choix_target_SVM
-                    features = st.session_state.choix_col_SVM
+            if len(st.session_state.choix_col_SVM) == 2:
+                target = st.session_state.choix_target_SVM
+                features = st.session_state.choix_col_SVM
 
-                    # dataset avec features + target
-                    df = st.session_state.data[[target] + features]
-                    df.dropna(axis=0)
+                # dataset avec features + target
+                df = st.session_state.data[[target] + features]
+                df.dropna(axis=0)
 
-                    if len(df) == 0:
+                if len(df) == 0:
+                    with col1_km:
+                        st.write("##")
+                        st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
+                else:
+                    if st.session_state.choix_target_SVM in st.session_state.choix_col_SVM:
                         with col1_km:
-                            st.write("##")
-                            st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
-                    else:
-                        if st.session_state.choix_target_SVM in st.session_state.choix_col_SVM:
                             st.warning("La target ne doit pas appartenir aux features")
-                        else:
-                            if len(df[target].unique().tolist()) > 1:
-                                with col1_km:
-                                    st.session_state.classes_SVM = st.multiselect("Choisir deux classes",
-                                                                                  df[
-                                                                                      st.session_state.choix_target_SVM].unique().tolist(),
-                                                                                  )
-                                    if len(st.session_state.classes_SVM) > 1:
-                                        df = df.loc[
-                                            (df[target] == st.session_state.classes_SVM[0]) | (
-                                                    df[target] == st.session_state.classes_SVM[1])]
-                                        y = df[target]
-                                        X = df[features]
-                                        st.session_state.choix_kernel = st.selectbox("Choisir le type de noyau",
-                                                                                     ['Linéaire'],
-                                                                                     )
+                    else:
+                        if len(df[target].unique().tolist()) > 1:
+                            with col1_km:
+                                st.session_state.classes_SVM = st.multiselect("Choisir deux classes",
+                                                                              df[st.session_state.choix_target_SVM].unique().tolist(),)
+                                if len(st.session_state.classes_SVM) > 1:
+                                    df = df.loc[
+                                        (df[target] == st.session_state.classes_SVM[0]) | (
+                                                df[target] == st.session_state.classes_SVM[1])]
+                                    y = df[target]
+                                    X = df[features]
+                                    st.session_state.choix_kernel = st.selectbox("Choisir le type de noyau",
+                                                                                 ['Linéaire'],
+                                                                                 )
 
-                                        if st.session_state.choix_kernel == 'Linéaire':
-                                            fig = px.scatter(df, x=features[0], y=features[1], color=target,
-                                                             color_continuous_scale=px.colors.diverging.Picnic)
-                                            fig.update(layout_coloraxis_showscale=False)
+                                    if st.session_state.choix_kernel == 'Linéaire':
+                                        fig = px.scatter(df, x=features[0], y=features[1], color=target,
+                                                         color_continuous_scale=px.colors.diverging.Picnic)
+                                        fig.update(layout_coloraxis_showscale=False)
 
-                                            from sklearn.svm import SVC  # "Support vector classifier"
+                                        from sklearn.svm import SVC  # "Support vector classifier"
 
-                                            model = SVC(kernel='linear', C=1E10)
-                                            model.fit(X, y)
+                                        model = SVC(kernel='linear', C=1E10)
+                                        model.fit(X, y)  # to do ajouter un gridsearchcv
 
-                                            # Support Vectors
-                                            fig.add_scatter(x=model.support_vectors_[:, 0],
-                                                            y=model.support_vectors_[:, 1],
-                                                            mode='markers',
-                                                            name="Support vectors",
-                                                            marker=dict(size=12,
-                                                                        line=dict(width=1,
-                                                                                  color='DarkSlateGrey'
-                                                                                  ),
-                                                                        color='rgba(0,0,0,0)'),
-                                                            )
+                                        # Support Vectors
+                                        fig.add_scatter(x=model.support_vectors_[:, 0],
+                                                        y=model.support_vectors_[:, 1],
+                                                        mode='markers',
+                                                        name="Support vectors",
+                                                        marker=dict(size=12,
+                                                                    line=dict(width=1,
+                                                                              color='DarkSlateGrey'
+                                                                              ),
+                                                                    color='rgba(0,0,0,0)'),
+                                                        )
 
-                                            # hyperplan
-                                            w = model.coef_[0]
-                                            a = -w[0] / w[1]
-                                            xx = np.linspace(df[features[0]].min(), df[features[0]].max())
-                                            yy = a * xx - (model.intercept_[0]) / w[1]
-                                            fig.add_scatter(x=xx, y=yy, line=dict(color='black', width=2),
-                                                            name='Hyperplan')
+                                        # hyperplan
+                                        w = model.coef_[0]
+                                        a = -w[0] / w[1]
+                                        xx = np.linspace(df[features[0]].min(), df[features[0]].max())
+                                        yy = a * xx - (model.intercept_[0]) / w[1]
+                                        fig.add_scatter(x=xx, y=yy, line=dict(color='black', width=2),
+                                                        name='Hyperplan')
 
-                                            # Hyperplans up et down
-                                            b = model.support_vectors_[0]
-                                            yy_down = a * xx + (b[1] - a * b[0])
-                                            fig.add_scatter(x=xx, y=yy_down,
-                                                            line=dict(color='black', width=1, dash='dot'),
-                                                            name='Marges')
-                                            b = model.support_vectors_[-1]
-                                            yy_up = a * xx + (b[1] - a * b[0])
-                                            fig.add_scatter(x=xx, y=yy_up,
-                                                            line=dict(color='black', width=1, dash='dot'),
-                                                            showlegend=False)
-                                            fig.update_layout(
-                                                showlegend=True,
-                                                template='simple_white',
-                                                font=dict(size=10),
-                                                autosize=False,
-                                                width=1000, height=650,
-                                                margin=dict(l=40, r=50, b=40, t=40),
-                                                paper_bgcolor='rgba(0,0,0,0)',
-                                                plot_bgcolor='rgba(0,0,0,0)',
-                                            )
-                                            with col1_km:
-                                                st.write("##")
-                                                st.plotly_chart(fig)
+                                        # Hyperplans up et down
+                                        b = model.support_vectors_[0]
+                                        yy_down = a * xx + (b[1] - a * b[0])
+                                        fig.add_scatter(x=xx, y=yy_down,
+                                                        line=dict(color='black', width=1, dash='dot'),
+                                                        name='Marges')
+                                        b = model.support_vectors_[-1]
+                                        yy_up = a * xx + (b[1] - a * b[0])
+                                        fig.add_scatter(x=xx, y=yy_up,
+                                                        line=dict(color='black', width=1, dash='dot'),
+                                                        showlegend=False)
+                                        fig.update_layout(
+                                            showlegend=True,
+                                            template='simple_white',
+                                            font=dict(size=10),
+                                            autosize=False,
+                                            width=1000, height=650,
+                                            margin=dict(l=40, r=50, b=40, t=40),
+                                            paper_bgcolor='rgba(0,0,0,0)',
+                                            plot_bgcolor='rgba(0,0,0,0)',
+                                        )
+                                        with col1_km:
+                                            st.write("##")
+                                            st.plotly_chart(fig)
 
-                                    elif len(st.session_state.classes_SVM) > 2:
+                                elif len(st.session_state.classes_SVM) > 2:
+                                    with col1_km:
                                         st.warning("Saisie invalide - trop de colonne selectionnées")
 
-                            else:
+                        else:
+                            with col1_km:
                                 st.warning("Le dataset ne contient qu'une classe")
-                elif len(st.session_state.choix_col_SVM) > 2:
+            elif len(st.session_state.choix_col_SVM) > 2:
+                with col1_km:
                     st.warning("Saisie invalide - trop de colonne selectionnées")
 
 
