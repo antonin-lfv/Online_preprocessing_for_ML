@@ -143,7 +143,6 @@ choix_page = st.sidebar.radio(label="", options=PAGES)
 if choix_page == "Accueil":
     st.markdown('<p class="first_titre">No-code AI Platform</p>', unsafe_allow_html=True)
     st.write("---")
-    st.balloons()
     c1, c2 = st.columns((3, 2))
     with c2:
         st.write("##")
@@ -779,8 +778,9 @@ elif choix_page == "Machine Learning":
                     model = LinearRegression()
                     model.fit(X_train, y_train)
                     pred_train = model.predict(X_train)
-                    pred_test = model.predict(X_test)
-                    to_plot_line_reg = pred_test
+                    pred_test = model.predict(X_test.reshape(-1, 1))
+                    x_plot_line_reg = X_train
+                    y_plot_line_reg = pred_test
                     # Métrique train set
                     MSE_reg_train = mean_squared_error(y_train, pred_train)
                     RMSE_reg_train = np.sqrt(MSE_reg_train)
@@ -1154,7 +1154,9 @@ elif choix_page == "Machine Learning":
                         fig.add_scatter(x=df_sans_NaN[st.session_state.choix_abscisse_reg],
                                         y=df_sans_NaN[st.session_state.choix_ordonnee_reg],
                                         mode='markers', name='Data', showlegend=False)
-                        # fig.add_scatter(x=list(itertools.chain(*df_sans_NaN[st.session_state.choix_abscisse_reg].to_numpy())), y=to_plot_line_reg, marker=dict(color='red'), name='regression linéaire', mode='markers')
+                        #x_range = np.linspace(x_plot_line_reg.min(), x_plot_line_reg.max(), len(df_sans_NaN[st.session_state.ordonnee_plot]))
+                        #y_range = y_plot_line_reg
+                        #fig.add_scatter(x=x_range, y=y_range, marker=dict(color='red'), name='regression linéaire', mode='markers')
                         fig.update_layout(
                             template='simple_white',
                             font=dict(size=10),
