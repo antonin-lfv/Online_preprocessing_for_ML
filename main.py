@@ -89,7 +89,7 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
-st.sidebar.image("logo/NAP_logo.png", use_column_width=True, caption="Recharger la page")
+st.sidebar.image("logo/NAP_logo.png", use_column_width=True)
 st.sidebar.write("##")
 
 
