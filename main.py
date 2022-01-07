@@ -92,7 +92,6 @@ st.markdown("""
 st.sidebar.image("logo/NAP_logo.png", use_column_width=True)
 st.sidebar.write("##")
 
-
 ###### Load data #######
 def load_data():
     try:
@@ -108,7 +107,6 @@ def load_data():
                 st.session_state.data = pd.read_excel(uploaded_file)
     except:
         pass
-
 
 ##################################
 ####### Code streamlit app #######
@@ -1258,7 +1256,7 @@ elif choix_page == "Machine Learning":
                                         unsafe_allow_html=True)
                             st.write("##")
                             st.success(
-                                f'Le meilleur score est de {round(grid.best_score_, 3)} avec **k = {best_k}** voisins')
+                                f'Après un GridSearchCV on prendra **k = {best_k}** voisins')
                             st.write("##")
 
                         # Évaluation du modèle
