@@ -762,399 +762,55 @@ elif choix_page == "Machine Learning":
                         st.warning('Le dataset composé des 2 colonnes selectionnées après dropna() est vide !')
 
                 else:  # Le dataset est viable
-                    # Data
-                    X_train, X_test, y_train, y_test = train_test_split(st.session_state.data[st.session_state.choix_abscisse_reg].values.reshape(-1, 1), st.session_state.data[st.session_state.choix_ordonnee_reg], test_size=0.4, random_state=4)
-                    # ###############################################################################
-                    with box1_title:
-                        st.write("##")
-                        st.write('---')
-                        st.write("##")
-                        st.write("##")
-                        st.markdown('<p class="section">Régression linéaire</p>', unsafe_allow_html=True)
-                        st.write("##")
-                    # Modèle
-                    model = LinearRegression()
-                    model.fit(X_train, y_train)
-                    pred_train = model.predict(X_train)
-                    pred_test = model.predict(X_test.reshape(-1, 1))
-                    x_plot_line_reg = X_train
-                    y_plot_line_reg = pred_test
-                    # Métrique train set
-                    MSE_reg_train = mean_squared_error(y_train, pred_train)
-                    RMSE_reg_train = np.sqrt(MSE_reg_train)
-                    MAE_reg_train = mean_absolute_error(y_train, pred_train)
-                    r2_reg_train = r2_score(y_train, pred_train)
-                    # Métrique test set
-                    MSE_reg_test = mean_squared_error(y_test, pred_test)
-                    RMSE_reg_test = np.sqrt(MSE_reg_test)
-                    MAE_reg_test = mean_absolute_error(y_test, pred_test)
-                    r2_reg_test = r2_score(y_test, pred_test)
-                    # Affichage métriques
-                    with box1_eval1:
-                        st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
-                                  delta=round(MSE_reg_test - MSE_reg_train, 3))
-                    with box1_eval2:
-                        st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
-                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3))
-                    with box1_eval3:
-                        st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
-                                  delta=round(MAE_reg_test - MAE_reg_train, 3))
-                    with box1_eval4:
-                        st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
-                                  delta=round(r2_reg_test - r2_reg_train, 3))
-                    # Learning curves
-                    N, train_score, val_score = learning_curve(model, X_train, y_train, train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
-                    fig = go.Figure()
-                    fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
-                    fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
-                    fig.update_xaxes(title_text="Données de validation")
-                    fig.update_yaxes(title_text="Score")
-                    fig.update_layout(
-                        template='simple_white',
-                        font=dict(size=10),
-                        autosize=False,
-                        width=900, height=450,
-                        margin=dict(l=40, r=40, b=40, t=40),
-                        paper_bgcolor='rgba(0,0,0,0)',
-                        plot_bgcolor='rgba(0,0,0,0)',
-                        title={'text' : "<b>Learning curves</b>",
-                               'y': 0.9,
-                               'x': 0.5,
-                               'xanchor': 'center',
-                               'yanchor': 'top'
-                               }
-                    )
-                    with box1:
-                        st.write("##")
-                        st.plotly_chart(fig)
-                        st.write('---')
-                        st.write("##")
 
-
-                    # ###############################################################################
-                    with box2_title:
-                        st.write("##")
-                        st.markdown('<p class="section">Régression polynomiale</p>', unsafe_allow_html=True)
-                        st.write("##")
-                    # Modèle
-                    model1 = PolynomialFeatures(degree=4)
-                    x_poly = model1.fit_transform(X_train)
-                    model2 = LinearRegression(fit_intercept=False)
-                    model2.fit(x_poly, y_train)
-                    y_poly_pred_train = model2.predict(x_poly)
-                    y_poly_pred_test = model2.predict(model1.fit_transform(X_test))
-                    # Métrique train set
-                    MSE_reg_train = mean_squared_error(y_train, y_poly_pred_train)
-                    RMSE_reg_train = np.sqrt(MSE_reg_train)
-                    MAE_reg_train = mean_absolute_error(y_train, y_poly_pred_train)
-                    r2_reg_train = r2_score(y_train, y_poly_pred_train)
-                    # Métrique test set
-                    MSE_reg_test = mean_squared_error(y_test, y_poly_pred_test)
-                    RMSE_reg_test = np.sqrt(MSE_reg_test)
-                    MAE_reg_test = mean_absolute_error(y_test, y_poly_pred_test)
-                    r2_reg_test = r2_score(y_test, y_poly_pred_test)
-                    # Affichage métriques
-                    with box2_eval1:
-                        st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
-                                  delta=round(MSE_reg_test - MSE_reg_train, 3))
-                    with box2_eval2:
-                        st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
-                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3))
-                    with box2_eval3:
-                        st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
-                                  delta=round(MAE_reg_test - MAE_reg_train, 3))
-                    with box2_eval4:
-                        st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
-                                  delta=round(r2_reg_test - r2_reg_train, 3))
-                    # Learning curves
-                    N, train_score, val_score = learning_curve(model2, X_train, y_train, train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
-                    fig = go.Figure()
-                    fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
-                    fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
-                    fig.update_xaxes(title_text="Données de validation")
-                    fig.update_yaxes(title_text="Score")
-                    fig.update_layout(
-                        template='simple_white',
-                        font=dict(size=10),
-                        autosize=False,
-                        width=900, height=450,
-                        margin=dict(l=40, r=40, b=40, t=40),
-                        paper_bgcolor='rgba(0,0,0,0)',
-                        plot_bgcolor='rgba(0,0,0,0)',
-                        title={'text' : "<b>Learning curves</b>",
-                               'y': 0.9,
-                               'x': 0.5,
-                               'xanchor': 'center',
-                               'yanchor': 'top'
-                               }
-                    )
-                    with box2:
-                        st.write("##")
-                        st.plotly_chart(fig)
-                        st.write('---')
-                        st.write("##")
-
-
-                    # ###############################################################################
-                    with box3_title:
-                        st.write("##")
-                        st.markdown('<p class="section">Régression de poisson</p>', unsafe_allow_html=True)
-                        st.write("##")
-                    # Modèle
-                    model = PoissonRegressor()
-                    model.fit(X_train, y_train)
-                    pred_train = model.predict(X_train)
-                    pred_test = model.predict(X_test)
-                    # Métrique train set
-                    MSE_reg_train = mean_squared_error(y_train, pred_train)
-                    RMSE_reg_train = np.sqrt(MSE_reg_train)
-                    MAE_reg_train = mean_absolute_error(y_train, pred_train)
-                    r2_reg_train = r2_score(y_train, pred_train)
-                    # Métrique test set
-                    MSE_reg_test = mean_squared_error(y_test, pred_test)
-                    RMSE_reg_test = np.sqrt(MSE_reg_test)
-                    MAE_reg_test = mean_absolute_error(y_test, pred_test)
-                    r2_reg_test = r2_score(y_test, pred_test)
-                    # Affichage métriques
-                    with box3_eval1:
-                        st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
-                                  delta=round(MSE_reg_test - MSE_reg_train, 3))
-                    with box3_eval2:
-                        st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
-                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3))
-                    with box3_eval3:
-                        st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
-                                  delta=round(MAE_reg_test - MAE_reg_train, 3))
-                    with box3_eval4:
-                        st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
-                                  delta=round(r2_reg_test - r2_reg_train, 3))
-                    # Learning curves
-                    N, train_score, val_score = learning_curve(model, X_train, y_train,
-                                                               train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
-                    fig = go.Figure()
-                    fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
-                    fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
-                    fig.update_xaxes(title_text="Données de validation")
-                    fig.update_yaxes(title_text="Score")
-                    fig.update_layout(
-                        template='simple_white',
-                        font=dict(size=10),
-                        autosize=False,
-                        width=900, height=450,
-                        margin=dict(l=40, r=40, b=40, t=40),
-                        paper_bgcolor='rgba(0,0,0,0)',
-                        plot_bgcolor='rgba(0,0,0,0)',
-                        title={'text': "<b>Learning curves</b>",
-                               'y': 0.9,
-                               'x': 0.5,
-                               'xanchor': 'center',
-                               'yanchor': 'top'
-                               }
-                    )
-                    with box3:
-                        st.write("##")
-                        st.plotly_chart(fig)
-                        st.write('---')
-                        st.write("##")
-
-                    # ###############################################################################
-                    with box4_title:
-                        st.write("##")
-                        st.markdown('<p class="section">Elastic net</p>', unsafe_allow_html=True)
-                        st.write("##")
-                    # Modèle
-                    model = ElasticNet()
-                    model.fit(X_train, y_train)
-                    pred_train = model.predict(X_train)
-                    pred_test = model.predict(X_test)
-                    # Métrique train set
-                    MSE_reg_train = mean_squared_error(y_train, pred_train)
-                    RMSE_reg_train = np.sqrt(MSE_reg_train)
-                    MAE_reg_train = mean_absolute_error(y_train, pred_train)
-                    r2_reg_train = r2_score(y_train, pred_train)
-                    # Métrique test set
-                    MSE_reg_test = mean_squared_error(y_test, pred_test)
-                    RMSE_reg_test = np.sqrt(MSE_reg_test)
-                    MAE_reg_test = mean_absolute_error(y_test, pred_test)
-                    r2_reg_test = r2_score(y_test, pred_test)
-                    # Affichage métriques
-                    with box4_eval1:
-                        st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
-                                  delta=round(MSE_reg_test - MSE_reg_train, 3))
-                    with box4_eval2:
-                        st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
-                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3))
-                    with box4_eval3:
-                        st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
-                                  delta=round(MAE_reg_test - MAE_reg_train, 3))
-                    with box4_eval4:
-                        st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
-                                  delta=round(r2_reg_test - r2_reg_train, 3))
-                    # Learning curves
-                    N, train_score, val_score = learning_curve(model, X_train, y_train,
-                                                               train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
-                    fig = go.Figure()
-                    fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
-                    fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
-                    fig.update_xaxes(title_text="Données de validation")
-                    fig.update_yaxes(title_text="Score")
-                    fig.update_layout(
-                        template='simple_white',
-                        font=dict(size=10),
-                        autosize=False,
-                        width=900, height=450,
-                        margin=dict(l=40, r=40, b=40, t=40),
-                        paper_bgcolor='rgba(0,0,0,0)',
-                        plot_bgcolor='rgba(0,0,0,0)',
-                        title={'text': "<b>Learning curves</b>",
-                               'y': 0.9,
-                               'x': 0.5,
-                               'xanchor': 'center',
-                               'yanchor': 'top'
-                               }
-                    )
-                    with box4:
-                        st.write("##")
-                        st.plotly_chart(fig)
-                        st.write('---')
-                        st.write("##")
-
-                    # ###############################################################################
-                    with box5_title:
-                        st.write("##")
-                        st.markdown('<p class="section">Ridge</p>', unsafe_allow_html=True)
-                        st.write("##")
-                    # Modèle
-                    model = Ridge()
-                    model.fit(X_train, y_train)
-                    pred_train = model.predict(X_train)
-                    pred_test = model.predict(X_test)
-                    # Métrique train set
-                    MSE_reg_train = mean_squared_error(y_train, pred_train)
-                    RMSE_reg_train = np.sqrt(MSE_reg_train)
-                    MAE_reg_train = mean_absolute_error(y_train, pred_train)
-                    r2_reg_train = r2_score(y_train, pred_train)
-                    # Métrique test set
-                    MSE_reg_test = mean_squared_error(y_test, pred_test)
-                    RMSE_reg_test = np.sqrt(MSE_reg_test)
-                    MAE_reg_test = mean_absolute_error(y_test, pred_test)
-                    r2_reg_test = r2_score(y_test, pred_test)
-                    # Affichage métriques
-                    with box5_eval1:
-                        st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
-                                  delta=round(MSE_reg_test - MSE_reg_train, 3))
-                    with box5_eval2:
-                        st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
-                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3))
-                    with box5_eval3:
-                        st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
-                                  delta=round(MAE_reg_test - MAE_reg_train, 3))
-                    with box5_eval4:
-                        st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
-                                  delta=round(r2_reg_test - r2_reg_train, 3))
-                    # Learning curves
-                    N, train_score, val_score = learning_curve(model, X_train, y_train,
-                                                               train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
-                    fig = go.Figure()
-                    fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
-                    fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
-                    fig.update_xaxes(title_text="Données de validation")
-                    fig.update_yaxes(title_text="Score")
-                    fig.update_layout(
-                        template='simple_white',
-                        font=dict(size=10),
-                        autosize=False,
-                        width=900, height=450,
-                        margin=dict(l=40, r=40, b=40, t=40),
-                        paper_bgcolor='rgba(0,0,0,0)',
-                        plot_bgcolor='rgba(0,0,0,0)',
-                        title={'text': "<b>Learning curves</b>",
-                               'y': 0.9,
-                               'x': 0.5,
-                               'xanchor': 'center',
-                               'yanchor': 'top'
-                               }
-                    )
-                    with box5:
-                        st.write("##")
-                        st.plotly_chart(fig)
-                        st.write('---')
-                        st.write("##")
-
-                    # ###############################################################################
-                    with box6_title:
-                        st.write("##")
-                        st.markdown('<p class="section">Lasso</p>', unsafe_allow_html=True)
-                        st.write("##")
-                    # Modèle
-                    model = Lasso()
-                    model.fit(X_train, y_train)
-                    pred_train = model.predict(X_train)
-                    pred_test = model.predict(X_test)
-                    # Métrique train set
-                    MSE_reg_train = mean_squared_error(y_train, pred_train)
-                    RMSE_reg_train = np.sqrt(MSE_reg_train)
-                    MAE_reg_train = mean_absolute_error(y_train, pred_train)
-                    r2_reg_train = r2_score(y_train, pred_train)
-                    # Métrique test set
-                    MSE_reg_test = mean_squared_error(y_test, pred_test)
-                    RMSE_reg_test = np.sqrt(MSE_reg_test)
-                    MAE_reg_test = mean_absolute_error(y_test, pred_test)
-                    r2_reg_test = r2_score(y_test, pred_test)
-                    # Affichage métriques
-                    with box6_eval1:
-                        st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
-                                  delta=round(MSE_reg_test - MSE_reg_train, 3))
-                    with box6_eval2:
-                        st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
-                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3))
-                    with box6_eval3:
-                        st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
-                                  delta=round(MAE_reg_test - MAE_reg_train, 3))
-                    with box6_eval4:
-                        st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
-                                  delta=round(r2_reg_test - r2_reg_train, 3))
-                    # Learning curves
-                    N, train_score, val_score = learning_curve(model, X_train, y_train,
-                                                               train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
-                    fig = go.Figure()
-                    fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
-                    fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
-                    fig.update_xaxes(title_text="Données de validation")
-                    fig.update_yaxes(title_text="Score")
-                    fig.update_layout(
-                        template='simple_white',
-                        font=dict(size=10),
-                        autosize=False,
-                        width=900, height=450,
-                        margin=dict(l=40, r=40, b=40, t=40),
-                        paper_bgcolor='rgba(0,0,0,0)',
-                        plot_bgcolor='rgba(0,0,0,0)',
-                        title={'text': "<b>Learning curves</b>",
-                               'y': 0.9,
-                               'x': 0.5,
-                               'xanchor': 'center',
-                               'yanchor': 'top'
-                               }
-                    )
-                    with box6:
-                        st.write("##")
-                        st.plotly_chart(fig)
-                        st.write('---')
-                        st.write("##")
-
-                    # Superposition des régressions
-                    with all_reg:
-                        st.write("##")
-                        st.markdown('<p class="section">Comparaison des régressions</p>', unsafe_allow_html=True)
-                        st.write("##")
+                    try :
+                        # Data
+                        X_train, X_test, y_train, y_test = train_test_split(st.session_state.data[st.session_state.choix_abscisse_reg].values.reshape(-1, 1), st.session_state.data[st.session_state.choix_ordonnee_reg], test_size=0.4, random_state=4)
+                        # ###############################################################################
+                        with box1_title:
+                            st.write("##")
+                            st.write('---')
+                            st.write("##")
+                            st.write("##")
+                            st.markdown('<p class="section">Régression linéaire</p>', unsafe_allow_html=True)
+                            st.write("##")
+                        # Modèle
+                        model = LinearRegression()
+                        model.fit(X_train, y_train)
+                        pred_train = model.predict(X_train)
+                        pred_test = model.predict(X_test.reshape(-1, 1))
+                        x_plot_line_reg = X_train
+                        y_plot_line_reg = pred_test
+                        # Métrique train set
+                        MSE_reg_train = mean_squared_error(y_train, pred_train)
+                        RMSE_reg_train = np.sqrt(MSE_reg_train)
+                        MAE_reg_train = mean_absolute_error(y_train, pred_train)
+                        r2_reg_train = r2_score(y_train, pred_train)
+                        # Métrique test set
+                        MSE_reg_test = mean_squared_error(y_test, pred_test)
+                        RMSE_reg_test = np.sqrt(MSE_reg_test)
+                        MAE_reg_test = mean_absolute_error(y_test, pred_test)
+                        r2_reg_test = r2_score(y_test, pred_test)
+                        # Affichage métriques
+                        with box1_eval1:
+                            st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
+                                      delta=round(MSE_reg_test - MSE_reg_train, 3))
+                        with box1_eval2:
+                            st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
+                                      delta=round(RMSE_reg_test - RMSE_reg_train, 3))
+                        with box1_eval3:
+                            st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
+                                      delta=round(MAE_reg_test - MAE_reg_train, 3))
+                        with box1_eval4:
+                            st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
+                                      delta=round(r2_reg_test - r2_reg_train, 3))
+                        # Learning curves
+                        N, train_score, val_score = learning_curve(model, X_train, y_train, train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
                         fig = go.Figure()
-                        fig.add_scatter(x=df_sans_NaN[st.session_state.choix_abscisse_reg],
-                                        y=df_sans_NaN[st.session_state.choix_ordonnee_reg],
-                                        mode='markers', name='Data', showlegend=False)
-                        #x_range = np.linspace(x_plot_line_reg.min(), x_plot_line_reg.max(), len(df_sans_NaN[st.session_state.ordonnee_plot]))
-                        #y_range = y_plot_line_reg
-                        #fig.add_scatter(x=x_range, y=y_range, marker=dict(color='red'), name='regression linéaire', mode='markers')
+                        fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
+                        fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
+                        fig.update_xaxes(title_text="Données de validation")
+                        fig.update_yaxes(title_text="Score")
                         fig.update_layout(
                             template='simple_white',
                             font=dict(size=10),
@@ -1162,9 +818,358 @@ elif choix_page == "Machine Learning":
                             width=900, height=450,
                             margin=dict(l=40, r=40, b=40, t=40),
                             paper_bgcolor='rgba(0,0,0,0)',
-                            plot_bgcolor='rgba(0,0,0,0)'
+                            plot_bgcolor='rgba(0,0,0,0)',
+                            title={'text' : "<b>Learning curves</b>",
+                                   'y': 0.9,
+                                   'x': 0.5,
+                                   'xanchor': 'center',
+                                   'yanchor': 'top'
+                                   }
                         )
-                        st.plotly_chart(fig)
+                        with box1:
+                            st.write("##")
+                            st.plotly_chart(fig)
+                            st.write('---')
+                            st.write("##")
+
+
+                        # ###############################################################################
+                        with box2_title:
+                            st.write("##")
+                            st.markdown('<p class="section">Régression polynomiale</p>', unsafe_allow_html=True)
+                            st.write("##")
+                        # Modèle
+                        model1 = PolynomialFeatures(degree=4)
+                        x_poly = model1.fit_transform(X_train)
+                        model2 = LinearRegression(fit_intercept=False)
+                        model2.fit(x_poly, y_train)
+                        y_poly_pred_train = model2.predict(x_poly)
+                        y_poly_pred_test = model2.predict(model1.fit_transform(X_test))
+                        # Métrique train set
+                        MSE_reg_train = mean_squared_error(y_train, y_poly_pred_train)
+                        RMSE_reg_train = np.sqrt(MSE_reg_train)
+                        MAE_reg_train = mean_absolute_error(y_train, y_poly_pred_train)
+                        r2_reg_train = r2_score(y_train, y_poly_pred_train)
+                        # Métrique test set
+                        MSE_reg_test = mean_squared_error(y_test, y_poly_pred_test)
+                        RMSE_reg_test = np.sqrt(MSE_reg_test)
+                        MAE_reg_test = mean_absolute_error(y_test, y_poly_pred_test)
+                        r2_reg_test = r2_score(y_test, y_poly_pred_test)
+                        # Affichage métriques
+                        with box2_eval1:
+                            st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
+                                      delta=round(MSE_reg_test - MSE_reg_train, 3))
+                        with box2_eval2:
+                            st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
+                                      delta=round(RMSE_reg_test - RMSE_reg_train, 3))
+                        with box2_eval3:
+                            st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
+                                      delta=round(MAE_reg_test - MAE_reg_train, 3))
+                        with box2_eval4:
+                            st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
+                                      delta=round(r2_reg_test - r2_reg_train, 3))
+                        # Learning curves
+                        N, train_score, val_score = learning_curve(model2, X_train, y_train, train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
+                        fig = go.Figure()
+                        fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
+                        fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
+                        fig.update_xaxes(title_text="Données de validation")
+                        fig.update_yaxes(title_text="Score")
+                        fig.update_layout(
+                            template='simple_white',
+                            font=dict(size=10),
+                            autosize=False,
+                            width=900, height=450,
+                            margin=dict(l=40, r=40, b=40, t=40),
+                            paper_bgcolor='rgba(0,0,0,0)',
+                            plot_bgcolor='rgba(0,0,0,0)',
+                            title={'text' : "<b>Learning curves</b>",
+                                   'y': 0.9,
+                                   'x': 0.5,
+                                   'xanchor': 'center',
+                                   'yanchor': 'top'
+                                   }
+                        )
+                        with box2:
+                            st.write("##")
+                            st.plotly_chart(fig)
+                            st.write('---')
+                            st.write("##")
+
+
+                        # ###############################################################################
+                        with box3_title:
+                            st.write("##")
+                            st.markdown('<p class="section">Régression de poisson</p>', unsafe_allow_html=True)
+                            st.write("##")
+                        # Modèle
+                        model = PoissonRegressor()
+                        model.fit(X_train, y_train)
+                        pred_train = model.predict(X_train)
+                        pred_test = model.predict(X_test)
+                        # Métrique train set
+                        MSE_reg_train = mean_squared_error(y_train, pred_train)
+                        RMSE_reg_train = np.sqrt(MSE_reg_train)
+                        MAE_reg_train = mean_absolute_error(y_train, pred_train)
+                        r2_reg_train = r2_score(y_train, pred_train)
+                        # Métrique test set
+                        MSE_reg_test = mean_squared_error(y_test, pred_test)
+                        RMSE_reg_test = np.sqrt(MSE_reg_test)
+                        MAE_reg_test = mean_absolute_error(y_test, pred_test)
+                        r2_reg_test = r2_score(y_test, pred_test)
+                        # Affichage métriques
+                        with box3_eval1:
+                            st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
+                                      delta=round(MSE_reg_test - MSE_reg_train, 3))
+                        with box3_eval2:
+                            st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
+                                      delta=round(RMSE_reg_test - RMSE_reg_train, 3))
+                        with box3_eval3:
+                            st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
+                                      delta=round(MAE_reg_test - MAE_reg_train, 3))
+                        with box3_eval4:
+                            st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
+                                      delta=round(r2_reg_test - r2_reg_train, 3))
+                        # Learning curves
+                        N, train_score, val_score = learning_curve(model, X_train, y_train,
+                                                                   train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
+                        fig = go.Figure()
+                        fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
+                        fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
+                        fig.update_xaxes(title_text="Données de validation")
+                        fig.update_yaxes(title_text="Score")
+                        fig.update_layout(
+                            template='simple_white',
+                            font=dict(size=10),
+                            autosize=False,
+                            width=900, height=450,
+                            margin=dict(l=40, r=40, b=40, t=40),
+                            paper_bgcolor='rgba(0,0,0,0)',
+                            plot_bgcolor='rgba(0,0,0,0)',
+                            title={'text': "<b>Learning curves</b>",
+                                   'y': 0.9,
+                                   'x': 0.5,
+                                   'xanchor': 'center',
+                                   'yanchor': 'top'
+                                   }
+                        )
+                        with box3:
+                            st.write("##")
+                            st.plotly_chart(fig)
+                            st.write('---')
+                            st.write("##")
+
+                        # ###############################################################################
+                        with box4_title:
+                            st.write("##")
+                            st.markdown('<p class="section">Elastic net</p>', unsafe_allow_html=True)
+                            st.write("##")
+                        # Modèle
+                        model = ElasticNet()
+                        model.fit(X_train, y_train)
+                        pred_train = model.predict(X_train)
+                        pred_test = model.predict(X_test)
+                        # Métrique train set
+                        MSE_reg_train = mean_squared_error(y_train, pred_train)
+                        RMSE_reg_train = np.sqrt(MSE_reg_train)
+                        MAE_reg_train = mean_absolute_error(y_train, pred_train)
+                        r2_reg_train = r2_score(y_train, pred_train)
+                        # Métrique test set
+                        MSE_reg_test = mean_squared_error(y_test, pred_test)
+                        RMSE_reg_test = np.sqrt(MSE_reg_test)
+                        MAE_reg_test = mean_absolute_error(y_test, pred_test)
+                        r2_reg_test = r2_score(y_test, pred_test)
+                        # Affichage métriques
+                        with box4_eval1:
+                            st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
+                                      delta=round(MSE_reg_test - MSE_reg_train, 3))
+                        with box4_eval2:
+                            st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
+                                      delta=round(RMSE_reg_test - RMSE_reg_train, 3))
+                        with box4_eval3:
+                            st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
+                                      delta=round(MAE_reg_test - MAE_reg_train, 3))
+                        with box4_eval4:
+                            st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
+                                      delta=round(r2_reg_test - r2_reg_train, 3))
+                        # Learning curves
+                        N, train_score, val_score = learning_curve(model, X_train, y_train,
+                                                                   train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
+                        fig = go.Figure()
+                        fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
+                        fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
+                        fig.update_xaxes(title_text="Données de validation")
+                        fig.update_yaxes(title_text="Score")
+                        fig.update_layout(
+                            template='simple_white',
+                            font=dict(size=10),
+                            autosize=False,
+                            width=900, height=450,
+                            margin=dict(l=40, r=40, b=40, t=40),
+                            paper_bgcolor='rgba(0,0,0,0)',
+                            plot_bgcolor='rgba(0,0,0,0)',
+                            title={'text': "<b>Learning curves</b>",
+                                   'y': 0.9,
+                                   'x': 0.5,
+                                   'xanchor': 'center',
+                                   'yanchor': 'top'
+                                   }
+                        )
+                        with box4:
+                            st.write("##")
+                            st.plotly_chart(fig)
+                            st.write('---')
+                            st.write("##")
+
+                        # ###############################################################################
+                        with box5_title:
+                            st.write("##")
+                            st.markdown('<p class="section">Ridge</p>', unsafe_allow_html=True)
+                            st.write("##")
+                        # Modèle
+                        model = Ridge()
+                        model.fit(X_train, y_train)
+                        pred_train = model.predict(X_train)
+                        pred_test = model.predict(X_test)
+                        # Métrique train set
+                        MSE_reg_train = mean_squared_error(y_train, pred_train)
+                        RMSE_reg_train = np.sqrt(MSE_reg_train)
+                        MAE_reg_train = mean_absolute_error(y_train, pred_train)
+                        r2_reg_train = r2_score(y_train, pred_train)
+                        # Métrique test set
+                        MSE_reg_test = mean_squared_error(y_test, pred_test)
+                        RMSE_reg_test = np.sqrt(MSE_reg_test)
+                        MAE_reg_test = mean_absolute_error(y_test, pred_test)
+                        r2_reg_test = r2_score(y_test, pred_test)
+                        # Affichage métriques
+                        with box5_eval1:
+                            st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
+                                      delta=round(MSE_reg_test - MSE_reg_train, 3))
+                        with box5_eval2:
+                            st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
+                                      delta=round(RMSE_reg_test - RMSE_reg_train, 3))
+                        with box5_eval3:
+                            st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
+                                      delta=round(MAE_reg_test - MAE_reg_train, 3))
+                        with box5_eval4:
+                            st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
+                                      delta=round(r2_reg_test - r2_reg_train, 3))
+                        # Learning curves
+                        N, train_score, val_score = learning_curve(model, X_train, y_train,
+                                                                   train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
+                        fig = go.Figure()
+                        fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
+                        fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
+                        fig.update_xaxes(title_text="Données de validation")
+                        fig.update_yaxes(title_text="Score")
+                        fig.update_layout(
+                            template='simple_white',
+                            font=dict(size=10),
+                            autosize=False,
+                            width=900, height=450,
+                            margin=dict(l=40, r=40, b=40, t=40),
+                            paper_bgcolor='rgba(0,0,0,0)',
+                            plot_bgcolor='rgba(0,0,0,0)',
+                            title={'text': "<b>Learning curves</b>",
+                                   'y': 0.9,
+                                   'x': 0.5,
+                                   'xanchor': 'center',
+                                   'yanchor': 'top'
+                                   }
+                        )
+                        with box5:
+                            st.write("##")
+                            st.plotly_chart(fig)
+                            st.write('---')
+                            st.write("##")
+
+                        # ###############################################################################
+                        with box6_title:
+                            st.write("##")
+                            st.markdown('<p class="section">Lasso</p>', unsafe_allow_html=True)
+                            st.write("##")
+                        # Modèle
+                        model = Lasso()
+                        model.fit(X_train, y_train)
+                        pred_train = model.predict(X_train)
+                        pred_test = model.predict(X_test)
+                        # Métrique train set
+                        MSE_reg_train = mean_squared_error(y_train, pred_train)
+                        RMSE_reg_train = np.sqrt(MSE_reg_train)
+                        MAE_reg_train = mean_absolute_error(y_train, pred_train)
+                        r2_reg_train = r2_score(y_train, pred_train)
+                        # Métrique test set
+                        MSE_reg_test = mean_squared_error(y_test, pred_test)
+                        RMSE_reg_test = np.sqrt(MSE_reg_test)
+                        MAE_reg_test = mean_absolute_error(y_test, pred_test)
+                        r2_reg_test = r2_score(y_test, pred_test)
+                        # Affichage métriques
+                        with box6_eval1:
+                            st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
+                                      delta=round(MSE_reg_test - MSE_reg_train, 3))
+                        with box6_eval2:
+                            st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
+                                      delta=round(RMSE_reg_test - RMSE_reg_train, 3))
+                        with box6_eval3:
+                            st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
+                                      delta=round(MAE_reg_test - MAE_reg_train, 3))
+                        with box6_eval4:
+                            st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
+                                      delta=round(r2_reg_test - r2_reg_train, 3))
+                        # Learning curves
+                        N, train_score, val_score = learning_curve(model, X_train, y_train,
+                                                                   train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
+                        fig = go.Figure()
+                        fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
+                        fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
+                        fig.update_xaxes(title_text="Données de validation")
+                        fig.update_yaxes(title_text="Score")
+                        fig.update_layout(
+                            template='simple_white',
+                            font=dict(size=10),
+                            autosize=False,
+                            width=900, height=450,
+                            margin=dict(l=40, r=40, b=40, t=40),
+                            paper_bgcolor='rgba(0,0,0,0)',
+                            plot_bgcolor='rgba(0,0,0,0)',
+                            title={'text': "<b>Learning curves</b>",
+                                   'y': 0.9,
+                                   'x': 0.5,
+                                   'xanchor': 'center',
+                                   'yanchor': 'top'
+                                   }
+                        )
+                        with box6:
+                            st.write("##")
+                            st.plotly_chart(fig)
+                            st.write('---')
+                            st.write("##")
+
+                        # Superposition des régressions
+                        with all_reg:
+                            st.write("##")
+                            st.markdown('<p class="section">Comparaison des régressions</p>', unsafe_allow_html=True)
+                            st.write("##")
+                            fig = go.Figure()
+                            fig.add_scatter(x=df_sans_NaN[st.session_state.choix_abscisse_reg],
+                                            y=df_sans_NaN[st.session_state.choix_ordonnee_reg],
+                                            mode='markers', name='Data', showlegend=False)
+                            #x_range = np.linspace(x_plot_line_reg.min(), x_plot_line_reg.max(), len(df_sans_NaN[st.session_state.ordonnee_plot]))
+                            #y_range = y_plot_line_reg
+                            #fig.add_scatter(x=x_range, y=y_range, marker=dict(color='red'), name='regression linéaire', mode='markers')
+                            fig.update_layout(
+                                template='simple_white',
+                                font=dict(size=10),
+                                autosize=False,
+                                width=900, height=450,
+                                margin=dict(l=40, r=40, b=40, t=40),
+                                paper_bgcolor='rgba(0,0,0,0)',
+                                plot_bgcolor='rgba(0,0,0,0)'
+                            )
+                            st.plotly_chart(fig)
+                    except:
+                        with box2_title:
+                            st.info("Impossible d'effectuer les régressions avec ces données")
 
         else:
             with exp2:
