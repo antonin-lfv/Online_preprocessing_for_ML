@@ -740,10 +740,11 @@ elif choix_page == "Machine Learning":
             _, box6, _ = st.columns((0.1, 1, 0.1))
             with exp2:
                 st.write("##")
-                st.markdown('<p class="section">Selection de 2 features pour la régression</p>', unsafe_allow_html=True)
+                st.markdown('<p class="section">Selection des features pour la régression</p>', unsafe_allow_html=True)
             with col1_abscisse_reg:
                 st.session_state.choix_features_reg = st.multiselect("Features",
                                                                      col_numeric(st.session_state.data),
+                                                                     help="Choisissez au moins 1 features"
                                                                      )
             with col1_ordonnee_reg:
                 st.session_state.choix_target_reg = st.selectbox("Target",
@@ -763,7 +764,7 @@ elif choix_page == "Machine Learning":
                     with exp2:
                         st.warning('Le dataset composé des 2 colonnes selectionnées après dropna() est vide !')
 
-                elif len(st.session_state.choix_features_reg)>1:  # Le dataset est viable
+                elif len(st.session_state.choix_features_reg) > 1:  # Le dataset est viable
                     df_sans_NaN
                     try:
                         # Data

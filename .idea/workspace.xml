@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Regressions">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -149,35 +150,7 @@
       <workItem from="1641565431732" duration="1067000" />
       <workItem from="1641571237997" duration="367000" />
       <workItem from="1641656321547" duration="1168000" />
-      <workItem from="1641739977294" duration="460000" />
-    </task>
-    <task id="LOCAL-00453" summary="objects detection">
-      <created>1636638209702</created>
-      <option name="number" value="00453" />
-      <option name="presentableId" value="LOCAL-00453" />
-      <option name="project" value="LOCAL" />
-      <updated>1636638209702</updated>
-    </task>
-    <task id="LOCAL-00454" summary="objects detection">
-      <created>1636638256446</created>
-      <option name="number" value="00454" />
-      <option name="presentableId" value="LOCAL-00454" />
-      <option name="project" value="LOCAL" />
-      <updated>1636638256446</updated>
-    </task>
-    <task id="LOCAL-00455" summary="objects detection">
-      <created>1636638550942</created>
-      <option name="number" value="00455" />
-      <option name="presentableId" value="LOCAL-00455" />
-      <option name="project" value="LOCAL" />
-      <updated>1636638550942</updated>
-    </task>
-    <task id="LOCAL-00456" summary="structure + theme">
-      <created>1636639315741</created>
-      <option name="number" value="00456" />
-      <option name="presentableId" value="LOCAL-00456" />
-      <option name="project" value="LOCAL" />
-      <updated>1636639315741</updated>
+      <workItem from="1641739977294" duration="798000" />
     </task>
     <task id="LOCAL-00457" summary="structure + theme">
       <created>1636656957957</created>
@@ -494,7 +467,35 @@
       <option name="project" value="LOCAL" />
       <updated>1641740221275</updated>
     </task>
-    <option name="localTasksCounter" value="502" />
+    <task id="LOCAL-00502" summary="Regressions">
+      <created>1641740454440</created>
+      <option name="number" value="00502" />
+      <option name="presentableId" value="LOCAL-00502" />
+      <option name="project" value="LOCAL" />
+      <updated>1641740454440</updated>
+    </task>
+    <task id="LOCAL-00503" summary="Regressions">
+      <created>1641740508996</created>
+      <option name="number" value="00503" />
+      <option name="presentableId" value="LOCAL-00503" />
+      <option name="project" value="LOCAL" />
+      <updated>1641740508996</updated>
+    </task>
+    <task id="LOCAL-00504" summary="Regressions">
+      <created>1641740536054</created>
+      <option name="number" value="00504" />
+      <option name="presentableId" value="LOCAL-00504" />
+      <option name="project" value="LOCAL" />
+      <updated>1641740536054</updated>
+    </task>
+    <task id="LOCAL-00505" summary="Regressions">
+      <created>1641740674390</created>
+      <option name="number" value="00505" />
+      <option name="presentableId" value="LOCAL-00505" />
+      <option name="project" value="LOCAL" />
+      <updated>1641740674390</updated>
+    </task>
+    <option name="localTasksCounter" value="506" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
