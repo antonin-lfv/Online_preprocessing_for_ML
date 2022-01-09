@@ -740,22 +740,22 @@ elif choix_page == "Machine Learning":
                 st.write("##")
                 st.markdown('<p class="section">Selection de 2 features pour la régression</p>', unsafe_allow_html=True)
             with col1_abscisse_reg:
-                st.session_state.choix_abscisse_reg = st.selectbox("Feature en abscisse",
+                st.session_state.choix_features_reg = st.selectbox("Features",
                                                                    col_numeric(st.session_state.data),
 
                                                                    )
             with col1_ordonnee_reg:
-                st.session_state.choix_ordonnee_reg = st.selectbox("Feature en ordonnée",
+                st.session_state.choix_target_reg = st.selectbox("Target",
                                                                    col_numeric(st.session_state.data)[::-1],
-                                                                   )
+                                                                 )
                 st.write("##")
-            if st.session_state.choix_abscisse_reg == st.session_state.choix_ordonnee_reg:
+            if st.session_state.choix_features_reg == st.session_state.choix_target_reg:
                 with warning1:
                     st.warning("Vous ne pouvez pas choisir deux fois la même feature")
             else:
                 # Chargement des données - On enlève les valeurs manquantes
-                df_sans_NaN = pd.concat([st.session_state.data[st.session_state.choix_abscisse_reg].reset_index(drop=True),
-                                         st.session_state.data[st.session_state.choix_ordonnee_reg].reset_index(drop=True)],
+                df_sans_NaN = pd.concat([st.session_state.data[[st.session_state.choix_features_reg]].reset_index(drop=True),
+                                         st.session_state.data[st.session_state.choix_target_reg].reset_index(drop=True)],
                                         axis=1).dropna()
                 if len(df_sans_NaN) == 0:
                     with exp2:
@@ -765,7 +765,7 @@ elif choix_page == "Machine Learning":
 
                     try :
                         # Data
-                        X_train, X_test, y_train, y_test = train_test_split(st.session_state.data[st.session_state.choix_abscisse_reg].values.reshape(-1, 1), st.session_state.data[st.session_state.choix_ordonnee_reg], test_size=0.4, random_state=4)
+                        X_train, X_test, y_train, y_test = train_test_split(st.session_state.data[st.session_state.choix_features_reg].values.reshape(-1, 1), st.session_state.data[st.session_state.choix_target_reg], test_size=0.4, random_state=4)
                         # ###############################################################################
                         with box1_title:
                             st.write("##")
@@ -1151,8 +1151,8 @@ elif choix_page == "Machine Learning":
                             st.markdown('<p class="section">Comparaison des régressions</p>', unsafe_allow_html=True)
                             st.write("##")
                             fig = go.Figure()
-                            fig.add_scatter(x=df_sans_NaN[st.session_state.choix_abscisse_reg],
-                                            y=df_sans_NaN[st.session_state.choix_ordonnee_reg],
+                            fig.add_scatter(x=df_sans_NaN[st.session_state.choix_features_reg],
+                                            y=df_sans_NaN[st.session_state.choix_target_reg],
                                             mode='markers', name='Data', showlegend=False)
                             #x_range = np.linspace(x_plot_line_reg.min(), x_plot_line_reg.max(), len(df_sans_NaN[st.session_state.ordonnee_plot]))
                             #y_range = y_plot_line_reg
