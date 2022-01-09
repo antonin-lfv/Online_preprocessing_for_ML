@@ -92,6 +92,7 @@ st.markdown("""
 st.sidebar.image("logo/NAP_logo.png", use_column_width=True)
 st.sidebar.write("##")
 
+
 ###### Load data #######
 def load_data():
     try:
@@ -107,6 +108,7 @@ def load_data():
                 st.session_state.data = pd.read_excel(uploaded_file)
     except:
         pass
+
 
 ##################################
 ####### Code streamlit app #######
@@ -175,7 +177,8 @@ elif choix_page == 'Dataset':
     col1, b, col2 = st.columns((2.7, 0.2, 1))
     with col1_1:
         dataset_choix = st.selectbox("Dataset",
-                                     ["-- Choisissez une option --", "Iris (Classification)", "Penguins (Classification)",
+                                     ["-- Choisissez une option --", "Iris (Classification)",
+                                      "Penguins (Classification)",
                                       "Choisir un dataset personnel"], )
         message_ = st.empty()
 
@@ -735,18 +738,16 @@ elif choix_page == "Machine Learning":
             _, box6_title, _ = st.columns((0.1, 1, 0.1))
             _, box6_eval1, box6_eval2, box6_eval3, box6_eval4, _ = st.columns((0.3, 0.5, 0.5, 0.5, 0.5, 0.1))
             _, box6, _ = st.columns((0.1, 1, 0.1))
-            _, all_reg, _ = st.columns((0.1, 1, 0.1))
             with exp2:
                 st.write("##")
                 st.markdown('<p class="section">Selection de 2 features pour la régression</p>', unsafe_allow_html=True)
             with col1_abscisse_reg:
-                st.session_state.choix_features_reg = st.selectbox("Features",
-                                                                   col_numeric(st.session_state.data),
-
-                                                                   )
+                st.session_state.choix_features_reg = st.multiselect("Features",
+                                                                     col_numeric(st.session_state.data),
+                                                                     )
             with col1_ordonnee_reg:
                 st.session_state.choix_target_reg = st.selectbox("Target",
-                                                                   col_numeric(st.session_state.data)[::-1],
+                                                                 col_numeric(st.session_state.data)[::-1],
                                                                  )
                 st.write("##")
             if st.session_state.choix_features_reg == st.session_state.choix_target_reg:
@@ -754,18 +755,22 @@ elif choix_page == "Machine Learning":
                     st.warning("Vous ne pouvez pas choisir deux fois la même feature")
             else:
                 # Chargement des données - On enlève les valeurs manquantes
-                df_sans_NaN = pd.concat([st.session_state.data[[st.session_state.choix_features_reg]].reset_index(drop=True),
-                                         st.session_state.data[st.session_state.choix_target_reg].reset_index(drop=True)],
-                                        axis=1).dropna()
+                df_sans_NaN = pd.concat(
+                    [st.session_state.data[[st.session_state.choix_features_reg]].reset_index(drop=True),
+                     st.session_state.data[st.session_state.choix_target_reg].reset_index(drop=True)],
+                    axis=1).dropna()
+                df_sans_NaN
                 if len(df_sans_NaN) == 0:
                     with exp2:
                         st.warning('Le dataset composé des 2 colonnes selectionnées après dropna() est vide !')
 
                 else:  # Le dataset est viable
 
-                    try :
+                    try:
                         # Data
-                        X_train, X_test, y_train, y_test = train_test_split(st.session_state.data[st.session_state.choix_features_reg].values.reshape(-1, 1), st.session_state.data[st.session_state.choix_target_reg], test_size=0.4, random_state=4)
+                        X_train, X_test, y_train, y_test = train_test_split(
+                            st.session_state.data[st.session_state.choix_features_reg].values.reshape(-1, 1),
+                            st.session_state.data[st.session_state.choix_target_reg], test_size=0.4, random_state=4)
                         # ###############################################################################
                         with box1_title:
                             st.write("##")
@@ -805,7 +810,8 @@ elif choix_page == "Machine Learning":
                             st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
                                       delta=round(r2_reg_test - r2_reg_train, 3))
                         # Learning curves
-                        N, train_score, val_score = learning_curve(model, X_train, y_train, train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
+                        N, train_score, val_score = learning_curve(model, X_train, y_train,
+                                                                   train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
                         fig = go.Figure()
                         fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
                         fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
@@ -819,7 +825,7 @@ elif choix_page == "Machine Learning":
                             margin=dict(l=40, r=40, b=40, t=40),
                             paper_bgcolor='rgba(0,0,0,0)',
                             plot_bgcolor='rgba(0,0,0,0)',
-                            title={'text' : "<b>Learning curves</b>",
+                            title={'text': "<b>Learning curves</b>",
                                    'y': 0.9,
                                    'x': 0.5,
                                    'xanchor': 'center',
@@ -831,7 +837,6 @@ elif choix_page == "Machine Learning":
                             st.plotly_chart(fig)
                             st.write('---')
                             st.write("##")
-
 
                         # ###############################################################################
                         with box2_title:
@@ -869,7 +874,8 @@ elif choix_page == "Machine Learning":
                             st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
                                       delta=round(r2_reg_test - r2_reg_train, 3))
                         # Learning curves
-                        N, train_score, val_score = learning_curve(model2, X_train, y_train, train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
+                        N, train_score, val_score = learning_curve(model2, X_train, y_train,
+                                                                   train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
                         fig = go.Figure()
                         fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
                         fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
@@ -883,7 +889,7 @@ elif choix_page == "Machine Learning":
                             margin=dict(l=40, r=40, b=40, t=40),
                             paper_bgcolor='rgba(0,0,0,0)',
                             plot_bgcolor='rgba(0,0,0,0)',
-                            title={'text' : "<b>Learning curves</b>",
+                            title={'text': "<b>Learning curves</b>",
                                    'y': 0.9,
                                    'x': 0.5,
                                    'xanchor': 'center',
@@ -895,7 +901,6 @@ elif choix_page == "Machine Learning":
                             st.plotly_chart(fig)
                             st.write('---')
                             st.write("##")
-
 
                         # ###############################################################################
                         with box3_title:
@@ -1145,28 +1150,6 @@ elif choix_page == "Machine Learning":
                             st.write('---')
                             st.write("##")
 
-                        # Superposition des régressions
-                        with all_reg:
-                            st.write("##")
-                            st.markdown('<p class="section">Comparaison des régressions</p>', unsafe_allow_html=True)
-                            st.write("##")
-                            fig = go.Figure()
-                            fig.add_scatter(x=df_sans_NaN[st.session_state.choix_features_reg],
-                                            y=df_sans_NaN[st.session_state.choix_target_reg],
-                                            mode='markers', name='Data', showlegend=False)
-                            #x_range = np.linspace(x_plot_line_reg.min(), x_plot_line_reg.max(), len(df_sans_NaN[st.session_state.ordonnee_plot]))
-                            #y_range = y_plot_line_reg
-                            #fig.add_scatter(x=x_range, y=y_range, marker=dict(color='red'), name='regression linéaire', mode='markers')
-                            fig.update_layout(
-                                template='simple_white',
-                                font=dict(size=10),
-                                autosize=False,
-                                width=900, height=450,
-                                margin=dict(l=40, r=40, b=40, t=40),
-                                paper_bgcolor='rgba(0,0,0,0)',
-                                plot_bgcolor='rgba(0,0,0,0)'
-                            )
-                            st.plotly_chart(fig)
                     except:
                         with box2_title:
                             st.info("Impossible d'effectuer les régressions avec ces données")
