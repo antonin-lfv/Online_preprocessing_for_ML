@@ -175,7 +175,7 @@ elif choix_page == 'Dataset':
     col1, b, col2 = st.columns((2.7, 0.2, 1))
     with col1_1:
         dataset_choix = st.selectbox("Dataset",
-                                     ["-- Choisissez une option --", "Iris", "Penguins",
+                                     ["-- Choisissez une option --", "Iris (Classification)", "Penguins (Classification)",
                                       "Choisir un dataset personnel"], )
         message_ = st.empty()
 
@@ -229,7 +229,7 @@ elif choix_page == 'Dataset':
                     st.session_state.choix_dataset = ""
                     st.session_state.clear()
 
-    if dataset_choix == "Iris":
+    if dataset_choix == "Iris (Classification)":
         st.session_state.data = pd.read_csv('Datasets/iris.csv')
         st.session_state.choix_dataset = "Le fichier chargé est le dataset des iris"
         with col1_1:
@@ -252,7 +252,7 @@ elif choix_page == 'Dataset':
                         st.session_state.data.shape[0] * st.session_state.data.shape[1]), 2),
                      ' % (', sum(pd.DataFrame(st.session_state.data).isnull().sum(axis=1).tolist()), ')')
 
-    if dataset_choix == "Penguins":
+    if dataset_choix == "Penguins (Classification)":
         st.session_state.data = pd.read_csv('Datasets/penguins.csv')
         st.session_state.choix_dataset = "Le fichier chargé est le dataset des penguins"
         with col1_1:
