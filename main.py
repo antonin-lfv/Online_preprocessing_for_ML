@@ -756,7 +756,7 @@ elif choix_page == "Machine Learning":
             else:
                 # Chargement des données - On enlève les valeurs manquantes
                 df_sans_NaN = pd.concat(
-                    [st.session_state.data[[st.session_state.choix_features_reg]].reset_index(drop=True),
+                    [st.session_state.data[st.session_state.choix_features_reg].reset_index(drop=True),
                      st.session_state.data[st.session_state.choix_target_reg].reset_index(drop=True)],
                     axis=1).dropna()
                 if len(df_sans_NaN) == 0:
