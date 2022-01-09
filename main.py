@@ -759,13 +759,12 @@ elif choix_page == "Machine Learning":
                     [st.session_state.data[[st.session_state.choix_features_reg]].reset_index(drop=True),
                      st.session_state.data[st.session_state.choix_target_reg].reset_index(drop=True)],
                     axis=1).dropna()
-                df_sans_NaN
                 if len(df_sans_NaN) == 0:
                     with exp2:
                         st.warning('Le dataset composé des 2 colonnes selectionnées après dropna() est vide !')
 
                 else:  # Le dataset est viable
-
+                    df_sans_NaN
                     try:
                         # Data
                         X_train, X_test, y_train, y_test = train_test_split(
