@@ -764,7 +764,7 @@ elif choix_page == "Machine Learning":
                     with exp2:
                         st.warning('Le dataset composé des 2 colonnes selectionnées après dropna() est vide !')
 
-                elif len(st.session_state.choix_features_reg) > 1:  # Le dataset est viable
+                elif len(st.session_state.choix_features_reg) > 0:  # Le dataset est viable
                     df_sans_NaN
                     try:
                         # Data

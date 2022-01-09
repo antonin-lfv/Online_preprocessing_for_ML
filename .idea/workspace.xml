@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Regressions">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -150,14 +149,7 @@
       <workItem from="1641565431732" duration="1067000" />
       <workItem from="1641571237997" duration="367000" />
       <workItem from="1641656321547" duration="1168000" />
-      <workItem from="1641739977294" duration="798000" />
-    </task>
-    <task id="LOCAL-00457" summary="structure + theme">
-      <created>1636656957957</created>
-      <option name="number" value="00457" />
-      <option name="presentableId" value="LOCAL-00457" />
-      <option name="project" value="LOCAL" />
-      <updated>1636656957957</updated>
+      <workItem from="1641739977294" duration="838000" />
     </task>
     <task id="LOCAL-00458" summary="structure + theme">
       <created>1636657016671</created>
@@ -495,7 +487,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641740674390</updated>
     </task>
-    <option name="localTasksCounter" value="506" />
+    <task id="LOCAL-00506" summary="Regressions">
+      <created>1641740793934</created>
+      <option name="number" value="00506" />
+      <option name="presentableId" value="LOCAL-00506" />
+      <option name="project" value="LOCAL" />
+      <updated>1641740793934</updated>
+    </task>
+    <option name="localTasksCounter" value="507" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
