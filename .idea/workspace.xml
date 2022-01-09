@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Regressions">
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Regressions" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -149,14 +147,7 @@
       <workItem from="1641565431732" duration="1067000" />
       <workItem from="1641571237997" duration="367000" />
       <workItem from="1641656321547" duration="1168000" />
-      <workItem from="1641739977294" duration="1213000" />
-    </task>
-    <task id="LOCAL-00459" summary="structure + theme">
-      <created>1636657495195</created>
-      <option name="number" value="00459" />
-      <option name="presentableId" value="LOCAL-00459" />
-      <option name="project" value="LOCAL" />
-      <updated>1636657495195</updated>
+      <workItem from="1641739977294" duration="1293000" />
     </task>
     <task id="LOCAL-00460" summary="structure + theme">
       <created>1636658272377</created>
@@ -494,7 +485,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641740834063</updated>
     </task>
-    <option name="localTasksCounter" value="508" />
+    <task id="LOCAL-00508" summary="Regressions">
+      <created>1641741209296</created>
+      <option name="number" value="00508" />
+      <option name="presentableId" value="LOCAL-00508" />
+      <option name="project" value="LOCAL" />
+      <updated>1641741209296</updated>
+    </task>
+    <option name="localTasksCounter" value="509" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
