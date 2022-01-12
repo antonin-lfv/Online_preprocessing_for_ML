@@ -29,7 +29,7 @@ from utils import *
 import more_itertools
 
 ####### html/css config ########
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", page_icon="https://user-images.githubusercontent.com/63207451/149142088-7f855d2f-1ffc-48c9-9067-3279e57778b3.png", page_title="No code AI")
 st.markdown("""
 <style>
 .first_titre {
