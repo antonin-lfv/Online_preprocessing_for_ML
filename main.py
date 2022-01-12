@@ -29,7 +29,9 @@ from utils import *
 import more_itertools
 
 ####### html/css config ########
-st.set_page_config(layout="wide", page_icon="🚀", page_title="No code AI")
+st.set_page_config(layout="wide", page_icon="🚀", page_title="No code AI",    menu_items={
+         'About': "No-code AI Platform - réalisé par Antonin"
+     })
 st.markdown("""
 <style>
 .first_titre {
