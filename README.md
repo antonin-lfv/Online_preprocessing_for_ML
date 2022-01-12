@@ -22,23 +22,6 @@
 
 > Pour accéder au site, cliquez sur le bouton **"Open in streamlit"** en haut du ReadMe
 
-<br>
-
-# Overview des pages
-
-- [Accueil](#Accueil)
-- [Dataset](#Dataset)
-- [Analyse des colonnes](#Analyse-des-colonnes)
-- [Matrice de corrélation](#Matrice-de-corrélation)
-- [Section graphiques](#Section-graphiques)
-- [Machine Learning](#Machine-Learning)
-  - [k-nearest neighbors](#k-nearest-neighbors)
-  - [k-Means](#K-Means)
-  - [Support Vector Machine](#Support-Vector-Machine)
-  - [PCA](#PCA)
-  - [UMAP](#UMAP)
-
-
 <br/>
 
 
