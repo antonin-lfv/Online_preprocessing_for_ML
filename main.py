@@ -166,7 +166,8 @@ if choix_page == "Accueil":
     c1, _, _, _, _, _ = st.columns(6)
     with c1:
         st.subheader("Liens")
-        st.write("• [Mon profil GitHub](https://github.com/antonin-lfv/Online_preprocessing_for_ML/blob/master/README.md)")
+        st.write(
+            "• [Mon profil GitHub](https://github.com/antonin-lfv/Online_preprocessing_for_ML/blob/master/README.md)")
         st.write("• [Mon site](https://antonin-lfv.github.io)")
 ############# Page 1 #############
 
@@ -179,7 +180,7 @@ elif choix_page == 'Dataset':
     with col1_1:
         dataset_choix = st.selectbox("Dataset",
                                      ["-- Choisissez une option --", "Iris (Classification)",
-                                      "Penguins (Classification)",
+                                      "Penguins (Classification)", "Prix des voitures (Régression)",
                                       "Choisir un dataset personnel"], )
         message_ = st.empty()
 
@@ -233,54 +234,34 @@ elif choix_page == 'Dataset':
                     st.session_state.choix_dataset = ""
                     st.session_state.clear()
 
-    if dataset_choix == "Iris (Classification)":
-        st.session_state.data = pd.read_csv('Datasets/iris.csv')
-        st.session_state.choix_dataset = "Le fichier chargé est le dataset des iris"
-        with col1_1:
-            message_.success(st.session_state.choix_dataset)
+    noms_fichiers = ["Iris (Classification)", "Penguins (Classification)", "Prix des voitures (Régression)"]
+    path_fichiers = ['Datasets/iris.csv', 'Datasets/penguins.csv', 'Datasets/CarPrice.csv']
 
-        with col1:
-            st.write("##")
-            st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
-            st.write(st.session_state.data.head(50))
-            st.write("##")
+    for i, j in zip(noms_fichiers, path_fichiers):
+        if dataset_choix == i:
+            st.session_state.data = pd.read_csv(j)
+            st.session_state.choix_dataset = "Le fichier chargé est le dataset "+i
+            with col1_1:
+                message_.success(st.session_state.choix_dataset)
 
-        with col2:
-            st.write("##")
-            st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
-            st.write(' - Taille:', st.session_state.data.shape)
-            st.write(' - Nombre de valeurs:', st.session_state.data.shape[0] * st.session_state.data.shape[1])
-            st.write(' - Type des colonnes:', st.session_state.data.dtypes.value_counts())
-            st.write(' - Pourcentage de valeurs manquantes:', round(
-                sum(pd.DataFrame(st.session_state.data).isnull().sum(axis=1).tolist()) * 100 / (
-                        st.session_state.data.shape[0] * st.session_state.data.shape[1]), 2),
-                     ' % (', sum(pd.DataFrame(st.session_state.data).isnull().sum(axis=1).tolist()), ')')
+            with col1:
+                st.write("##")
+                st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
+                st.write(st.session_state.data.head(50))
+                st.write("##")
 
-    if dataset_choix == "Penguins (Classification)":
-        st.session_state.data = pd.read_csv('Datasets/penguins.csv')
-        st.session_state.choix_dataset = "Le fichier chargé est le dataset des penguins"
-        with col1_1:
-            message_.success(st.session_state.choix_dataset)
+            with col2:
+                st.write("##")
+                st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
+                st.write(' - Taille:', st.session_state.data.shape)
+                st.write(' - Nombre de valeurs:', st.session_state.data.shape[0] * st.session_state.data.shape[1])
+                st.write(' - Type des colonnes:', st.session_state.data.dtypes.value_counts())
+                st.write(' - Pourcentage de valeurs manquantes:', round(
+                    sum(pd.DataFrame(st.session_state.data).isnull().sum(axis=1).tolist()) * 100 / (
+                            st.session_state.data.shape[0] * st.session_state.data.shape[1]), 2),
+                         ' % (', sum(pd.DataFrame(st.session_state.data).isnull().sum(axis=1).tolist()), ')')
 
-        with col1:
-            st.write("##")
-            st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
-            st.write(st.session_state.data.head(50))
-            st.write("##")
-
-        with col2:
-            st.write("##")
-            st.markdown('<p class="section">Caractéristiques</p>', unsafe_allow_html=True)
-            st.write(' - Taille:', st.session_state.data.shape)
-            st.write(' - Nombre de valeurs:', st.session_state.data.shape[0] * st.session_state.data.shape[1])
-            st.write(' - Type des colonnes:', st.session_state.data.dtypes.value_counts())
-            st.write(' - Pourcentage de valeurs manquantes:', round(
-                sum(pd.DataFrame(st.session_state.data).isnull().sum(axis=1).tolist()) * 100 / (
-                        st.session_state.data.shape[0] * st.session_state.data.shape[1]), 2),
-                     ' % (', sum(pd.DataFrame(st.session_state.data).isnull().sum(axis=1).tolist()), ')')
-
-
-    elif dataset_choix == "Choisir un dataset personnel":
+    if dataset_choix == "Choisir un dataset personnel":
 
         with col1_1:
             uploaded_file = st.file_uploader("", type=['csv', 'xls'])
@@ -493,7 +474,8 @@ elif choix_page == "Matrice de corrélations":
                 fig.update_traces(diagonal_visible=False)
                 fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
                 st.plotly_chart(fig)
-        elif st.session_state.select_columns_corr == ["Toutes les colonnes"] and st.session_state.couleur_corr != "-- Selectionner une colonne --":
+        elif st.session_state.select_columns_corr == [
+            "Toutes les colonnes"] and st.session_state.couleur_corr != "-- Selectionner une colonne --":
             df_sans_NaN = st.session_state.data.dropna()
             if len(df_sans_NaN) == 0:
                 st.write("##")
@@ -795,13 +777,13 @@ elif choix_page == "Régressions":
                     # Affichage métriques
                     with box1_eval1:
                         st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
-                                  delta=round(MSE_reg_test - MSE_reg_train, 3))
+                                  delta=round(MSE_reg_test - MSE_reg_train, 3), delta_color="inverse")
                     with box1_eval2:
                         st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
-                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3))
+                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3), delta_color="inverse")
                     with box1_eval3:
                         st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
-                                  delta=round(MAE_reg_test - MAE_reg_train, 3))
+                                  delta=round(MAE_reg_test - MAE_reg_train, 3), delta_color="inverse")
                     with box1_eval4:
                         st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
                                   delta=round(r2_reg_test - r2_reg_train, 3))
@@ -859,13 +841,13 @@ elif choix_page == "Régressions":
                     # Affichage métriques
                     with box2_eval1:
                         st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
-                                  delta=round(MSE_reg_test - MSE_reg_train, 3))
+                                  delta=round(MSE_reg_test - MSE_reg_train, 3), delta_color="inverse")
                     with box2_eval2:
                         st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
-                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3))
+                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3), delta_color="inverse")
                     with box2_eval3:
                         st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
-                                  delta=round(MAE_reg_test - MAE_reg_train, 3))
+                                  delta=round(MAE_reg_test - MAE_reg_train, 3), delta_color="inverse")
                     with box2_eval4:
                         st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
                                   delta=round(r2_reg_test - r2_reg_train, 3))
@@ -921,13 +903,13 @@ elif choix_page == "Régressions":
                     # Affichage métriques
                     with box3_eval1:
                         st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
-                                  delta=round(MSE_reg_test - MSE_reg_train, 3))
+                                  delta=round(MSE_reg_test - MSE_reg_train, 3), delta_color="inverse")
                     with box3_eval2:
                         st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
-                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3))
+                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3), delta_color="inverse")
                     with box3_eval3:
                         st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
-                                  delta=round(MAE_reg_test - MAE_reg_train, 3))
+                                  delta=round(MAE_reg_test - MAE_reg_train, 3), delta_color="inverse")
                     with box3_eval4:
                         st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
                                   delta=round(r2_reg_test - r2_reg_train, 3))
@@ -983,13 +965,13 @@ elif choix_page == "Régressions":
                     # Affichage métriques
                     with box4_eval1:
                         st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
-                                  delta=round(MSE_reg_test - MSE_reg_train, 3))
+                                  delta=round(MSE_reg_test - MSE_reg_train, 3), delta_color="inverse")
                     with box4_eval2:
                         st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
-                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3))
+                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3), delta_color="inverse")
                     with box4_eval3:
                         st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
-                                  delta=round(MAE_reg_test - MAE_reg_train, 3))
+                                  delta=round(MAE_reg_test - MAE_reg_train, 3), delta_color="inverse")
                     with box4_eval4:
                         st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
                                   delta=round(r2_reg_test - r2_reg_train, 3))
@@ -1045,13 +1027,13 @@ elif choix_page == "Régressions":
                     # Affichage métriques
                     with box5_eval1:
                         st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
-                                  delta=round(MSE_reg_test - MSE_reg_train, 3))
+                                  delta=round(MSE_reg_test - MSE_reg_train, 3), delta_color="inverse")
                     with box5_eval2:
                         st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
-                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3))
+                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3), delta_color="inverse")
                     with box5_eval3:
                         st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
-                                  delta=round(MAE_reg_test - MAE_reg_train, 3))
+                                  delta=round(MAE_reg_test - MAE_reg_train, 3), delta_color="inverse")
                     with box5_eval4:
                         st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
                                   delta=round(r2_reg_test - r2_reg_train, 3))
@@ -1107,16 +1089,16 @@ elif choix_page == "Régressions":
                     # Affichage métriques
                     with box6_eval1:
                         st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
-                                  delta=round(MSE_reg_test - MSE_reg_train, 3))
+                                  delta=round(MSE_reg_test - MSE_reg_train, 3), delta_color="inverse")
                     with box6_eval2:
                         st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
-                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3))
+                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3), delta_color="inverse")
                     with box6_eval3:
                         st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
-                                  delta=round(MAE_reg_test - MAE_reg_train, 3))
+                                  delta=round(MAE_reg_test - MAE_reg_train, 3), delta_color="inverse")
                     with box6_eval4:
                         st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
-                                  delta=round(r2_reg_test - r2_reg_train, 3))
+                                  delta=round(r2_reg_test - r2_reg_train, 3), delta_color="inverse")
                     # Learning curves
                     N, train_score, val_score = learning_curve(model, X_train, y_train,
                                                                train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
@@ -1224,184 +1206,189 @@ elif choix_page == "Classification":
                                                                ["Selectionner une target"] + col_numeric(df_ml),
                                                                )
                     if st.session_state.target != "Selectionner une target":
-                        ## KNN
-                        st.write("##")
-                        y_knn = df_ml[st.session_state.target]  # target
-                        X_knn = df_ml.drop(st.session_state.target, axis=1)  # features
-                        X_train, X_test, y_train, y_test = train_test_split(X_knn, y_knn,
-                                                                            test_size=0.4,
-                                                                            random_state=4)
-                        # Gridsearchcv
-                        params = {'n_neighbors': np.arange(1, 20)}
-                        grid = GridSearchCV(KNeighborsClassifier(), param_grid=params, cv=4)
-                        grid.fit(X_train.values, y_train.values)
-                        best_k = grid.best_params_['n_neighbors']
-                        best_model_knn = grid.best_estimator_
-                        best_model_knn.fit(X_knn.values, y_knn.values)  # on entraine le modèle
-
-                        # Meilleurs hyper params
-                        with col_best_score:
+                        try:
+                            ## KNN
                             st.write("##")
-                            st.write("##")
-                            st.markdown('<p class="section">Sélection des meilleurs hyper-paramètres</p>',
-                                        unsafe_allow_html=True)
-                            st.write("##")
-                            st.success(
-                                f'Après un GridSearchCV on prendra **k = {best_k}** voisins')
-                            st.write("##")
+                            y_knn = df_ml[st.session_state.target]  # target
+                            X_knn = df_ml.drop(st.session_state.target, axis=1)  # features
+                            X_train, X_test, y_train, y_test = train_test_split(X_knn, y_knn,
+                                                                                test_size=0.4,
+                                                                                random_state=4)
+                            # Gridsearchcv
+                            params = {'n_neighbors': np.arange(1, 20)}
+                            grid = GridSearchCV(KNeighborsClassifier(), param_grid=params, cv=4)
+                            grid.fit(X_train.values, y_train.values)
+                            best_k = grid.best_params_['n_neighbors']
+                            best_model_knn = grid.best_estimator_
+                            best_model_knn.fit(X_knn.values, y_knn.values)  # on entraine le modèle
 
-                        # Évaluation du modèle
-                        y_pred_test = best_model_knn.predict(X_test.values)
-                        y_pred_train = best_model_knn.predict(X_train.values)
-                        if len(y_knn.unique()) > 2:
-                            with col_titre_eval_model:
-                                st.write("##")
-                                st.markdown(
-                                    '<p class="section">Évaluation par rapport au train set</p>',
-                                    unsafe_allow_html=True)
-                                st.write("##")
-                                # average='micro' car nos label contiennent plus de 2 classes
-                                # Test set
-                                precis_test = precision_score(y_test, y_pred_test, average='micro')
-                                rappel_test = recall_score(y_test, y_pred_test, average='micro')
-                                F1_test = f1_score(y_test, y_pred_test, average='micro')
-                                accur_test = accuracy_score(y_test, y_pred_test)
-                                # Train set
-                                precis_train = precision_score(y_train, y_pred_train, average='micro')
-                                rappel_train = recall_score(y_train, y_pred_train, average='micro')
-                                F1_train = f1_score(y_train, y_pred_train, average='micro')
-                                accur_train = accuracy_score(y_train, y_pred_train)
-                                with col1_eval_modele:
-                                    st.metric(label="Precision", value=round(precis_test, 3),
-                                              delta=round(precis_test - precis_train, 3))
-                                with col2_eval_modele:
-                                    st.metric(label="Recall", value=round(rappel_test, 3),
-                                              delta=round(rappel_test - rappel_train, 3))
-                                with col3_eval_modele:
-                                    st.metric(label="F1 score", value=round(F1_test, 3),
-                                              delta=round(F1_test - F1_train, 3))
-                                with col4_eval_modele:
-                                    st.metric(label="Accuracy", value=round(accur_test, 3),
-                                              delta=round(accur_test - accur_train, 3))
-
-                        else:
-                            with col_titre_eval_model:
-                                st.write("##")
-                                st.markdown(
-                                    '<p class="section">Évaluation par rapport au train set</p>',
-                                    unsafe_allow_html=True)
-                                st.write("##")
-                                # label binaire
-                                # Test set
-                                precis_test = precision_score(y_test, y_pred_test)
-                                rappel_test = recall_score(y_test, y_pred_test)
-                                F1_test = f1_score(y_test, y_pred_test)
-                                accur_test = accuracy_score(y_test, y_pred_test)
-                                # Train set
-                                precis_train = precision_score(y_train, y_pred_train)
-                                rappel_train = recall_score(y_train, y_pred_train)
-                                F1_train = f1_score(y_train, y_pred_train)
-                                accur_train = accuracy_score(y_train, y_pred_train)
-                                with col1_eval_modele:
-                                    st.metric(label="Precision", value=round(precis_test, 3),
-                                              delta=round(precis_test - precis_train, 3))
-                                with col2_eval_modele:
-                                    st.metric(label="Recall", value=round(rappel_test, 3),
-                                              delta=round(rappel_test - rappel_train, 3))
-                                with col3_eval_modele:
-                                    st.metric(label="F1 score", value=round(F1_test, 3),
-                                              delta=round(F1_test - F1_train, 3))
-                                with col4_eval_modele:
-                                    st.metric(label="Accuracy", value=round(accur_test, 3),
-                                              delta=round(accur_test - accur_train, 3))
-
-                            with col1_roc:
+                            # Meilleurs hyper params
+                            with col_best_score:
                                 st.write("##")
                                 st.write("##")
-                                st.markdown(
-                                    '<p class="section">ROC curve</p>',
-                                    unsafe_allow_html=True)
-                                fpr, tpr, thresholds = roc_curve(y_test, y_pred_test)
-                                with col1_AUC_value:
-                                    st.write("##")
-                                    st.info(f'Area Under the Curve (AUC) = {round(auc(fpr, tpr), 4)}')
-                                fig = px.area(
-                                    x=fpr, y=tpr,
-                                    labels=dict(x='False Positive Rate', y='True Positive Rate'),
-                                    width=500, height=500,
-                                )
-                                fig.add_shape(
-                                    type='line', line=dict(dash='dash'),
-                                    x0=0, x1=1, y0=0, y1=1
-                                )
-
-                                fig.update_yaxes(scaleanchor="x", scaleratio=1)
-                                fig.update_xaxes(constrain='domain')
-                                fig.update_layout(
-                                    font=dict(size=10),
-                                    autosize=False,
-                                    paper_bgcolor='rgba(0,0,0,0)',
-                                    plot_bgcolor='rgba(0,0,0,0)',
-                                    width=1050, height=650,
-                                    margin=dict(l=40, r=50, b=40, t=40),
-                                )
-                                st.plotly_chart(fig)
-
-                        # Learning curve
-                        with col_learning_curve:
-                            st.write("##")
-                            st.markdown(
-                                '<p class="section">Learning curves</p>',
-                                unsafe_allow_html=True)
-                            st.write("##")
-                            N, train_score, val_score = learning_curve(best_model_knn, X_train, y_train,
-                                                                       train_sizes=np.linspace(0.2,
-                                                                                               1.0,
-                                                                                               10),
-                                                                       cv=3, random_state=4)
-                            fig = go.Figure()
-                            fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train',
-                                            marker=dict(color='deepskyblue'))
-                            fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
-                            fig.update_layout(
-                                showlegend=True,
-                                template='simple_white',
-                                font=dict(size=10),
-                                autosize=False,
-                                width=1250, height=650,
-                                margin=dict(l=40, r=50, b=40, t=40),
-                                paper_bgcolor='rgba(0,0,0,0)',
-                                plot_bgcolor='rgba(0,0,0,0)',
-                            )
-                            st.plotly_chart(fig)
-                            st.caption(
-                                "Il est possible que votre dataset soit trop petit pour effectuer la cross-validation dans de bonnes conditions")
-
-                        # Faire une prédiction
-                        with col_data_to_predict:
-                            st.write("##")
-                            st.write("##")
-                            st.markdown('---')
-                            st.write("##")
-                            st.markdown(
-                                '<p class="section">Prédiction à l\'aide du modèle</p>',
-                                unsafe_allow_html=True)
-                            st.write("##")
-                            st.write("##")
-                            features = []
-                            st.markdown('<p class="section">Entrez vos données</p>', unsafe_allow_html=True)
-                            st.write("##")
-                            for col in X_test.columns.tolist():
-                                col = st.text_input(col)
-                                features.append(col)
-                        if "" not in features:
-                            prediction_knn = best_model_knn.predict(np.array(features, dtype=float).reshape(1, -1))
-                            with sub_col_prediction_knn:
+                                st.markdown('<p class="section">Sélection des meilleurs hyper-paramètres</p>',
+                                            unsafe_allow_html=True)
                                 st.write("##")
                                 st.success(
-                                    f'Prédiction de la target {st.session_state.target} avec les données entrées : **{str(df_origine[st.session_state.target].unique()[int(prediction_knn[0])])}**')
+                                    f'Après un GridSearchCV on prendra **k = {best_k}** voisins')
                                 st.write("##")
 
+                            # Évaluation du modèle
+                            y_pred_test = best_model_knn.predict(X_test.values)
+                            y_pred_train = best_model_knn.predict(X_train.values)
+                            if len(y_knn.unique()) > 2:
+                                with col_titre_eval_model:
+                                    st.write("##")
+                                    st.markdown(
+                                        '<p class="section">Évaluation par rapport au train set</p>',
+                                        unsafe_allow_html=True)
+                                    st.write("##")
+                                    # average='micro' car nos label contiennent plus de 2 classes
+                                    # Test set
+                                    precis_test = precision_score(y_test, y_pred_test, average='micro')
+                                    rappel_test = recall_score(y_test, y_pred_test, average='micro')
+                                    F1_test = f1_score(y_test, y_pred_test, average='micro')
+                                    accur_test = accuracy_score(y_test, y_pred_test)
+                                    # Train set
+                                    precis_train = precision_score(y_train, y_pred_train, average='micro')
+                                    rappel_train = recall_score(y_train, y_pred_train, average='micro')
+                                    F1_train = f1_score(y_train, y_pred_train, average='micro')
+                                    accur_train = accuracy_score(y_train, y_pred_train)
+                                    with col1_eval_modele:
+                                        st.metric(label="Precision", value=round(precis_test, 3),
+                                                  delta=round(precis_test - precis_train, 3))
+                                    with col2_eval_modele:
+                                        st.metric(label="Recall", value=round(rappel_test, 3),
+                                                  delta=round(rappel_test - rappel_train, 3))
+                                    with col3_eval_modele:
+                                        st.metric(label="F1 score", value=round(F1_test, 3),
+                                                  delta=round(F1_test - F1_train, 3))
+                                    with col4_eval_modele:
+                                        st.metric(label="Accuracy", value=round(accur_test, 3),
+                                                  delta=round(accur_test - accur_train, 3))
+
+                            else:
+                                with col_titre_eval_model:
+                                    st.write("##")
+                                    st.markdown(
+                                        '<p class="section">Évaluation par rapport au train set</p>',
+                                        unsafe_allow_html=True)
+                                    st.write("##")
+                                    # label binaire
+                                    # Test set
+                                    precis_test = precision_score(y_test, y_pred_test)
+                                    rappel_test = recall_score(y_test, y_pred_test)
+                                    F1_test = f1_score(y_test, y_pred_test)
+                                    accur_test = accuracy_score(y_test, y_pred_test)
+                                    # Train set
+                                    precis_train = precision_score(y_train, y_pred_train)
+                                    rappel_train = recall_score(y_train, y_pred_train)
+                                    F1_train = f1_score(y_train, y_pred_train)
+                                    accur_train = accuracy_score(y_train, y_pred_train)
+                                    with col1_eval_modele:
+                                        st.metric(label="Precision", value=round(precis_test, 3),
+                                                  delta=round(precis_test - precis_train, 3))
+                                    with col2_eval_modele:
+                                        st.metric(label="Recall", value=round(rappel_test, 3),
+                                                  delta=round(rappel_test - rappel_train, 3))
+                                    with col3_eval_modele:
+                                        st.metric(label="F1 score", value=round(F1_test, 3),
+                                                  delta=round(F1_test - F1_train, 3))
+                                    with col4_eval_modele:
+                                        st.metric(label="Accuracy", value=round(accur_test, 3),
+                                                  delta=round(accur_test - accur_train, 3))
+
+                                with col1_roc:
+                                    st.write("##")
+                                    st.write("##")
+                                    st.markdown(
+                                        '<p class="section">ROC curve</p>',
+                                        unsafe_allow_html=True)
+                                    fpr, tpr, thresholds = roc_curve(y_test, y_pred_test)
+                                    with col1_AUC_value:
+                                        st.write("##")
+                                        st.info(f'Area Under the Curve (AUC) = {round(auc(fpr, tpr), 4)}')
+                                    fig = px.area(
+                                        x=fpr, y=tpr,
+                                        labels=dict(x='False Positive Rate', y='True Positive Rate'),
+                                        width=500, height=500,
+                                    )
+                                    fig.add_shape(
+                                        type='line', line=dict(dash='dash'),
+                                        x0=0, x1=1, y0=0, y1=1
+                                    )
+
+                                    fig.update_yaxes(scaleanchor="x", scaleratio=1)
+                                    fig.update_xaxes(constrain='domain')
+                                    fig.update_layout(
+                                        font=dict(size=10),
+                                        autosize=False,
+                                        paper_bgcolor='rgba(0,0,0,0)',
+                                        plot_bgcolor='rgba(0,0,0,0)',
+                                        width=1050, height=650,
+                                        margin=dict(l=40, r=50, b=40, t=40),
+                                    )
+                                    st.plotly_chart(fig)
+
+                            # Learning curve
+                            with col_learning_curve:
+                                st.write("##")
+                                st.markdown(
+                                    '<p class="section">Learning curves</p>',
+                                    unsafe_allow_html=True)
+                                st.write("##")
+                                N, train_score, val_score = learning_curve(best_model_knn, X_train, y_train,
+                                                                           train_sizes=np.linspace(0.2,
+                                                                                                   1.0,
+                                                                                                   10),
+                                                                           cv=3, random_state=4)
+                                fig = go.Figure()
+                                fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train',
+                                                marker=dict(color='deepskyblue'))
+                                fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation',
+                                                marker=dict(color='red'))
+                                fig.update_layout(
+                                    showlegend=True,
+                                    template='simple_white',
+                                    font=dict(size=10),
+                                    autosize=False,
+                                    width=1250, height=650,
+                                    margin=dict(l=40, r=50, b=40, t=40),
+                                    paper_bgcolor='rgba(0,0,0,0)',
+                                    plot_bgcolor='rgba(0,0,0,0)',
+                                )
+                                st.plotly_chart(fig)
+                                st.caption(
+                                    "Il est possible que votre dataset soit trop petit pour effectuer la cross-validation dans de bonnes conditions")
+
+                            # Faire une prédiction
+                            with col_data_to_predict:
+                                st.write("##")
+                                st.write("##")
+                                st.markdown('---')
+                                st.write("##")
+                                st.markdown(
+                                    '<p class="section">Prédiction à l\'aide du modèle</p>',
+                                    unsafe_allow_html=True)
+                                st.write("##")
+                                st.write("##")
+                                features = []
+                                st.markdown('<p class="section">Entrez vos données</p>', unsafe_allow_html=True)
+                                st.write("##")
+                                for col in X_test.columns.tolist():
+                                    col = st.text_input(col)
+                                    features.append(col)
+                            if "" not in features:
+                                prediction_knn = best_model_knn.predict(np.array(features, dtype=float).reshape(1, -1))
+                                with sub_col_prediction_knn:
+                                    st.write("##")
+                                    st.success(
+                                        f'Prédiction de la target {st.session_state.target} avec les données entrées : **{str(df_origine[st.session_state.target].unique()[int(prediction_knn[0])])}**')
+                                    st.write("##")
+                        except:
+                            with col_best_score:
+                                st.write("##")
+                                st.warning("Impossible d'utiliser ce modèle avec ces données")
         else:
             with exp2:
                 st.write("##")
@@ -1488,7 +1475,7 @@ elif choix_page == "Classification":
                             st.write("##")
                             st.plotly_chart(fig)
                         except:
-                            with col1:
+                            with col1_features_choice:
                                 st.write("##")
                                 st.error("Erreur de chargement")
         else:
@@ -1731,8 +1718,9 @@ elif choix_page == "Réduction de dimension":
                                 fig.update(layout_coloraxis_showscale=False)
                                 st.plotly_chart(fig)
                         except:
-                            st.write("##")
-                            st.error("Erreur de chargement!")
+                            with col2_pca:
+                                st.write("##")
+                                st.warning("Impossible d'utiliser ce modèle avec ces données")
         else:
             with exp2:
                 st.write("##")
@@ -1818,7 +1806,7 @@ elif choix_page == "Réduction de dimension":
                                 st.plotly_chart(fig)
                             except:
                                 st.write("##")
-                                st.error("Erreur de chargement!")
+                                st.warning("Impossible d'utiliser ce modèle avec ces données")
         else:
             with exp2:
                 st.write("##")
@@ -1903,7 +1891,7 @@ elif choix_page == "Réduction de dimension":
                                 st.plotly_chart(fig)
                             except:
                                 st.write("##")
-                                st.error("Erreur de chargement!")
+                                st.warning("Impossible d'utiliser ce modèle avec ces données")
         else:
             with exp2:
                 st.write("##")
