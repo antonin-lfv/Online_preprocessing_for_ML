@@ -495,7 +495,7 @@ elif choix_page == "Matrice de corrélations":
                 fig.update_traces(diagonal_visible=False)
                 fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
                 st.plotly_chart(fig)
-        elif st.session_state.select_columns_corr == ["Toutes les colonnes"]:
+        elif st.session_state.select_columns_corr == ["Toutes les colonnes"] and st.session_state.couleur_corr != "-- Selectionner une colonne --":
             df_sans_NaN = st.session_state.data.dropna()
             if len(df_sans_NaN) == 0:
                 st.write("##")
