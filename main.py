@@ -527,7 +527,7 @@ elif choix_page == "Matrice de corrélations":
 
 ############# Page 5 #############
 elif choix_page == "Section graphiques":
-    st.markdown('<p class="grand_titre">Graphiques et regressions</p>', unsafe_allow_html=True)
+    st.markdown('<p class="grand_titre">Graphiques</p>', unsafe_allow_html=True)
     st.write("##")
     if 'data' in st.session_state:
         col1, col2, col3, col4 = st.columns(4)  # pour les autres select
@@ -602,7 +602,7 @@ elif choix_page == "Section graphiques":
                     with col4:
                         if st.session_state.type_plot == 'Points' or st.session_state.type_plot == 'Courbe':
                             if st.session_state.abscisse_plot not in st.session_state.col_to_time and st.session_state.ordonnee_plot not in st.session_state.col_to_time:
-                                with st.expander("Regréssion"):
+                                with st.expander("Regréssions rapides"):
                                     st.session_state.trendline = st.checkbox("Regression linéaire")
                                     st.session_state.polynom_feat = st.checkbox("Regression polynomiale")
                                     if st.session_state.polynom_feat:
