@@ -602,7 +602,7 @@ elif choix_page == "Section graphiques":
                     with col4:
                         if st.session_state.type_plot == 'Points' or st.session_state.type_plot == 'Courbe':
                             if st.session_state.abscisse_plot not in st.session_state.col_to_time and st.session_state.ordonnee_plot not in st.session_state.col_to_time:
-                                with st.expander("Regréssions rapides"):
+                                with st.expander("Régressions rapides"):
                                     st.session_state.trendline = st.checkbox("Regression linéaire")
                                     st.session_state.polynom_feat = st.checkbox("Regression polynomiale")
                                     if st.session_state.polynom_feat:
