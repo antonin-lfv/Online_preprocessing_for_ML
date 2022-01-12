@@ -739,7 +739,7 @@ elif choix_page == "Machine Learning":
                 st.write("##")
                 st.markdown('<p class="section">Selection de 2 features pour la régression</p>', unsafe_allow_html=True)
             with col1_abscisse_reg:
-                st.session_state.choix_features_reg = st.selectbox("Features",
+                st.session_state.choix_features_reg = st.selectbox("Feature",
                                                                    col_numeric(st.session_state.data),
 
                                                                    )
