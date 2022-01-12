@@ -29,9 +29,10 @@ from utils import *
 import more_itertools
 
 ####### html/css config ########
-st.set_page_config(layout="wide", page_icon="🚀", page_title="No code AI",    menu_items={
-         'About': "No-code AI Platform - réalisé par Antonin"
-     })
+st.set_page_config(layout="wide", page_icon="🚀", page_title="No code AI", menu_items={
+    'About': "No-code AI Platform - réalisé par Antonin"
+})
+
 st.markdown("""
 <style>
 .first_titre {
@@ -94,6 +95,7 @@ st.markdown("""
 st.sidebar.image("logo/NAP_logo.png", use_column_width=True)
 st.sidebar.write("##")
 
+
 ###### Load data #######
 def load_data():
     try:
@@ -109,6 +111,7 @@ def load_data():
                 st.session_state.data = pd.read_excel(uploaded_file)
     except:
         pass
+
 
 ##################################
 ####### Code streamlit app #######
@@ -177,7 +180,8 @@ elif choix_page == 'Dataset':
     col1, b, col2 = st.columns((2.7, 0.2, 1))
     with col1_1:
         dataset_choix = st.selectbox("Dataset",
-                                     ["-- Choisissez une option --", "Iris (Classification)", "Penguins (Classification)",
+                                     ["-- Choisissez une option --", "Iris (Classification)",
+                                      "Penguins (Classification)",
                                       "Choisir un dataset personnel"], )
         message_ = st.empty()
 
@@ -468,7 +472,7 @@ elif choix_page == "Matrice de corrélations":
                                                               ["Toutes les colonnes"] + col_numeric(df_sans_NaN),
                                                               help="Choisissez vos features"
                                                               )
-        if len(st.session_state.select_columns_corr) > 1 and "Toutes les colonnes" not in st.session_state.select_columns_corr:
+        if len(st.session_state.select_columns_corr) > 1 and "Toutes les colonnes" not in st.session_state.select_columns_corr and st.session_state.couleur_corr != "-- Selectionner une colonne --":
             df_sans_NaN = pd.concat([st.session_state.data[col] for col in st.session_state.select_columns_corr],
                                     axis=1).dropna()
             if len(df_sans_NaN) == 0:
@@ -698,11 +702,11 @@ elif choix_page == "Section graphiques":
 ############# ML section #############
 elif choix_page == "Régressions":
     # Pages
-    #PAGES_ML = ["Regression", "K-nearest neighbors", "K-Means", "Support Vector Machine", "PCA", "UMAP"]
-    #st.sidebar.title('Machine Learning  :brain:')
-    #st.sidebar.radio(label="", options=PAGES_ML, key="choix_page_ml")
+    # PAGES_ML = ["Regression", "K-nearest neighbors", "K-Means", "Support Vector Machine", "PCA", "UMAP"]
+    # st.sidebar.title('Machine Learning  :brain:')
+    # st.sidebar.radio(label="", options=PAGES_ML, key="choix_page_ml")
 
-    #if st.session_state.choix_page_ml == "Regression":
+    # if st.session_state.choix_page_ml == "Regression":
     st.markdown('<p class="grand_titre">Régression</p>', unsafe_allow_html=True)
     st.write("##")
     exp1, exp2, exp3 = st.columns((0.5, 1, 0.5))
@@ -747,7 +751,7 @@ elif choix_page == "Régressions":
                                                                )
         with col1_ordonnee_reg:
             st.session_state.choix_target_reg = st.selectbox("Target",
-                                                               col_numeric(st.session_state.data)[::-1],
+                                                             col_numeric(st.session_state.data)[::-1],
                                                              )
             st.write("##")
         if st.session_state.choix_features_reg == st.session_state.choix_target_reg:
@@ -755,18 +759,21 @@ elif choix_page == "Régressions":
                 st.warning("Vous ne pouvez pas choisir deux fois la même feature")
         else:
             # Chargement des données - On enlève les valeurs manquantes
-            df_sans_NaN = pd.concat([st.session_state.data[[st.session_state.choix_features_reg]].reset_index(drop=True),
-                                     st.session_state.data[st.session_state.choix_target_reg].reset_index(drop=True)],
-                                    axis=1).dropna()
+            df_sans_NaN = pd.concat(
+                [st.session_state.data[[st.session_state.choix_features_reg]].reset_index(drop=True),
+                 st.session_state.data[st.session_state.choix_target_reg].reset_index(drop=True)],
+                axis=1).dropna()
             if len(df_sans_NaN) == 0:
                 with exp2:
                     st.warning('Le dataset composé des 2 colonnes selectionnées après dropna() est vide !')
 
             else:  # Le dataset est viable
 
-                try :
+                try:
                     # Data
-                    X_train, X_test, y_train, y_test = train_test_split(st.session_state.data[st.session_state.choix_features_reg].values.reshape(-1, 1), st.session_state.data[st.session_state.choix_target_reg], test_size=0.4, random_state=4)
+                    X_train, X_test, y_train, y_test = train_test_split(
+                        st.session_state.data[st.session_state.choix_features_reg].values.reshape(-1, 1),
+                        st.session_state.data[st.session_state.choix_target_reg], test_size=0.4, random_state=4)
                     # ###############################################################################
                     with box1_title:
                         st.write("##")
@@ -806,7 +813,8 @@ elif choix_page == "Régressions":
                         st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
                                   delta=round(r2_reg_test - r2_reg_train, 3))
                     # Learning curves
-                    N, train_score, val_score = learning_curve(model, X_train, y_train, train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
+                    N, train_score, val_score = learning_curve(model, X_train, y_train,
+                                                               train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
                     fig = go.Figure()
                     fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
                     fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
@@ -820,7 +828,7 @@ elif choix_page == "Régressions":
                         margin=dict(l=40, r=40, b=40, t=40),
                         paper_bgcolor='rgba(0,0,0,0)',
                         plot_bgcolor='rgba(0,0,0,0)',
-                        title={'text' : "<b>Learning curves</b>",
+                        title={'text': "<b>Learning curves</b>",
                                'y': 0.9,
                                'x': 0.5,
                                'xanchor': 'center',
@@ -832,7 +840,6 @@ elif choix_page == "Régressions":
                         st.plotly_chart(fig)
                         st.write('---')
                         st.write("##")
-
 
                     # ###############################################################################
                     with box2_title:
@@ -870,7 +877,8 @@ elif choix_page == "Régressions":
                         st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
                                   delta=round(r2_reg_test - r2_reg_train, 3))
                     # Learning curves
-                    N, train_score, val_score = learning_curve(model2, X_train, y_train, train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
+                    N, train_score, val_score = learning_curve(model2, X_train, y_train,
+                                                               train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
                     fig = go.Figure()
                     fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
                     fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
@@ -884,7 +892,7 @@ elif choix_page == "Régressions":
                         margin=dict(l=40, r=40, b=40, t=40),
                         paper_bgcolor='rgba(0,0,0,0)',
                         plot_bgcolor='rgba(0,0,0,0)',
-                        title={'text' : "<b>Learning curves</b>",
+                        title={'text': "<b>Learning curves</b>",
                                'y': 0.9,
                                'x': 0.5,
                                'xanchor': 'center',
@@ -896,7 +904,6 @@ elif choix_page == "Régressions":
                         st.plotly_chart(fig)
                         st.write('---')
                         st.write("##")
-
 
                     # ###############################################################################
                     with box3_title:
@@ -1155,7 +1162,7 @@ elif choix_page == "Régressions":
             st.write("##")
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
-    #elif st.session_state.choix_page_ml == "K-nearest neighbors":
+    # elif st.session_state.choix_page_ml == "K-nearest neighbors":
 elif choix_page == "Classification":
     # Ajouter multi page
     PAGES_classification = ["KNN", "K-Means", "SVM"]
@@ -1629,7 +1636,7 @@ elif choix_page == "Ensemble learning":
     st.sidebar.title('Ensemble learning  :brain:')
     st.sidebar.radio(label="", options=PAGES_ensemble_l, key="choix_page_ensemble_l")
 
-    if st.session_state.choix_page_ensemble_l=="XGBoost":
+    if st.session_state.choix_page_ensemble_l == "XGBoost":
         st.info("En cours")
 
 elif choix_page == "Réduction de dimension":
