@@ -1,6 +1,5 @@
 # Importations
 import itertools
-
 import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
@@ -18,6 +17,7 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import r2_score
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.decomposition import PCA
+from sklearn.manifold import TSNE
 from sklearn.model_selection import train_test_split, GridSearchCV, learning_curve
 from sklearn import metrics
 from sklearn.metrics import *
@@ -117,7 +117,6 @@ def load_data():
 ####### Code streamlit app #######
 ##################################
 
-
 # Session
 if "col_to_time" not in st.session_state:
     st.session_state.col_to_time = ""
@@ -167,8 +166,7 @@ if choix_page == "Accueil":
     c1, _, _, _, _, _ = st.columns(6)
     with c1:
         st.subheader("Liens")
-        st.write(
-            "• [Mon profil GitHub](https://github.com/antonin-lfv/Online_preprocessing_for_ML/blob/master/README.md)")
+        st.write("• [Mon profil GitHub](https://github.com/antonin-lfv/Online_preprocessing_for_ML/blob/master/README.md)")
         st.write("• [Mon site](https://antonin-lfv.github.io)")
 ############# Page 1 #############
 
@@ -699,10 +697,10 @@ elif choix_page == "Section graphiques":
         st.info("Veuillez charger vos données dans la section Dataset")
 ############# Page 5 #############
 
-############# ML section #############
+############# régression #############
 elif choix_page == "Régressions":
 
-    st.markdown('<p class="grand_titre">Régression</p>', unsafe_allow_html=True)
+    st.markdown('<p class="grand_titre">Régressions</p>', unsafe_allow_html=True)
     st.write("##")
     exp1, exp2, exp3 = st.columns((0.5, 1, 0.5))
     with exp2:
@@ -720,22 +718,22 @@ elif choix_page == "Régressions":
         _, warning1, _ = st.columns((0.1, 1, 0.1))
         _, box1_title, _ = st.columns((0.1, 1, 0.1))
         _, box1_eval1, box1_eval2, box1_eval3, box1_eval4, _ = st.columns((0.3, 0.5, 0.5, 0.5, 0.5, 0.1))
-        _, box1, _ = st.columns((0.1, 1, 0.1))
+        _, box1, _ = st.columns((0.2, 1, 0.1))
         _, box2_title, _ = st.columns((0.1, 1, 0.1))
         _, box2_eval1, box2_eval2, box2_eval3, box2_eval4, _ = st.columns((0.3, 0.5, 0.5, 0.5, 0.5, 0.1))
-        _, box2, _ = st.columns((0.1, 1, 0.1))
+        _, box2, _ = st.columns((0.2, 1, 0.1))
         _, box3_title, _ = st.columns((0.1, 1, 0.1))
         _, box3_eval1, box3_eval2, box3_eval3, box3_eval4, _ = st.columns((0.3, 0.5, 0.5, 0.5, 0.5, 0.1))
-        _, box3, _ = st.columns((0.1, 1, 0.1))
+        _, box3, _ = st.columns((0.2, 1, 0.1))
         _, box4_title, _ = st.columns((0.1, 1, 0.1))
         _, box4_eval1, box4_eval2, box4_eval3, box4_eval4, _ = st.columns((0.3, 0.5, 0.5, 0.5, 0.5, 0.1))
-        _, box4, _ = st.columns((0.1, 1, 0.1))
+        _, box4, _ = st.columns((0.2, 1, 0.1))
         _, box5_title, _ = st.columns((0.1, 1, 0.1))
         _, box5_eval1, box5_eval2, box5_eval3, box5_eval4, _ = st.columns((0.3, 0.5, 0.5, 0.5, 0.5, 0.1))
-        _, box5, _ = st.columns((0.1, 1, 0.1))
+        _, box5, _ = st.columns((0.2, 1, 0.1))
         _, box6_title, _ = st.columns((0.1, 1, 0.1))
         _, box6_eval1, box6_eval2, box6_eval3, box6_eval4, _ = st.columns((0.3, 0.5, 0.5, 0.5, 0.5, 0.1))
-        _, box6, _ = st.columns((0.1, 1, 0.1))
+        _, box6, _ = st.columns((0.2, 1, 0.1))
         with exp2:
             st.write("##")
             st.markdown('<p class="section">Selection de 2 features pour la régression</p>', unsafe_allow_html=True)
@@ -1156,7 +1154,9 @@ elif choix_page == "Régressions":
         with exp2:
             st.write("##")
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+############# Fin régression #############
 
+############# Classification #############
 elif choix_page == "Classification":
     PAGES_classification = ["KNN", "K-Means", "SVM"]
     st.sidebar.title('Classification  :brain:')
@@ -1623,7 +1623,9 @@ elif choix_page == "Classification":
             with exp2:
                 st.write("##")
                 st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+############# Fin Classification #############
 
+############# Ensemble Learning #############
 elif choix_page == "Ensemble learning":
     PAGES_ensemble_l = ["XGBoost"]
     st.sidebar.title('Ensemble learning  :brain:')
@@ -1631,9 +1633,11 @@ elif choix_page == "Ensemble learning":
 
     if st.session_state.choix_page_ensemble_l == "XGBoost":
         st.info("En cours")
+############# Fin Ensemble Learning #############
 
+############# Réduction Dimension #############
 elif choix_page == "Réduction de dimension":
-    PAGES_reduction = ["PCA", "UMAP"]
+    PAGES_reduction = ["PCA", "UMAP", "T-SNE"]
     st.sidebar.title('Réduction de dimension  :brain:')
     st.sidebar.radio(label="", options=PAGES_reduction, key="choix_page_reduction")
 
@@ -1748,6 +1752,7 @@ elif choix_page == "Réduction de dimension":
                             unsafe_allow_html=True)
                 st.session_state.choix_col_UMAP = st.multiselect("Choisir au moins deux colonnes",
                                                                  st.session_state.data.columns.tolist(),
+                                                                 help="La target doit être sélectionnée"
                                                                  )
             if len(st.session_state.choix_col_UMAP) > 1:
                 df_ml = st.session_state.data[st.session_state.choix_col_UMAP]
@@ -1761,7 +1766,7 @@ elif choix_page == "Réduction de dimension":
                     with col1_umap:
                         # encodage !
                         st.session_state.col_to_encodage_UMAP = st.multiselect("Selectionner les colonnes à encoder",
-                                                                               st.session_state.choix_col_UMAP,
+                                                                               st.session_state.choix_col_UMAP
                                                                                )
                     with sub_col1:
                         with st.expander('Encodage'):
@@ -1804,7 +1809,7 @@ elif choix_page == "Réduction de dimension":
                                     template='simple_white',
                                     font=dict(size=10),
                                     autosize=False,
-                                    width=1250, height=650,
+                                    width=1050, height=650,
                                     margin=dict(l=40, r=50, b=40, t=40),
                                     paper_bgcolor='rgba(0,0,0,0)',
                                     plot_bgcolor='rgba(0,0,0,0)',
@@ -1818,4 +1823,89 @@ elif choix_page == "Réduction de dimension":
             with exp2:
                 st.write("##")
                 st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
-############# ML section #############
+
+    elif st.session_state.choix_page_reduction == "T-SNE":
+        st.markdown('<p class="grand_titre">T-SNE : t-distributed stochastic neighbor embedding</p>',
+                    unsafe_allow_html=True)
+        exp1, exp2, exp3 = st.columns((0.2, 1, 0.2))
+        if 'data' in st.session_state:
+            _, col1_tsne, _ = st.columns((0.1, 1, 0.1))
+            _, sub_col1, _ = st.columns((0.4, 0.5, 0.4))
+            _, col2_tsne, _ = st.columns((0.1, 1, 0.1))
+            with col1_tsne:
+                st.write("##")
+                st.markdown('<p class="section">Selection des colonnes pour le modèle T-SNE (target+features)</p>',
+                            unsafe_allow_html=True)
+                st.session_state.choix_col_tsne = st.multiselect("Choisir au moins deux colonnes",
+                                                                 st.session_state.data.columns.tolist(),
+                                                                 help="La target doit être sélectionnée"
+                                                                 )
+            if len(st.session_state.choix_col_tsne) > 1:
+                df_ml = st.session_state.data[st.session_state.choix_col_tsne]
+                df_ml = df_ml.dropna(axis=0)
+                st.session_state.df_ml_origine = df_ml.copy()
+                if len(df_ml) == 0:
+                    with col1_tsne:
+                        st.write("##")
+                        st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
+                else:
+                    with col1_tsne:
+                        # encodage !
+                        st.session_state.col_to_encodage_tsne = st.multiselect("Selectionner les colonnes à encoder",
+                                                                               st.session_state.choix_col_tsne,
+                                                                               )
+                    with sub_col1:
+                        with st.expander('Encodage'):
+                            for col in st.session_state.col_to_encodage_tsne:
+                                st.write(
+                                    "encodage colonne " + col + " : " + str(df_ml[col].unique().tolist()) + "->" + str(
+                                        np.arange(len(df_ml[col].unique()))))
+                                df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())),
+                                                   inplace=True)  # encodage
+
+                    with col2_tsne:
+                        ## on choisit notre modèle
+                        model = TSNE(n_components=2, random_state=0)
+                        ## création des target et features à partir du dataset
+                        st.write("##")
+                        st.session_state.target_tsne = st.selectbox("Target :",
+                                                                    ["Selectionner une target"] + col_numeric(df_ml),
+                                                                    )
+                    if st.session_state.target_tsne != "Selectionner une target":
+                        y = df_ml[st.session_state.target_tsne]  # target
+                        X = df_ml.drop(st.session_state.target_tsne, axis=1)  # features
+                        with col2_tsne:
+                            try:
+                                x_tsne = model.fit_transform(X, )
+                                st.write("##")
+                                st.write("##")
+                                st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
+                                # résultats points
+                                st.session_state.df = pd.concat([pd.Series(x_tsne[:, 0]), pd.Series(x_tsne[:, 1]),
+                                                                 pd.Series(st.session_state.df_ml_origine[
+                                                                               st.session_state.target_tsne])], axis=1)
+                                st.session_state.df.columns = ["x", "y", str(st.session_state.target_tsne)]
+                                fig = px.scatter(st.session_state.df, x="x", y="y",
+                                                 color=str(st.session_state.target_tsne),
+                                                 labels={'color': '{}'.format(str(st.session_state.target_tsne))},
+                                                 color_discrete_sequence=px.colors.qualitative.Plotly)
+                                fig.update_layout(
+                                    showlegend=True,
+                                    template='simple_white',
+                                    font=dict(size=10),
+                                    autosize=False,
+                                    width=1050, height=650,
+                                    margin=dict(l=40, r=50, b=40, t=40),
+                                    paper_bgcolor='rgba(0,0,0,0)',
+                                    plot_bgcolor='rgba(0,0,0,0)',
+                                )
+                                fig.update(layout_coloraxis_showscale=False)
+                                st.plotly_chart(fig)
+                            except:
+                                st.write("##")
+                                st.error("Erreur de chargement!")
+        else:
+            with exp2:
+                st.write("##")
+                st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+############# Fin Réduction Dimension #############
