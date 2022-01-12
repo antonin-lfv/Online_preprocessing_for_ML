@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="regression">
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="structure" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -150,14 +148,7 @@
       <workItem from="1641571237997" duration="367000" />
       <workItem from="1641656321547" duration="1168000" />
       <workItem from="1641739977294" duration="1303000" />
-      <workItem from="1641991270022" duration="1290000" />
-    </task>
-    <task id="LOCAL-00463" summary="structure + theme">
-      <created>1636725176707</created>
-      <option name="number" value="00463" />
-      <option name="presentableId" value="LOCAL-00463" />
-      <option name="project" value="LOCAL" />
-      <updated>1636725176707</updated>
+      <workItem from="1641991270022" duration="2066000" />
     </task>
     <task id="LOCAL-00464" summary="structure + theme">
       <created>1636728423728</created>
@@ -495,7 +486,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641991786530</updated>
     </task>
-    <option name="localTasksCounter" value="512" />
+    <task id="LOCAL-00512" summary="structure">
+      <created>1641992763119</created>
+      <option name="number" value="00512" />
+      <option name="presentableId" value="LOCAL-00512" />
+      <option name="project" value="LOCAL" />
+      <updated>1641992763119</updated>
+    </task>
+    <option name="localTasksCounter" value="513" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -538,7 +536,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/models" />
     </ignored-roots>
-    <MESSAGE value="style image" />
     <MESSAGE value="ML" />
     <MESSAGE value="start" />
     <MESSAGE value="update" />
@@ -563,7 +560,8 @@
     <MESSAGE value="Regressions" />
     <MESSAGE value="theme" />
     <MESSAGE value="regression" />
-    <option name="LAST_COMMIT_MESSAGE" value="regression" />
+    <MESSAGE value="structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="structure" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Online_preprocessing_for_ML$main.coverage" NAME="main Coverage Results" MODIFIED="1639270371883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
