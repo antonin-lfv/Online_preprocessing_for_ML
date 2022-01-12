@@ -701,12 +701,7 @@ elif choix_page == "Section graphiques":
 
 ############# ML section #############
 elif choix_page == "Régressions":
-    # Pages
-    # PAGES_ML = ["Regression", "K-nearest neighbors", "K-Means", "Support Vector Machine", "PCA", "UMAP"]
-    # st.sidebar.title('Machine Learning  :brain:')
-    # st.sidebar.radio(label="", options=PAGES_ML, key="choix_page_ml")
 
-    # if st.session_state.choix_page_ml == "Regression":
     st.markdown('<p class="grand_titre">Régression</p>', unsafe_allow_html=True)
     st.write("##")
     exp1, exp2, exp3 = st.columns((0.5, 1, 0.5))
@@ -1162,9 +1157,7 @@ elif choix_page == "Régressions":
             st.write("##")
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 
-    # elif st.session_state.choix_page_ml == "K-nearest neighbors":
 elif choix_page == "Classification":
-    # Ajouter multi page
     PAGES_classification = ["KNN", "K-Means", "SVM"]
     st.sidebar.title('Classification  :brain:')
     st.sidebar.radio(label="", options=PAGES_classification, key="choix_page_classification")
