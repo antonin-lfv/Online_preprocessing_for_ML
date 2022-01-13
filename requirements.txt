@@ -7,9 +7,6 @@ umap-learn
 scipy
 more-itertools
 graphviz
-
-
-
 numpy
 pandas
 scikit-learn

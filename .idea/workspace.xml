@@ -19,12 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="structure">
-      <change beforePath="$PROJECT_DIR$/.idea/Online_preprocessing_for_ML.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Online_preprocessing_for_ML.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-    </list>
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Structure" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -157,28 +152,7 @@
       <workItem from="1642001371659" duration="3373000" />
       <workItem from="1642014113415" duration="7330000" />
       <workItem from="1642085242281" duration="3274000" />
-      <workItem from="1642094336292" duration="4875000" />
-    </task>
-    <task id="LOCAL-00478" summary="Matrices corr">
-      <created>1639326105793</created>
-      <option name="number" value="00478" />
-      <option name="presentableId" value="LOCAL-00478" />
-      <option name="project" value="LOCAL" />
-      <updated>1639326105793</updated>
-    </task>
-    <task id="LOCAL-00479" summary="Matrices corr">
-      <created>1639326159451</created>
-      <option name="number" value="00479" />
-      <option name="presentableId" value="LOCAL-00479" />
-      <option name="project" value="LOCAL" />
-      <updated>1639326159451</updated>
-    </task>
-    <task id="LOCAL-00480" summary="Matrices corr">
-      <created>1639344686075</created>
-      <option name="number" value="00480" />
-      <option name="presentableId" value="LOCAL-00480" />
-      <option name="project" value="LOCAL" />
-      <updated>1639344686076</updated>
+      <workItem from="1642094336292" duration="5404000" />
     </task>
     <task id="LOCAL-00481" summary="Matrices corr">
       <created>1639344795009</created>
@@ -502,7 +476,28 @@
       <option name="project" value="LOCAL" />
       <updated>1642088975140</updated>
     </task>
-    <option name="localTasksCounter" value="527" />
+    <task id="LOCAL-00527" summary="Decision tree">
+      <created>1642099893574</created>
+      <option name="number" value="00527" />
+      <option name="presentableId" value="LOCAL-00527" />
+      <option name="project" value="LOCAL" />
+      <updated>1642099893574</updated>
+    </task>
+    <task id="LOCAL-00528" summary="Decision tree">
+      <created>1642100365721</created>
+      <option name="number" value="00528" />
+      <option name="presentableId" value="LOCAL-00528" />
+      <option name="project" value="LOCAL" />
+      <updated>1642100365721</updated>
+    </task>
+    <task id="LOCAL-00529" summary="Structure">
+      <created>1642100443804</created>
+      <option name="number" value="00529" />
+      <option name="presentableId" value="LOCAL-00529" />
+      <option name="project" value="LOCAL" />
+      <updated>1642100443804</updated>
+    </task>
+    <option name="localTasksCounter" value="530" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,8 +540,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/models" />
     </ignored-roots>
-    <MESSAGE value="start" />
-    <MESSAGE value="update" />
     <MESSAGE value="update streamlit 84.2" />
     <MESSAGE value="fix error" />
     <MESSAGE value="update streamlit 88 - adding st.download and st.expander" />
@@ -570,7 +563,9 @@
     <MESSAGE value="regression" />
     <MESSAGE value="multi regression" />
     <MESSAGE value="structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="structure" />
+    <MESSAGE value="Decision tree" />
+    <MESSAGE value="Structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Structure" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Online_preprocessing_for_ML$main.coverage" NAME="main Coverage Results" MODIFIED="1639270371883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
