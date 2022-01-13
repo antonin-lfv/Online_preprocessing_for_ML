@@ -1648,7 +1648,6 @@ elif choix_page == "Classification":
                         with col1_dt:
                             st.warning("La target ne doit pas appartenir aux features")
                     else:
-                        # if len(df[target].unique().tolist()) > 1:
                         X_train, X_test, y_train, y_test = train_test_split(df[features], df[target], random_state=0)
                         clf = DecisionTreeClassifier(random_state=0)
                         clf.fit(X_train, y_train)
@@ -1997,3 +1996,4 @@ elif choix_page == "Réduction de dimension":
                 st.write("##")
                 st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 ############# Fin Réduction Dimension #############
+
