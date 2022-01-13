@@ -13,8 +13,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from collections import Counter
 from sklearn.linear_model import LinearRegression, PoissonRegressor, ElasticNet, Ridge, Lasso
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.metrics import r2_score
+from sklearn.preprocessing import PolynomialFeatures, scale
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
@@ -720,22 +719,21 @@ elif choix_page == "Régressions":
             st.write("##")
             st.markdown('<p class="section">Selection de 2 features pour la régression</p>', unsafe_allow_html=True)
         with col1_abscisse_reg:
-            st.session_state.choix_features_reg = st.selectbox("Feature",
+            st.session_state.choix_features_reg = st.multiselect("Features",
                                                                col_numeric(st.session_state.data),
-
                                                                )
         with col1_ordonnee_reg:
             st.session_state.choix_target_reg = st.selectbox("Target",
                                                              col_numeric(st.session_state.data)[::-1],
                                                              )
             st.write("##")
-        if st.session_state.choix_features_reg == st.session_state.choix_target_reg:
+        if st.session_state.choix_target_reg in st.session_state.choix_features_reg:
             with warning1:
-                st.warning("Vous ne pouvez pas choisir deux fois la même feature")
-        else:
+                st.warning("La target ne doit pas appartenir aux features")
+        elif len(st.session_state.choix_features_reg)>0:
             # Chargement des données - On enlève les valeurs manquantes
             df_sans_NaN = pd.concat(
-                [st.session_state.data[[st.session_state.choix_features_reg]].reset_index(drop=True),
+                [st.session_state.data[st.session_state.choix_features_reg].reset_index(drop=True),
                  st.session_state.data[st.session_state.choix_target_reg].reset_index(drop=True)],
                 axis=1).dropna()
             if len(df_sans_NaN) == 0:
@@ -747,8 +745,10 @@ elif choix_page == "Régressions":
                 try:
                     # Data
                     X_train, X_test, y_train, y_test = train_test_split(
-                        df_sans_NaN[st.session_state.choix_features_reg].values.reshape(-1, 1),
+                        df_sans_NaN[st.session_state.choix_features_reg].values,
                         df_sans_NaN[st.session_state.choix_target_reg], test_size=0.4, random_state=4)
+
+                    X_train, X_test, y_train, y_test = scale(X_train), scale(X_test), scale(y_train), scale(y_test)
                     # ###############################################################################
                     with box1_title:
                         st.write("##")
@@ -761,9 +761,7 @@ elif choix_page == "Régressions":
                     model = LinearRegression()
                     model.fit(X_train, y_train)
                     pred_train = model.predict(X_train)
-                    pred_test = model.predict(X_test.reshape(-1, 1))
-                    x_plot_line_reg = X_train
-                    y_plot_line_reg = pred_test
+                    pred_test = model.predict(X_test)
                     # Métrique train set
                     MSE_reg_train = mean_squared_error(y_train, pred_train)
                     RMSE_reg_train = np.sqrt(MSE_reg_train)
@@ -881,66 +879,67 @@ elif choix_page == "Régressions":
                         st.write("##")
 
                     # ###############################################################################
-                    with box3_title:
-                        st.write("##")
-                        st.markdown('<p class="section">Régression de poisson</p>', unsafe_allow_html=True)
-                        st.write("##")
-                    # Modèle
-                    model = PoissonRegressor()
-                    model.fit(X_train, y_train)
-                    pred_train = model.predict(X_train)
-                    pred_test = model.predict(X_test)
-                    # Métrique train set
-                    MSE_reg_train = mean_squared_error(y_train, pred_train)
-                    RMSE_reg_train = np.sqrt(MSE_reg_train)
-                    MAE_reg_train = mean_absolute_error(y_train, pred_train)
-                    r2_reg_train = r2_score(y_train, pred_train)
-                    # Métrique test set
-                    MSE_reg_test = mean_squared_error(y_test, pred_test)
-                    RMSE_reg_test = np.sqrt(MSE_reg_test)
-                    MAE_reg_test = mean_absolute_error(y_test, pred_test)
-                    r2_reg_test = r2_score(y_test, pred_test)
-                    # Affichage métriques
-                    with box3_eval1:
-                        st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
-                                  delta=round(MSE_reg_test - MSE_reg_train, 3), delta_color="inverse")
-                    with box3_eval2:
-                        st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
-                                  delta=round(RMSE_reg_test - RMSE_reg_train, 3), delta_color="inverse")
-                    with box3_eval3:
-                        st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
-                                  delta=round(MAE_reg_test - MAE_reg_train, 3), delta_color="inverse")
-                    with box3_eval4:
-                        st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
-                                  delta=round(r2_reg_test - r2_reg_train, 3))
-                    # Learning curves
-                    N, train_score, val_score = learning_curve(model, X_train, y_train,
-                                                               train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
-                    fig = go.Figure()
-                    fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
-                    fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
-                    fig.update_xaxes(title_text="Données de validation")
-                    fig.update_yaxes(title_text="Score")
-                    fig.update_layout(
-                        template='simple_white',
-                        font=dict(size=10),
-                        autosize=False,
-                        width=900, height=450,
-                        margin=dict(l=40, r=40, b=40, t=40),
-                        paper_bgcolor='rgba(0,0,0,0)',
-                        plot_bgcolor='rgba(0,0,0,0)',
-                        title={'text': "<b>Learning curves</b>",
-                               'y': 0.9,
-                               'x': 0.5,
-                               'xanchor': 'center',
-                               'yanchor': 'top'
-                               }
-                    )
-                    with box3:
-                        st.write("##")
-                        st.plotly_chart(fig)
-                        st.write('---')
-                        st.write("##")
+                    if np.issubdtype(y_train.dtype, int) and np.any(y_train<0):
+                        with box3_title:
+                            st.write("##")
+                            st.markdown('<p class="section">Régression de poisson</p>', unsafe_allow_html=True)
+                            st.write("##")
+                        # Modèle
+                        model = PoissonRegressor()
+                        model.fit(X_train, y_train)
+                        pred_train = model.predict(X_train)
+                        pred_test = model.predict(X_test)
+                        # Métrique train set
+                        MSE_reg_train = mean_squared_error(y_train, pred_train)
+                        RMSE_reg_train = np.sqrt(MSE_reg_train)
+                        MAE_reg_train = mean_absolute_error(y_train, pred_train)
+                        r2_reg_train = r2_score(y_train, pred_train)
+                        # Métrique test set
+                        MSE_reg_test = mean_squared_error(y_test, pred_test)
+                        RMSE_reg_test = np.sqrt(MSE_reg_test)
+                        MAE_reg_test = mean_absolute_error(y_test, pred_test)
+                        r2_reg_test = r2_score(y_test, pred_test)
+                        # Affichage métriques
+                        with box3_eval1:
+                            st.metric(label="MSE (par rapport au train)", value=round(MSE_reg_test, 3),
+                                      delta=round(MSE_reg_test - MSE_reg_train, 3), delta_color="inverse")
+                        with box3_eval2:
+                            st.metric(label="RMSE (par rapport au train)", value=round(RMSE_reg_test, 3),
+                                      delta=round(RMSE_reg_test - RMSE_reg_train, 3), delta_color="inverse")
+                        with box3_eval3:
+                            st.metric(label="MAE (par rapport au train)", value=round(MAE_reg_test, 3),
+                                      delta=round(MAE_reg_test - MAE_reg_train, 3), delta_color="inverse")
+                        with box3_eval4:
+                            st.metric(label="r² (par rapport au train)", value=round(r2_reg_test, 3),
+                                      delta=round(r2_reg_test - r2_reg_train, 3))
+                        # Learning curves
+                        N, train_score, val_score = learning_curve(model, X_train, y_train,
+                                                                   train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
+                        fig = go.Figure()
+                        fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
+                        fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
+                        fig.update_xaxes(title_text="Données de validation")
+                        fig.update_yaxes(title_text="Score")
+                        fig.update_layout(
+                            template='simple_white',
+                            font=dict(size=10),
+                            autosize=False,
+                            width=900, height=450,
+                            margin=dict(l=40, r=40, b=40, t=40),
+                            paper_bgcolor='rgba(0,0,0,0)',
+                            plot_bgcolor='rgba(0,0,0,0)',
+                            title={'text': "<b>Learning curves</b>",
+                                   'y': 0.9,
+                                   'x': 0.5,
+                                   'xanchor': 'center',
+                                   'yanchor': 'top'
+                                   }
+                        )
+                        with box3:
+                            st.write("##")
+                            st.plotly_chart(fig)
+                            st.write('---')
+                            st.write("##")
 
                     # ###############################################################################
                     with box4_title:

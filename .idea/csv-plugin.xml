@@ -10,13 +10,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="$USER_HOME$/Downloads/CarPrice_Assignment.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
       </map>
     </option>
   </component>

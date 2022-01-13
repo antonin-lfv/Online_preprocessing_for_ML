@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="structure">
-      <change afterPath="$PROJECT_DIR$/Datasets/CarPrice.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
@@ -155,14 +154,8 @@
       <workItem from="1641739977294" duration="1303000" />
       <workItem from="1641991270022" duration="2082000" />
       <workItem from="1642001371659" duration="3373000" />
-      <workItem from="1642014113415" duration="7308000" />
-    </task>
-    <task id="LOCAL-00475" summary="Matrices corr">
-      <created>1639314036546</created>
-      <option name="number" value="00475" />
-      <option name="presentableId" value="LOCAL-00475" />
-      <option name="project" value="LOCAL" />
-      <updated>1639314036546</updated>
+      <workItem from="1642014113415" duration="7330000" />
+      <workItem from="1642085242281" duration="2823000" />
     </task>
     <task id="LOCAL-00476" summary="Matrices corr">
       <created>1639325524833</created>
@@ -500,7 +493,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642019095374</updated>
     </task>
-    <option name="localTasksCounter" value="524" />
+    <task id="LOCAL-00524" summary="structure">
+      <created>1642027909414</created>
+      <option name="number" value="00524" />
+      <option name="presentableId" value="LOCAL-00524" />
+      <option name="project" value="LOCAL" />
+      <updated>1642027909414</updated>
+    </task>
+    <option name="localTasksCounter" value="525" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
