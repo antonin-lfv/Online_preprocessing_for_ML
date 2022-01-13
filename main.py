@@ -9,12 +9,14 @@ import pandas as pd
 import time
 import os
 import webbrowser
+import graphviz
 import matplotlib.pyplot as plt
 import seaborn as sns
 from collections import Counter
 from sklearn.linear_model import LinearRegression, PoissonRegressor, ElasticNet, Ridge, Lasso
 from sklearn.preprocessing import PolynomialFeatures, scale
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier, export_graphviz
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 from sklearn.model_selection import train_test_split, GridSearchCV, learning_curve
@@ -239,7 +241,7 @@ elif choix_page == 'Dataset':
     for i, j in zip(noms_fichiers, path_fichiers):
         if dataset_choix == i:
             st.session_state.data = pd.read_csv(j)
-            st.session_state.choix_dataset = "Le fichier chargé est le dataset "+i
+            st.session_state.choix_dataset = "Le fichier chargé est le dataset " + i
             with col1_1:
                 message_.success(st.session_state.choix_dataset)
 
@@ -720,8 +722,8 @@ elif choix_page == "Régressions":
             st.markdown('<p class="section">Selection de 2 features pour la régression</p>', unsafe_allow_html=True)
         with col1_abscisse_reg:
             st.session_state.choix_features_reg = st.multiselect("Features",
-                                                               col_numeric(st.session_state.data),
-                                                               )
+                                                                 col_numeric(st.session_state.data),
+                                                                 )
         with col1_ordonnee_reg:
             st.session_state.choix_target_reg = st.selectbox("Target",
                                                              col_numeric(st.session_state.data)[::-1],
@@ -730,7 +732,7 @@ elif choix_page == "Régressions":
         if st.session_state.choix_target_reg in st.session_state.choix_features_reg:
             with warning1:
                 st.warning("La target ne doit pas appartenir aux features")
-        elif len(st.session_state.choix_features_reg)>0:
+        elif len(st.session_state.choix_features_reg) > 0:
             # Chargement des données - On enlève les valeurs manquantes
             df_sans_NaN = pd.concat(
                 [st.session_state.data[st.session_state.choix_features_reg].reset_index(drop=True),
@@ -879,7 +881,7 @@ elif choix_page == "Régressions":
                         st.write("##")
 
                     # ###############################################################################
-                    if np.issubdtype(y_train.dtype, int) and np.any(y_train<0):
+                    if np.issubdtype(y_train.dtype, int) and np.any(y_train < 0):
                         with box3_title:
                             st.write("##")
                             st.markdown('<p class="section">Régression de poisson</p>', unsafe_allow_html=True)
@@ -1139,7 +1141,7 @@ elif choix_page == "Régressions":
 
 ############# Classification #############
 elif choix_page == "Classification":
-    PAGES_classification = ["KNN", "K-Means", "SVM"]
+    PAGES_classification = ["KNN", "K-Means", "SVM", "Decision Tree"]
     st.sidebar.title('Classification  :brain:')
     st.sidebar.radio(label="", options=PAGES_classification, key="choix_page_classification")
 
@@ -1501,6 +1503,7 @@ elif choix_page == "Classification":
             with col1_km:
                 st.session_state.choix_col_SVM = st.multiselect("Choisir deux colonnes",
                                                                 col_numeric(st.session_state.data),
+                                                                help="Vos features"
                                                                 )
                 st.session_state.choix_target_SVM = st.selectbox("Choisir la target",
                                                                  st.session_state.data.columns.tolist(),
@@ -1512,7 +1515,7 @@ elif choix_page == "Classification":
 
                 # dataset avec features + target
                 df = st.session_state.data[[target] + features]
-                df.dropna(axis=0)
+                df.dropna(axis=0, inplace=True)
 
                 if len(df) == 0:
                     with col1_km:
@@ -1609,6 +1612,104 @@ elif choix_page == "Classification":
             with exp2:
                 st.write("##")
                 st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+
+    if st.session_state.choix_page_classification == "Decision Tree":
+        st.markdown('<p class="grand_titre">Decision Tree</p>', unsafe_allow_html=True)
+        st.write("##")
+        exp1, exp2, exp3 = st.columns((0.2, 1, 0.2))
+        if 'data' in st.session_state:
+            st.markdown('<p class="section">Selection des features et de la target</p>', unsafe_allow_html=True)
+            _, col1_dt, _ = st.columns((0.1, 1, 0.1))
+            _, col1_eval_modele, col2_eval_modele, col3_eval_modele, col4_eval_modele, _ = st.columns(
+                (0.3, 0.5, 0.5, 0.5, 0.5, 0.1))
+            _, col_res, _ = st.columns((0.1, 1, 0.1))
+            with col1_dt:
+                st.session_state.choix_col_DT = st.multiselect("Choisir deux colonnes",
+                                                               col_numeric(st.session_state.data),
+                                                               help="Vos features"
+                                                               )
+                st.session_state.choix_target_DT = st.selectbox("Choisir la target",
+                                                                st.session_state.data.columns.tolist()[::-1],
+                                                                )
+            if len(st.session_state.choix_col_DT) > 0:
+                target = st.session_state.choix_target_DT
+                features = st.session_state.choix_col_DT
+
+                # dataset avec features + target
+                df = st.session_state.data[[target] + features]
+                df = df.dropna(axis=0)
+
+                if len(df) == 0:
+                    with col1_dt:
+                        st.write("##")
+                        st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
+                else:
+                    if st.session_state.choix_target_DT in st.session_state.choix_col_DT:
+                        with col1_dt:
+                            st.warning("La target ne doit pas appartenir aux features")
+                    else:
+                        # if len(df[target].unique().tolist()) > 1:
+                        X_train, X_test, y_train, y_test = train_test_split(df[features], df[target], random_state=0)
+                        clf = DecisionTreeClassifier(random_state=0)
+                        clf.fit(X_train, y_train)
+                        if len(pd.unique(df[target])) > 2:
+                            average = 'macro'
+                        else:
+                            average = 'binary'
+
+                        # metrics on train
+                        y_pred_train = clf.predict(X_train)
+                        accur_train = accuracy_score(y_train, y_pred_train)
+                        precis_train = precision_score(y_train, y_pred_train, average=average)
+                        rappel_train = recall_score(y_train, y_pred_train, average=average)
+                        F1_train = f1_score(y_train, y_pred_train, average=average)
+
+                        # metrics on test
+                        y_pred_test = clf.predict(X_test)
+                        accur_test = accuracy_score(y_test, y_pred_test)
+                        precis_test = precision_score(y_test, y_pred_test, average=average)
+                        rappel_test = recall_score(y_test, y_pred_test, average=average)
+                        F1_test = f1_score(y_test, y_pred_test, average=average)
+
+                        # Affichage métriques
+                        with col1_dt:
+                            st.write("##")
+                            st.markdown(
+                                '<p class="section">Évaluation par rapport au train set</p>',
+                                unsafe_allow_html=True)
+                            st.write("##")
+                        with col1_eval_modele:
+                            st.metric(label="Precision", value=round(precis_test, 3),
+                                      delta=round(precis_test - precis_train, 3))
+                        with col2_eval_modele:
+                            st.metric(label="Recall", value=round(rappel_test, 3),
+                                      delta=round(rappel_test - rappel_train, 3))
+                        with col3_eval_modele:
+                            st.metric(label="F1 score", value=round(F1_test, 3),
+                                      delta=round(F1_test - F1_train, 3))
+                        with col4_eval_modele:
+                            st.metric(label="Accuracy", value=round(accur_test, 3),
+                                      delta=round(accur_test - accur_train, 3))
+                        with col_res:
+                            st.write("##")
+                            st.markdown(
+                                '<p class="section">Résultat arbre de décision</p>',
+                                unsafe_allow_html=True)
+                            st.write("##")
+                        # DOT data
+                        dot_data = export_graphviz(clf, out_file=None,
+                                                        feature_names=features,
+                                                        class_names=target,
+                                                        filled=True,
+                                                   )
+                        # Draw graph
+                        st.graphviz_chart(dot_data, use_container_width=False)
+
+        else:
+            with exp2:
+                st.write("##")
+                st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+
 ############# Fin Classification #############
 
 ############# Ensemble Learning #############
