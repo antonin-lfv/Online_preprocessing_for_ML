@@ -19,8 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="structure">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="multi regression">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -155,14 +154,7 @@
       <workItem from="1641991270022" duration="2082000" />
       <workItem from="1642001371659" duration="3373000" />
       <workItem from="1642014113415" duration="7330000" />
-      <workItem from="1642085242281" duration="2823000" />
-    </task>
-    <task id="LOCAL-00476" summary="Matrices corr">
-      <created>1639325524833</created>
-      <option name="number" value="00476" />
-      <option name="presentableId" value="LOCAL-00476" />
-      <option name="project" value="LOCAL" />
-      <updated>1639325524833</updated>
+      <workItem from="1642085242281" duration="3255000" />
     </task>
     <task id="LOCAL-00477" summary="Matrices corr">
       <created>1639325952990</created>
@@ -500,7 +492,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642027909414</updated>
     </task>
-    <option name="localTasksCounter" value="525" />
+    <task id="LOCAL-00525" summary="multi regression">
+      <created>1642088595154</created>
+      <option name="number" value="00525" />
+      <option name="presentableId" value="LOCAL-00525" />
+      <option name="project" value="LOCAL" />
+      <updated>1642088595155</updated>
+    </task>
+    <option name="localTasksCounter" value="526" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -543,7 +542,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/models" />
     </ignored-roots>
-    <MESSAGE value="ML" />
     <MESSAGE value="start" />
     <MESSAGE value="update" />
     <MESSAGE value="update streamlit 84.2" />
@@ -568,7 +566,8 @@
     <MESSAGE value="theme" />
     <MESSAGE value="regression" />
     <MESSAGE value="structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="structure" />
+    <MESSAGE value="multi regression" />
+    <option name="LAST_COMMIT_MESSAGE" value="multi regression" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Online_preprocessing_for_ML$main.coverage" NAME="main Coverage Results" MODIFIED="1639270371883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
