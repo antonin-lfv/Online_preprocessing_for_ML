@@ -22,18 +22,6 @@
 
 > Pour accéder au site, cliquez sur le bouton **"Open in streamlit"** en haut du ReadMe
 
-<br/>
-
-
-# Accueil
-
-<br>
-
-<p align="center">
-<img src="https://user-images.githubusercontent.com/63207451/145731068-a546f2a1-8d43-4f04-beb6-05ee2f8b45ef.png" height="400">
-</p>
-
-<br/>
 
 <br/>
 
