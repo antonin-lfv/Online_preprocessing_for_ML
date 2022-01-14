@@ -19,7 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Structure" />
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Structure">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -153,27 +155,7 @@
       <workItem from="1642014113415" duration="7330000" />
       <workItem from="1642085242281" duration="3274000" />
       <workItem from="1642094336292" duration="5404000" />
-    </task>
-    <task id="LOCAL-00481" summary="Matrices corr">
-      <created>1639344795009</created>
-      <option name="number" value="00481" />
-      <option name="presentableId" value="LOCAL-00481" />
-      <option name="project" value="LOCAL" />
-      <updated>1639344795010</updated>
-    </task>
-    <task id="LOCAL-00482" summary="Matrices corr">
-      <created>1639345091199</created>
-      <option name="number" value="00482" />
-      <option name="presentableId" value="LOCAL-00482" />
-      <option name="project" value="LOCAL" />
-      <updated>1639345091199</updated>
-    </task>
-    <task id="LOCAL-00483" summary="Matrices corr">
-      <created>1639345583413</created>
-      <option name="number" value="00483" />
-      <option name="presentableId" value="LOCAL-00483" />
-      <option name="project" value="LOCAL" />
-      <updated>1639345583414</updated>
+      <workItem from="1642100767404" duration="627000" />
     </task>
     <task id="LOCAL-00484" summary="Matrices corr">
       <created>1639345601306</created>
@@ -497,7 +479,28 @@
       <option name="project" value="LOCAL" />
       <updated>1642100443804</updated>
     </task>
-    <option name="localTasksCounter" value="530" />
+    <task id="LOCAL-00530" summary="Structure">
+      <created>1642100828823</created>
+      <option name="number" value="00530" />
+      <option name="presentableId" value="LOCAL-00530" />
+      <option name="project" value="LOCAL" />
+      <updated>1642100828823</updated>
+    </task>
+    <task id="LOCAL-00531" summary="Structure">
+      <created>1642100995307</created>
+      <option name="number" value="00531" />
+      <option name="presentableId" value="LOCAL-00531" />
+      <option name="project" value="LOCAL" />
+      <updated>1642100995307</updated>
+    </task>
+    <task id="LOCAL-00532" summary="Structure">
+      <created>1642101062616</created>
+      <option name="number" value="00532" />
+      <option name="presentableId" value="LOCAL-00532" />
+      <option name="project" value="LOCAL" />
+      <updated>1642101062616</updated>
+    </task>
+    <option name="localTasksCounter" value="533" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
