@@ -1708,7 +1708,6 @@ elif choix_page == "Classification":
             with exp2:
                 st.write("##")
                 st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
-
 ############# Fin Classification #############
 
 ############# Ensemble Learning #############
