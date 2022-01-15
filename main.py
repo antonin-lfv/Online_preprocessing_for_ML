@@ -719,7 +719,7 @@ elif choix_page == "Régressions":
         _, box6, _ = st.columns((0.2, 1, 0.1))
         with exp2:
             st.write("##")
-            st.markdown('<p class="section">Selection de 2 features pour la régression</p>', unsafe_allow_html=True)
+            st.markdown('<p class="section">Selection des données pour la régression</p>', unsafe_allow_html=True)
         with col1_abscisse_reg:
             st.session_state.choix_features_reg = st.multiselect("Features",
                                                                  col_numeric(st.session_state.data),
@@ -1995,4 +1995,5 @@ elif choix_page == "Réduction de dimension":
                 st.write("##")
                 st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
 ############# Fin Réduction Dimension #############
+
 
