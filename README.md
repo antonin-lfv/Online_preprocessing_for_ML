@@ -22,6 +22,15 @@
 
 > Pour accéder au site, cliquez sur le bouton **"Open in streamlit"** en haut du ReadMe
 
+<br>
+
+## Test du site en local
+
+Clonez le repo puis, depuis le terminal au dossier du projet :
+
+```bash
+Streamlit run main.py
+```
 
 <br/>
 
