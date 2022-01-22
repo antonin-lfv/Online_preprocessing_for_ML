@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Structure">
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Structure" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,28 +160,7 @@
       <workItem from="1642276522397" duration="190000" />
       <workItem from="1642403192593" duration="7000" />
       <workItem from="1642528950778" duration="661000" />
-      <workItem from="1642849346363" duration="861000" />
-    </task>
-    <task id="LOCAL-00491" summary="KNN">
-      <created>1641327906690</created>
-      <option name="number" value="00491" />
-      <option name="presentableId" value="LOCAL-00491" />
-      <option name="project" value="LOCAL" />
-      <updated>1641327906690</updated>
-    </task>
-    <task id="LOCAL-00492" summary="KNN">
-      <created>1641329743700</created>
-      <option name="number" value="00492" />
-      <option name="presentableId" value="LOCAL-00492" />
-      <option name="project" value="LOCAL" />
-      <updated>1641329743700</updated>
-    </task>
-    <task id="LOCAL-00493" summary="KNN">
-      <created>1641329803329</created>
-      <option name="number" value="00493" />
-      <option name="presentableId" value="LOCAL-00493" />
-      <option name="project" value="LOCAL" />
-      <updated>1641329803329</updated>
+      <workItem from="1642849346363" duration="1044000" />
     </task>
     <task id="LOCAL-00494" summary="ML algo">
       <created>1641334926166</created>
@@ -507,7 +484,28 @@
       <option name="project" value="LOCAL" />
       <updated>1642850196550</updated>
     </task>
-    <option name="localTasksCounter" value="540" />
+    <task id="LOCAL-00540" summary="Structure">
+      <created>1642850221869</created>
+      <option name="number" value="00540" />
+      <option name="presentableId" value="LOCAL-00540" />
+      <option name="project" value="LOCAL" />
+      <updated>1642850221869</updated>
+    </task>
+    <task id="LOCAL-00541" summary="Structure">
+      <created>1642850299170</created>
+      <option name="number" value="00541" />
+      <option name="presentableId" value="LOCAL-00541" />
+      <option name="project" value="LOCAL" />
+      <updated>1642850299171</updated>
+    </task>
+    <task id="LOCAL-00542" summary="Structure">
+      <created>1642850364053</created>
+      <option name="number" value="00542" />
+      <option name="presentableId" value="LOCAL-00542" />
+      <option name="project" value="LOCAL" />
+      <updated>1642850364053</updated>
+    </task>
+    <option name="localTasksCounter" value="543" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
