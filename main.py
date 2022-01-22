@@ -42,8 +42,6 @@ st.markdown("""
     box-sizing: border-box;
     text-align: center;
     width: 100%;
-    // border: solid #4976E4 5px;
-    // padding: 5px;
 }
 .intro{
     text-align: justify;
@@ -55,13 +53,6 @@ st.markdown("""
     text-align: center;
     text-decoration: underline;
     text-decoration-color: #4976E4;
-    text-decoration-thickness: 5px;
-}
-.grand_titre_section_ML_DL {
-    font-size:40px !important;
-    font-weight: bold;
-    text-decoration: underline;
-    text-decoration-color: #2782CD;
     text-decoration-thickness: 5px;
 }
 .section{
@@ -76,20 +67,11 @@ st.markdown("""
     font-size:16px !important;
     font-weight: bold;
 }
-.caract{
-    font-size:11px !important;
-}
 .nom_colonne_page3{
     font-size:17px !important;
     text-decoration: underline;
     text-decoration-color: #000;
     text-decoration-thickness: 1px;
-}
-.center{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
 }
 </style>
 """, unsafe_allow_html=True)
