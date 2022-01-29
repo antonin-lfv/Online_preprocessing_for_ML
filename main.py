@@ -175,6 +175,8 @@ elif choix_page == 'Dataset':
     st.write('##')
     col1_1, b_1, col2_1 = st.columns((1, 0.1, 1))
     col1, b, col2 = st.columns((2.7, 0.2, 1))
+    with col1_2:
+        st_lottie(load_lottieurl('https: // assets9.lottiefiles.com / packages / lf20_zidar9jm.json'), height=200)
     with col1_1:
         dataset_choix = st.selectbox("Dataset",
                                      ["-- Choisissez une option --", "Iris (Classification)",
