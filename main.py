@@ -28,6 +28,8 @@ import umap.umap_ as UMAP
 from scipy.spatial import distance
 from utils import *
 import more_itertools
+from streamlit_lottie import st_lottie
+import requests
 
 ####### html/css config ########
 st.set_page_config(layout="wide", page_title="No code AI", menu_items={
@@ -95,6 +97,11 @@ def load_data():
     except:
         pass
 
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
 
 ##################################
 ####### Code streamlit app #######
@@ -146,12 +153,15 @@ if choix_page == "Accueil":
         st.markdown(
             '<p class="intro"><b>Commencez par choisir un dataset dans la section Dataset !</b></p>',
             unsafe_allow_html=True)
-    c1, _, _, _, _, _ = st.columns(6)
+    c1, _, c2, _, _, _ = st.columns(6)
     with c1:
         st.subheader("Liens")
         st.write(
             "• [Mon profil GitHub](https://github.com/antonin-lfv/Online_preprocessing_for_ML/blob/master/README.md)")
         st.write("• [Mon site](https://antonin-lfv.github.io)")
+    with c2:
+        lottie_accueil = load_lottieurl('https://assets2.lottiefiles.com/packages/lf20_xRmNN8.json')
+        st_lottie(lottie_accueil, height=200)
 ############# Page 1 #############
 
 ############# Page 2 #############
