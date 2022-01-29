@@ -127,7 +127,7 @@ if "file_details" not in st.session_state:
 
 # Pages principales
 PAGES = ["Accueil", "Dataset", "Analyse des colonnes", "Matrice de corrélations", "Section graphiques",
-         "Régressions", "Classification", "Ensemble learning", "Réduction de dimension"]
+         "Régressions", "Classifications", "Ensemble learning", "Réduction de dimension"]
 st.sidebar.title('Menu :bulb:')
 choix_page = st.sidebar.radio(label="", options=PAGES)
 
@@ -1140,9 +1140,9 @@ elif choix_page == "Régressions":
 ############# Fin régression #############
 
 ############# Classification #############
-elif choix_page == "Classification":
+elif choix_page == "Classifications":
     PAGES_classification = ["KNN", "K-Means", "SVM", "Decision Tree"]
-    st.sidebar.title('Classification  :brain:')
+    st.sidebar.title('Classifications  :brain:')
     st.sidebar.radio(label="", options=PAGES_classification, key="choix_page_classification")
 
     if st.session_state.choix_page_classification == "KNN":
