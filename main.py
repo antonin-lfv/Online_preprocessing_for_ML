@@ -77,8 +77,10 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
-st.sidebar.image("logo/NAP_logo.png", use_column_width=True)
-st.sidebar.write("##")
+
+
+# st.sidebar.image("logo/NAP_logo.png", use_column_width=True)
+# st.sidebar.write("##")
 
 
 ###### Load data #######
@@ -97,11 +99,13 @@ def load_data():
     except:
         pass
 
+
 def load_lottieurl(url: str):
     r = requests.get(url)
     if r.status_code != 200:
         return None
     return r.json()
+
 
 ##################################
 ####### Code streamlit app #######
@@ -128,7 +132,8 @@ if "file_details" not in st.session_state:
 # Pages principales
 PAGES = ["Accueil", "Dataset", "Analyse des colonnes", "Matrice de corrélations", "Section graphiques",
          "Régressions", "Classifications", "Ensemble learning", "Réduction de dimension"]
-st.sidebar.title('Menu :bulb:')
+with st.sidebar:
+    st_lottie(load_lottieurl('https://assets8.lottiefiles.com/packages/lf20_jjojhxyb.json'), height=150)
 choix_page = st.sidebar.radio(label="", options=PAGES)
 
 ############# Page 1 #############
@@ -1703,9 +1708,9 @@ elif choix_page == "Classifications":
                             st.write("##")
                         # DOT data
                         dot_data = export_graphviz(clf, out_file=None,
-                                                        feature_names=features,
-                                                        class_names=target,
-                                                        filled=True,
+                                                   feature_names=features,
+                                                   class_names=target,
+                                                   filled=True,
                                                    )
                         # Draw graph
                         st.graphviz_chart(dot_data, use_container_width=False)
@@ -1830,8 +1835,8 @@ elif choix_page == "Réduction de dimension":
         else:
             with exp2:
                 st.write("##")
-            st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
-            st.write("##")
+                st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+                st.write("##")
             st_lottie(load_lottieurl('https://assets5.lottiefiles.com/packages/lf20_inuxiflu.json'), height=200)
 
     elif st.session_state.choix_page_reduction == "UMAP":
@@ -2009,5 +2014,3 @@ elif choix_page == "Réduction de dimension":
                 st.write("##")
                 st_lottie(load_lottieurl('https://assets5.lottiefiles.com/packages/lf20_inuxiflu.json'), height=200)
 ############# Fin Réduction Dimension #############
-
-
