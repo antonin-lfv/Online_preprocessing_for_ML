@@ -424,6 +424,8 @@ elif choix_page == "Analyse des colonnes":
 
     else:
         st.info("Veuillez charger vos données dans la section Dataset")
+        st.write("##")
+        st_lottie(load_lottieurl('https://assets5.lottiefiles.com/packages/lf20_inuxiflu.json'), height=200)
 ############# Page 3 #############
 
 ############# Page 4 #############
@@ -496,6 +498,8 @@ elif choix_page == "Matrice de corrélations":
             pass
     else:
         st.info("Veuillez charger vos données dans la section Dataset")
+        st.write("##")
+        st_lottie(load_lottieurl('https://assets5.lottiefiles.com/packages/lf20_inuxiflu.json'), height=200)
 ############# Page 4 #############
 
 ############# Page 5 #############
@@ -670,6 +674,8 @@ elif choix_page == "Section graphiques":
                 st.plotly_chart(fig)
     else:
         st.info("Veuillez charger vos données dans la section Dataset")
+        st.write("##")
+        st_lottie(load_lottieurl('https://assets5.lottiefiles.com/packages/lf20_inuxiflu.json'), height=200)
 ############# Page 5 #############
 
 ############# régression #############
@@ -1129,6 +1135,8 @@ elif choix_page == "Régressions":
         with exp2:
             st.write("##")
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+            st.write("##")
+            st_lottie(load_lottieurl('https://assets5.lottiefiles.com/packages/lf20_inuxiflu.json'), height=200)
 ############# Fin régression #############
 
 ############# Classification #############
@@ -1386,6 +1394,8 @@ elif choix_page == "Classification":
             with exp2:
                 st.write("##")
                 st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+                st.write("##")
+                st_lottie(load_lottieurl('https://assets5.lottiefiles.com/packages/lf20_inuxiflu.json'), height=200)
 
     elif st.session_state.choix_page_classification == "K-Means":
         st.markdown('<p class="grand_titre">K-Means</p>', unsafe_allow_html=True)
@@ -1475,6 +1485,8 @@ elif choix_page == "Classification":
             with exp2:
                 st.write("##")
                 st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+                st.write("##")
+                st_lottie(load_lottieurl('https://assets5.lottiefiles.com/packages/lf20_inuxiflu.json'), height=200)
 
 
     elif st.session_state.choix_page_classification == "SVM":
@@ -1604,6 +1616,8 @@ elif choix_page == "Classification":
             with exp2:
                 st.write("##")
                 st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+                st.write("##")
+                st_lottie(load_lottieurl('https://assets5.lottiefiles.com/packages/lf20_inuxiflu.json'), height=200)
 
     if st.session_state.choix_page_classification == "Decision Tree":
         st.markdown('<p class="grand_titre">Decision Tree</p>', unsafe_allow_html=True)
@@ -1700,6 +1714,8 @@ elif choix_page == "Classification":
             with exp2:
                 st.write("##")
                 st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+                st.write("##")
+                st_lottie(load_lottieurl('https://assets5.lottiefiles.com/packages/lf20_inuxiflu.json'), height=200)
 ############# Fin Classification #############
 
 ############# Ensemble Learning #############
@@ -1815,6 +1831,8 @@ elif choix_page == "Réduction de dimension":
             with exp2:
                 st.write("##")
             st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+            st.write("##")
+            st_lottie(load_lottieurl('https://assets5.lottiefiles.com/packages/lf20_inuxiflu.json'), height=200)
 
     elif st.session_state.choix_page_reduction == "UMAP":
         st.markdown('<p class="grand_titre">UMAP : Uniform Manifold Approximation and Projection</p>',
@@ -1901,6 +1919,8 @@ elif choix_page == "Réduction de dimension":
             with exp2:
                 st.write("##")
                 st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+                st.write("##")
+                st_lottie(load_lottieurl('https://assets5.lottiefiles.com/packages/lf20_inuxiflu.json'), height=200)
 
     elif st.session_state.choix_page_reduction == "T-SNE":
         st.markdown('<p class="grand_titre">T-SNE : t-distributed stochastic neighbor embedding</p>',
@@ -1986,6 +2006,8 @@ elif choix_page == "Réduction de dimension":
             with exp2:
                 st.write("##")
                 st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+                st.write("##")
+                st_lottie(load_lottieurl('https://assets5.lottiefiles.com/packages/lf20_inuxiflu.json'), height=200)
 ############# Fin Réduction Dimension #############
 
 
