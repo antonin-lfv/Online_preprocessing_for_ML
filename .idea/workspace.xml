@@ -19,9 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="error message">
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="Menu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,14 +164,7 @@
       <workItem from="1642528950778" duration="661000" />
       <workItem from="1642849346363" duration="1044000" />
       <workItem from="1642850954038" duration="900000" />
-      <workItem from="1643472496476" duration="3856000" />
-    </task>
-    <task id="LOCAL-00500" summary="Regressions">
-      <created>1641657563144</created>
-      <option name="number" value="00500" />
-      <option name="presentableId" value="LOCAL-00500" />
-      <option name="project" value="LOCAL" />
-      <updated>1641657563145</updated>
+      <workItem from="1643472496476" duration="3877000" />
     </task>
     <task id="LOCAL-00501" summary="Regressions">
       <created>1641740221275</created>
@@ -510,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643476585810</updated>
     </task>
-    <option name="localTasksCounter" value="549" />
+    <task id="LOCAL-00549" summary="Menu">
+      <created>1643479532287</created>
+      <option name="number" value="00549" />
+      <option name="presentableId" value="LOCAL-00549" />
+      <option name="project" value="LOCAL" />
+      <updated>1643479532288</updated>
+    </task>
+    <option name="localTasksCounter" value="550" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,7 +552,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/models" />
     </ignored-roots>
-    <MESSAGE value="update streamlit 88 - adding st.download and st.expander" />
     <MESSAGE value="0.89 version" />
     <MESSAGE value="update streamlit 1.0 !" />
     <MESSAGE value="update streamlit 1.0" />
@@ -578,7 +576,8 @@
     <MESSAGE value="Structure" />
     <MESSAGE value="Accueil" />
     <MESSAGE value="error message" />
-    <option name="LAST_COMMIT_MESSAGE" value="error message" />
+    <MESSAGE value="Menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Menu" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Online_preprocessing_for_ML$main.coverage" NAME="main Coverage Results" MODIFIED="1639270371883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

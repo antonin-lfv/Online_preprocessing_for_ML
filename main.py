@@ -746,7 +746,6 @@ elif choix_page == "Régressions":
                     st.warning('Le dataset composé des 2 colonnes selectionnées après dropna() est vide !')
 
             else:  # Le dataset est viable
-
                 try:
                     # Data
                     X_train, X_test, y_train, y_test = train_test_split(
