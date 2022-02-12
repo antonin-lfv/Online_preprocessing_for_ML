@@ -131,7 +131,7 @@ if "file_details" not in st.session_state:
 
 # Pages principales
 PAGES = ["Accueil", "Dataset", "Analyse des colonnes", "Matrice de corrélations", "Section graphiques",
-         "Régressions", "Classifications", "Ensemble learning", "Réduction de dimension"]
+         "Régressions", "Classifications", "Réduction de dimension"]
 with st.sidebar:
     st_lottie(load_lottieurl('https://assets8.lottiefiles.com/packages/lf20_jjojhxyb.json'), height=150)
 choix_page = st.sidebar.radio(label="", options=PAGES)
@@ -1723,16 +1723,6 @@ elif choix_page == "Classifications":
                 st.write("##")
                 st_lottie(load_lottieurl('https://assets5.lottiefiles.com/packages/lf20_inuxiflu.json'), height=200)
 ############# Fin Classification #############
-
-############# Ensemble Learning #############
-elif choix_page == "Ensemble learning":
-    PAGES_ensemble_l = ["XGBoost"]
-    st.sidebar.title('Ensemble learning  :brain:')
-    st.sidebar.radio(label="", options=PAGES_ensemble_l, key="choix_page_ensemble_l")
-
-    if st.session_state.choix_page_ensemble_l == "XGBoost":
-        st.info("En cours")
-############# Fin Ensemble Learning #############
 
 ############# Réduction Dimension #############
 elif choix_page == "Réduction de dimension":
