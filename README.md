@@ -34,6 +34,12 @@ Streamlit run main.py
 
 <br/>
 
+## Accueil
+
+<p align="center">
+  <img width="1440" alt="Accueil No code AI platform" src="https://user-images.githubusercontent.com/63207451/151675097-1e14b6f8-cf6a-4f82-aa72-31259284adbe.png">
+  </p>
+
 <p align="center">
     <a href="https://antonin-lfv.github.io" class="fancybox" ><img src="https://user-images.githubusercontent.com/63207451/127334786-f48498e4-7aa1-4fbd-b7b4-cd78b43972b8.png" title="Web Page" width="38" height="38"></a>
   <a href="https://github.com/antonin-lfv" class="fancybox" ><img src="https://user-images.githubusercontent.com/63207451/97302854-e484da80-1859-11eb-9374-5b319ca51197.png" title="GitHub" width="40" height="40"></a>
