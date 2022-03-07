@@ -7,7 +7,7 @@ import time
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-## have information on a series
+## get informations on a series
 
 def column_info(data): # data -> 1 serie
     (a,) = data.shape
@@ -55,7 +55,7 @@ def column_info(data): # data -> 1 serie
     time.sleep(1)
 
 
-## have information on the entire dataframe
+## get informations on the entire dataframe
 
 def max_std(dataset): 
     l = []
