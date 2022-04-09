@@ -20,6 +20,8 @@
 <p/>
 <br>
 
+**La No-Code AI Platform a été ensuite créée avec Flask et déployée sur Heroku, le repo est disponible ici[https://github.com/antonin-lfv/No-code-AI-platform] **
+
 > Pour accéder au site, cliquez sur le bouton **"Open in streamlit"** en haut du ReadMe
 
 <br>
