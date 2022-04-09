@@ -25,6 +25,7 @@
   </p>
   
   <br>
+  
 > Pour accéder au site, cliquez sur le bouton **"Open in streamlit"** en haut du ReadMe
 
 <br>
