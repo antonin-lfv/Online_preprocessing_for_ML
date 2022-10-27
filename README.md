@@ -84,12 +84,13 @@ La page **section graphiques** vous donne la possibilité de créer des graphiqu
 <img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198406497-c46770c5-e80c-4e04-aaf7-cf4db1707b0a.png">
   </p>
 
-Nous voila maintenant dans la section **Régressions**, dans cette page vous pourrez suivre les courbes d'apprentissage de plusieurs modèles de régressions (sélectionnés en fonction du type de données). Il vous suffit de renseigner les features et la bonne target.
+Nous voila maintenant dans la section **Régressions**, dans cette page vous pourrez suivre les courbes d'apprentissage de plusieurs modèles de régressions (sélectionnés en fonction du type de données). Il y a la régression linéaire, polynomiale, Elastic Net, Ridge, Lasso, de poisson. Il vous suffit de renseigner les features et la bonne target et le tour est joué.
 
 <p align="center">
 <img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198407133-6888d8a1-0f27-4322-9ca1-71229e4abe7c.png">
   </p>
 
+Attaquons nous maintenant à la partie classification, qui renferme des nouvelles pages pour chaque modèle pris en compte, KNN, K-Means, Support Vector Machine et Decision Tree.
 
 <br>
 
