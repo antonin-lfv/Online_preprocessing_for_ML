@@ -71,6 +71,26 @@ Si vous choisissez un dataset personnel, vous pourrez spécifier un séparateur 
 <img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198405223-96e1acb5-c875-40a0-84bc-5733b4b79319.png">
   </p>
 
+
+La page suivant, **Matrice de corrélations** permet de voir les possibles corrélations entre les features du dataset. Vous devez simplement spécifier les features à prendre en compte. Vous pouvez également renseigner une feature catégorielle pour la coloration.
+
+<p align="center">
+<img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198405775-12b0cf2d-a26c-4226-9ca5-8f9ae2fcde2a.png">
+  </p>
+
+La page **section graphiques** vous donne la possibilité de créer des graphiques pour suivre en détail les corrélations entre deux features. Plusieurs options de graphiques sont disponibles (Points, Courbe, Coordonnées géographiques, Histogramme), plusieurs indices statistiques peuvent être affichés ainsi que les courbes de régressions Linéaire et Polynomiale avec les équations finales pour chacune.
+
+<p align="center">
+<img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198406497-c46770c5-e80c-4e04-aaf7-cf4db1707b0a.png">
+  </p>
+
+Nous voila maintenant dans la section **Régressions**, dans cette page vous pourrez suivre les courbes d'apprentissage de plusieurs modèles de régressions (sélectionnés en fonction du type de données). Il vous suffit de renseigner les features et la bonne target.
+
+<p align="center">
+<img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198407133-6888d8a1-0f27-4322-9ca1-71229e4abe7c.png">
+  </p>
+
+
 <br>
 
 <p align="center">
