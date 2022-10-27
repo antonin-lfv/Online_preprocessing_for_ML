@@ -42,9 +42,19 @@ Streamlit run main.py
 
 ## Mode d'emploi
 
+Je vais détailler ici l'utilisation de la platform, avec des exemples pour chacune des pages. Pour commencer, voici la première par laquelle vous allez arriver. Sur la gauche se trouve la barre de navigation, vous permettant de vous déplacer au travers des pages. À partir de cette page, il vous faut charger des données sur la page **Dataset**, sous peine de ne pas pouvoir utiliser les autres pages.
+
 <p align="center">
-  <img width="1440" alt="Accueil No code AI platform" src="https://user-images.githubusercontent.com/63207451/151675097-1e14b6f8-cf6a-4f82-aa72-31259284adbe.png">
+  <img width="900" alt="Capture d’écran 2022-10-27 à 23 28 53" src="https://user-images.githubusercontent.com/63207451/198401805-e4a95b7e-51d3-4579-ac6b-27d37d76494c.png">
   </p>
+
+Détaillons maintenant la page Dataset.
+
+<p align="center">
+<img width="1624" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198402345-a71ecd6a-debc-4e21-9f00-b1d0169b30d4.png">
+  </p>
+ 
+<br>
 
 <p align="center">
     <a href="https://antonin-lfv.github.io" class="fancybox" ><img src="https://user-images.githubusercontent.com/63207451/127334786-f48498e4-7aa1-4fbd-b7b4-cd78b43972b8.png" title="Web Page" width="38" height="38"></a>
