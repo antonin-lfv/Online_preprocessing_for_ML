@@ -45,15 +45,32 @@ Streamlit run main.py
 Je vais détailler ici l'utilisation de la platform, avec des exemples pour chacune des pages. Pour commencer, voici la première par laquelle vous allez arriver. Sur la gauche se trouve la barre de navigation, vous permettant de vous déplacer au travers des pages. À partir de cette page, il vous faut charger des données sur la page **Dataset**, sous peine de ne pas pouvoir utiliser les autres pages.
 
 <p align="center">
-  <img width="900" alt="Capture d’écran 2022-10-27 à 23 28 53" src="https://user-images.githubusercontent.com/63207451/198401805-e4a95b7e-51d3-4579-ac6b-27d37d76494c.png">
+  <img width="850" alt="Capture d’écran 2022-10-27 à 23 28 53" src="https://user-images.githubusercontent.com/63207451/198401805-e4a95b7e-51d3-4579-ac6b-27d37d76494c.png">
   </p>
 
-Détaillons maintenant la page Dataset.
+Détaillons maintenant la page Dataset. Sur cette page, vous allez choisir les données à utiliser. Pour ce faire, plusieurs choix s'offre à vous. Le premier est d'utiliser l'un des dataset proposés dont le type de problème (Classification ou Régression) est donné, le second est d'utiliser votre propre dataset que vous importerai en cliquant sur **Choisir un dataset personnel**.
 
 <p align="center">
-<img width="1624" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198402345-a71ecd6a-debc-4e21-9f00-b1d0169b30d4.png">
+<img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198402345-a71ecd6a-debc-4e21-9f00-b1d0169b30d4.png">
   </p>
- 
+
+
+Si vous choisissez un dataset personnel, vous pourrez spécifier un séparateur si besoin, et modifier le dataset (il faudra retélécharger le dataset après modification). Dans le cas ou vous choisissez un dataset parmi ceux proposer, vous ne pourrez pas les modifier (ils sont déjà nettoyés).
+
+<p align="center">
+<img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198404597-41d4b83e-369c-4528-b511-a59047e31ec1.png">
+  </p>
+  
+<p align="center">
+<img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198404609-a4e73f9d-53a1-4c05-9ca4-5d4480a77cb7.png">
+  </p>
+
+À présent, vous pouvez naviguer parmi les pages pour visualiser les données, créer des modèles, etc. La première page est celle d'**analyse des colonnes**, elle permet d'afficher les colonnes indépendemment, et d'avoir les caractéristiques mathématiques de celle-ci. Les caractéristiques dépendent du type de la colonne.
+
+<p align="center">
+<img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198405223-96e1acb5-c875-40a0-84bc-5733b4b79319.png">
+  </p>
+
 <br>
 
 <p align="center">
