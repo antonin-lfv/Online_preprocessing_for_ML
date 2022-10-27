@@ -40,7 +40,7 @@ Streamlit run main.py
 
 <br/>
 
-## Accueil
+## Mode d'emploi
 
 <p align="center">
   <img width="1440" alt="Accueil No code AI platform" src="https://user-images.githubusercontent.com/63207451/151675097-1e14b6f8-cf6a-4f82-aa72-31259284adbe.png">
