@@ -165,11 +165,11 @@ Le deuxième algorithme de réduction de dimension est l'algorithme UMAP, qui ma
 Enfin, vous pouvez utiliser l'algorithme t-SNE, qui s'utilise comme les deux algorithmes précédents.
 
 <p align="center">  
-<img width="1624" alt="Capture d’écran 2022-10-28 à 20 40 26" src="https://user-images.githubusercontent.com/63207451/198708968-5e3b356c-20e3-41fa-ad46-e1b011a36f0e.png">
+<img width="850" alt="Capture d’écran 2022-10-28 à 20 40 26" src="https://user-images.githubusercontent.com/63207451/198708968-5e3b356c-20e3-41fa-ad46-e1b011a36f0e.png">
   </p>
   
 <p align="center">  
-<img width="1624" alt="Capture d’écran 2022-10-28 à 20 40 33" src="https://user-images.githubusercontent.com/63207451/198708991-3ffad937-7486-4d43-8596-19b474c59007.png">
+<img width="850" alt="Capture d’écran 2022-10-28 à 20 40 33" src="https://user-images.githubusercontent.com/63207451/198708991-3ffad937-7486-4d43-8596-19b474c59007.png">
   </p>
   
 <br>
