@@ -26,7 +26,7 @@ from sklearn import metrics
 from sklearn.metrics import *
 from sklearn.cluster import KMeans
 from sklearn.svm import SVC
-import umap.umap_ as UMAP
+import umap.umap_ as umap
 from scipy.spatial import distance
 import more_itertools
 from streamlit_lottie import st_lottie
