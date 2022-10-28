@@ -1,8 +1,37 @@
-import numpy as np
-import pandas as pd
 import binascii
 from scipy.spatial import distance
 from collections import Counter
+import numpy as np
+import pandas as pd
+import time
+import itertools
+import streamlit as st
+import plotly.express as px
+import plotly.graph_objects as go
+import binascii
+import os
+import webbrowser
+import graphviz
+import matplotlib.pyplot as plt
+import seaborn as sns
+from collections import Counter
+from sklearn.linear_model import LinearRegression, PoissonRegressor, ElasticNet, Ridge, Lasso
+from sklearn.preprocessing import PolynomialFeatures, scale
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier, export_graphviz
+from sklearn.decomposition import PCA
+from sklearn.manifold import TSNE
+from sklearn.model_selection import train_test_split, GridSearchCV, learning_curve
+from sklearn import metrics
+from sklearn.metrics import *
+from sklearn.cluster import KMeans
+from sklearn.svm import SVC
+import umap.umap_ as UMAP
+from scipy.spatial import distance
+import more_itertools
+from streamlit_lottie import st_lottie
+import requests
+
 
 def max_std(dataset):  # colonne de maximum de variance
     l = []

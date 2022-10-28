@@ -1,37 +1,7 @@
 # Importations
-import itertools
-import streamlit as st
-import plotly.express as px
-import plotly.graph_objects as go
-import binascii
-import numpy as np
-import pandas as pd
-import time
-import os
-import webbrowser
-import graphviz
-import matplotlib.pyplot as plt
-import seaborn as sns
-from collections import Counter
-from sklearn.linear_model import LinearRegression, PoissonRegressor, ElasticNet, Ridge, Lasso
-from sklearn.preprocessing import PolynomialFeatures, scale
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier, export_graphviz
-from sklearn.decomposition import PCA
-from sklearn.manifold import TSNE
-from sklearn.model_selection import train_test_split, GridSearchCV, learning_curve
-from sklearn import metrics
-from sklearn.metrics import *
-from sklearn.cluster import KMeans
-from sklearn.svm import SVC
-import umap.umap_ as UMAP
-from scipy.spatial import distance
 from utils import *
-import more_itertools
-from streamlit_lottie import st_lottie
-import requests
 
-####### html/css config ########
+# ###### html/css config ########
 st.set_page_config(layout="wide", page_title="No code AI", menu_items={
     'About': "No-code AI Platform - réalisé par Antonin"
 })
@@ -1671,7 +1641,7 @@ elif choix_page == "Classifications":
                         # metrics on train
                         y_pred_train = clf.predict(X_train)
                         accur_train = accuracy_score(y_train, y_pred_train)
-                        precis_train = precision_score(y_train, y_pred_train, average=average)
+                        precis_train = precision_score(y_train, y_pred_train, average=average, pos_label=pd.unique(df[target])[0])
                         rappel_train = recall_score(y_train, y_pred_train, average=average)
                         F1_train = f1_score(y_train, y_pred_train, average=average)
 
