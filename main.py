@@ -1841,7 +1841,7 @@ elif choix_page == "Réduction de dimension":
 
                     with col2_umap:
                         ## on choisit notre modèle
-                        model = UMAP(random_state=0)
+                        model = umap.UMAP()
                         ## création des target et features à partir du dataset
                         st.write("##")
                         st.session_state.target_UMAP = st.selectbox("Target :",
