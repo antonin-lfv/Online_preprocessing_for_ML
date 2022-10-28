@@ -90,7 +90,49 @@ Nous voila maintenant dans la section **Régressions**, dans cette page vous pou
 <img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198407133-6888d8a1-0f27-4322-9ca1-71229e4abe7c.png">
   </p>
 
-Attaquons nous maintenant à la partie classification, qui renferme des nouvelles pages pour chaque modèle pris en compte, KNN, K-Means, Support Vector Machine et Decision Tree.
+Attaquons nous maintenant à la partie classification, qui renferme des nouvelles pages pour chaque modèle, à savoir le KNN, K-Means, les Support Vector Machines et les Decision Trees. 
+Le premier modèle est le modèle des k plus proches voisins (KNN). Pour créer le modèle, il faudra commencer par sélectionner au moins deux colonnes dont la target du modèle. Vous spécifierai les données à encoder, et vous choisierai la target (parmi les colonnes sélectionnées précedemment) qui doit être encodée. L'encodage peut être visualisé dans une petite fenetre. 
+Après avoir lancé le modèle, vous verrez le nombre de voisins optimal pour avoir les meilleures performances ainsi que les courbes d'apprentissages, les métriques et les courbes ROC dans le cas d'une classification binaire.
+
+<p align="center">
+<img width="850" alt="Capture d’écran 2022-10-28 à 19 55 37" src="https://user-images.githubusercontent.com/63207451/198701520-eb8663b5-9a92-46ec-a59f-f9d5a5464c2a.png">
+  </p>
+  
+<p align="center">
+<img width="1624" alt="Capture d’écran 2022-10-28 à 19 57 28" src="https://user-images.githubusercontent.com/63207451/198701827-876d9de1-2d8a-4726-b09b-415d29a21996.png">
+  </p>
+  
+<p align="center">
+<img width="1624" alt="Capture d’écran 2022-10-28 à 19 59 09" src="https://user-images.githubusercontent.com/63207451/198702087-b9e7b51f-8df8-4c2d-ad3d-4e7148f88d0d.png">
+  </p>
+
+Il vous sera aussi possible d'utiliser le modèle pour faire des prédictions.
+
+<p align="center">
+<img width="1624" alt="Capture d’écran 2022-10-28 à 20 01 35" src="https://user-images.githubusercontent.com/63207451/198702474-bf70eeed-3e74-4ec6-a49c-65b9dac45819.png">
+  </p>
+
+Poursuivons sur le prochain algorithme, qui est le K-means. Pour créer le modèle il faudra renseigner au moins deux colonnes, et modifier ou non le nombre de clusters que le modèle doit créer. Le résultat sera affiché grâce à l'algorithme PCA, avec coloration des clusters et des centroides.
+
+<p align="center">
+<img width="1624" alt="Capture d’écran 2022-10-28 à 20 04 52" src="https://user-images.githubusercontent.com/63207451/198703040-256abf65-d646-434e-89bc-057b0126694a.png">
+  </p>
+  
+<p align="center">
+<img width="1624" alt="Capture d’écran 2022-10-28 à 20 05 01" src="https://user-images.githubusercontent.com/63207451/198703062-90e87dc4-7676-4840-b989-bfd077d404ab.png">
+  </p>
+
+Il est également possible de créer un modèle de support vector machine (SVM). Pour cela, on choisiera deux colonnes pour les features, la target qui doit être catégorielle et dont on sélectionnera uniquement deux classes, et le noyau qui est pour l'instant uniquement linéaire. Une fois le modèle lancé vous pourrez visualiser les résultats. 
+
+<p align="center">
+<img width="1624" alt="Capture d’écran 2022-10-28 à 20 10 39" src="https://user-images.githubusercontent.com/63207451/198704113-83303801-1937-4212-a216-a8be2c1f37d0.png">
+  </p>
+  
+<p align="center">
+<img width="1624" alt="Capture d’écran 2022-10-28 à 20 10 46" src="https://user-images.githubusercontent.com/63207451/198704136-a2458246-a1c0-449e-ae6c-3642cced249d.png">
+  </p>
+
+Enfin, le dernier algorithme de classification est celui des arbres de décision. 
 
 <br>
 
