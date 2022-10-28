@@ -99,41 +99,79 @@ Après avoir lancé le modèle, vous verrez le nombre de voisins optimal pour av
   </p>
   
 <p align="center">
-<img width="1624" alt="Capture d’écran 2022-10-28 à 19 57 28" src="https://user-images.githubusercontent.com/63207451/198701827-876d9de1-2d8a-4726-b09b-415d29a21996.png">
+<img width="850" alt="Capture d’écran 2022-10-28 à 19 57 28" src="https://user-images.githubusercontent.com/63207451/198701827-876d9de1-2d8a-4726-b09b-415d29a21996.png">
   </p>
   
 <p align="center">
-<img width="1624" alt="Capture d’écran 2022-10-28 à 19 59 09" src="https://user-images.githubusercontent.com/63207451/198702087-b9e7b51f-8df8-4c2d-ad3d-4e7148f88d0d.png">
+<img width="850" alt="Capture d’écran 2022-10-28 à 19 59 09" src="https://user-images.githubusercontent.com/63207451/198702087-b9e7b51f-8df8-4c2d-ad3d-4e7148f88d0d.png">
   </p>
 
 Il vous sera aussi possible d'utiliser le modèle pour faire des prédictions.
 
 <p align="center">
-<img width="1624" alt="Capture d’écran 2022-10-28 à 20 01 35" src="https://user-images.githubusercontent.com/63207451/198702474-bf70eeed-3e74-4ec6-a49c-65b9dac45819.png">
+<img width="850" alt="Capture d’écran 2022-10-28 à 20 01 35" src="https://user-images.githubusercontent.com/63207451/198702474-bf70eeed-3e74-4ec6-a49c-65b9dac45819.png">
   </p>
 
 Poursuivons sur le prochain algorithme, qui est le K-means. Pour créer le modèle il faudra renseigner au moins deux colonnes, et modifier ou non le nombre de clusters que le modèle doit créer. Le résultat sera affiché grâce à l'algorithme PCA, avec coloration des clusters et des centroides.
 
 <p align="center">
-<img width="1624" alt="Capture d’écran 2022-10-28 à 20 04 52" src="https://user-images.githubusercontent.com/63207451/198703040-256abf65-d646-434e-89bc-057b0126694a.png">
+<img width="850" alt="Capture d’écran 2022-10-28 à 20 04 52" src="https://user-images.githubusercontent.com/63207451/198703040-256abf65-d646-434e-89bc-057b0126694a.png">
   </p>
   
 <p align="center">
-<img width="1624" alt="Capture d’écran 2022-10-28 à 20 05 01" src="https://user-images.githubusercontent.com/63207451/198703062-90e87dc4-7676-4840-b989-bfd077d404ab.png">
+<img width="850" alt="Capture d’écran 2022-10-28 à 20 05 01" src="https://user-images.githubusercontent.com/63207451/198703062-90e87dc4-7676-4840-b989-bfd077d404ab.png">
   </p>
 
 Il est également possible de créer un modèle de support vector machine (SVM). Pour cela, on choisiera deux colonnes pour les features, la target qui doit être catégorielle et dont on sélectionnera uniquement deux classes, et le noyau qui est pour l'instant uniquement linéaire. Une fois le modèle lancé vous pourrez visualiser les résultats. 
 
 <p align="center">
-<img width="1624" alt="Capture d’écran 2022-10-28 à 20 10 39" src="https://user-images.githubusercontent.com/63207451/198704113-83303801-1937-4212-a216-a8be2c1f37d0.png">
+<img width="850" alt="Capture d’écran 2022-10-28 à 20 10 39" src="https://user-images.githubusercontent.com/63207451/198704113-83303801-1937-4212-a216-a8be2c1f37d0.png">
   </p>
   
 <p align="center">
-<img width="1624" alt="Capture d’écran 2022-10-28 à 20 10 46" src="https://user-images.githubusercontent.com/63207451/198704136-a2458246-a1c0-449e-ae6c-3642cced249d.png">
+<img width="850" alt="Capture d’écran 2022-10-28 à 20 10 46" src="https://user-images.githubusercontent.com/63207451/198704136-a2458246-a1c0-449e-ae6c-3642cced249d.png">
   </p>
 
-Enfin, le dernier algorithme de classification est celui des arbres de décision. 
+Enfin, le dernier algorithme de classification est celui des arbres de décision. Comme précedemment il vous suffit de sélectionner deux features ainsi que la target pour créer et visualiser le modèle.
 
+<p align="center">
+<img width="850" alt="Capture d’écran 2022-10-28 à 20 23 18" src="https://user-images.githubusercontent.com/63207451/198706091-c6639432-d52d-4a81-8417-8ca942aaadd5.png">
+  </p>
+
+<p align="center">
+<img width="850" alt="Capture d’écran 2022-10-28 à 20 23 56" src="https://user-images.githubusercontent.com/63207451/198706202-e17a4315-7ed7-49f0-b5fe-6bfa5b05e90d.png">
+  </p>
+
+Enfin, voici la dernière section de la No code AI platform, concernant la réduction de dimension. Le premier algorithme est l'analyse en composantes principales. Il faudra sélectionner au moins deux colonnes des données, dont la target, ainsi que les colonnes à encoder et la target (qui appartient aux colonnes séléctionnées au début).
+
+<p align="center">
+<img width="850" alt="Capture d’écran 2022-10-28 à 20 31 15" src="https://user-images.githubusercontent.com/63207451/198707454-2aa55307-7d44-4d03-a5cf-85bafe2f6d99.png">
+  </p>
+  
+<p align="center">  
+<img width="850" alt="Capture d’écran 2022-10-28 à 20 31 34" src="https://user-images.githubusercontent.com/63207451/198707494-9958e5cc-d30b-41e7-8c95-c090a0106057.png">
+  </p>
+
+Le deuxième algorithme de réduction de dimension est l'algorithme UMAP, qui marche de la même manière que le précédent.
+
+<p align="center">  
+<img width="850" alt="Capture d’écran 2022-10-28 à 20 34 02" src="https://user-images.githubusercontent.com/63207451/198707906-14879f08-1cf1-47b0-bbab-0e8975e5aa2a.png">
+  </p>
+
+<p align="center">  
+<img width="850" alt="Capture d’écran 2022-10-28 à 20 34 58" src="https://user-images.githubusercontent.com/63207451/198708061-37dfcb80-9ce9-43e2-96f2-4809088d8c95.png">
+  </p>
+
+Enfin, vous pouvez utiliser l'algorithme t-SNE, qui s'utilise comme les deux algorithmes précédents.
+
+<p align="center">  
+<img width="1624" alt="Capture d’écran 2022-10-28 à 20 40 26" src="https://user-images.githubusercontent.com/63207451/198708968-5e3b356c-20e3-41fa-ad46-e1b011a36f0e.png">
+  </p>
+  
+<p align="center">  
+<img width="1624" alt="Capture d’écran 2022-10-28 à 20 40 33" src="https://user-images.githubusercontent.com/63207451/198708991-3ffad937-7486-4d43-8596-19b474c59007.png">
+  </p>
+  
 <br>
 
 <p align="center">
