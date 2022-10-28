@@ -48,14 +48,14 @@ Je vais détailler ici l'utilisation de la platform, avec des exemples pour chac
   <img width="850" alt="Capture d’écran 2022-10-27 à 23 28 53" src="https://user-images.githubusercontent.com/63207451/198401805-e4a95b7e-51d3-4579-ac6b-27d37d76494c.png">
   </p>
 
-Détaillons maintenant la page Dataset. Sur cette page, vous allez choisir les données à utiliser. Pour ce faire, plusieurs choix s'offre à vous. Le premier est d'utiliser l'un des dataset proposés dont le type de problème (Classification ou Régression) est donné, le second est d'utiliser votre propre dataset que vous importerai en cliquant sur **Choisir un dataset personnel**.
+Détaillons maintenant la page Dataset. Sur cette page, vous allez choisir les données à utiliser. Pour ce faire, plusieurs choix s'offrent à vous. Le premier est d'utiliser l'un des dataset proposés dont le type de problème (Classification ou Régression) est donné. Le second est d'utiliser votre propre dataset que vous importerai en cliquant sur **Choisir un dataset personnel**.
 
 <p align="center">
 <img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198402345-a71ecd6a-debc-4e21-9f00-b1d0169b30d4.png">
   </p>
 
 
-Si vous choisissez un dataset personnel, vous pourrez spécifier un séparateur si besoin, et modifier le dataset (il faudra retélécharger le dataset après modification). Dans le cas ou vous choisissez un dataset parmi ceux proposer, vous ne pourrez pas les modifier (ils sont déjà nettoyés).
+Si vous choisissez un dataset personnel, vous pourrez spécifier un séparateur si besoin, et modifier le dataset (il faudra retélécharger le dataset après modification). Dans le cas ou vous choisissez un dataset parmi ceux proposés, vous ne pourrez pas les modifier (ils sont déjà nettoyés).
 
 <p align="center">
 <img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198404597-41d4b83e-369c-4528-b511-a59047e31ec1.png">
@@ -65,7 +65,7 @@ Si vous choisissez un dataset personnel, vous pourrez spécifier un séparateur 
 <img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198404609-a4e73f9d-53a1-4c05-9ca4-5d4480a77cb7.png">
   </p>
 
-À présent, vous pouvez naviguer parmi les pages pour visualiser les données, créer des modèles, etc. La première page est celle d'**analyse des colonnes**, elle permet d'afficher les colonnes indépendemment, et d'avoir les caractéristiques mathématiques de celle-ci. Les caractéristiques dépendent du type de la colonne.
+À présent, vous pouvez naviguer parmi les pages pour visualiser les données, créer des modèles, etc. La première page est celle d'**analyse des colonnes**, elle permet d'afficher les colonnes indépendemment, et d'avoir les caractéristiques mathématiques de celles-ci. Les caractéristiques dépendent du type de la colonne.
 
 <p align="center">
 <img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198405223-96e1acb5-c875-40a0-84bc-5733b4b79319.png">
@@ -84,15 +84,15 @@ La page **section graphiques** vous donne la possibilité de créer des graphiqu
 <img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198406497-c46770c5-e80c-4e04-aaf7-cf4db1707b0a.png">
   </p>
 
-Nous voila maintenant dans la section **Régressions**, dans cette page vous pourrez suivre les courbes d'apprentissage de plusieurs modèles de régressions (sélectionnés en fonction du type de données). Il y a la régression linéaire, polynomiale, Elastic Net, Ridge, Lasso, de poisson. Il vous suffit de renseigner les features et la bonne target et le tour est joué.
+Nous voila maintenant dans la section **Régressions**, dans cette page vous pourrez suivre les courbes d'apprentissage de plusieurs modèles de régressions (sélectionnés en fonction du type de données) ainsi que l'évolution des métriques. Il y a la régression linéaire, polynomiale, Elastic Net, Ridge, Lasso, de poisson. Il vous suffit de renseigner les features et la bonne target et le tour est joué.
 
 <p align="center">
 <img width="850" alt="Capture d’écran 2022-10-27 à 23 32 16" src="https://user-images.githubusercontent.com/63207451/198407133-6888d8a1-0f27-4322-9ca1-71229e4abe7c.png">
   </p>
 
 Attaquons nous maintenant à la partie classification, qui renferme des nouvelles pages pour chaque modèle, à savoir le KNN, K-Means, les Support Vector Machines et les Decision Trees. 
-Le premier modèle est le modèle des k plus proches voisins (KNN). Pour créer le modèle, il faudra commencer par sélectionner au moins deux colonnes dont la target du modèle. Vous spécifierai les données à encoder, et vous choisierai la target (parmi les colonnes sélectionnées précedemment) qui doit être encodée. L'encodage peut être visualisé dans une petite fenetre. 
-Après avoir lancé le modèle, vous verrez le nombre de voisins optimal pour avoir les meilleures performances ainsi que les courbes d'apprentissages, les métriques et les courbes ROC dans le cas d'une classification binaire.
+Le premier modèle est le modèle des k plus proches voisins (KNN). Pour créer le modèle, il faudra commencer par sélectionner au moins deux colonnes, dont la target du modèle. Vous spécifierai les données à encoder, et vous choisierai la target (parmi les colonnes sélectionnées précedemment) qui doit être encodée. L'encodage peut être visualisé dans une petite fenetre. 
+Après avoir lancé le modèle, vous verrez le nombre optimal de voisins pour avoir les meilleures performances ainsi que les courbes d'apprentissages, les métriques et les courbes ROC dans le cas d'une classification binaire.
 
 <p align="center">
 <img width="850" alt="Capture d’écran 2022-10-28 à 19 55 37" src="https://user-images.githubusercontent.com/63207451/198701520-eb8663b5-9a92-46ec-a59f-f9d5a5464c2a.png">
