@@ -1642,15 +1642,15 @@ elif choix_page == "Classifications":
                         y_pred_train = clf.predict(X_train)
                         accur_train = accuracy_score(y_train, y_pred_train)
                         precis_train = precision_score(y_train, y_pred_train, average=average, pos_label=pd.unique(df[target])[0])
-                        rappel_train = recall_score(y_train, y_pred_train, average=average)
-                        F1_train = f1_score(y_train, y_pred_train, average=average)
+                        rappel_train = recall_score(y_train, y_pred_train, average=average, pos_label=pd.unique(df[target])[0])
+                        F1_train = f1_score(y_train, y_pred_train, average=average, pos_label=pd.unique(df[target])[0])
 
                         # metrics on test
                         y_pred_test = clf.predict(X_test)
                         accur_test = accuracy_score(y_test, y_pred_test)
-                        precis_test = precision_score(y_test, y_pred_test, average=average)
-                        rappel_test = recall_score(y_test, y_pred_test, average=average)
-                        F1_test = f1_score(y_test, y_pred_test, average=average)
+                        precis_test = precision_score(y_test, y_pred_test, average=average, pos_label=pd.unique(df[target])[0])
+                        rappel_test = recall_score(y_test, y_pred_test, average=average, pos_label=pd.unique(df[target])[0])
+                        F1_test = f1_score(y_test, y_pred_test, average=average, pos_label=pd.unique(df[target])[0])
 
                         # Affichage métriques
                         with col1_dt:

@@ -22,16 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="details">
-      <change afterPath="$PROJECT_DIR$/pages/_Home.py" afterPathEscaped="$PROJECT_DIR$/pages/🏠_Home.py" afterDir="false" />
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="decision tree">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Online_preprocessing_for_ML.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Online_preprocessing_for_ML.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.python-version" beforeDir="false" afterPath="$PROJECT_DIR$/.python-version" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datasets/CarPrice.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Datasets/CarPrice.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +55,13 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="master" />
+      </list>
+    </option>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/main.py" root0="FORCE_HIGHLIGHTING" />
@@ -185,21 +186,7 @@
       <workItem from="1654201769173" duration="831000" />
       <workItem from="1655883288473" duration="10000" />
       <workItem from="1666980793605" duration="27000" />
-      <workItem from="1666980847685" duration="314000" />
-    </task>
-    <task id="LOCAL-00506" summary="Regressions">
-      <created>1641740793934</created>
-      <option name="number" value="00506" />
-      <option name="presentableId" value="LOCAL-00506" />
-      <option name="project" value="LOCAL" />
-      <updated>1641740793934</updated>
-    </task>
-    <task id="LOCAL-00507" summary="Regressions">
-      <created>1641740834062</created>
-      <option name="number" value="00507" />
-      <option name="presentableId" value="LOCAL-00507" />
-      <option name="project" value="LOCAL" />
-      <updated>1641740834063</updated>
+      <workItem from="1666980847685" duration="465000" />
     </task>
     <task id="LOCAL-00508" summary="Regressions">
       <created>1641741209296</created>
@@ -530,7 +517,21 @@
       <option name="project" value="LOCAL" />
       <updated>1644673450688</updated>
     </task>
-    <option name="localTasksCounter" value="555" />
+    <task id="LOCAL-00555" summary="decision tree">
+      <created>1666981233113</created>
+      <option name="number" value="00555" />
+      <option name="presentableId" value="LOCAL-00555" />
+      <option name="project" value="LOCAL" />
+      <updated>1666981233114</updated>
+    </task>
+    <task id="LOCAL-00556" summary="decision tree">
+      <created>1666981262803</created>
+      <option name="number" value="00556" />
+      <option name="presentableId" value="LOCAL-00556" />
+      <option name="project" value="LOCAL" />
+      <updated>1666981262803</updated>
+    </task>
+    <option name="localTasksCounter" value="557" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -573,7 +574,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/models" />
     </ignored-roots>
-    <MESSAGE value="update streamlit 1.0" />
     <MESSAGE value="Neural transfert" />
     <MESSAGE value="Color theme" />
     <MESSAGE value="st message" />
@@ -598,7 +598,8 @@
     <MESSAGE value="Menu" />
     <MESSAGE value="Dataset section" />
     <MESSAGE value="details" />
-    <option name="LAST_COMMIT_MESSAGE" value="details" />
+    <MESSAGE value="decision tree" />
+    <option name="LAST_COMMIT_MESSAGE" value="decision tree" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Online_preprocessing_for_ML$main.coverage" NAME="main Coverage Results" MODIFIED="1639270371883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
