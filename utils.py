@@ -32,6 +32,47 @@ import more_itertools
 from streamlit_lottie import st_lottie
 import requests
 
+CSS = """
+<style>
+.first_titre {
+    font-size:75px !important;
+    font-weight: bold;
+    box-sizing: border-box;
+    text-align: center;
+    width: 100%;
+}
+.intro{
+    text-align: justify;
+    font-size:20px !important;
+}
+.grand_titre {
+    font-size:30px !important;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: #4976E4;
+    text-decoration-thickness: 5px;
+}
+.section{
+    font-size:20px !important;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: #111111;
+    text-decoration-thickness: 3px;
+}
+.petite_section{
+    font-size:16px !important;
+    font-weight: bold;
+}
+.nom_colonne_page3{
+    font-size:17px !important;
+    text-decoration: underline;
+    text-decoration-color: #000;
+    text-decoration-thickness: 1px;
+}
+</style>
+"""
 
 def max_std(dataset):  # colonne de maximum de variance
     l = []
@@ -65,3 +106,9 @@ def max_dist(donnee_apres_pca, df, voisins):  # pour knn, retourne la distance d
         distances.append(distance_e(donnee_apres_pca, [df['x'].iloc[i], df['y'].iloc[i]]))
     distances.sort()
     return distances[voisins-1]
+
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
