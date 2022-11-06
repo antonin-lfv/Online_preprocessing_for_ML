@@ -35,7 +35,7 @@
 Clonez le repo puis, depuis le terminal au dossier du projet :
 
 ```bash
-Streamlit run main.py
+Streamlit run Accueil.py
 ```
 
 <br/>
