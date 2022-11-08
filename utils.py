@@ -32,7 +32,6 @@ import more_itertools
 from streamlit_lottie import st_lottie
 import requests
 from sklearn.pipeline import make_pipeline
-import pickle
 
 CSS = """
 <style>

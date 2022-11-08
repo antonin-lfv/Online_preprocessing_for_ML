@@ -17,4 +17,3 @@ six
 pip
 requests
 streamlit_lottie
-pickle
