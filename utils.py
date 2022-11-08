@@ -24,7 +24,7 @@ from sklearn.manifold import TSNE
 from sklearn.model_selection import train_test_split, GridSearchCV, learning_curve
 from sklearn import metrics
 from sklearn.metrics import *
-from sklearn.cluster import KMeans
+from sklearn.cluster import KMeans, DBSCAN
 from sklearn.svm import SVC
 import umap.umap_ as umap
 from scipy.spatial import distance
@@ -32,6 +32,7 @@ import more_itertools
 from streamlit_lottie import st_lottie
 import requests
 from sklearn.pipeline import make_pipeline
+import pickle
 
 CSS = """
 <style>

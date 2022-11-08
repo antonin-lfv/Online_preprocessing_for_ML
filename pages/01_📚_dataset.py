@@ -5,20 +5,6 @@ from utils import *
 st.set_page_config(layout="wide", page_title="Dataset")
 st.markdown(CSS, unsafe_allow_html=True)
 
-# ===== Session ===== #
-if "col_to_time" not in st.session_state:
-    st.session_state.col_to_time = ""
-if "drop_col" not in st.session_state:
-    st.session_state.drop_col = ""
-if "col_to_float_money" not in st.session_state:
-    st.session_state.col_to_float_money = ""
-if "col_to_float_coma" not in st.session_state:
-    st.session_state.col_to_float_coma = ""
-if "separateur" not in st.session_state:
-    st.session_state.separateur = ""
-if "file_details" not in st.session_state:
-    st.session_state.file_details = ""
-
 # ===== Load data ===== #
 def load_data():
     try:
@@ -55,7 +41,7 @@ if 'choix_dataset' in st.session_state:
 
 if dataset_choix == "-- Choisissez une option --":
     if 'choix_dataset' in st.session_state:
-        if st.session_state.choix_dataset == "Le fichier chargé est le dataset des iris" or st.session_state.choix_dataset == "Le fichier chargé est le dataset des penguins":
+        if st.session_state.choix_dataset == "Le fichier chargé est le dataset Iris (Classification)" or st.session_state.choix_dataset == "Le fichier chargé est le dataset Penguins (Classification)" or st.session_state.choix_dataset == "Le fichier chargé est le dataset Prix des voitures (Régression)":
             with col1:
                 st.write("##")
                 st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)

@@ -6,7 +6,7 @@ st.set_page_config(layout="wide", page_title="Classifications")
 st.markdown(CSS, unsafe_allow_html=True)
 
 # ===== choix modèle ===== #
-PAGES_classification = ["🪛 k-Nearest Neighbors", "🪛 k-Means", "🪛 Support Vector Machine", "🪛 Decision Tree", "🪛 Logistic regression"]
+PAGES_classification = ["🪛 k-Nearest Neighbors", "🪛 k-Means", "🪛 Support Vector Machine", "🪛 Decision Tree", "🪛 Logistic regression", "🪛 DBSCAN"]
 st.sidebar.selectbox(label="label", options=PAGES_classification, key="choix_page_classification", label_visibility='hidden')
 
 # ===== Page ===== #
@@ -714,6 +714,79 @@ elif st.session_state.choix_page_classification == "🪛 Logistic regression":
                                 st.write("##")
                                 st.warning("Un problème est survenu lors de l'entrainement du modèle. Veuillez à bien choisir une target discrète.")
 
+    else:
+        with exp2:
+            st.write("##")
+            st.info('Rendez-vous dans la section Dataset pour importer votre dataset')
+            st.write("##")
+            st_lottie(load_lottieurl('https://assets5.lottiefiles.com/packages/lf20_inuxiflu.json'), height=200)
+
+elif st.session_state.choix_page_classification == "🪛 DBSCAN":
+    st.markdown('<p class="grand_titre">DBSCAN</p>', unsafe_allow_html=True)
+    st.write("##")
+    exp1, exp2, exp3 = st.columns((0.2, 1, 0.2))
+    if 'data' in st.session_state:
+        _, col1_features_choice, _ = st.columns((0.1, 1, 0.1))
+        _, slide_1, slide_2, _ = st.columns((0.1, 0.5, 0.5, 0.1))
+        _, res, _ = st.columns((0.1, 1, 0.1))
+        with col1_features_choice:
+            st.write("##")
+            st.markdown('<p class="section">Selection des features pour le modèle</p>', unsafe_allow_html=True)
+            st.session_state.choix_col_dbscan = st.multiselect("Choisir au moins deux colonnes",
+                                                                col_numeric(st.session_state.data),
+                                                                )
+        if len(st.session_state.choix_col_dbscan) > 1:
+            df_ml = st.session_state.data[st.session_state.choix_col_dbscan]
+            df_ml = df_ml.dropna(axis=0)
+            if len(df_ml) == 0:
+                with col1_features_choice:
+                    st.write("##")
+                    st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
+            else:
+                with slide_1:
+                    st.write("##")
+                    st.session_state.epsilon_dbscan = st.slider('Rayon de voisinage des points', min_value=0.1,
+                                                                    max_value=5.1, step=0.2, value=2.1
+                                                                    )
+                with slide_2:
+                    st.write("##")
+                    st.session_state.min_sample_dbscan = st.slider('Nombre de voisins pour rejoindre un cluster', min_value=1,
+                                                                max_value=10, step=1, value=4
+                                                                )
+                with res:
+                    st.write("##")
+                    X = df_ml[st.session_state.choix_col_dbscan]  # features
+                    # try:
+                    # DBSCAN
+                    modele = DBSCAN(eps=st.session_state.epsilon_dbscan, min_samples=st.session_state.min_sample_dbscan)
+                    labels_predicted_dbscan = modele.fit_predict(X)
+                    X['labels'] = pd.Series(labels_predicted_dbscan)
+                    # PCA
+                    X_embedded = TSNE(n_components=2).fit_transform(df_ml[st.session_state.choix_col_dbscan])
+                    X["x_component"] = X_embedded[:,0]
+                    X["y_component"] = X_embedded[:,1]
+                    fig = px.scatter(X, x="x_component", y="y_component", color='labels', color_discrete_sequence=px.colors.qualitative.G10)
+                    fig.update(layout_coloraxis_showscale=False)
+                    fig.update_layout(
+                        showlegend=True,
+                        template='simple_white',
+                        font=dict(size=10),
+                        autosize=False,
+                        width=1000, height=650,
+                        margin=dict(l=40, r=50, b=40, t=40),
+                        paper_bgcolor='rgba(0,0,0,0)',
+                        plot_bgcolor='rgba(0,0,0,0)'
+                    )
+                    st.write("##")
+                    st.markdown(
+                        '<p class="section">Résultat après PCA</p>',
+                        unsafe_allow_html=True)
+                    st.write("##")
+                    st.plotly_chart(fig, use_container_width=True)
+                    #except:
+                        #with col1_features_choice:
+                            #st.write("##")
+                            #st.error("Erreur de chargement")
     else:
         with exp2:
             st.write("##")

@@ -8,6 +8,20 @@ st.set_page_config(layout="wide",
 )
 st.markdown(CSS, unsafe_allow_html=True)
 
+# ===== Session ===== #
+if "col_to_time" not in st.session_state:
+    st.session_state.col_to_time = ""
+if "drop_col" not in st.session_state:
+    st.session_state.drop_col = ""
+if "col_to_float_money" not in st.session_state:
+    st.session_state.col_to_float_money = ""
+if "col_to_float_coma" not in st.session_state:
+    st.session_state.col_to_float_coma = ""
+if "separateur" not in st.session_state:
+    st.session_state.separateur = ""
+if "file_details" not in st.session_state:
+    st.session_state.file_details = ""
+
 # ===== Page ===== #
 st.markdown('<p class="first_titre">No-code AI Platform</p>', unsafe_allow_html=True)
 st.write("---")
