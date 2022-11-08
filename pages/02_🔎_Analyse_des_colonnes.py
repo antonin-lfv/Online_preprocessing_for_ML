@@ -16,8 +16,10 @@ if 'data' in st.session_state:
     options = st.session_state.data.columns.to_list()
     st.session_state.slider_col = st.multiselect(
         'Selectionner une ou plusieurs colonnes',
-        options, help="Choisissez les colonnes à analyser"
+        options, help="Choisissez les colonnes à analyser",
+        default=st.session_state.slider_col if st.session_state.slider_col else None
     )
+
     if st.session_state.slider_col:
         col1, b, col2, c = st.columns((1.1, 0.1, 1.1, 0.3))
         with col1:

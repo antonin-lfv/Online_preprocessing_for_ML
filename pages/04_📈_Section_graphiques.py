@@ -26,7 +26,7 @@ if 'data' in st.session_state:
             st.session_state.type_plot = st.radio(label="label",
                                                     options=['Points', 'Courbe', 'Latitude/Longitude', 'Histogramme'],
                                                     help="Choisissez le type qui vous convient",
-                                                    label_visibility='hidden'
+                                                    label_visibility='hidden',
                                                     )
             type_plot_dict = {
                 'Courbe': 'lines',

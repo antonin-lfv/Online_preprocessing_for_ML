@@ -9,6 +9,24 @@ st.markdown(CSS, unsafe_allow_html=True)
 PAGES_classification = ["🪛 k-Nearest Neighbors", "🪛 k-Means", "🪛 Support Vector Machine", "🪛 Decision Tree", "🪛 Logistic regression", "🪛 DBSCAN"]
 st.sidebar.selectbox(label="label", options=PAGES_classification, key="choix_page_classification", label_visibility='hidden')
 
+# ===== Session ===== #
+if "col_to_encodage_knn" not in st.session_state:
+    st.session_state.col_to_encodage_knn = ""
+if "choix_col_kmeans" not in st.session_state:
+    st.session_state.choix_col_kmeans = ""
+if "choix_col_SVM" not in st.session_state:
+    st.session_state.choix_col_SVM = ""
+if "classes_SVM" not in st.session_state:
+    st.session_state.classes_SVM = ""
+if "choix_col_DT" not in st.session_state:
+    st.session_state.choix_col_DT = ""
+if "choix_col_LR" not in st.session_state:
+    st.session_state.choix_col_LR = ""
+if "classes_LR" not in st.session_state:
+    st.session_state.classes_LR = ""
+if "choix_col_dbscan" not in st.session_state:
+    st.session_state.choix_col_dbscan = ""
+
 # ===== Page ===== #
 if st.session_state.choix_page_classification == "🪛 k-Nearest Neighbors":
     st.markdown('<p class="grand_titre">KNN : k-nearest neighbors</p>', unsafe_allow_html=True)
@@ -44,6 +62,7 @@ if st.session_state.choix_page_classification == "🪛 k-Nearest Neighbors":
                         unsafe_allow_html=True)
             st.session_state.choix_col_knn = st.multiselect("Choisir au moins deux colonnes",
                                                         st.session_state.data.columns.tolist(),
+                                                    
                                                         )
         if len(st.session_state.choix_col_knn) > 1:
             df_ml = st.session_state.data[st.session_state.choix_col_knn]
@@ -58,6 +77,7 @@ if st.session_state.choix_page_classification == "🪛 k-Nearest Neighbors":
                 with col1_features_encode:
                     st.session_state.col_to_encodage_knn = st.multiselect("Selectionner les colonnes à encoder",
                                                                         st.session_state.choix_col_knn,
+                                                                        
                                                                         )
                 with sub_col1:
                     with st.expander('Encodage'):
@@ -285,6 +305,7 @@ elif st.session_state.choix_page_classification == "🪛 k-Means":
             st.markdown('<p class="section">Selection des features pour le modèle</p>', unsafe_allow_html=True)
             st.session_state.choix_col_kmeans = st.multiselect("Choisir au moins deux colonnes",
                                                                 col_numeric(st.session_state.data),
+                                                                
                                                                 )
         if len(st.session_state.choix_col_kmeans) > 1:
             df_ml = st.session_state.data[st.session_state.choix_col_kmeans]
@@ -372,10 +393,11 @@ elif st.session_state.choix_page_classification == "🪛 Support Vector Machine"
         with col1_km:
             st.session_state.choix_col_SVM = st.multiselect("Choisir deux colonnes",
                                                             col_numeric(st.session_state.data),
-                                                            help="Vos features", max_selections=2
+                                                            help="Vos features", max_selections=2,
+                                                            
                                                             )
             st.session_state.choix_target_SVM = st.selectbox("Choisir la target",
-                                                                st.session_state.data.columns.tolist(),
+                                                                st.session_state.data.columns.tolist()[::-1],
                                                                 )
 
         if len(st.session_state.choix_col_SVM) == 2:
@@ -399,7 +421,7 @@ elif st.session_state.choix_page_classification == "🪛 Support Vector Machine"
                         with col1_km:
                             st.session_state.classes_SVM = st.multiselect("Choisir deux classes",
                                                                             df[st.session_state.choix_target_SVM].unique().tolist(), 
-                                                                                max_selections=2)
+                                                                                max_selections=2, )
                             if len(st.session_state.classes_SVM) > 1:
                                 df = df.loc[
                                     (df[target] == st.session_state.classes_SVM[0]) | (
@@ -497,7 +519,8 @@ elif st.session_state.choix_page_classification == "🪛 Decision Tree":
         with col1_dt:
             st.session_state.choix_col_DT = st.multiselect("Choisir deux colonnes",
                                                             col_numeric(st.session_state.data),
-                                                            help="Vos features", max_selections=2
+                                                            help="Vos features", max_selections=2,
+                                                            
                                                             )
             st.session_state.choix_target_DT = st.selectbox("Choisir la target",
                                                             st.session_state.data.columns.tolist()[::-1],
@@ -599,7 +622,8 @@ elif st.session_state.choix_page_classification == "🪛 Logistic regression":
         with col1_lr:
             st.session_state.choix_col_LR = st.multiselect("Selection des features",
                                                             col_numeric(st.session_state.data),
-                                                            help="Vos features"
+                                                            help="Vos features",
+                                                            
                                                             )
             st.session_state.choix_target_LR = st.selectbox("Choisir la target",
                                                             st.session_state.data.columns.tolist()[::-1],
@@ -625,7 +649,8 @@ elif st.session_state.choix_page_classification == "🪛 Logistic regression":
                     if len(df[target].unique().tolist()) > 2:
                         with col1_lr:
                             st.session_state.classes_LR = st.multiselect("Choisir deux classes",
-                                                                            df[st.session_state.choix_target_LR].unique().tolist(), max_selections=2)
+                                                                            df[st.session_state.choix_target_LR].unique().tolist(), max_selections=2,
+                                                                            )
                         
                         if len(st.session_state.classes_LR) == 2:
                             df = df.loc[
@@ -734,6 +759,7 @@ elif st.session_state.choix_page_classification == "🪛 DBSCAN":
             st.markdown('<p class="section">Selection des features pour le modèle</p>', unsafe_allow_html=True)
             st.session_state.choix_col_dbscan = st.multiselect("Choisir au moins deux colonnes",
                                                                 col_numeric(st.session_state.data),
+                                                                
                                                                 )
         if len(st.session_state.choix_col_dbscan) > 1:
             df_ml = st.session_state.data[st.session_state.choix_col_dbscan]

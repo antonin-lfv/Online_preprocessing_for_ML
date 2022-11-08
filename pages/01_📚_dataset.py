@@ -5,6 +5,20 @@ from utils import *
 st.set_page_config(layout="wide", page_title="Dataset")
 st.markdown(CSS, unsafe_allow_html=True)
 
+# ===== Session ===== #
+if "drop_col" not in st.session_state:
+    st.session_state.drop_col = ""
+if "col_to_time" not in st.session_state:
+    st.session_state.col_to_time = ""
+if "col_to_float_money" not in st.session_state:
+    st.session_state.col_to_float_money = ""
+if "col_to_float_coma" not in st.session_state:
+    st.session_state.col_to_float_coma = ""
+if "separateur" not in st.session_state:
+    st.session_state.separateur = ""
+if "file_details" not in st.session_state:
+    st.session_state.file_details = ""
+
 # ===== Load data ===== #
 def load_data():
     try:

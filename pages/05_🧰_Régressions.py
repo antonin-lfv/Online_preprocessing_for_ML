@@ -46,6 +46,7 @@ if 'data' in st.session_state:
     with col1_abscisse_reg:
         st.session_state.choix_features_reg = st.multiselect("Features",
                                                                 col_numeric(st.session_state.data),
+                                                                default=st.session_state.choix_features_reg if st.session_state.choix_features_reg else None
                                                                 )
     with col1_ordonnee_reg:
         st.session_state.choix_target_reg = st.selectbox("Target",
