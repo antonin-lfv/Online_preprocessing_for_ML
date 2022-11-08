@@ -134,7 +134,7 @@ if 'data' in st.session_state:
                 )
                 with box1:
                     st.write("##")
-                    st.plotly_chart(fig)
+                    st.plotly_chart(fig, use_container_width=True)
                     st.write('---')
                     st.write("##")
 
@@ -198,7 +198,7 @@ if 'data' in st.session_state:
                 )
                 with box2:
                     st.write("##")
-                    st.plotly_chart(fig)
+                    st.plotly_chart(fig, use_container_width=True)
                     st.write('---')
                     st.write("##")
 
@@ -261,7 +261,7 @@ if 'data' in st.session_state:
                     )
                     with box3:
                         st.write("##")
-                        st.plotly_chart(fig)
+                        st.plotly_chart(fig, use_container_width=True)
                         st.write('---')
                         st.write("##")
 
@@ -323,7 +323,7 @@ if 'data' in st.session_state:
                 )
                 with box4:
                     st.write("##")
-                    st.plotly_chart(fig)
+                    st.plotly_chart(fig, use_container_width=True)
                     st.write('---')
                     st.write("##")
 
@@ -385,7 +385,7 @@ if 'data' in st.session_state:
                 )
                 with box5:
                     st.write("##")
-                    st.plotly_chart(fig)
+                    st.plotly_chart(fig, use_container_width=True)
                     st.write('---')
                     st.write("##")
 
@@ -447,7 +447,7 @@ if 'data' in st.session_state:
                 )
                 with box6:
                     st.write("##")
-                    st.plotly_chart(fig)
+                    st.plotly_chart(fig, use_container_width=True)
                     st.write('---')
                     st.write("##")
 

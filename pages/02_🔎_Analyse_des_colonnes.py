@@ -5,6 +5,10 @@ from utils import *
 st.set_page_config(layout="wide", page_title="Analyse des colonnes")
 st.markdown(CSS, unsafe_allow_html=True)
 
+# ===== Session ===== #
+if "slider_col" not in st.session_state:
+    st.session_state.slider_col = ""
+
 # ===== Page ===== #
 st.markdown('<p class="grand_titre">Analyse des colonnes</p>', unsafe_allow_html=True)
 st.write('##')

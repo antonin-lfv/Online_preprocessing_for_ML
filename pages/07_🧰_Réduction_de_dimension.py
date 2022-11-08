@@ -39,7 +39,7 @@ if st.session_state.choix_page_reduction == "🪛 PCA":
         if len(st.session_state.choix_col_PCA) > 1:
             df_ml = st.session_state.data[st.session_state.choix_col_PCA]
             df_ml = df_ml.dropna(axis=0)
-            st.session_state.df_ml_origine = df_ml.copy()
+            st.session_state.df_ml_origine_PCA = df_ml.copy()
             if len(df_ml) == 0:
                 with col1_pca:
                     st.write("##")
@@ -58,7 +58,7 @@ if st.session_state.choix_page_reduction == "🪛 PCA":
                             df_ml[col].replace(df_ml[col].unique(), np.arange(len(df_ml[col].unique())),
                                                 inplace=True)  # encodage
                     ## on choisit notre modèle
-                    model = PCA(n_components=2)
+                    model = make_pipeline(StandardScaler(), PCA(n_components=2))
                 with col2_pca:
                     ## création des target et features à partir du dataset
                     st.write("##")
@@ -79,7 +79,7 @@ if st.session_state.choix_page_reduction == "🪛 PCA":
                             # résultats points
                             st.session_state.df = pd.concat([pd.Series(x_pca[:, 0]).reset_index(drop=True),
                                                                 pd.Series(x_pca[:, 1]).reset_index(drop=True),
-                                                                pd.Series(st.session_state.df_ml_origine[
+                                                                pd.Series(st.session_state.df_ml_origine_PCA[
                                                                             st.session_state.target_PCA]).reset_index(
                                                                     drop=True)], axis=1)
                             st.session_state.df.columns = ["x", "y", str(st.session_state.target_PCA)]
@@ -98,7 +98,7 @@ if st.session_state.choix_page_reduction == "🪛 PCA":
                                 plot_bgcolor='rgba(0,0,0,0)',
                             )
                             fig.update(layout_coloraxis_showscale=False)
-                            st.plotly_chart(fig)
+                            st.plotly_chart(fig, use_container_width=True)
                     except:
                         with col2_pca:
                             st.write("##")
@@ -129,7 +129,7 @@ elif st.session_state.choix_page_reduction == "🪛 UMAP":
         if len(st.session_state.choix_col_UMAP) > 1:
             df_ml = st.session_state.data[st.session_state.choix_col_UMAP]
             df_ml = df_ml.dropna(axis=0)
-            st.session_state.df_ml_origine = df_ml.copy()
+            st.session_state.df_ml_origine_UMAP = df_ml.copy()
             if len(df_ml) == 0:
                 with col1_umap:
                     st.write("##")
@@ -151,7 +151,7 @@ elif st.session_state.choix_page_reduction == "🪛 UMAP":
 
                 with col2_umap:
                     ## on choisit notre modèle
-                    model = umap.UMAP()
+                    model = make_pipeline(StandardScaler(), umap.UMAP())
                     ## création des target et features à partir du dataset
                     st.write("##")
                     st.session_state.target_UMAP = st.selectbox("Target :",
@@ -169,7 +169,7 @@ elif st.session_state.choix_page_reduction == "🪛 UMAP":
                             st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
                             # résultats points
                             st.session_state.df = pd.concat([pd.Series(x_umap[:, 0]), pd.Series(x_umap[:, 1]),
-                                                                pd.Series(st.session_state.df_ml_origine[
+                                                                pd.Series(st.session_state.df_ml_origine_UMAP[
                                                                             st.session_state.target_UMAP])], axis=1)
                             st.session_state.df.columns = ["x", "y", str(st.session_state.target_UMAP)]
                             fig = px.scatter(st.session_state.df, x="x", y="y",
@@ -187,7 +187,7 @@ elif st.session_state.choix_page_reduction == "🪛 UMAP":
                                 plot_bgcolor='rgba(0,0,0,0)',
                             )
                             fig.update(layout_coloraxis_showscale=False)
-                            st.plotly_chart(fig)
+                            st.plotly_chart(fig, use_container_width=True)
                         except:
                             st.write("##")
                             st.warning("Impossible d'utiliser ce modèle avec ces données")
@@ -217,7 +217,7 @@ elif st.session_state.choix_page_reduction == "🪛 T-SNE":
         if len(st.session_state.choix_col_tsne) > 1:
             df_ml = st.session_state.data[st.session_state.choix_col_tsne]
             df_ml = df_ml.dropna(axis=0)
-            st.session_state.df_ml_origine = df_ml.copy()
+            st.session_state.df_ml_origine_tsne = df_ml.copy()
             if len(df_ml) == 0:
                 with col1_tsne:
                     st.write("##")
@@ -256,7 +256,7 @@ elif st.session_state.choix_page_reduction == "🪛 T-SNE":
                             st.markdown('<p class="section">Résultats</p>', unsafe_allow_html=True)
                             # résultats points
                             st.session_state.df = pd.concat([pd.Series(x_tsne[:, 0]), pd.Series(x_tsne[:, 1]),
-                                                                pd.Series(st.session_state.df_ml_origine[
+                                                                pd.Series(st.session_state.df_ml_origine_tsne[
                                                                             st.session_state.target_tsne])], axis=1)
                             st.session_state.df.columns = ["x", "y", str(st.session_state.target_tsne)]
                             fig = px.scatter(st.session_state.df, x="x", y="y",
@@ -274,7 +274,7 @@ elif st.session_state.choix_page_reduction == "🪛 T-SNE":
                                 plot_bgcolor='rgba(0,0,0,0)',
                             )
                             fig.update(layout_coloraxis_showscale=False)
-                            st.plotly_chart(fig)
+                            st.plotly_chart(fig, use_container_width=True)
                         except:
                             st.write("##")
                             st.warning("Impossible d'utiliser ce modèle avec ces données")

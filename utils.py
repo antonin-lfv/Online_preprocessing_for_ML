@@ -15,8 +15,8 @@ import graphviz
 import matplotlib.pyplot as plt
 import seaborn as sns
 from collections import Counter
-from sklearn.linear_model import LinearRegression, PoissonRegressor, ElasticNet, Ridge, Lasso
-from sklearn.preprocessing import PolynomialFeatures, scale
+from sklearn.linear_model import LinearRegression, PoissonRegressor, ElasticNet, Ridge, Lasso, LogisticRegression
+from sklearn.preprocessing import PolynomialFeatures, scale, StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier, export_graphviz
 from sklearn.decomposition import PCA
@@ -31,6 +31,7 @@ from scipy.spatial import distance
 import more_itertools
 from streamlit_lottie import st_lottie
 import requests
+from sklearn.pipeline import make_pipeline
 
 CSS = """
 <style>
@@ -46,12 +47,13 @@ CSS = """
     font-size:20px !important;
 }
 .grand_titre {
-    font-size:30px !important;
+    font-size:40px !important;
     font-weight: bold;
     text-align: center;
     text-decoration: underline;
     text-decoration-color: #4976E4;
     text-decoration-thickness: 5px;
+    width: 100%;
 }
 .section{
     font-size:20px !important;

@@ -22,7 +22,7 @@ if 'data' in st.session_state:
                                                             ["Toutes les colonnes"] + col_numeric(df_sans_NaN),
                                                             help="Choisissez vos features"
                                                             )
-    if len(st.session_state.select_columns_corr) > 1 and "Toutes les colonnes" not in st.session_state.select_columns_corr and st.session_state.couleur_corr != "-- Selectionner une colonne --":
+    if len(st.session_state.select_columns_corr) > 1 and "Toutes les colonnes" not in st.session_state.select_columns_corr:
         df_sans_NaN = pd.concat([st.session_state.data[col] for col in st.session_state.select_columns_corr],
                                 axis=1).dropna()
         if len(df_sans_NaN) == 0:
@@ -44,15 +44,15 @@ if 'data' in st.session_state:
             fig.update_traces(marker=dict(size=7))
             fig.update_traces(diagonal_visible=False)
             fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
-            st.plotly_chart(fig)
+            st.plotly_chart(fig, use_container_width=True)
     elif st.session_state.select_columns_corr == [
-        "Toutes les colonnes"] and st.session_state.couleur_corr != "-- Selectionner une colonne --":
+        "Toutes les colonnes"]:
         df_sans_NaN = st.session_state.data.dropna()
         if len(df_sans_NaN) == 0:
             st.write("##")
             st.warning('Le dataset avec suppression des NaN suivant les lignes est vide!')
         else:
-            if st.session_state.couleur_corr != 'Selectionner une colonne':
+            if st.session_state.couleur_corr != '-- Selectionner une colonne --':
                 fig = px.scatter_matrix(df_sans_NaN, dimensions=col_numeric(df_sans_NaN),
                                         color=st.session_state.couleur_corr)
             else:
@@ -66,7 +66,8 @@ if 'data' in st.session_state:
             fig.update_traces(marker=dict(size=7))
             fig.update_traces(diagonal_visible=False)
             fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
-            st.plotly_chart(fig)
+            st.write("##")
+            st.plotly_chart(fig, use_container_width=True)
     elif len(
             st.session_state.select_columns_corr) > 1 and "Toutes les colonnes" in st.session_state.select_columns_corr:
         st.error("Erreur de saisi !")

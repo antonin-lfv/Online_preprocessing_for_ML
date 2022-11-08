@@ -5,6 +5,10 @@ from utils import *
 st.set_page_config(layout="wide", page_title="Section graphiques")
 st.markdown(CSS, unsafe_allow_html=True)
 
+# ===== Session ===== #
+if "degres" not in st.session_state:
+    st.session_state.degres = ""
+
 # ===== Page ===== #
 st.markdown('<p class="grand_titre">Graphiques</p>', unsafe_allow_html=True)
 st.write("##")
@@ -19,9 +23,10 @@ if 'data' in st.session_state:
                                                             )
     with col2:
         with st.expander("Type de graphique"):
-            st.session_state.type_plot = st.radio(label="",
+            st.session_state.type_plot = st.radio(label="label",
                                                     options=['Points', 'Courbe', 'Latitude/Longitude', 'Histogramme'],
-                                                    help="Choisissez le type qui vous convient"
+                                                    help="Choisissez le type qui vous convient",
+                                                    label_visibility='hidden'
                                                     )
             type_plot_dict = {
                 'Courbe': 'lines',
@@ -50,7 +55,7 @@ if 'data' in st.session_state:
                         'center': {'lon': -80, 'lat': 40},
                         'style': "stamen-terrain",
                         'zoom': 1})
-                st.plotly_chart(fig)
+                st.plotly_chart(fig, use_container_width=True)
         elif st.session_state.type_plot == 'Histogramme':
             fig = go.Figure()
             df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot].reset_index(drop=True),
@@ -173,7 +178,7 @@ if 'data' in st.session_state:
                 plot_bgcolor='rgba(0,0,0,0)',
             )
             st.write("##")
-            st.plotly_chart(fig)
+            st.plotly_chart(fig, use_container_width=True)
 else:
     st.info("Veuillez charger vos données dans la section Dataset")
     st.write("##")
