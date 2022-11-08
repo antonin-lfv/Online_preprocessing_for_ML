@@ -703,10 +703,13 @@ elif st.session_state.choix_page_classification == "🪛 Logistic regression":
                                     '<p class="section">Learning curves</p>',
                                     unsafe_allow_html=True)
                                 st.plotly_chart(fig, use_container_width=True)
-                                st.write('---')
                                 st.write("##")
+                                st.caption(
+                                "Il est possible que votre dataset soit trop petit pour effectuer la cross-validation dans de bonnes conditions")
+                                st.write("##")
+                                st.write('---')
 
-                        except:
+                        except ValueError:
                             with col1_lr:
                                 st.write("##")
                                 st.warning("Un problème est survenu lors de l'entrainement du modèle. Veuillez à bien choisir une target discrète.")
