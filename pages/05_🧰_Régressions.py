@@ -5,6 +5,10 @@ from utils import *
 st.set_page_config(layout="wide", page_title="Régressions")
 st.markdown(CSS, unsafe_allow_html=True)
 
+# ===== Session ===== #
+if "choix_features_reg" not in st.session_state:
+    st.session_state.choix_features_reg = ""
+
 # ===== Page ===== #
 st.markdown('<p class="grand_titre">Régressions</p>', unsafe_allow_html=True)
 st.write("##")
@@ -46,7 +50,7 @@ if 'data' in st.session_state:
     with col1_abscisse_reg:
         st.session_state.choix_features_reg = st.multiselect("Features",
                                                                 col_numeric(st.session_state.data),
-                                                                default=st.session_state.choix_features_reg if st.session_state.choix_features_reg else None
+                                                                
                                                                 )
     with col1_ordonnee_reg:
         st.session_state.choix_target_reg = st.selectbox("Target",
@@ -136,6 +140,9 @@ if 'data' in st.session_state:
                 with box1:
                     st.write("##")
                     st.plotly_chart(fig, use_container_width=True)
+                    st.write("##")
+                    with st.expander("Code"):
+                        st.code(streamlit_code_regression(st.session_state.choix_features_reg, st.session_state.choix_target_reg, model))
                     st.write('---')
                     st.write("##")
 
@@ -200,6 +207,9 @@ if 'data' in st.session_state:
                 with box2:
                     st.write("##")
                     st.plotly_chart(fig, use_container_width=True)
+                    st.write("##")
+                    with st.expander("Code"):
+                        st.code(streamlit_code_regression(st.session_state.choix_features_reg, st.session_state.choix_target_reg, polynomial=True, model1=model1, model2=model2))
                     st.write('---')
                     st.write("##")
 
@@ -263,6 +273,9 @@ if 'data' in st.session_state:
                     with box3:
                         st.write("##")
                         st.plotly_chart(fig, use_container_width=True)
+                        st.write("##")
+                        with st.expander("Code"):
+                            st.code(streamlit_code_regression(st.session_state.choix_features_reg, st.session_state.choix_target_reg, model))
                         st.write('---')
                         st.write("##")
 
@@ -325,6 +338,9 @@ if 'data' in st.session_state:
                 with box4:
                     st.write("##")
                     st.plotly_chart(fig, use_container_width=True)
+                    st.write("##")
+                    with st.expander("Code"):
+                        st.code(streamlit_code_regression(st.session_state.choix_features_reg, st.session_state.choix_target_reg, model))
                     st.write('---')
                     st.write("##")
 
@@ -387,6 +403,9 @@ if 'data' in st.session_state:
                 with box5:
                     st.write("##")
                     st.plotly_chart(fig, use_container_width=True)
+                    st.write("##")
+                    with st.expander("Code"):
+                        st.code(streamlit_code_regression(st.session_state.choix_features_reg, st.session_state.choix_target_reg, model))
                     st.write('---')
                     st.write("##")
 
@@ -449,7 +468,9 @@ if 'data' in st.session_state:
                 with box6:
                     st.write("##")
                     st.plotly_chart(fig, use_container_width=True)
-                    st.write('---')
+                    st.write("##")
+                    with st.expander("Code"):
+                        st.code(streamlit_code_regression(st.session_state.choix_features_reg, st.session_state.choix_target_reg, model))
                     st.write("##")
 
             except:

@@ -76,6 +76,86 @@ CSS = """
 </style>
 """
 
+
+def streamlit_code_regression(features_list_from_session, target_from_session, model=None, *, polynomial=False, model1=None, model2=None):
+    model_section = f"""
+# modèle
+model = {repr(model)}
+model.fit(X_train, y_train)
+pred_train = model.predict(X_train)
+pred_test = model.predict(X_test)
+
+# Métrique train set
+MSE_reg_train = mean_squared_error(y_train, pred_train)
+RMSE_reg_train = np.sqrt(MSE_reg_train)
+MAE_reg_train = mean_absolute_error(y_train, pred_train)
+r2_reg_train = r2_score(y_train, pred_train)
+
+# Métrique test set
+MSE_reg_test = mean_squared_error(y_test, pred_test)
+RMSE_reg_test = np.sqrt(MSE_reg_test)
+MAE_reg_test = mean_absolute_error(y_test, pred_test)
+r2_reg_test = r2_score(y_test, pred_test)
+""" if not polynomial else f"""
+# modèles
+model1 = {repr(model1)}
+x_poly = model1.fit_transform(X_train)
+model2 = {repr(model2)}
+model2.fit(x_poly, y_train)
+y_poly_pred_train = model2.predict(x_poly)
+y_poly_pred_test = model2.predict(model1.fit_transform(X_test))
+
+# Métrique train set
+MSE_reg_train = mean_squared_error(y_train, y_poly_pred_train)
+RMSE_reg_train = np.sqrt(MSE_reg_train)
+MAE_reg_train = mean_absolute_error(y_train, y_poly_pred_train)
+r2_reg_train = r2_score(y_train, y_poly_pred_train)
+# Métrique test set
+MSE_reg_test = mean_squared_error(y_test, y_poly_pred_test)
+RMSE_reg_test = np.sqrt(MSE_reg_test)
+MAE_reg_test = mean_absolute_error(y_test, y_poly_pred_test)
+r2_reg_test = r2_score(y_test, y_poly_pred_test)
+"""
+
+    code = f"""
+# df contient les données initiales avec pandas
+
+# On nettoie le dataset
+df_sans_NaN = pd.concat([df[{features_list_from_session}].reset_index(drop=True),
+                        df['{target_from_session}'].reset_index(drop=True)],
+                        axis=1).dropna()
+X_train, X_test, y_train, y_test = train_test_split(
+                    df_sans_NaN[{features_list_from_session}].values,
+                    df_sans_NaN['{target_from_session}'], test_size=0.4, random_state=4)
+X_train, X_test, y_train, y_test = scale(X_train), scale(X_test), scale(y_train), scale(y_test)
+"""+model_section+"""
+# Learning curves
+N, train_score, val_score = learning_curve(model, X_train, y_train, train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
+fig = go.Figure()
+fig.add_scatter(x=N, y=train_score.mean(axis=1), name='train', marker=dict(color='deepskyblue'))
+fig.add_scatter(x=N, y=val_score.mean(axis=1), name='validation', marker=dict(color='red'))
+fig.update_xaxes(title_text="Données de validation")
+fig.update_yaxes(title_text="Score")
+fig.update_layout(
+    template='simple_white',
+    font=dict(size=10),
+    autosize=False,
+    width=900, height=450,
+    margin=dict(l=40, r=40, b=40, t=40),
+    paper_bgcolor='rgba(0,0,0,0)',
+    plot_bgcolor='rgba(0,0,0,0)',
+    title={'text': "<b>Learning curves</b>",
+            'y': 0.9,
+            'x': 0.5,
+            'xanchor': 'center',
+            'yanchor': 'top'
+            }
+)
+plot(fig)
+    """
+    return code
+
+
 def max_std(dataset):  # colonne de maximum de variance
     l = []
     for nom in dataset.columns:
