@@ -8,6 +8,8 @@ st.markdown(CSS, unsafe_allow_html=True)
 # ===== Session ===== #
 if "couleur_corr" not in st.session_state:
     st.session_state.couleur_corr = ""
+if "select_columns_corr" not in st.session_state:
+    st.session_state.select_columns_corr = ""
 
 # ===== Page ===== #
 st.markdown('<p class="grand_titre">Matrice de corrélations</p>', unsafe_allow_html=True)
