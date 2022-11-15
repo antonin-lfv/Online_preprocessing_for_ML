@@ -8,6 +8,8 @@ st.markdown(CSS, unsafe_allow_html=True)
 # ===== Session ===== #
 if "choix_features_reg" not in st.session_state:
     st.session_state.choix_features_reg = ""
+if "choix_ensemble_learning" not in st.session_state:
+    st.session_state.choix_ensemble_learning = ""
 
 # ===== Page ===== #
 st.markdown('<p class="grand_titre">Régressions</p>', unsafe_allow_html=True)
@@ -26,6 +28,7 @@ with exp2:
 if 'data' in st.session_state:
     _, col1_abscisse_reg, col1_ordonnee_reg, _ = st.columns((0.1, 0.5, 0.5, 0.1))
     _, warning1, _ = st.columns((0.1, 1, 0.1))
+    _, choix_ensemble_learning, _ = st.columns((0.1, 1, 0.1))
     _, box1_title, _ = st.columns((0.1, 1, 0.1))
     _, box1_eval1, box1_eval2, box1_eval3, box1_eval4, _ = st.columns((0.3, 0.5, 0.5, 0.5, 0.5, 0.1))
     _, box1, _ = st.columns((0.2, 1, 0.1))
@@ -61,6 +64,13 @@ if 'data' in st.session_state:
         with warning1:
             st.warning("La target ne doit pas appartenir aux features")
     elif len(st.session_state.choix_features_reg) > 0:
+        with choix_ensemble_learning:
+            st.markdown('<p class="section">Choix d\'un algorithme d\'ensemble learning</p>', unsafe_allow_html=True)
+            st.session_state.choix_ensemble_learning = st.selectbox("Ensemble learning",
+                                                            ENSEMBLE_LEARNING,
+                                                            help="Par défaut 50 estimateurs"
+                                                            )
+        st.write("##")
         # Chargement des données - On enlève les valeurs manquantes
         df_sans_NaN = pd.concat(
             [st.session_state.data[st.session_state.choix_features_reg].reset_index(drop=True),
@@ -88,6 +98,13 @@ if 'data' in st.session_state:
                     st.write("##")
                 # Modèle
                 model = LinearRegression()
+                # Bagging, Stacking, Boosting
+                if st.session_state.choix_ensemble_learning == "Bagging":
+                    model = BaggingRegressor(base_estimator=model, n_estimators=ENSEMBLE_LEARNING_NB_ESTIMATORS)
+                if st.session_state.choix_ensemble_learning == "Stacking":
+                    model = StackingRegressor(estimators=[(f'model{i}', model) for i in range(ENSEMBLE_LEARNING_NB_ESTIMATORS)])
+                if st.session_state.choix_ensemble_learning == "Boosting":
+                    model = AdaBoostRegressor(base_estimator=model, n_estimators=ENSEMBLE_LEARNING_NB_ESTIMATORS)
                 model.fit(X_train, y_train)
                 pred_train = model.predict(X_train)
                 pred_test = model.predict(X_test)
@@ -155,6 +172,13 @@ if 'data' in st.session_state:
                 model1 = PolynomialFeatures(degree=4)
                 x_poly = model1.fit_transform(X_train)
                 model2 = LinearRegression(fit_intercept=False)
+                # Bagging, Stacking, Boosting
+                if st.session_state.choix_ensemble_learning == "Bagging":
+                    model2 = BaggingRegressor(base_estimator=model2, n_estimators=ENSEMBLE_LEARNING_NB_ESTIMATORS)
+                if st.session_state.choix_ensemble_learning == "Stacking":
+                    model2 = StackingRegressor(estimators=[(f'model{i}', model2) for i in range(ENSEMBLE_LEARNING_NB_ESTIMATORS)])
+                if st.session_state.choix_ensemble_learning == "Boosting":
+                    model2 = AdaBoostRegressor(base_estimator=model2, n_estimators=ENSEMBLE_LEARNING_NB_ESTIMATORS)
                 model2.fit(x_poly, y_train)
                 y_poly_pred_train = model2.predict(x_poly)
                 y_poly_pred_test = model2.predict(model1.fit_transform(X_test))
@@ -221,6 +245,13 @@ if 'data' in st.session_state:
                         st.write("##")
                     # Modèle
                     model = PoissonRegressor()
+                    # Bagging, Stacking, Boosting
+                    if st.session_state.choix_ensemble_learning == "Bagging":
+                        model = BaggingRegressor(base_estimator=model, n_estimators=ENSEMBLE_LEARNING_NB_ESTIMATORS)
+                    if st.session_state.choix_ensemble_learning == "Stacking":
+                        model = StackingRegressor(estimators=[(f'model{i}', model) for i in range(ENSEMBLE_LEARNING_NB_ESTIMATORS)])
+                    if st.session_state.choix_ensemble_learning == "Boosting":
+                        model = AdaBoostRegressor(base_estimator=model, n_estimators=ENSEMBLE_LEARNING_NB_ESTIMATORS)
                     model.fit(X_train, y_train)
                     pred_train = model.predict(X_train)
                     pred_test = model.predict(X_test)
@@ -286,6 +317,13 @@ if 'data' in st.session_state:
                     st.write("##")
                 # Modèle
                 model = ElasticNet()
+                # Bagging, Stacking, Boosting
+                if st.session_state.choix_ensemble_learning == "Bagging":
+                    model = BaggingRegressor(base_estimator=model, n_estimators=ENSEMBLE_LEARNING_NB_ESTIMATORS)
+                if st.session_state.choix_ensemble_learning == "Stacking":
+                    model = StackingRegressor(estimators=[(f'model{i}', model) for i in range(ENSEMBLE_LEARNING_NB_ESTIMATORS)])
+                if st.session_state.choix_ensemble_learning == "Boosting":
+                    model = AdaBoostRegressor(base_estimator=model, n_estimators=ENSEMBLE_LEARNING_NB_ESTIMATORS)
                 model.fit(X_train, y_train)
                 pred_train = model.predict(X_train)
                 pred_test = model.predict(X_test)
@@ -351,6 +389,13 @@ if 'data' in st.session_state:
                     st.write("##")
                 # Modèle
                 model = Ridge()
+                # Bagging, Stacking, Boosting
+                if st.session_state.choix_ensemble_learning == "Bagging":
+                    model = BaggingRegressor(base_estimator=model, n_estimators=ENSEMBLE_LEARNING_NB_ESTIMATORS)
+                if st.session_state.choix_ensemble_learning == "Stacking":
+                    model = StackingRegressor(estimators=[(f'model{i}', model) for i in range(ENSEMBLE_LEARNING_NB_ESTIMATORS)])
+                if st.session_state.choix_ensemble_learning == "Boosting":
+                    model = AdaBoostRegressor(base_estimator=model, n_estimators=ENSEMBLE_LEARNING_NB_ESTIMATORS)
                 model.fit(X_train, y_train)
                 pred_train = model.predict(X_train)
                 pred_test = model.predict(X_test)
@@ -416,6 +461,13 @@ if 'data' in st.session_state:
                     st.write("##")
                 # Modèle
                 model = Lasso()
+                # Bagging, Stacking, Boosting
+                if st.session_state.choix_ensemble_learning == "Bagging":
+                    model = BaggingRegressor(base_estimator=model, n_estimators=ENSEMBLE_LEARNING_NB_ESTIMATORS)
+                if st.session_state.choix_ensemble_learning == "Stacking":
+                    model = StackingRegressor(estimators=[(f'model{i}', model) for i in range(ENSEMBLE_LEARNING_NB_ESTIMATORS)])
+                if st.session_state.choix_ensemble_learning == "Boosting":
+                    model = AdaBoostRegressor(base_estimator=model, n_estimators=ENSEMBLE_LEARNING_NB_ESTIMATORS)
                 model.fit(X_train, y_train)
                 pred_train = model.predict(X_train)
                 pred_test = model.predict(X_test)

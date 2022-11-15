@@ -32,6 +32,11 @@ import more_itertools
 from streamlit_lottie import st_lottie
 import requests
 from sklearn.pipeline import make_pipeline
+from sklearn.ensemble import BaggingRegressor, StackingRegressor, AdaBoostRegressor
+from sklearn.ensemble import BaggingClassifier, StackingClassifier, AdaBoostClassifier
+
+ENSEMBLE_LEARNING = ["Aucun",  "Bagging", "Stacking", "Boosting"]
+ENSEMBLE_LEARNING_NB_ESTIMATORS = 50
 
 CSS = """
 <style>
