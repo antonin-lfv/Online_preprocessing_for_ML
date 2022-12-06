@@ -22,7 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="umap" />
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="requirements">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/01__dataset.py" beforePathEscaped="$PROJECT_DIR$/pages/01_📚_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/01__dataset.py" afterPathEscaped="$PROJECT_DIR$/pages/01_📚_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +83,8 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -181,13 +187,9 @@
       <workItem from="1666980793605" duration="27000" />
       <workItem from="1666980847685" duration="1770000" />
       <workItem from="1667993911841" duration="22000" />
-    </task>
-    <task id="LOCAL-00510" summary="theme">
-      <created>1641991333032</created>
-      <option name="number" value="00510" />
-      <option name="presentableId" value="LOCAL-00510" />
-      <option name="project" value="LOCAL" />
-      <updated>1641991333032</updated>
+      <workItem from="1670363342780" duration="1438000" />
+      <workItem from="1670364795919" duration="6000" />
+      <workItem from="1670364808611" duration="790000" />
     </task>
     <task id="LOCAL-00511" summary="regression">
       <created>1641991786530</created>
@@ -525,7 +527,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666982003899</updated>
     </task>
-    <option name="localTasksCounter" value="559" />
+    <task id="LOCAL-00559" summary="requirements">
+      <created>1670363433598</created>
+      <option name="number" value="00559" />
+      <option name="presentableId" value="LOCAL-00559" />
+      <option name="project" value="LOCAL" />
+      <updated>1670363433598</updated>
+    </task>
+    <option name="localTasksCounter" value="560" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -568,7 +577,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/models" />
     </ignored-roots>
-    <MESSAGE value="Color theme" />
     <MESSAGE value="st message" />
     <MESSAGE value="tf" />
     <MESSAGE value="Génération de citations" />
@@ -593,7 +601,8 @@
     <MESSAGE value="details" />
     <MESSAGE value="decision tree" />
     <MESSAGE value="umap" />
-    <option name="LAST_COMMIT_MESSAGE" value="umap" />
+    <MESSAGE value="requirements" />
+    <option name="LAST_COMMIT_MESSAGE" value="requirements" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Online_preprocessing_for_ML$main.coverage" NAME="main Coverage Results" MODIFIED="1639270371883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

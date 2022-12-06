@@ -35,8 +35,12 @@ from sklearn.pipeline import make_pipeline
 from sklearn.ensemble import BaggingRegressor, StackingRegressor, AdaBoostRegressor
 from sklearn.ensemble import BaggingClassifier, StackingClassifier, AdaBoostClassifier
 
-ENSEMBLE_LEARNING = ["Aucun",  "Bagging", "Stacking", "Boosting"]
+ENSEMBLE_LEARNING = ["Aucun", "Bagging", "Stacking", "Boosting"]
 ENSEMBLE_LEARNING_NB_ESTIMATORS = 50
+
+LOCAL_DATASET_NAMES = ["Iris (Classification)", "Penguins (Classification)", "Prix des voitures (Régression)"]
+LOCAL_PATH_DATASET = ['Datasets/iris.csv', 'Datasets/penguins.csv', 'Datasets/CarPrice.csv']
+PYDATASET_NAMES = ["Titanic (Classification)"]
 
 CSS = """
 <style>
@@ -82,7 +86,8 @@ CSS = """
 """
 
 
-def streamlit_code_regression(features_list_from_session, target_from_session, model=None, *, polynomial=False, model1=None, model2=None):
+def streamlit_code_regression(features_list_from_session, target_from_session, model=None, *, polynomial=False,
+                              model1=None, model2=None):
     model_section = f"""
 # modèle
 model = {repr(model)}
@@ -133,7 +138,7 @@ X_train, X_test, y_train, y_test = train_test_split(
                     df_sans_NaN[{features_list_from_session}].values,
                     df_sans_NaN['{target_from_session}'], test_size=0.4, random_state=4)
 X_train, X_test, y_train, y_test = scale(X_train), scale(X_test), scale(y_train), scale(y_test)
-"""+model_section+"""
+""" + model_section + """
 # Learning curves
 N, train_score, val_score = learning_curve(model, X_train, y_train, train_sizes=np.linspace(0.1, 1.0, 10), cv=5)
 fig = go.Figure()
@@ -192,7 +197,8 @@ def max_dist(donnee_apres_pca, df, voisins):  # pour knn, retourne la distance d
     for i in range(len(df)):
         distances.append(distance_e(donnee_apres_pca, [df['x'].iloc[i], df['y'].iloc[i]]))
     distances.sort()
-    return distances[voisins-1]
+    return distances[voisins - 1]
+
 
 def load_lottieurl(url: str):
     r = requests.get(url)
