@@ -22,10 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="requirements">
+    <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="data from pydataset">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/01__dataset.py" beforePathEscaped="$PROJECT_DIR$/pages/01_📚_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/01__dataset.py" afterPathEscaped="$PROJECT_DIR$/pages/01_📚_dataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -189,14 +188,7 @@
       <workItem from="1667993911841" duration="22000" />
       <workItem from="1670363342780" duration="1438000" />
       <workItem from="1670364795919" duration="6000" />
-      <workItem from="1670364808611" duration="790000" />
-    </task>
-    <task id="LOCAL-00511" summary="regression">
-      <created>1641991786530</created>
-      <option name="number" value="00511" />
-      <option name="presentableId" value="LOCAL-00511" />
-      <option name="project" value="LOCAL" />
-      <updated>1641991786530</updated>
+      <workItem from="1670364808611" duration="1097000" />
     </task>
     <task id="LOCAL-00512" summary="structure">
       <created>1641992763119</created>
@@ -534,7 +526,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670363433598</updated>
     </task>
-    <option name="localTasksCounter" value="560" />
+    <task id="LOCAL-00560" summary="data from pydataset">
+      <created>1670365612845</created>
+      <option name="number" value="00560" />
+      <option name="presentableId" value="LOCAL-00560" />
+      <option name="project" value="LOCAL" />
+      <updated>1670365612845</updated>
+    </task>
+    <option name="localTasksCounter" value="561" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -577,7 +576,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/models" />
     </ignored-roots>
-    <MESSAGE value="st message" />
     <MESSAGE value="tf" />
     <MESSAGE value="Génération de citations" />
     <MESSAGE value="objects detection" />
@@ -602,7 +600,8 @@
     <MESSAGE value="decision tree" />
     <MESSAGE value="umap" />
     <MESSAGE value="requirements" />
-    <option name="LAST_COMMIT_MESSAGE" value="requirements" />
+    <MESSAGE value="data from pydataset" />
+    <option name="LAST_COMMIT_MESSAGE" value="data from pydataset" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Online_preprocessing_for_ML$main.coverage" NAME="main Coverage Results" MODIFIED="1639270371883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

@@ -127,10 +127,10 @@ for i, j in zip(LOCAL_DATASET_NAMES, LOCAL_PATH_DATASET):
                         st.session_state.data.shape[0] * st.session_state.data.shape[1]), 2),
                      ' % (', sum(pd.DataFrame(st.session_state.data).isnull().sum(axis=1).tolist()), ')')
 # Pydataset datasets
-for i in PYDATASET_NAMES:
-    if dataset_choix == i:
+for i, j in zip(PYDATASET_NAMES, PYDATASET_DISPLAY_NAMES):
+    if dataset_choix == j:
         st.session_state.data = data(i)
-        st.session_state.choix_dataset = "Le fichier chargé est le dataset " + i
+        st.session_state.choix_dataset = "Le fichier chargé est le dataset " + j
         with col1_1:
             message_.success(st.session_state.choix_dataset)
 

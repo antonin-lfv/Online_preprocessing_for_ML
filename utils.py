@@ -40,7 +40,8 @@ ENSEMBLE_LEARNING_NB_ESTIMATORS = 50
 
 LOCAL_DATASET_NAMES = ["Iris (Classification)", "Penguins (Classification)", "Prix des voitures (Régression)"]
 LOCAL_PATH_DATASET = ['Datasets/iris.csv', 'Datasets/penguins.csv', 'Datasets/CarPrice.csv']
-PYDATASET_NAMES = ["Titanic (Classification)"]
+PYDATASET_NAMES = ["Titanic"]
+PYDATASET_DISPLAY_NAMES = ["Titanic (Classification)"]
 
 CSS = """
 <style>
