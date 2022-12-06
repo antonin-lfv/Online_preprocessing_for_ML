@@ -1,6 +1,7 @@
 # ===== Importations ===== #
 import streamlit as st
 from utils import *
+
 # ===== html/css config ===== #
 st.set_page_config(layout="wide", page_title="Section graphiques")
 st.markdown(CSS, unsafe_allow_html=True)
@@ -18,16 +19,16 @@ if 'data' in st.session_state:
     with col1:
         with st.expander("Données"):
             st.session_state.abscisse_plot = st.selectbox('Données en abscisses', col_num,
-                                                            )
+                                                          )
             st.session_state.ordonnee_plot = st.selectbox('Données en ordonnées', col_num[::-1],
-                                                            )
+                                                          )
     with col2:
         with st.expander("Type de graphique"):
             st.session_state.type_plot = st.radio(label="label",
-                                                    options=['Points', 'Courbe', 'Latitude/Longitude', 'Histogramme'],
-                                                    help="Choisissez le type qui vous convient",
-                                                    label_visibility='hidden',
-                                                    )
+                                                  options=['Points', 'Courbe', 'Latitude/Longitude', 'Histogramme'],
+                                                  help="Choisissez le type qui vous convient",
+                                                  label_visibility='hidden',
+                                                  )
             type_plot_dict = {
                 'Courbe': 'lines',
                 'Points': 'markers',
@@ -37,7 +38,7 @@ if 'data' in st.session_state:
         if st.session_state.type_plot == 'Latitude/Longitude':
             fig = go.Figure()
             df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot].reset_index(drop=True),
-                                        st.session_state.data[st.session_state.ordonnee_plot].reset_index(drop=True)],
+                                     st.session_state.data[st.session_state.ordonnee_plot].reset_index(drop=True)],
                                     axis=1).dropna()
             if len(df_sans_NaN) == 0:
                 st.warning('Le dataset composé des 2 colonnes selectionnées après dropna() est vide !')
@@ -59,13 +60,13 @@ if 'data' in st.session_state:
         elif st.session_state.type_plot == 'Histogramme':
             fig = go.Figure()
             df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot].reset_index(drop=True),
-                                        st.session_state.data[st.session_state.ordonnee_plot].reset_index(drop=True)],
+                                     st.session_state.data[st.session_state.ordonnee_plot].reset_index(drop=True)],
                                     axis=1).dropna()
             if len(df_sans_NaN) == 0:
                 st.warning('Le dataset composé des 2 colonnes selectionnées après dropna() est vide !')
             else:
                 fig.add_histogram(x=df_sans_NaN[st.session_state.abscisse_plot],
-                                    y=df_sans_NaN[st.session_state.ordonnee_plot])
+                                  y=df_sans_NaN[st.session_state.ordonnee_plot])
         else:
             with col3:
                 with st.expander("Indices statistiques"):
@@ -74,7 +75,7 @@ if 'data' in st.session_state:
                     st.session_state.minimum = st.checkbox("Minimum")
             fig = go.Figure()
             df_sans_NaN = pd.concat([st.session_state.data[st.session_state.abscisse_plot].reset_index(drop=True),
-                                        st.session_state.data[st.session_state.ordonnee_plot].reset_index(drop=True)],
+                                     st.session_state.data[st.session_state.ordonnee_plot].reset_index(drop=True)],
                                     axis=1).dropna()
             if len(df_sans_NaN) == 0:
                 st.warning('Le dataset composé des 2 colonnes selectionnées après dropna() est vide !')
@@ -135,34 +136,34 @@ if 'data' in st.session_state:
                 if st.session_state.moyenne:
                     # Moyenne #
                     fig.add_hline(y=df_sans_NaN[st.session_state.ordonnee_plot].mean(),
-                                    line_dash="dot",
-                                    annotation_text="moyenne : {}".format(
-                                        round(df_sans_NaN[st.session_state.ordonnee_plot].mean(), 1)),
-                                    annotation_position="bottom left",
-                                    line_width=2, line=dict(color='black'),
-                                    annotation=dict(font_size=10))
+                                  line_dash="dot",
+                                  annotation_text="moyenne : {}".format(
+                                      round(df_sans_NaN[st.session_state.ordonnee_plot].mean(), 1)),
+                                  annotation_position="bottom left",
+                                  line_width=2, line=dict(color='black'),
+                                  annotation=dict(font_size=10))
                     # #################
                     pass
                 if st.session_state.minimum:
                     # Minimum #
                     fig.add_hline(y=df_sans_NaN[st.session_state.ordonnee_plot].min(),
-                                    line_dash="dot",
-                                    annotation_text="minimum : {}".format(
-                                        round(df_sans_NaN[st.session_state.ordonnee_plot].min(), 1)),
-                                    annotation_position="bottom left",
-                                    line_width=2, line=dict(color='black'),
-                                    annotation=dict(font_size=10))
+                                  line_dash="dot",
+                                  annotation_text="minimum : {}".format(
+                                      round(df_sans_NaN[st.session_state.ordonnee_plot].min(), 1)),
+                                  annotation_position="bottom left",
+                                  line_width=2, line=dict(color='black'),
+                                  annotation=dict(font_size=10))
                     # #################
                     pass
                 if st.session_state.maximum:
                     # Maximum #
                     fig.add_hline(y=df_sans_NaN[st.session_state.ordonnee_plot].max(),
-                                    line_dash="dot",
-                                    annotation_text="maximum : {}".format(
-                                        round(df_sans_NaN[st.session_state.ordonnee_plot].max(), 1)),
-                                    annotation_position="top left",
-                                    line_width=2, line=dict(color='black'),
-                                    annotation=dict(font_size=10))
+                                  line_dash="dot",
+                                  annotation_text="maximum : {}".format(
+                                      round(df_sans_NaN[st.session_state.ordonnee_plot].max(), 1)),
+                                  annotation_position="top left",
+                                  line_width=2, line=dict(color='black'),
+                                  annotation=dict(font_size=10))
                     # #################
                     pass
         if len(df_sans_NaN) != 0:
