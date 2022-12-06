@@ -41,11 +41,9 @@ ENSEMBLE_LEARNING_NB_ESTIMATORS = 50
 LOCAL_DATASET_NAMES = ["Iris (Classification)", "Penguins (Classification)", "Prix des voitures (Régression)"]
 LOCAL_PATH_DATASET = ['Datasets/iris.csv', 'Datasets/penguins.csv', 'Datasets/CarPrice.csv']
 PYDATASET_NAMES = ["cars",
-                   "quakes",
-                   "melanoma"]
+                   "quakes"]
 PYDATASET_DISPLAY_NAMES = ["Speed and Stopping Distances of Cars (Régression)",
-                           "Locations of Earthquakes off Fiji (Data vizualisation)",
-                           "Survival from Malignant Melanoma"]
+                           "Locations of Earthquakes off Fiji (Data vizualisation)"]
 
 CSS = """
 <style>
