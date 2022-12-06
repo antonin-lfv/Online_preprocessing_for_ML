@@ -2,7 +2,7 @@ plotly
 matplotlib
 seaborn
 xlrd
-sklearn
+scikit-learn
 umap-learn
 scipy
 more-itertools
