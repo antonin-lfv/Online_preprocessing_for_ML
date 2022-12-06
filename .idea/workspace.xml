@@ -23,6 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3ef27b0-8bd9-4fec-9e02-9a39df4fad19" name="Default Changelist" comment="data from pydataset">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -186,14 +187,7 @@
       <workItem from="1667993911841" duration="22000" />
       <workItem from="1670363342780" duration="1438000" />
       <workItem from="1670364795919" duration="6000" />
-      <workItem from="1670364808611" duration="1594000" />
-    </task>
-    <task id="LOCAL-00516" summary="structure">
-      <created>1642002555703</created>
-      <option name="number" value="00516" />
-      <option name="presentableId" value="LOCAL-00516" />
-      <option name="project" value="LOCAL" />
-      <updated>1642002555703</updated>
+      <workItem from="1670364808611" duration="1715000" />
     </task>
     <task id="LOCAL-00517" summary="structure">
       <created>1642002652968</created>
@@ -531,7 +525,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670366209620</updated>
     </task>
-    <option name="localTasksCounter" value="565" />
+    <task id="LOCAL-00565" summary="data from pydataset">
+      <created>1670366411247</created>
+      <option name="number" value="00565" />
+      <option name="presentableId" value="LOCAL-00565" />
+      <option name="project" value="LOCAL" />
+      <updated>1670366411247</updated>
+    </task>
+    <option name="localTasksCounter" value="566" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
