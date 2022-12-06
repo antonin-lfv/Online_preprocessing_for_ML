@@ -48,7 +48,7 @@ with col2_1:
 with col1_1:
     dataset_choix = st.selectbox("Dataset",
                                  ["-- Choisissez une option --"] +
-                                 LOCAL_DATASET_NAMES + PYDATASET_NAMES +
+                                 LOCAL_DATASET_NAMES + PYDATASET_DISPLAY_NAMES +
                                  ["Choisir un dataset personnel"])
     message_ = st.empty()
 
