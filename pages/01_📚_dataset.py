@@ -58,7 +58,7 @@ if 'choix_dataset' in st.session_state:
 
 if dataset_choix == "-- Choisissez une option --":
     if 'choix_dataset' in st.session_state:
-        if st.session_state.choix_dataset in [f"Le fichier chargé est le dataset {name}" for name in LOCAL_DATASET_NAMES]:
+        if st.session_state.choix_dataset in [f"Le fichier chargé est le dataset {name}" for name in LOCAL_DATASET_NAMES+PYDATASET_DISPLAY_NAMES]:
             with col1:
                 st.write("##")
                 st.markdown('<p class="section">Aperçu</p>', unsafe_allow_html=True)
