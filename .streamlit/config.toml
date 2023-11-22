@@ -4,8 +4,6 @@
 # Default: false
 disableWatchdogWarning = false
 
-dataFrameSerialization = "legacy"
-
 [theme]
 base="light"
 
