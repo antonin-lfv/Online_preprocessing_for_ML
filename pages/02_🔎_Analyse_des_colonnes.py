@@ -40,20 +40,20 @@ if 'data' in st.session_state:
                 st.write(data_col.head(20))
             with col2:
                 st.write('##')
-                st.write(' ● type de la colonne :', type(data_col))
-                st.write(' ● type des valeurs :', type(data_col.iloc[1]))
+                st.write(' ● type de la colonne :', str(type(data_col)))
+                st.write(' ● type des valeurs :', str(type(data_col.iloc[1])))
                 if n_data.dtype == float:
                     moyenne = data_col.mean()
                     variance = data_col.std()
-                    max = data_col.max()
-                    min = data_col.min()
+                    max_ = data_col.max()
+                    min_ = data_col.min()
                     st.write(' ● Moyenne :', round(moyenne, 3))
 
                     st.write(' ● Variance :', round(variance, 3))
 
-                    st.write(' ● Maximum :', max)
+                    st.write(' ● Maximum :', max_)
 
-                    st.write(' ● Minimum :', min)
+                    st.write(' ● Minimum :', min_)
 
                 st.write(' ● Valeurs les plus présentes:', (Counter(n_data).most_common()[0])[0], 'apparait',
                             (Counter(n_data).most_common()[0])[1], 'fois', ', ', (Counter(n_data).most_common()[1])[0],

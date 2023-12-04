@@ -1,9 +1,3 @@
-[global]
-# By default, Streamlit checks if the Python watchdog module is available and, if not, prints a warning asking for you to install it. The watchdog module is not required, but highly recommended. It improves Streamlit's ability to detect changes to files in your filesystem.
-# If you'd like to turn off this warning, set this to True.
-# Default: false
-disableWatchdogWarning = false
-
 [theme]
 base="light"
 
@@ -21,12 +15,6 @@ textColor = '#222f3e' # couleur du texte
 
 # Font family for all text in the app, except code blocks. One of "sans serif", "serif", or "monospace".
 font = "sans serif"
-
-[deprecation]
-
-# Set to false to disable the deprecation warning for the file uploader encoding.
-# Default: "True"
-showfileUploaderEncoding = "False"
 
 [server]
 
