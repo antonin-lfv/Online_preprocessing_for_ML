@@ -1,0 +1,3 @@
+streamlit_lottie
+pydataset
+umap-learn
