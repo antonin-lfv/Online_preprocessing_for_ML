@@ -9,7 +9,6 @@ dependencies:
   - scikit-learn
   - scipy
   - more-itertools
-  - graphviz
   - numpy
   - pandas
   - scikit-learn
@@ -23,3 +22,4 @@ dependencies:
     - streamlit-lottie
     - pydataset
     - umap
+    - graphviz
