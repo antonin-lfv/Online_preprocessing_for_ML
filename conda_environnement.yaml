@@ -15,7 +15,6 @@ dependencies:
   - scikit-learn
   - streamlit
   - Pillow
-  - umap
   - six
   - pip
   - requests
@@ -23,3 +22,4 @@ dependencies:
     - umap-learn
     - streamlit-lottie
     - pydataset
+    - umap
