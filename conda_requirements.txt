@@ -1,0 +1,17 @@
+plotly
+matplotlib
+seaborn
+xlrd
+scikit-learn
+scipy
+more-itertools
+graphviz
+numpy
+pandas
+scikit-learn
+streamlit
+Pillow
+umap
+six
+pip
+requests
