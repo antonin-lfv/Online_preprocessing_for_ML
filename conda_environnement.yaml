@@ -1,0 +1,25 @@
+name: env_projet2
+channels:
+  - defaults
+dependencies:
+  - plotly
+  - matplotlib
+  - seaborn
+  - xlrd
+  - scikit-learn
+  - scipy
+  - more-itertools
+  - graphviz
+  - numpy
+  - pandas
+  - scikit-learn
+  - streamlit
+  - Pillow
+  - umap
+  - six
+  - pip
+  - requests
+  - pip:
+    - umap-learn
+    - streamlit-lottie
+    - pydataset

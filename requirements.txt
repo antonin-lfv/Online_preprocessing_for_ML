@@ -1,9 +1,11 @@
+streamlit_lottie
+pydataset
+umap-learn
 plotly
 matplotlib
 seaborn
 xlrd
 scikit-learn
-umap-learn
 scipy
 more-itertools
 graphviz
@@ -16,5 +18,3 @@ umap
 six
 pip
 requests
-streamlit_lottie
-pydataset
