@@ -14,7 +14,6 @@ pandas
 scikit-learn
 streamlit
 Pillow
-umap
 six
 pip
 requests
