@@ -9,17 +9,29 @@ dependencies:
   - scikit-learn
   - scipy
   - more-itertools
+<<<<<<< HEAD
   - graphviz
+=======
+>>>>>>> 6e862777e532342526931f61e675d6fa2369fda0
   - numpy
   - pandas
   - scikit-learn
   - streamlit
   - Pillow
+<<<<<<< HEAD
   - umap
+=======
+>>>>>>> 6e862777e532342526931f61e675d6fa2369fda0
   - six
   - pip
   - requests
   - pip:
     - umap-learn
     - streamlit-lottie
+<<<<<<< HEAD
     - pydataset
+=======
+    - pydataset
+    - umap
+    - graphviz
+>>>>>>> 6e862777e532342526931f61e675d6fa2369fda0

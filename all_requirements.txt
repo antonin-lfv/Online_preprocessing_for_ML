@@ -1,0 +1,27 @@
+streamlit_lottie
+pydataset
+umap-learn
+plotly
+matplotlib
+seaborn
+xlrd
+scikit-learn
+scipy
+more-itertools
+numpy
+pandas
+scikit-learn
+streamlit
+Pillow
+six
+pip
+<<<<<<< HEAD:requirements.txt
+requests
+=======
+requests
+streamlit_lottie
+pydataset
+umap-learn
+umap
+graphviz
+>>>>>>> 6e862777e532342526931f61e675d6fa2369fda0:all_requirements.txt

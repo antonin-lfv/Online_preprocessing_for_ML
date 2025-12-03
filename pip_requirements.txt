@@ -1,3 +1,9 @@
 streamlit_lottie
 pydataset
+<<<<<<< HEAD
 umap-learn
+=======
+umap-learn
+umap
+graphviz
+>>>>>>> 6e862777e532342526931f61e675d6fa2369fda0
