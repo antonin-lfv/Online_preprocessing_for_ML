@@ -32,10 +32,16 @@
 
 ## Test du site en local
 
-Clonez le repo puis, depuis le terminal au dossier du projet :
+Clonez le repo puis, depuis le terminal au dossier du projet (avec UV) :
 
 ```bash
-Streamlit run Accueil.py
+uv sync
+```
+
+Puis lancez le site avec la commande :
+
+```bash
+uv run streamlit run Accueil.py
 ```
 
 <br/>
